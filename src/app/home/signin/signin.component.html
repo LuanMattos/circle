@@ -1,0 +1,45 @@
+<div class="text-center mt-lg-5 font-weight-bold">Acesso</div>
+
+<form class="form mt-lg-5" [formGroup]="loginForm" (submit)="login()" #form="ngForm">
+
+  <div class="form-group">
+
+    <mat-form-field class="w-100">
+      <mat-label>Usuário</mat-label>
+      <input #userNameInput
+             formControlName="userName"
+             matInput type="text" >
+    </mat-form-field>
+
+    <!-- formControlName (Nome dos campos no component (userName:[]) -->
+
+<!--    Acredite, podemos fazer 'terneiro' assim no Angular-->
+    <app-vmessage
+      *ngIf="loginForm.get('userName').errors?.required && form.submitted"
+      text="Nome de usuário é obrigatório!"
+    ></app-vmessage>
+  </div>
+
+  <div class="form-group">
+    <!-- formControlName (Nome dos campos no component (password:[]) -->
+    <mat-form-field class="w-100">
+      <mat-label>Senha</mat-label>
+      <input formControlName="password"
+             matInput type="password" >
+    </mat-form-field>
+<!--    Acredite, podemos fazer 'terneiro' assim no Angular-->
+    <app-vmessage
+      *ngIf="loginForm.get('password').errors?.required && form.submitted"
+      text="Senha é obrigatória "
+    ></app-vmessage>
+
+  </div>
+
+<!-- Não precisamos fazer a gambiarra de pegar campo por campo e criar um novo método -->
+<!--  o próprio validate do Angular faz isso pra nós ;) -->
+
+  <button class="w-100 bg-dark text-white" mat-raised-button [disabled]="loginForm.invalid" type="submit">Entrar</button>
+
+</form>
+
+<p class="p-5">Não é registrado?<a [routerLink]="['signup']" class="ml-2">Registre-se agora</a></p>

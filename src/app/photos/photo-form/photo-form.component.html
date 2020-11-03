@@ -1,0 +1,74 @@
+<div class="container mt-5">
+  <form class="row" [formGroup]="photoForm" (submit)="upload()">
+
+    <div class="col-md-6 text-center">
+      <div class="form-group card" *ngIf="!preview; else showPreview">
+        <button type="button" (click)="fileInput.click()" class="bg-transparent border-0 cursor-pointer">
+          <i class="fa fa-image fa-4x align-middle text-dark"></i>
+        </button>
+        <input formControlName="file"
+               #fileInput
+               hidden
+               type="file"
+               accept="image/*"
+               (change)="handleFile($event.target.files[0])"
+        >
+        <app-vmessage
+          *ngIf="photoForm.get('file').errors?.required"
+          text="Insira uma imagem">
+        </app-vmessage>
+      </div>
+      <ng-template #showPreview>
+        <div class="text-center " appDarkenOnHover brightness="70%">
+          <i class="fa fa-times pb-2 text-danger cursor-pointer" (click)="removeFile()"></i>
+          <app-photo [url]="preview" title="Preview" class="mt-lg-5">
+          </app-photo>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <mat-form-field class="w-100">
+          <mat-label>Descreva este momento</mat-label>
+          <textarea
+            rows="10"
+            matInput
+            formControlName="description"
+          >
+        </textarea>
+        </mat-form-field>
+        <app-vmessage
+          *ngIf="photoForm.get('description').errors?.maxlength"
+          text="Máximo 300 caracteres"></app-vmessage>
+      </div>
+
+      <div class="form-group">
+        <label class="text-muted">
+          Ativar comentários
+          <input
+            formControlName="allowComments"
+            type="checkbox">
+        </label>
+      </div>
+      <div *ngIf="!progress; else toProgress">
+        <div class="form-group">
+          <button [disabled]="photoForm.invalid"
+                  type="submit"
+                  mat-raised-button
+                  class="w-100 bg-dark text-white">
+            Postar
+          </button>
+        </div>
+        <div class="form-group">
+          <a class="w-100 bg-dark text-white" [routerLink]="['']" mat-raised-button>Cancelar</a>
+        </div>
+      </div>
+      <ng-template #toProgress>
+        <div class="text-center">
+          <span>Progresso {{progress}} %</span>
+        </div>
+      </ng-template>
+    </div>
+  </form>
+</div>
