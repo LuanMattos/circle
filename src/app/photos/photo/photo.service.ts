@@ -48,7 +48,7 @@ export class PhotoService {
   }
 
   findById(id : number){
-    return this.http.get<Photo>(API + 'photos/' + id);
+    return this.http.get<Photo>(API + 'get_photo_id/' + id);
   }
   getComments(photoId : number){
     return this.http.get<PhotoComment[]>(API + 'photos/' + photoId + '/comments')
@@ -57,8 +57,6 @@ export class PhotoService {
     return this.http.post(
       API + 'photos/' + photoId + '/comments',
       {commentText:commentText}
-      // ou
-      // {commentText}
       )
   }
   removePhoto(photoId:number){

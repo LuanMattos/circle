@@ -17,6 +17,8 @@ export class PhotoFormComponent implements OnInit {
   file:File;
   preview:string;
   progress = 0;
+  global:boolean = false;
+  public:boolean = false;
 
   constructor(
     private alertService:AlertService,

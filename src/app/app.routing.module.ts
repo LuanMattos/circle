@@ -74,7 +74,7 @@ const routes:Routes = [
     path:'p/:photoId',
     component:PhotoDetailComponent,
     data: {
-      animation: 'FilterPage',
+      animation: 'HomePage',
       title:'Detail Photo'
     },
   },

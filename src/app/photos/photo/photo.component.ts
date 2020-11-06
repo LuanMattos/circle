@@ -12,7 +12,6 @@ export class PhotoComponent{
   @Input() description='';
   @Input() _url='';
 
-
   @Input() set url( url:string ){
     if(!url.startsWith('data')){
       this._url = url;

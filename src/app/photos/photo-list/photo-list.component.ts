@@ -65,25 +65,7 @@ export class PhotoListComponent implements OnInit {
     this.photoService
       .listFromUserPaginated(this.userName,this.currentPage ++)
       .subscribe(
-        /**
-         * Faz push de cada item adicionado no back 1,2,3,4,5,6...
-         * Se retonrar vazio, não adiciona nata
-         * **/
         photos=>{
-          /**
-           * Contrário do Vue (que escuta os v-model's), o código com push
-           *  NÃO atualizara a lista no photo-list.component, portanto precisamos
-           *    gerar nova lista com concat
-           *
-           * As vezes com Vue esquecemos alguns conceitos básico de JS, um exemplo é este
-           *  onde push adiciona elementos à lista, fazendo com que o template não escute essas mudanças
-           *  já que é inerente ao escopo dele.
-           *  Já o concat força o retorno de um novo Array.
-           *
-           * @Ler sobre ChangeDetector
-           * https://angular.io/api/core/ChangeDetectorRef
-           */
-           // this.photos.push(...photos);
           this.filter = '';
           this.photos = this.photos.concat(photos);
           if(!photos.length) this.hasMore = false;

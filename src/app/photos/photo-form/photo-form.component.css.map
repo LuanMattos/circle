@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,GAAG;EACD,WAAW,EAAE,GAAG;EAChB,SAAS,EAAE,IAAI",
+"sources": ["photo-form.component.scss"],
+"names": [],
+"file": "photo-form.component.css"
+}

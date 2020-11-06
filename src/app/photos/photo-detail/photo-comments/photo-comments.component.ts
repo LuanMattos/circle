@@ -16,6 +16,7 @@ export class PhotoCommentsComponent implements OnInit {
   comments$: Observable<PhotoComment[]>;
   commentForm:FormGroup;
   @Input() photoId:number;
+  @Input() viewComponent:boolean = true;
 
   constructor(
     private router:Router,

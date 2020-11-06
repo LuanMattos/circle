@@ -9,12 +9,14 @@ import {AlertService} from "../../shared/alert/alert.service";
 
 @Component({
   selector:'app-photo-detail',
-  templateUrl:'photo-detail.component.html'
+  templateUrl:'photo-detail.component.html',
+  styleUrls:['./photo-detail.css']
 })
 export class PhotoDetailComponent implements OnInit{
 
   photo$:Observable<Photo>;
   photoId:number;
+  photoComment:boolean = false;
 
   constructor(
     private alertService:AlertService,

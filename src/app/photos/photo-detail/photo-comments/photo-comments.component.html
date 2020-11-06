@@ -1,38 +1,42 @@
-<div *ngIf="(comments$ | async) as comments">
-  <ul class="list-unstyled comment-list">
-    <li *ngFor="let comment of comments">
-      <a class="text-dark font-weight-bold mr-1" [routerLink]="['/user', comment.comment_user_name]">
-        {{ comment.comment_user_name }}
-      </a>
-      <em>
-        {{ comment.comment_date | date:'dd-MM-yyyy HH:mm' }}
-      </em>
-      <p class="break-word mb-2">
-        {{ comment.comment_text }}
-      </p>
-    </li>
-  </ul>
-
-  <form [formGroup]="commentForm" showIsLogged>
-    <div class="form-group">
-      <textarea formControlName="comment" class="form-control"></textarea>
-    </div>
-    <div class="form-group">
-      <button
-        mat-raised-button
-        (click)="save()"
-        [disabled]="commentForm.invalid"
-        class="w-100 bg-dark text-white">
-        Publicar
-      </button>
-    </div>
-    <app-vmessage
-      text="Máximo permitido de 300 caracteres"
-      *ngIf="commentForm.get('comment').errors?.maxlength"
-    ></app-vmessage>
-    <app-vmessage
-      text="Campo é obrigatório"
-      *ngIf="commentForm.get('comment').errors?.required"
-    ></app-vmessage>
-  </form>
+<div class="container">
+  <div *ngIf="(comments$ | async) as comments">
+    <ul class="list-unstyled comment-list">
+      <li *ngFor="let comment of comments">
+        <a class="text-dark font-weight-bold mr-1 " [routerLink]="['/user', comment.comment_user_name]">
+          {{ comment.comment_user_name }}
+        </a>
+        <em>
+          {{ comment.comment_date | date:'dd-MM-yyyy HH:mm' }}
+        </em>
+        <p class="break-word mb-2">
+          {{ comment.comment_text }}
+        </p>
+      </li>
+    </ul>
+  </div>
 </div>
+
+<form [formGroup]="commentForm" class="m-auto fixed-bottom" showIsLogged *ngIf="viewComponent">
+  <div class="mb-5">
+    <div class="row">
+      <div class="col-auto w-100 m-auto">
+        <textarea formControlName="comment" placeholder="Comentário"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-7">
+        <i class="m-3 fa fa-arrow-left cursor-pointer" aria-hidden="true" (click)="viewComponent = !viewComponent"></i>
+        <i class="m-3 fa fa-camera cursor-pointer" aria-hidden="true"></i>
+      </div>
+      <div class="col-4 m-auto p-2">
+        <input type="submit"
+               (click)="save()"
+               [disabled]="commentForm.invalid"
+               class="btn-send  {{commentForm.valid?'text-primary':'text-muted'}}"
+               value="PUBLICAR"
+        >
+      </div>
+    </div>
+  </div>
+
+</form>

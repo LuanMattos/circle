@@ -1,32 +1,18 @@
 <header class="fixed-top">
   <nav class="navbar navbar-light bg-white">
-    <a class="navbar-brand">
-      Square
+    <a class="navbar-brand" [routerLink]="['']">
+      Sq<span class="text-muted">u</span>are
     </a>
-<!--    Com asynv-->
-<!--    Lembra que eu disse que existe uma maneira de chamar o dado de um Observable direto -->
-<!--    no Component? -->
-<!--    Ainda podemos tirar o subscribe de nosso código, deixando-o mais limpo-->
-<!--    Podemos fazer assim:-->
-
     <div *ngIf="(user$ | async) as user;else login">
       <i class="fa fa-user-circle mr-2"></i>
       <a class="ml-2">{{user?.user_name}}</a>
       <a class="ml-2 " (click)="logout()">Sair</a>
     </div>
-
-<!--    Sem async -->
-<!--    <div *ngIf="user; else login">-->
-<!--        <i class="fa fa-user-circle"></i>-->
-<!--        <a class="ml-2">{{user?.name}}</a>-->
-<!--    </div>-->
-
     <ng-template #login>
       <span class="navbar-text">
         Por favor, faça <a [routerLink]="['']">login</a>
       </span>
     </ng-template>
-
   </nav>
   <app-alert></app-alert>
 </header>

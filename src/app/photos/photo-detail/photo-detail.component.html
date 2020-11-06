@@ -1,21 +1,24 @@
-<div class="bg-white border" *ngIf="(photo$ | async) as photo">
+<div class="bg-white div-general-photo-detail" *ngIf="(photo$ | async) as photo" >
   <div class="row">
-    <div class="col-lg-8">
-      <app-photo [url]="photo?.photo_url" [description]="photo?.photo_description"></app-photo>
-    </div>
-    <div class="col-lg-4 p-4">
+    <div class="col m-auto">
+      <div class="img-container m-auto">
+        <img [src]="photo?.photo_url" [alt]="photo?.photo_description" [class]="'cover'">
+      </div>
       <small>
-        <p class="text-left break-word">{{photo?.photo_description}}</p>
+        <p class="text-left break-word">
+          {{photo?.photo_description}}
+        </p>
         <div class="text-left mb-4">
-          <i class="fa fa-comment-o fa-2x mr-2 ml-2 cursor-pointer"></i>{{ photo.photo_comments }}
+          <i class="fa fa-comment-o fa-2x mr-2 ml-2 cursor-pointer text-muted" (click)="photoComment = !photoComment"></i>{{ photo.photo_comments }}
           <i photoOwnerOnly [ownedPhoto]="photo" showIsLogged (click)="removePhoto()" class="fa fa-trash-o fa-2x pull-right cursor-pointer"></i>
         </div>
-        <hr>
       </small>
-      <app-photo-comments [photoId]="photoId" *ngIf="photo.photo_allowComments; else warning"></app-photo-comments>
+    </div>
+  </div>
+  <div class="row m-0">
+      <app-photo-comments  [viewComponent]="photoComment" [photoId]="photoId" *ngIf="photo.photo_allow_comments == 1; else warning"></app-photo-comments>
       <ng-template #warning>
         <p class="text-muted">O usuário desativou os comentários</p>
       </ng-template>
-    </div>
   </div>
 </div>

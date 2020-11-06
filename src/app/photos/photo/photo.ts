@@ -9,8 +9,8 @@ export interface Photo{
   photo_post_date:Date;
   photo_url:string;
   photo_description:string;
-  photo_allowComments:boolean;
+  photo_allow_comments:boolean;
   photo_likes:number;
   photo_comments:number;
-  photo_user_id:number
+  user_id:number
 }
