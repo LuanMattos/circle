@@ -19,7 +19,7 @@ export class PhotoOwnerOnlyDirective implements OnInit{
     this.userService.getUser()
       .subscribe(user => {
         if(this.userService.isLogged())
-        if(user && user.id != this.ownedPhoto.userId){
+        if(user && user.user_id != this.ownedPhoto.photo_id){
           this.render.setStyle(this.el.nativeElement,'display','none');
         }
       })

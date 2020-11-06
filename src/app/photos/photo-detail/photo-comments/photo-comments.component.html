@@ -1,14 +1,14 @@
 <div *ngIf="(comments$ | async) as comments">
   <ul class="list-unstyled comment-list">
     <li *ngFor="let comment of comments">
-      <a class="text-dark font-weight-bold mr-1" [routerLink]="['/user', comment.userName]">
-        {{ comment.userName }}
+      <a class="text-dark font-weight-bold mr-1" [routerLink]="['/user', comment.comment_user_name]">
+        {{ comment.comment_user_name }}
       </a>
       <em>
-        {{ comment.date | date:'dd-MM-yyyy HH:mm' }}
+        {{ comment.comment_date | date:'dd-MM-yyyy HH:mm' }}
       </em>
       <p class="break-word mb-2">
-        {{ comment.text }}
+        {{ comment.comment_text }}
       </p>
     </li>
   </ul>

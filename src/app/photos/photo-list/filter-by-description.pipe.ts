@@ -11,7 +11,7 @@ export class FilterByDescription implements PipeTransform{
     if(descriptionQuery){
       return photos
             .filter(
-              photo => photo.description.toLowerCase().includes( descriptionQuery )
+              photo => photo.photo_description.toLowerCase().includes( descriptionQuery )
             );
     }else{
       return photos;

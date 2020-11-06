@@ -5,12 +5,12 @@
  * Neste caso, muito igual Vue com Stores
 **/
 export interface Photo{
-  id:number;
-  postDate:Date;
-  url:string;
-  description:string;
-  allowComments:boolean;
-  likes:number;
-  comments:number;
-  userId:number
+  photo_id:number;
+  photo_post_date:Date;
+  photo_url:string;
+  photo_description:string;
+  photo_allowComments:boolean;
+  photo_likes:number;
+  photo_comments:number;
+  photo_user_id:number
 }

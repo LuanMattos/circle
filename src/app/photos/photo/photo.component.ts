@@ -1,7 +1,7 @@
 import {Component, Input} from "@angular/core";
 import {environment} from "../../../environments/environment";
 
-const CLOUD = environment.ApiUrl + '/imgs/'
+const CLOUD = environment.ApiUrl + '/storage/img/'
 
 @Component({
   selector:"app-photo",
@@ -9,14 +9,13 @@ const CLOUD = environment.ApiUrl + '/imgs/'
 })
 export class PhotoComponent{
 
-  private _url = '';
   @Input() description='';
+  @Input() _url='';
 
-  /** setter e getter no angular **/
+
   @Input() set url( url:string ){
-    /** Verifica se imagem é src="data:..." **/
     if(!url.startsWith('data')){
-      this._url = CLOUD + url;
+      this._url = url;
     }else{
       this._url = url;
     }
@@ -26,17 +25,4 @@ export class PhotoComponent{
     return this._url;
   }
 
-  /**
-   * Exemplo de roubo de token, de roubo de Token pelo localStorage
-   **/
-  exampleCaptureTokenAtack(){
-    var values = [],
-    keys = Object.keys(window.localStorage),
-    i = keys.length;
-    while( i-- ){
-      values.push( window.localStorage.getItem(keys[i]))
-    }
-    console.log(values)
-
-  }
 }

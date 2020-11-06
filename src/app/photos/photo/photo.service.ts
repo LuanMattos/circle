@@ -23,21 +23,21 @@ export class PhotoService {
      * Precisamos tipar o dado, pois o Angular não sabe o tipo que vai vir do Back
      **/
 
-    return this.http.get<Photo[]>(API + userName +'/photos');
+    return this.http.get<Photo[]>(API + 'photos/' + userName);
   }
   listFromUserPaginated( userName : string,page:number ){
         const params = new HttpParams()
                   .append('page',page.toString());
-        return this.http.get<Photo[]>(API +  userName + '/photos', {params:params});//ou apenas {params}
+        return this.http.get<Photo[]>(API +   '/photos/' + userName , {params:params});//ou apenas {params}
   }
-  upload(description:string, allowComments:boolean, file:File){
+  upload(description:string, allowComments:boolean, file){
     const formData = new FormData();
 
     formData.append('description',description);
     formData.append('allowComments',allowComments?'true':'false');
-    formData.append('imageFile',"image/"+file);
+    formData.append('imageFile',file);
 
-    return this.http.post(API + 'photos/upload', formData,
+    return this.http.post(API + 'photos_upload', formData,
       {
           observe:"events",
           /** já retorna informações sobre o progresso (carregamento do arquivo no front apenas) **/

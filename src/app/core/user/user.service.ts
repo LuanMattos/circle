@@ -33,7 +33,7 @@ export class UserService{
     /** Maneira de fazer casting (idem no C#) - pega os campos da interface User (precisa que retorne todos os campos corretamente) **/
     const user = jwt_decode(token) as User;
 
-    this.userName = user.name;
+    this.userName = user.user_name;
 
     /** Emitimos (para toda app) os dados através do Subject **/
     this.userSubject.next(user);

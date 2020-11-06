@@ -53,12 +53,13 @@ export class SignInComponent implements OnInit{
 
       this.authService.authenticate(userName,password)
       .subscribe(
-        ()=> {
-          console.log(this.fromUrl)
+        (res)=> {
+
           this.fromUrl
             ?
             this.router.navigateByUrl(this.fromUrl)
             :
+            console.log(this.fromUrl)
             this.router.navigate(['user', userName])
         },
         err=> {

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {tap} from 'rxjs/operators';
+
 import {UserService} from "../user/user.service";
 import {environment} from "../../../environments/environment";
-
 
 
 const API_URL = environment.ApiUrl;
@@ -23,8 +23,9 @@ export class AuthService {
     /**
      * {observe:"response"} => na requisição, vou recebe-la completa (inclusive cabeçalhos)
      **/
+    const data = {password,userName};
     return this.http
-      .post(API_URL + 'user/login',{userName,password},{observe:"response"})
+      .post(API_URL + 'userLogin',JSON.stringify(data),{observe:"response"})
       /**
        * Entre a execução da requisição e do subscribe, o pipe "entra" e aplica um determinado operador
        *    como filtros, timeOut etc..
@@ -36,7 +37,6 @@ export class AuthService {
           res=>{
             const authToken = res.headers.get('x-access-token')
             this.userService.setToken(authToken);
-            console.log(authToken)
           }
         )
       )
