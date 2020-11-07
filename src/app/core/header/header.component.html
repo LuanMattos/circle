@@ -5,7 +5,7 @@
     </a>
     <div *ngIf="(user$ | async) as user;else login">
       <i class="fa fa-user-circle mr-2"></i>
-      <a class="ml-2">{{user?.user_name}}</a>
+      <a class="ml-2">{{user?.user_name | titlecase}}</a>
       <a class="ml-2 " (click)="logout()">Sair</a>
     </div>
     <ng-template #login>

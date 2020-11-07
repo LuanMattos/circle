@@ -5,7 +5,8 @@ const CLOUD = environment.ApiUrl + '/storage/img/'
 
 @Component({
   selector:"app-photo",
-  templateUrl:"photo.component.html"
+  templateUrl:"photo.component.html",
+  styleUrls:["./photo.css"],
 })
 export class PhotoComponent{
 

@@ -1,34 +1,23 @@
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Photo} from "./photo";
-import {PhotoComment} from "./photo-comment";
 import {environment} from "../../../environments/environment";
+import {Comments} from '../comments/comments';
 
 const API = environment.ApiUrl;
 
-/**Com Injectable TODA a aplicação vai poder usar o servço de Fotos*/
 @Injectable({providedIn:'root'})
 export class PhotoService {
 
-  /**
-   * Usando private/public http... não precisamos criar o atributo e construir no construtor,
-   * Ou seja, ele se torna AUTOMATICAMENTE propriedade da classe
-   **/
   constructor(private http: HttpClient) {}
 
   listFromUser(userName : string){
-    /**
-     * Precisamos tipar o dado, pois o Angular não sabe o tipo que estará vindo do Back
-     * Também não colocamos Subscribe, quem usar o método que vai chamar
-     * Precisamos tipar o dado, pois o Angular não sabe o tipo que vai vir do Back
-     **/
-
     return this.http.get<Photo[]>(API + 'photos/' + userName);
   }
   listFromUserPaginated( userName : string,page:number ){
         const params = new HttpParams()
                   .append('page',page.toString());
-        return this.http.get<Photo[]>(API +   '/photos/' + userName , {params:params});//ou apenas {params}
+        return this.http.get<Photo[]>(API +   '/photos/' + userName , {params:params});
   }
   upload(description:string, allowComments:boolean, file){
     const formData = new FormData();
@@ -40,7 +29,6 @@ export class PhotoService {
     return this.http.post(API + 'photos_upload', formData,
       {
           observe:"events",
-          /** já retorna informações sobre o progresso (carregamento do arquivo no front apenas) **/
           reportProgress:true
         }
       )
@@ -51,11 +39,11 @@ export class PhotoService {
     return this.http.get<Photo>(API + 'get_photo_id/' + id);
   }
   getComments(photoId : number){
-    return this.http.get<PhotoComment[]>(API + 'photos/' + photoId + '/comments')
+    return this.http.get<Comments[]>(API + 'photos/' + photoId + '/comments')
   }
   addComment(photoId:number,commentText:string){
     return this.http.post(
-      API + 'photos/' + photoId + '/comments',
+      API + 'comments/' + photoId,
       {commentText:commentText}
       )
   }
@@ -63,8 +51,4 @@ export class PhotoService {
     return this.http.delete(API + 'photos/' + photoId)
   }
 }
-// Lista de Api's
-/**
-curtida:
-photos/photoId/like
-**/
+

@@ -12,6 +12,7 @@ import {DarkenOnHoverModule} from "../../shared/directives/dark-on-hover/darken-
 import {UxModule} from "../../core/ux/ux-module";
 import {RouterModule} from "@angular/router";
 import {ShowIsLoggedModule} from "../../shared/directives/show-is-logged/show-is-logged.module";
+import {PhotoDetailModule} from '../photo-detail/photo-detail.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {ShowIsLoggedModule} from "../../shared/directives/show-is-logged/show-is
     DarkenOnHoverModule,
     UxModule,
     RouterModule,
-    ShowIsLoggedModule
+    ShowIsLoggedModule,
+    PhotoDetailModule
   ]
 })
 export class PhotoListModule{

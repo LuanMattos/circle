@@ -2,38 +2,3 @@
 
   overflow-y: auto;
 }
-
-form{
-  background: white;
-  min-width: 100%;
-    .btn-send{
-      background: transparent;
-      border: 0;
-      font-weight: bold;
-      margin:auto;
-      text-align: center;
-      color:#90979c;
-      float:right;
-      cursor: pointer;
-  }
-  .mb-5{
-    background: #e8e8f5;
-  }
-}
-textarea{
-  padding: 10px;
-  display: block;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 0;
-  outline: none;
-  resize: none;
-  font-size: .8rem;
-  width: 100%;
-  color:#cecedb;
-  box-sizing: border-box;
-  &:focus {
-    color:black;
-    border: 1px solid #cecedb;
-  }
-}

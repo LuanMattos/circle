@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges,SimpleChanges} from '@angular/core';
 import {Photo} from "../../photo/photo";
+import {Comments} from '../../comments/comments';
 
 @Component({
   selector: 'app-photos',
@@ -9,14 +10,13 @@ import {Photo} from "../../photo/photo";
 export class PhotosComponent implements OnChanges {
 
   @Input() photos:Photo[] = [];
+  @Input() comments:Comments[] = [];
+  viewFormComment:boolean = false;
   rows:any[] = [];
+  photoId
 
   constructor() { }
-  /**
-   * Escuta as mudanças - Praticamente um Watcher do Vue
-   **/
   ngOnChanges(changes: SimpleChanges) {
-    /** Se houver mudanças no photos */
     if(changes.photos)
       this.rows = this.photos;
   }

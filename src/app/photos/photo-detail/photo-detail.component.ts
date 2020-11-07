@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 
@@ -17,6 +17,7 @@ export class PhotoDetailComponent implements OnInit{
   photo$:Observable<Photo>;
   photoId:number;
   photoComment:boolean = false;
+  comments
 
   constructor(
     private alertService:AlertService,
@@ -34,6 +35,10 @@ export class PhotoDetailComponent implements OnInit{
       this.router.navigate(['not-found'])
     })
   }
+  teste(){
+    console.log(this.comments)
+  }
+
   removePhoto(){
     this.alertService.success('Imagem excluída! (código comentado para não excluir)')
     this.router.navigate([''])

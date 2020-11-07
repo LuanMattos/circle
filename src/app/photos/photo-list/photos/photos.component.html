@@ -17,10 +17,14 @@
         </app-card>
       </a>
       <div class="text-center" showIsLogged>
-        <i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2 text-muted"></i>{{ photo.photo_likes }}
-        <i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2 ml-2 text-muted"></i>{{ photo.photo_comments }}
+        {{ photo.photo_likes }}
+        <i aria-hidden="true" class="fa fa-hand-peace-o fa-2x mr-2 text-muted cursor-pointer"></i>
+        {{ comments.length }}
+        <i aria-hidden="true" class="fa fa-commenting-o fa-2x mr-2 ml-2 text-muted cursor-pointer" (click)="viewFormComment = !viewFormComment;photoId = photo.photoId;"></i>
       </div>
     </div>
   </div>
 </div>
+<app-comments-form [viewComponent]="viewFormComment" [photoId]="photoId"></app-comments-form>
+
 

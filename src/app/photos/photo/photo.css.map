@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,GAAI;EACF,UAAU,EAAE,OAAO;EACnB,KAAK,EAAE,eAAe;EACtB,MAAM,EAAE,gBAAgB;;AAE1B,MAAO;EACL,KAAK,EAAE,eAAe;EACtB,MAAM,EAAE,gBAAgB;EACxB,UAAU,EAAE,gBAAgB;;AAE9B,yBAA0B;EACxB,GAAI;IACF,SAAS,EAAE,GAAG;IACd,WAAW,EAAE,aAAa;IAC1B,YAAY,EAAE,aAAa",
+"sources": ["photo.scss"],
+"names": [],
+"file": "photo.css"
+}

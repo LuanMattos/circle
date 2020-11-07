@@ -1,21 +1,21 @@
 .div-general-photo-detail {
+  margin:auto;
   min-height: 800px;
-  .img-container {
-    background: #90979c;
-    width: 60% !important;
-    height: 600px !important;
-  }
-
-  .cover {
-    width: 100% !important;
-    height: 600px !important;
-    object-fit: cover !important;
-  }
 }
+.responsive-row{
+  width: 60%;
+}
+
 @media (max-width: 600px){
     .img-container {
       min-width: 98%;
       margin-left: 1% !important;
       margin-right: 1% !important;
     }
+    .responsive-row{
+      width: 100%;
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+
   }

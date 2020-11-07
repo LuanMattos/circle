@@ -1,9 +1,9 @@
 <div class="container">
-  <div *ngIf="(comments$ | async) as comments">
+  <div *ngIf="comments as comments">
     <ul class="list-unstyled comment-list">
       <li *ngFor="let comment of comments">
-        <a class="text-dark font-weight-bold mr-1 " [routerLink]="['/user', comment.comment_user_name]">
-          {{ comment.comment_user_name }}
+        <a class="text-dark font-weight-bold mr-1 " [routerLink]="['/user', comment.user_id]">
+          {{ comment.user_id }}
         </a>
         <em>
           {{ comment.comment_date | date:'dd-MM-yyyy HH:mm' }}
@@ -15,28 +15,3 @@
     </ul>
   </div>
 </div>
-
-<form [formGroup]="commentForm" class="m-auto fixed-bottom" showIsLogged *ngIf="viewComponent">
-  <div class="mb-5">
-    <div class="row">
-      <div class="col-auto w-100 m-auto">
-        <textarea formControlName="comment" placeholder="Comentário"></textarea>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-7">
-        <i class="m-3 fa fa-arrow-left cursor-pointer" aria-hidden="true" (click)="viewComponent = !viewComponent"></i>
-        <i class="m-3 fa fa-camera cursor-pointer" aria-hidden="true"></i>
-      </div>
-      <div class="col-4 m-auto p-2">
-        <input type="submit"
-               (click)="save()"
-               [disabled]="commentForm.invalid"
-               class="btn-send  {{commentForm.valid?'text-primary':'text-muted'}}"
-               value="PUBLICAR"
-        >
-      </div>
-    </div>
-  </div>
-
-</form>

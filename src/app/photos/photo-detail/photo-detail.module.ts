@@ -10,6 +10,7 @@ import {VmessageModule} from "../../shared/vmessage/vmessage.module";
 import {UxModule} from "../../core/ux/ux-module";
 import {PhotoOwnerOnlyModule} from "../../shared/directives/owner-only/photo-owner-only.module";
 import {ShowIsLoggedModule} from "../../shared/directives/show-is-logged/show-is-logged.module";
+import {CommentsFormComponent} from '../comments/comments-form.component';
 
 
 @NgModule({
@@ -17,10 +18,12 @@ import {ShowIsLoggedModule} from "../../shared/directives/show-is-logged/show-is
     PhotoDetailComponent,
     /** Lembrando, todo mundo de declaration tera acesso **/
     PhotoCommentsComponent,
+    CommentsFormComponent
   ],
-  exports:[
+  exports: [
     PhotoDetailComponent,
-    PhotoCommentsComponent
+    PhotoCommentsComponent,
+    CommentsFormComponent
   ],
   /** Como não criamos módulo para o PhotoComments, se inserir o ReactiveFormsModule aqui, o mesmo reflete no photo-comments **/
   imports: [

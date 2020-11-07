@@ -1,0 +1,17 @@
+img {
+  background: #90979c;
+  width: 100% !important;
+  height: 600px !important;
+}
+.cover {
+  width: 100% !important;
+  height: 600px !important;
+  object-fit: cover !important;
+}
+@media (max-width: 600px) {
+  img {
+    min-width: 98%;
+    margin-left: 1% !important;
+    margin-right: 1% !important;
+  }
+}

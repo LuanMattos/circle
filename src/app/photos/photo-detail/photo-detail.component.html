@@ -1,24 +1,56 @@
 <div class="bg-white div-general-photo-detail" *ngIf="(photo$ | async) as photo" >
   <div class="row">
-    <div class="col m-auto">
-      <div class="img-container m-auto">
-        <img [src]="photo?.photo_url" [alt]="photo?.photo_description" [class]="'cover'">
-      </div>
-      <small>
-        <p class="text-left break-word">
-          {{photo?.photo_description}}
-        </p>
-        <div class="text-left mb-4">
-          <i class="fa fa-comment-o fa-2x mr-2 ml-2 cursor-pointer text-muted" (click)="photoComment = !photoComment"></i>{{ photo.photo_comments }}
-          <i photoOwnerOnly [ownedPhoto]="photo" showIsLogged (click)="removePhoto()" class="fa fa-trash-o fa-2x pull-right cursor-pointer"></i>
+    <div class="responsive-row m-auto">
+      <div class="row">
+        <div class="col">
+          <div class="img-container ">
+            <app-photo
+              [url]="photo.photo_url"
+              [description]="photo.photo_description"
+            >
+            </app-photo>
+          </div>
         </div>
-      </small>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <small>
+            <p class="ml-4 text-left break-word">
+              {{photo?.photo_description}}
+            </p>
+            <hr>
+            <div class="mb-4 ml-0" (click)="photoComment = !photoComment" *ngIf="photo.photo_allow_comments == 1;">
+              <div class="pull-left text-muted">
+                <div class="row ml-2">
+                  <div class="col text-center">
+                    <i class="fa fa-commenting-o fa-2x mr-2 ml-2 cursor-pointer"></i>{{ photo.photo_comments }}
+                  </div>
+                </div>
+                <div class="row ml-2">
+                  <div class="col text-center font-weight-bold">
+                    Comentar
+                  </div>
+                </div>
+              </div>
+              <!--          <i photoOwnerOnly [ownedPhoto]="photo" showIsLogged (click)="removePhoto()" class="fa fa-trash-o fa-2x pull-right cursor-pointer"></i>-->
+            </div>
+          </small>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row m-0">
-      <app-photo-comments  [viewComponent]="photoComment" [photoId]="photoId" *ngIf="photo.photo_allow_comments == 1; else warning"></app-photo-comments>
-      <ng-template #warning>
-        <p class="text-muted">O usuário desativou os comentários</p>
-      </ng-template>
-  </div>
+  <app-photo-comments [comments]="comments"></app-photo-comments>
+  <app-comments-form (comments)="comments = $event" [viewComponent]="photoComment" [photoId]="photoId" *ngIf="photo.photo_allow_comments == 1; else warning"></app-comments-form>
+
+  <div (click)="teste()">TESTE</div>
+
+  <ng-template #warning>
+    <div class="row">
+      <div class="col text-center">
+          <span class="text-muted">
+            O usuário desativou os comentários
+          </span>
+      </div>
+    </div>
+  </ng-template>
 </div>
