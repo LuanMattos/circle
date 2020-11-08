@@ -27,11 +27,10 @@
       *ngIf="loginForm.get('password').errors?.required && form.submitted"
       text="Senha é obrigatória "
     ></app-vmessage>
-
+    <app-vmessage *ngIf="authInvalid?.length" text="{{authInvalid}}"></app-vmessage>
   </div>
 
-
-  <button class="w-100 bg-dark text-white" mat-raised-button [disabled]="loginForm.invalid" type="submit">Entrar</button>
+  <button class="w-100 bg-dark text-white"  mat-raised-button [disabled]="loginForm.invalid || blockSubmited" type="submit">Entrar</button>
 
 </form>
 

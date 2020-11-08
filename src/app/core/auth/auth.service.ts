@@ -20,18 +20,9 @@ export class AuthService {
   ) { }
 
   authenticate(userName:string,password:string){
-    /**
-     * {observe:"response"} => na requisição, vou recebe-la completa (inclusive cabeçalhos)
-     **/
     const data = {password,userName};
     return this.http
       .post(API_URL + 'userLogin',JSON.stringify(data),{observe:"response"})
-      /**
-       * Entre a execução da requisição e do subscribe, o pipe "entra" e aplica um determinado operador
-       *    como filtros, timeOut etc..
-       * Neste caso, vai servir pra gente buscar o header do TOKEN para nosso subscribe, assim não precisamos
-       *      trazer esse token no subscribe da classe de LOGIN (já que o componente auth.service.ts que é o responsável por autenticar e não o login)
-       **/
       .pipe(
         tap(
           res=>{

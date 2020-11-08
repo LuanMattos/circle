@@ -10,9 +10,12 @@ import {PlatformDetectorService} from "../../core/platform-detector/platform-det
 export class SignInComponent implements OnInit{
 
   loginForm:FormGroup;
+  authInvalid:string;
   fromUrl:string;
+  blockSubmited:boolean = false;
 
   @ViewChild('userNameInput') userNameInput:ElementRef;
+  submitInput:ElementRef;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -31,26 +34,26 @@ export class SignInComponent implements OnInit{
     login(){
     const userName = this.loginForm.get('userName').value;
     const password = this.loginForm.get('password').value;
+    this.blockSubmited = true;
 
     if(this.loginForm.valid && !this.loginForm.pending)
 
       this.authService.authenticate(userName,password)
       .subscribe(
         (res)=> {
+          this.authInvalid = '';
 
           this.fromUrl
             ?
             this.router.navigateByUrl(this.fromUrl)
             :
-            console.log(this.fromUrl)
             this.router.navigate(['user', userName])
         },
         err=> {
-          this.loginForm.reset();
-
+          this.authInvalid = 'Usuário / senha incorreto(s)';
           this.platformDetectionService.isPlatformBrowser()
             && this.userNameInput.nativeElement.focus();
-
+          this.blockSubmited = false;
         }
       )
   }
