@@ -13,7 +13,6 @@ import {userNamePassword} from "../../shared/validators/fields-signin.validator"
 @Component({
   selector: 'app-signup',
   templateUrl: 'signup.component.html',
-  /** Nem sempre precisamos usar nosso @Injectable como root, ou seja, nem sepre precisamos expor nosso serviço a TODA App **/
   providers:[UserNotTakenValidatorService]
 })
 export class SignUpComponent implements OnInit {
@@ -41,17 +40,13 @@ export class SignUpComponent implements OnInit {
         ]
       ],
       userName: [
-        // Valor padrão
         '',
-        // Validadores síncronos
         [
           fieldsSignupValidator,
           Validators.minLength(2),
           Validators.maxLength(30),
           Validators.pattern(/^[a-z0-9_\-]+$/)
         ],
-        // Validadores Asíncronos
-        /** Lembrando da anotação da signup.service (Como validar campos vindo do BACK) **/
         [
           this.userNotTakenValidator.checkUserNameTaken()
         ]
@@ -77,7 +72,6 @@ export class SignUpComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    /** Para que o focus funcione, precisamos declarar o #emailIput no form do html **/
     this.platformDetectionService.isPlatformBrowser()
     && this.inputEmail.nativeElement.value;
   }

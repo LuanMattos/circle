@@ -11,9 +11,6 @@
              matInput type="text" >
     </mat-form-field>
 
-    <!-- formControlName (Nome dos campos no component (userName:[]) -->
-
-<!--    Acredite, podemos fazer 'terneiro' assim no Angular-->
     <app-vmessage
       *ngIf="loginForm.get('userName').errors?.required && form.submitted"
       text="Nome de usuário é obrigatório!"
@@ -21,13 +18,11 @@
   </div>
 
   <div class="form-group">
-    <!-- formControlName (Nome dos campos no component (password:[]) -->
     <mat-form-field class="w-100">
       <mat-label>Senha</mat-label>
       <input formControlName="password"
              matInput type="password" >
     </mat-form-field>
-<!--    Acredite, podemos fazer 'terneiro' assim no Angular-->
     <app-vmessage
       *ngIf="loginForm.get('password').errors?.required && form.submitted"
       text="Senha é obrigatória "
@@ -35,8 +30,6 @@
 
   </div>
 
-<!-- Não precisamos fazer a gambiarra de pegar campo por campo e criar um novo método -->
-<!--  o próprio validate do Angular faz isso pra nós ;) -->
 
   <button class="w-100 bg-dark text-white" mat-raised-button [disabled]="loginForm.invalid" type="submit">Entrar</button>
 
