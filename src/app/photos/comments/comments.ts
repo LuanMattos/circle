@@ -4,5 +4,6 @@ export interface Comments{
   comment_text:string;
   photo_id:string;
   user_id:number,
-  user_full_name:string
+  user_full_name:string,
+  user_name:string
 }

@@ -41,6 +41,9 @@ export class PhotoService {
   getComments(photoId : number){
     return this.http.get<Comments[]>(API + '/comments_photo/' + photoId)
   }
+  listFromCommentsPaginated(photoId : number,page:number ){
+    return this.http.get<Comments[]>(API + '/comments_photo/' + photoId + '/' + page)
+  }
   addComment(photoId:number,commentText:string,userName : string){
     return this.http.post(
       API + 'comments/' + photoId,

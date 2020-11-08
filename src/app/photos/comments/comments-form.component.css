@@ -2,7 +2,7 @@ form {
   background: white;
   min-width: 100%; }
   form .btn-send {
-    background: transparent;
+    background: transparent !important;
     border: 0;
     font-weight: bold;
     margin: auto;

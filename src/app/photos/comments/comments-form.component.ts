@@ -31,7 +31,7 @@ export class CommentsFormComponent implements OnInit{
     this.form = this.formBuilder.group({
       comment:[
         '',
-        [Validators.maxLength(300),Validators.required]
+        [Validators.maxLength(2000),Validators.required]
       ]
     })
   }

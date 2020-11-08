@@ -27,11 +27,9 @@ export class PhotoDetailComponent implements OnInit{
     private photoService:PhotoService) {}
 
     ngOnInit():void {
-    /** photoId=> Id do parâmetro enviado pelo photo.routing no html **/
     this.photoId  = this.activatedRoute.snapshot.params.photoId
     this.photo$    = this.photoService.findById(this.photoId);
 
-    /** Id de foto que não existe **/
     this.photo$.subscribe(()=>{},(err)=>{
       this.router.navigate(['not-found'])
     })
@@ -44,7 +42,6 @@ export class PhotoDetailComponent implements OnInit{
     return this.photoService.removePhoto(this.photoId)
       .subscribe(()=>{
 
-        /** Replace true => quando excluímos uma foto e voltamos, deve retornar para o '' absolutp dando replace na url toda **/
         this.router.navigate([''],{replaceUrl:true})
       },
         error=>{

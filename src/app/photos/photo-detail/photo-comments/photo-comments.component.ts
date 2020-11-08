@@ -14,6 +14,10 @@ export class PhotoCommentsComponent implements OnInit {
   @Input() comments:Comments[];
   @Input() photoId:number;
   @Input() viewComponent:boolean = true;
+  userName:string;
+  filter:string;
+  hasMore:boolean = true;
+  currentPage:number = 1;
 
   constructor(
     private router:Router,
@@ -27,5 +31,16 @@ export class PhotoCommentsComponent implements OnInit {
     this.photoService.getComments(photoId)
       .subscribe(response=>this.comments = response)
 
+  }
+  load(){
+    this.photoService
+      .listFromCommentsPaginated(this.photoId,this.comments.length)
+      .subscribe(
+        comments=>{
+          this.filter = '';
+          this.comments = this.comments.concat(comments);
+          if(!comments.length) this.hasMore = false;
+        }
+      )
   }
 }

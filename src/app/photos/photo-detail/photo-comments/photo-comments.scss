@@ -1,14 +1,15 @@
 .div-geral-photo-comments {
+  margin-bottom: 50px;
   .comment-list {
     overflow-y: auto;
   }
 
   ul {
-    li {
+    li:not(:last-child) {
       background: #e8e8f5;
       padding: 8px;
       border: 8px solid white;
-      border-radius: 12px;
+      border-radius: 0 18px;
       height: auto;
 
       span.text-date {
@@ -16,15 +17,15 @@
         color: #90979c;
       }
       .body-comment-text {
-        max-width: 50%;
+        max-width: 95%;
         display: block;
         font-family: "Calibri Light";
 
 
-        .comment-text {
+        span{
+          word-wrap: break-word;
           font-family: "Calibri Light";
         }
-
         span, details {
           display: inline;
         }
