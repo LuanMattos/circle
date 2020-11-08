@@ -17,8 +17,8 @@ export class PhotoFormComponent implements OnInit {
   file:File;
   preview:string;
   progress = 0;
-  global:boolean = false;
-  public:boolean = false;
+  public:boolean = true;
+  allowComments:boolean = true;
 
   constructor(
     private alertService:AlertService,
@@ -30,18 +30,18 @@ export class PhotoFormComponent implements OnInit {
   ngOnInit(): void {
     this.photoForm = this.formBuilder.group({
       file:['',Validators.required],
-      description:['',Validators.maxLength(300)],
-      allowComments:[true]
+      description:['',Validators.maxLength(300)]
     })
   }
+
   upload(){
     const description = this.photoForm.get('description').value;
-    const allowComments = this.photoForm.get('allowComments').value;
+    const allowComments = this.allowComments;
+    const _public = this.public;
 
     this.photoService
-      .upload( description,allowComments,this.file )
+      .upload( description,allowComments,_public,this.file )
       .pipe(
-        /** Finalizou a requisição execute **/
             finalize(() => {
             this.router.navigate([''])
           }

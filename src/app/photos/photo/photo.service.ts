@@ -19,10 +19,11 @@ export class PhotoService {
                   .append('page',page.toString());
         return this.http.get<Photo[]>(API +   '/photos/' + userName , {params:params});
   }
-  upload(description:string, allowComments:boolean, file){
+  upload(description:string, allowComments:boolean,_public:boolean, file){
     const formData = new FormData();
 
     formData.append('description',description);
+    formData.append('public',_public?'true':'false');
     formData.append('allowComments',allowComments?'true':'false');
     formData.append('imageFile',file);
 

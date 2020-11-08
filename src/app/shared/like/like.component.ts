@@ -28,8 +28,6 @@ export class LikeComponent{
       .like( photoId,userName )
       .subscribe(likes => {
         this.photo.photo_likes = parseInt(likes);
-          // const elementsIndex = this.photo.findIndex (element => element.photo_id == photoId)
-          // this.photo[elementsIndex].photo_likes = parseInt(likes)
         }
       )
   }

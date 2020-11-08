@@ -14,6 +14,7 @@ export class PhotoCommentsComponent implements OnInit {
   @Input() comments:Comments[];
   @Input() photoId:number;
   @Input() viewComponent:boolean = true;
+  @Input() allowComments;
   userName:string;
   filter:string;
   hasMore:boolean = true;

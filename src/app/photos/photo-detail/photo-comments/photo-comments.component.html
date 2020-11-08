@@ -24,17 +24,23 @@
         </span>
       </li>
       <li>
-        <div *ngIf="comments.length;else noComments" class="comments-message" >
-          <div *ngIf="hasMore;else messageTemplate" (click)="load()" class="text-primary text-muted cursor-pointer text-center pt-2">
-            Carregar mais comentários
+        <div *ngIf="allowComments == '1';else noAllowComments">
+          <div *ngIf="comments.length;else noComments" class="comments-message" >
+            <div *ngIf="hasMore;else messageTemplate" (click)="load()" class="text-primary text-muted cursor-pointer text-center pt-2">
+              Carregar mais comentários
+            </div>
+            <ng-template #messageTemplate>
+              <p class="text-center text-muted">Não existem mais comentários</p>
+            </ng-template>
           </div>
-          <ng-template #messageTemplate>
-            <p class="text-center text-muted">Não existem mais comentários</p>
+          <ng-template #noComments>
+            <p class="text-center text-muted">Sem comentários</p>
           </ng-template>
         </div>
-        <ng-template #noComments>
-          <p class="text-center text-muted">Sem comentários</p>
+        <ng-template #noAllowComments>
+          <p class="text-muted text-center">O usuário desativou os comentários</p>
         </ng-template>
+
       </li>
     </ul>
   </div>

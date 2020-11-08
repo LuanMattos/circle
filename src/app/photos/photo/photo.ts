@@ -6,5 +6,6 @@ export interface Photo{
   photo_allow_comments:boolean;
   photo_likes:number;
   photo_comments:number;
-  user_id:number
+  user_id:number,
+  photo_public:number
 }

@@ -18,8 +18,7 @@
       </div>
     </div>
   </div>
-  <div class="pull-left text-muted" (click)="emitChanges(photo);"
-       *ngIf="photo.photo_allow_comments;">
+  <div class="pull-left text-muted" (click)="emitChanges(photo);" *ngIf="photo.photo_allow_comments == '1';">
     <div class="row ml-2">
       <div class="col text-center">
         <i class="fa fa-commenting-o fa-2x mr-2 ml-2 cursor-pointer"></i>
