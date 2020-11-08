@@ -1,6 +1,8 @@
-import {Component, Input, OnChanges,SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Photo} from "../../photo/photo";
 import {Comments} from '../../comments/comments';
+import {PhotoService} from '../../photo/photo.service';
+import {UserService} from '../../../core/user/user.service';
 
 @Component({
   selector: 'app-photos',
@@ -10,14 +12,28 @@ import {Comments} from '../../comments/comments';
 export class PhotosComponent implements OnChanges {
 
   @Input() photos:Photo[] = [];
-  @Input() comments:Comments[] = [];
+  comments:Comments[] = [];
   viewFormComment:boolean = false;
   rows:any[] = [];
   photoId
 
-  constructor() { }
+  constructor(
+    private photoService:PhotoService,
+    private userService:UserService
+  ) { }
+
   ngOnChanges(changes: SimpleChanges) {
     if(changes.photos)
       this.rows = this.photos;
+  }
+  like( photoId:number ){
+    const userName = this.userService.getUserName()
+      this.photoService
+        .like( photoId,userName )
+        .subscribe(likes => {
+          const elementsIndex = this.photos.findIndex (element => element.photo_id == photoId)
+          this.photos[elementsIndex].photo_likes = parseInt(likes)
+      }
+    )
   }
 }

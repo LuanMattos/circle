@@ -50,8 +50,12 @@ export class PhotoService {
       {commentText:commentText,userName:userName}
       )
   }
-  removePhoto(photoId:number){
+  removePhoto( photoId:number ){
     return this.http.delete(API + 'photos/' + photoId)
+  }
+
+  like( photoId:number,userName:string ){
+    return this.http.put(API + 'add_like',{photoId,userName},{ responseType: 'text'})
   }
 }
 

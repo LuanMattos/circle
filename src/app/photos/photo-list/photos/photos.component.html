@@ -18,9 +18,9 @@
       </a>
       <div class="text-center" showIsLogged>
         {{ photo.photo_likes }}
-        <i aria-hidden="true" class="fa fa-hand-peace-o fa-2x mr-2 text-muted cursor-pointer"></i>
-        {{ comments.length }}
-        <i aria-hidden="true" class="fa fa-commenting-o fa-2x mr-2 ml-2 text-muted cursor-pointer" (click)="viewFormComment = !viewFormComment;photoId = photo.photoId;"></i>
+        <i aria-hidden="true" class="fa fa-hand-peace-o fa-2x mr-2 text-muted cursor-pointer" (click)="like( photo.photo_id )"></i>
+        {{ photo.photo_comments }}
+        <i aria-hidden="true" class="fa fa-commenting-o fa-2x mr-2 ml-2 text-muted cursor-pointer" (click)="viewFormComment = !viewFormComment;photoId = photo.photo_id;"></i>
       </div>
     </div>
   </div>

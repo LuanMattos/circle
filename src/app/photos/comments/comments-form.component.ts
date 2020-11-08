@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {debounceTime, switchMap, tap} from 'rxjs/operators';
-import {PhotoService} from '../photo/photo.service';
-import {Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
+import {switchMap, tap} from 'rxjs/operators';
+
+import {PhotoService} from '../photo/photo.service';
 import {Comments} from './comments';
 import {UserService} from '../../core/user/user.service';
 
