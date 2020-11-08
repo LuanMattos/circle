@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder} from "@angular/forms";
-import {Observable} from "rxjs";
 
 import {PhotoService} from "../../photo/photo.service";
 import {Comments} from '../../comments/comments';

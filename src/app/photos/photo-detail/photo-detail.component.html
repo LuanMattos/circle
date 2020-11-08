@@ -37,12 +37,15 @@
           </small>
         </div>
       </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <app-photo-comments [comments]="comments"></app-photo-comments>
+        </div>
+      </div>
     </div>
   </div>
-  <app-photo-comments [comments]="comments"></app-photo-comments>
   <app-comments-form (comments)="comments = $event" [viewComponent]="photoComment" [photoId]="photoId" *ngIf="photo.photo_allow_comments == 1; else warning"></app-comments-form>
 
-  <div (click)="teste()">TESTE</div>
 
   <ng-template #warning>
     <div class="row">

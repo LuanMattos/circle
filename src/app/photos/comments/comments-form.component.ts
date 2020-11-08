@@ -5,6 +5,7 @@ import {PhotoService} from '../photo/photo.service';
 import {Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Comments} from './comments';
+import {UserService} from '../../core/user/user.service';
 
 @Component({
   selector: 'app-comments-form',
@@ -22,7 +23,8 @@ export class CommentsFormComponent implements OnInit{
     private router:Router,
     private formBuilder:FormBuilder,
     private activatedRoute:ActivatedRoute,
-    private photoService: PhotoService
+    private photoService: PhotoService,
+    private userService: UserService
   ) { }
 
   ngOnInit():void {
@@ -37,9 +39,8 @@ export class CommentsFormComponent implements OnInit{
   save(){
     const comment = this.form.get('comment').value as string;
 
-
     this.photoService
-      .addComment(this.photoId,comment)
+      .addComment(this.photoId,comment,this.userService.getUserName())
       .pipe(switchMap(()=>this.photoService.getComments(this.photoId)))
       .pipe(tap(()=>{
         this.form.reset();

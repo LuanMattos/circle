@@ -39,12 +39,12 @@ export class PhotoService {
     return this.http.get<Photo>(API + 'get_photo_id/' + id);
   }
   getComments(photoId : number){
-    return this.http.get<Comments[]>(API + 'photos/' + photoId + '/comments')
+    return this.http.get<Comments[]>(API + '/comments_photo/' + photoId)
   }
-  addComment(photoId:number,commentText:string){
+  addComment(photoId:number,commentText:string,userName : string){
     return this.http.post(
       API + 'comments/' + photoId,
-      {commentText:commentText}
+      {commentText:commentText,userName:userName}
       )
   }
   removePhoto(photoId:number){

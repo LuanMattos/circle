@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import {PhotoService} from "../photo/photo.service";
 import {Photo} from "../photo/photo";
 import {AlertService} from "../../shared/alert/alert.service";
+import {Comments} from '../comments/comments';
 
 @Component({
   selector:'app-photo-detail',
@@ -17,7 +18,7 @@ export class PhotoDetailComponent implements OnInit{
   photo$:Observable<Photo>;
   photoId:number;
   photoComment:boolean = false;
-  comments
+  comments:Comments[] = [];
 
   constructor(
     private alertService:AlertService,
@@ -34,9 +35,6 @@ export class PhotoDetailComponent implements OnInit{
     this.photo$.subscribe(()=>{},(err)=>{
       this.router.navigate(['not-found'])
     })
-  }
-  teste(){
-    console.log(this.comments)
   }
 
   removePhoto(){

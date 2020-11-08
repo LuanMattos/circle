@@ -1,16 +1,32 @@
-<div class="container">
+<div class="container div-geral-photo-comments">
   <div *ngIf="comments as comments">
     <ul class="list-unstyled comment-list">
       <li *ngFor="let comment of comments">
-        <a class="text-dark font-weight-bold mr-1 " [routerLink]="['/user', comment.user_id]">
-          {{ comment.user_id }}
+        <a class="text-dark font-weight-bold mr-1 " [routerLink]="['/user', comment.user_full_name]">
+          {{ comment.user_full_name | titlecase }}
         </a>
-        <em>
-          {{ comment.comment_date | date:'dd-MM-yyyy HH:mm' }}
-        </em>
-        <p class="break-word mb-2">
-          {{ comment.comment_text }}
-        </p>
+
+        <div class="body-comment-text">
+          <span class="break-word mb-2 comment-text">
+            {{comment.comment_text.substring(0,100)}}
+          </span>
+          <details *ngIf="comment.comment_text.length >= 100">
+            <summary>
+                  <span class="open">Ver mais</span>
+                  <span class="close mb-2">Ver menos</span>
+            </summary>
+            <span>
+                  {{comment.comment_text.substring(100,1000)}}
+              </span>
+          </details>
+        </div>
+
+<!--        <p class="break-word mb-2 comment-text">-->
+<!--          {{ comment.comment_text }}-->
+<!--        </p>-->
+        <span class="text-date">
+          {{ comment.comment_date | date:'dd/MM/yyyy HH:mm:ss' }}
+        </span>
       </li>
     </ul>
   </div>
