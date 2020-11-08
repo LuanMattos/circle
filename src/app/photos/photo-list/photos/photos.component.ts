@@ -13,9 +13,9 @@ export class PhotosComponent implements OnChanges {
 
   @Input() photos:Photo[] = [];
   comments:Comments[] = [];
-  viewFormComment:boolean = false;
+  viewFormComment:boolean;
   rows:any[] = [];
-  photoId
+  photoId:number;
 
   constructor(
     private photoService:PhotoService,
@@ -26,14 +26,5 @@ export class PhotosComponent implements OnChanges {
     if(changes.photos)
       this.rows = this.photos;
   }
-  like( photoId:number ){
-    const userName = this.userService.getUserName()
-      this.photoService
-        .like( photoId,userName )
-        .subscribe(likes => {
-          const elementsIndex = this.photos.findIndex (element => element.photo_id == photoId)
-          this.photos[elementsIndex].photo_likes = parseInt(likes)
-      }
-    )
-  }
+
 }

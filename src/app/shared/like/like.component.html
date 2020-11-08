@@ -1,0 +1,35 @@
+<div>
+  <div class="pull-left text-muted" (click)="like( photo.photo_id )">
+    <div class="row">
+      <div class="col text-center">
+        <i aria-hidden="true" class="fa fa-hand-peace-o fa-2x ml-3 text-muted cursor-pointer"></i>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center font-weight-bold ">
+        <span class="pl-3 cursor-pointer">Like</span>
+      </div>
+    </div>
+  </div>
+  <div class="pull-left text-muted ml-2">
+    <div class="row">
+      <div class="col text-center">
+        <span class="align-middle font-weight-bold  cursor-pointer">{{ photo.photo_likes }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="pull-left text-muted" (click)="emitChanges(photo);"
+       *ngIf="photo.photo_allow_comments;">
+    <div class="row ml-2">
+      <div class="col text-center">
+        <i class="fa fa-commenting-o fa-2x mr-2 ml-2 cursor-pointer"></i>
+        {{ photo.photo_comments }}
+      </div>
+    </div>
+    <div class="row ml-2">
+      <div class="col text-center font-weight-bold cursor-pointer">
+        Comentar
+      </div>
+    </div>
+  </div>
+</div>

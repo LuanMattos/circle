@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap, tap} from 'rxjs/operators';
@@ -15,9 +15,10 @@ import {UserService} from '../../core/user/user.service';
 export class CommentsFormComponent implements OnInit{
 
   @Output() comments = new EventEmitter<Comments[]>();
-  @Input() viewComponent:boolean = false;
+  @Input() viewComponent:boolean;
   @Input() photoId:number;
   form:FormGroup;
+  @Output() viewFormComment:EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private router:Router,
@@ -48,5 +49,8 @@ export class CommentsFormComponent implements OnInit{
       }))
       .subscribe(result => this.comments.emit(result))
 
+  }
+  emitEvent(){
+      this.viewFormComment.emit(!this.viewComponent)
   }
 }

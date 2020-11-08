@@ -1,5 +1,6 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
+import {RouterModule} from "@angular/router";
 
 import {PhotoListComponent} from "./photo-list.component";
 import {FilterByDescription} from "./filter-by-description.pipe";
@@ -10,9 +11,9 @@ import {CardModule} from "../../shared/card/card.module";
 import {SearchComponent} from "./search/search.component";
 import {DarkenOnHoverModule} from "../../shared/directives/dark-on-hover/darken-on-hover.module";
 import {UxModule} from "../../core/ux/ux-module";
-import {RouterModule} from "@angular/router";
 import {ShowIsLoggedModule} from "../../shared/directives/show-is-logged/show-is-logged.module";
 import {PhotoDetailModule} from '../photo-detail/photo-detail.module';
+import {LikeModule} from '../../shared/like/like.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,6 @@ import {PhotoDetailModule} from '../photo-detail/photo-detail.module';
     PhotosComponent
   ],
   imports: [
-    /** Lembra da "treta" do BrowserModule? (explicação em app.module)*/
     CommonModule,
     PhotoModule,
     CardModule,
@@ -34,7 +34,8 @@ import {PhotoDetailModule} from '../photo-detail/photo-detail.module';
     UxModule,
     RouterModule,
     ShowIsLoggedModule,
-    PhotoDetailModule
+    PhotoDetailModule,
+    LikeModule
   ]
 })
 export class PhotoListModule{
