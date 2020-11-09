@@ -38,12 +38,6 @@ export class HeaderComponent{
     private router:Router
     ) {
     this.user$ = userService.getUser();
-    /** Novamente, pegamos o objeto observável(user$) e populamos this.user, porque não podemos usar um Observable no UI (Mentira, podemos sim - olhe no header.component) **/
-    /** Lembrando, podemos usar async no nosso template e não precisamo do subscrice ;)  (ver no header.component) **/
-    /** IMPORTANTE/LEMBRANDO => async faz destroy automaticamente **/
-
-    //descomentar se não for usar async
-    //this.user$.subscribe(user => this.user = user);
 
   }
   logout(){

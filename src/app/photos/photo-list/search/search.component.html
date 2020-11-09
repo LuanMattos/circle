@@ -1,14 +1,26 @@
 <div class="text-center mt-3 mb-3 ">
-  <form class="w-50 mx-auto">
-    <input
-      class="rounded form-control"
-      type="search"
-      placeholder="search..."
-      autofocus
-      (keyup)="debounce.next($event.target.value)"
-      [value]="value"
-    >
-    <!--    [] = Data Bind  COMPONENT para a VIEW -->
-    <!--    () = Event Bind VIEW para o COMPONENT -->
+  <form class="mx-auto">
+    <mat-form-field class="w-75">
+      <mat-label>Buscar</mat-label>
+      <input
+        matInput
+        autocomplete="off"
+        type="search"
+        autofocus
+        (keyup)="_filter($event.target.value)"
+      >
+      <mat-icon matSuffix><i class="fa fa-search text-muted"></i></mat-icon>
+    </mat-form-field>
+    <div *ngIf="users">
+      <div class="autocomplete">
+        <ul>
+          <li *ngFor="let user of users">
+            <a href="/user/{{user.user_name}}">
+              {{user.user_full_name | titlecase}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </form>
 </div>

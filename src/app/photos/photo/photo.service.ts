@@ -14,11 +14,13 @@ export class PhotoService {
   listFromUser(userName : string){
     return this.http.get<Photo[]>(API + 'photos/' + userName);
   }
+
   listFromUserPaginated( userName : string,page:number ){
         const params = new HttpParams()
                   .append('page',page.toString());
         return this.http.get<Photo[]>(API +   '/photos/' + userName , {params:params});
   }
+
   upload(description:string, allowComments:boolean,_public:boolean, file){
     const formData = new FormData();
 
@@ -39,24 +41,32 @@ export class PhotoService {
   findById(id : number){
     return this.http.get<Photo>(API + 'get_photo_id/' + id);
   }
+
   getComments(photoId : number){
     return this.http.get<Comments[]>(API + '/comments_photo/' + photoId)
   }
+
   listFromCommentsPaginated(photoId : number,page:number ){
     return this.http.get<Comments[]>(API + '/comments_photo/' + photoId + '/' + page)
   }
+
   addComment(photoId:number,commentText:string,userName : string){
     return this.http.post(
       API + 'comments/' + photoId,
       {commentText:commentText,userName:userName}
       )
   }
+
   removePhoto( photoId:number ){
     return this.http.delete(API + 'photos/' + photoId)
   }
 
   like( photoId:number,userName:string ){
     return this.http.put(API + 'add_like',{photoId,userName},{ responseType: 'text'})
+  }
+
+  getUserByName( name:string ){
+    return this.http.put(API + 'search',{name},{ responseType: 'json'})
   }
 }
 
