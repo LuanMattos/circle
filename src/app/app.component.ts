@@ -12,15 +12,10 @@ import {Title} from "@angular/platform-browser";
   ]
 })
 export class AppComponent{
-
+  title='App'
   constructor(
     private titleService:Title) {}
 
-    /**
-     * Aqui aproveite para fazer uma solução um pouco melhor do que a descrita no cap 4
-     * Além de colocar um efeito nas mudanças de rotas, inserimos por rota um title
-     * Plugin utilizado => Route Transition Animation
-     **/
   prepareRoute(outlet: RouterOutlet) {
       (outlet.activatedRouteData.title  && this.titleService.setTitle(outlet.activatedRouteData.title))
       return outlet && outlet.activatedRouteData
