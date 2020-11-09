@@ -24,7 +24,6 @@ export class UserService{
 
   private decodeAndNotify(){
     const token = this.tokenService.getToken();
-
     const user = jwt_decode(token) as User;
 
     this.userName = user.user_name;

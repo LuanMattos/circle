@@ -39,7 +39,6 @@ export class CommentsFormComponent implements OnInit{
 
   save(){
     const comment = this.form.get('comment').value as string;
-
     this.photoService
       .addComment(this.photoId,comment,this.userService.getUserName())
       .pipe(switchMap(()=>this.photoService.getComments(this.photoId)))
