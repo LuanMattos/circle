@@ -14,6 +14,8 @@ import {UxModule} from "../../core/ux/ux-module";
 import {ShowIsLoggedModule} from "../../shared/directives/show-is-logged/show-is-logged.module";
 import {PhotoDetailModule} from '../photo-detail/photo-detail.module';
 import {LikeModule} from '../../shared/like/like.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 
 @NgModule({
   declarations: [
@@ -35,9 +37,9 @@ import {LikeModule} from '../../shared/like/like.module';
     RouterModule,
     ShowIsLoggedModule,
     PhotoDetailModule,
-    LikeModule
+    LikeModule,
+    InfiniteScrollModule
   ]
 })
-export class PhotoListModule{
+export class PhotoListModule{}
 
-}

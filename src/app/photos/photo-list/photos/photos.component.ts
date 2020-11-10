@@ -1,8 +1,7 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+
 import {Photo} from "../../photo/photo";
 import {Comments} from '../../comments/comments';
-import {PhotoService} from '../../photo/photo.service';
-import {UserService} from '../../../core/user/user.service';
 
 @Component({
   selector: 'app-photos',
@@ -17,10 +16,7 @@ export class PhotosComponent implements OnChanges {
   rows:any[] = [];
   photoId:number;
 
-  constructor(
-    private photoService:PhotoService,
-    private userService:UserService
-  ) { }
+  constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes.photos)
