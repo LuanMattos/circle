@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, Output, AfterViewInit, OnInit, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap, tap} from 'rxjs/operators';
@@ -6,6 +6,7 @@ import {switchMap, tap} from 'rxjs/operators';
 import {PhotoService} from '../photo/photo.service';
 import {Comments} from './comments';
 import {UserService} from '../../core/user/user.service';
+import {PhotoCommentsService} from '../photo-detail/photo-comments/photo-comments.service';
 
 @Component({
   selector: 'app-comments-form',
@@ -14,13 +15,15 @@ import {UserService} from '../../core/user/user.service';
 })
 export class CommentsFormComponent implements OnInit{
 
-  @Output() comments = new EventEmitter<Comments[]>();
   @Input() viewComponent:boolean;
   @Input() photoId:number;
-  form:FormGroup;
+  @Input() comment_text:string;
+  @Output() comments = new EventEmitter<Comments[]>();
   @Output() viewFormComment:EventEmitter<boolean> = new EventEmitter<boolean>();
+  form:FormGroup;
 
   constructor(
+    private photoCommentsService:PhotoCommentsService,
     private router:Router,
     private formBuilder:FormBuilder,
     private activatedRoute:ActivatedRoute,
@@ -28,26 +31,48 @@ export class CommentsFormComponent implements OnInit{
     private userService: UserService
   ) { }
 
-  ngOnInit():void {
+  ngOnInit():void{
     this.form = this.formBuilder.group({
-      comment:[
-        '',
-        [Validators.maxLength(2000),Validators.required]
-      ]
-    })
+      comment_text:['',Validators.required]
+    });
   }
+  ngOnChanges(changes: SimpleChanges){
+    if(changes && changes.comment_text && changes.comment_text.currentValue){
+      this.form.get('comment_text').setValue(this.comment_text)
+    }
 
+  }
   save(){
-    const comment = this.form.get('comment').value as string;
+    this.photoCommentsService.comment?.comment_id?this.saveComment():this.saveCommentsPhoto();
+  }
+  saveCommentsPhoto(){
+    const comment = this.form.get('comment_text').value as string;
+
     this.photoService
       .addComment(this.photoId,comment,this.userService.getUserName())
-      .pipe(switchMap(()=>this.photoService.getComments(this.photoId)))
-      .pipe(tap(()=>{
+      .pipe( switchMap(()=>this.photoService.getComments(this.photoId)))
+      .pipe( tap(()=>{
         this.form.reset();
-        this.viewComponent = false;
+        this.viewFormComment.emit(!this.viewComponent)
       }))
       .subscribe(result => this.comments.emit(result))
+  }
 
+  saveComment(){
+    const comment = this.form.get('comment_text').value as string;
+    const id = this.photoCommentsService.comment.comment_id;
+
+    this.photoService
+      .saveComment(id,comment)
+      .pipe( switchMap(()=>this.photoService.getComments(this.photoId)))
+      .pipe( tap(()=>{
+        this.form.reset();
+        this.viewFormComment.emit(!this.viewComponent)
+      }))
+      .subscribe(result => {
+        this.comments.emit(result)
+        this.photoCommentsService.comment.comment_id = 0
+      })
   }
   emitEvent(){
       this.viewFormComment.emit(!this.viewComponent)

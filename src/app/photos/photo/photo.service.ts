@@ -11,6 +11,32 @@ export class PhotoService {
 
   constructor(private http: HttpClient) {}
 
+  getComments(photoId : number){
+    return this.http.get<Comments[]>(API + '/comments_photo/' + photoId)
+  }
+
+  listFromCommentsPaginated(photoId : number,page:number ){
+    return this.http.get<Comments[]>(API + '/comments_photo/' + photoId + '/' + page)
+  }
+
+  addComment(photoId:number,commentText:string,userName : string){
+    return this.http.post(
+      API + 'comments/' + photoId,
+      {commentText:commentText,userName:userName}
+    )
+  }
+  saveComment(commentId:number,commentText){
+    return this.http.put<Comments>(
+      API + 'save_comment/' + commentId,
+      {commentText}
+    )
+  }
+  getComment(commentId : number){
+    return this.http.get<Comments>(API + '/get_comment_id/' + commentId)
+  }
+
+
+
   listFromUser(userName : string){
     return this.http.get<Photo[]>(API + 'photos/' + userName);
   }
@@ -42,24 +68,10 @@ export class PhotoService {
     return this.http.get<Photo>(API + 'get_photo_id/' + id);
   }
 
-  getComments(photoId : number){
-    return this.http.get<Comments[]>(API + '/comments_photo/' + photoId)
-  }
-
-  listFromCommentsPaginated(photoId : number,page:number ){
-    return this.http.get<Comments[]>(API + '/comments_photo/' + photoId + '/' + page)
-  }
-
-  addComment(photoId:number,commentText:string,userName : string){
-    return this.http.post(
-      API + 'comments/' + photoId,
-      {commentText:commentText,userName:userName}
-      )
-  }
-
   removePhoto( photoId:number ){
     return this.http.delete(API + 'photos/' + photoId)
   }
+
 
   like( photoId:number,userName:string ){
     return this.http.put(API + 'add_like',{photoId,userName},{ responseType: 'text'})
