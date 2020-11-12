@@ -11,6 +11,11 @@ export class PhotoService {
 
   constructor(private http: HttpClient) {}
 
+
+
+
+
+  /** Comments **/
   getComments(photoId : number){
     return this.http.get<Comments[]>(API + '/comments_photo/' + photoId)
   }
@@ -37,6 +42,10 @@ export class PhotoService {
 
 
 
+
+
+
+  /** Photo **/
   listFromUser(userName : string){
     return this.http.get<Photo[]>(API + 'photos/' + userName);
   }
@@ -73,12 +82,21 @@ export class PhotoService {
   }
 
 
+
+
+
+  /** Likes **/
   like( photoId:number,userName:string ){
-    return this.http.put(API + 'add_like',{photoId,userName},{ responseType: 'text'})
+    return this.http.put<[]>(API + 'add_like',{photoId,userName},{ responseType: 'json'})
   }
 
+
+
+
+  /** Search **/
   getUserByName( name:string ){
     return this.http.put(API + 'search',{name},{ responseType: 'json'})
   }
+
 }
 

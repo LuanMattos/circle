@@ -7,5 +7,7 @@ export interface Photo{
   photo_likes:number;
   photo_comments:number;
   user_id:number,
-  photo_public:number
+  photo_public:number,
+  likes:[]
+  liked:false
 }
