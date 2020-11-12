@@ -48,3 +48,5 @@ Thumbs.db
 /data/
 debug.log
 */debug.log
+/src/app/photos/comments/.sass-cache/
+/src/app/photos/photo-detail/.sass-cache/

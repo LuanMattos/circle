@@ -1,6 +1,7 @@
 form {
   background: white;
-  min-width: 100%; }
+  animation: animation-message .2s;
+  animation-fill-mode: forwards; }
   form .btn-send {
     background: transparent !important;
     border: 0;
@@ -28,5 +29,11 @@ textarea {
   textarea:focus {
     color: black;
     border: 1px solid #cecedb; }
+@keyframes animation-message {
+  0% {
+    width: 50%;
+    height: 0; }
+  100% {
+    width: 100%; } }
 
 /*# sourceMappingURL=comments-form.component.css.map */
