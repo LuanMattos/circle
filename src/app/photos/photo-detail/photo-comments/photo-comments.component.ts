@@ -5,6 +5,8 @@ import {FormBuilder} from "@angular/forms";
 import {PhotoService} from "../../photo/photo.service";
 import {Comments} from '../../comments/comments';
 import {PhotoCommentsService} from './photo-comments.service';
+import {UserService} from '../../../core/user/user.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-photo-comments',
@@ -17,8 +19,6 @@ export class PhotoCommentsComponent implements OnInit {
   @Input() photoId:number;
   @Input() viewComponent:boolean = false;
   @Input() allowComments;
-  // @ViewChild('userNameInput') userNameInput:ElementRef;
-
 
   userName:string;
   filter:string;
@@ -26,8 +26,8 @@ export class PhotoCommentsComponent implements OnInit {
   currentPage:number = 1;
   comment:string;
 
-
   constructor(
+    private userService:UserService,
     private photoCommentsService:PhotoCommentsService,
     private router:Router,
     private formBuilder:FormBuilder,
@@ -37,6 +37,7 @@ export class PhotoCommentsComponent implements OnInit {
 
   ngOnInit():void {
     const photoId  = this.activatedRoute.snapshot.params.photoId;
+    this.userName = this.userService.getUserName();
     this.photoService.getComments(photoId)
       .subscribe(response=>this.comments = response)
   }
@@ -53,10 +54,16 @@ export class PhotoCommentsComponent implements OnInit {
         }
       )
   }
-  excluir( commentId:number ){
+  delete( comment:Comments ){
+    const index: number = this.comments.indexOf( comment )
 
+    this.photoService
+      .deleteComment(comment.comment_id)
+      .subscribe(result => {
+        ( ( index !== -1 ) && result ) && this.comments.splice(index, 1);
+      });
   }
-  edit( comment ){
+  edit( comment:Comments ){
     this.comment = comment.comment_text
     this.photoCommentsService.comment = comment
     this.viewComponent = !this.viewComponent

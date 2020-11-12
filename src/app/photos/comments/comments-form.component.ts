@@ -27,8 +27,7 @@ export class CommentsFormComponent implements OnInit{
     private router:Router,
     private formBuilder:FormBuilder,
     private activatedRoute:ActivatedRoute,
-    private photoService: PhotoService,
-    private userService: UserService
+    private photoService: PhotoService
   ) { }
 
   ngOnInit():void{
@@ -43,37 +42,20 @@ export class CommentsFormComponent implements OnInit{
 
   }
   save(){
-    this.photoCommentsService.comment?.comment_id?this.saveComment():this.saveCommentsPhoto();
-  }
-  saveCommentsPhoto(){
     const comment = this.form.get('comment_text').value as string;
+    const commentId = this.photoCommentsService.comment?.comment_id;
 
     this.photoService
-      .addComment(this.photoId,comment,this.userService.getUserName())
+      .saveComment(this.photoId,comment,commentId)
       .pipe( switchMap(()=>this.photoService.getComments(this.photoId)))
       .pipe( tap(()=>{
         this.form.reset();
         this.viewFormComment.emit(!this.viewComponent)
       }))
       .subscribe(result => this.comments.emit(result))
+    this.photoCommentsService.comment?.comment_id?this.photoCommentsService.comment.comment_id = null:false;
   }
 
-  saveComment(){
-    const comment = this.form.get('comment_text').value as string;
-    const id = this.photoCommentsService.comment.comment_id;
-
-    this.photoService
-      .saveComment(id,comment)
-      .pipe( switchMap(()=>this.photoService.getComments(this.photoId)))
-      .pipe( tap(()=>{
-        this.form.reset();
-        this.viewFormComment.emit(!this.viewComponent)
-      }))
-      .subscribe(result => {
-        this.comments.emit(result)
-        this.photoCommentsService.comment.comment_id = 0
-      })
-  }
   emitEvent(){
       this.viewFormComment.emit(!this.viewComponent)
   }

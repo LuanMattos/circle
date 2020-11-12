@@ -1,9 +1,9 @@
 <div class="bg-white div-general-photo-detail" *ngIf="(photo$ | async) as photo" >
-  <div class="row">
+  <div class="row m-0">
     <div class="responsive-row m-auto">
       <div class="row">
         <div class="col">
-          <div class="img-container ">
+          <div class="img-container">
             <app-photo
               [url]="photo.photo_url"
               [description]="photo.photo_description"
@@ -20,7 +20,8 @@
             </p>
             <hr>
             <app-like
-              [photo]="photo" (viewFormComment)="photoComment = $event"
+              [photo]="photo"
+              (viewFormComment)="photoComment = $event"
               (photoId)="photoId = $event"
               [_viewFormComment]="photoComment"
             ></app-like>
@@ -32,7 +33,6 @@
           <app-photo-comments [comments]="comments"
                               [photoId]="photo.photo_id"
                               [allowComments]="photo.photo_allow_comments"
-
           >
           </app-photo-comments>
         </div>

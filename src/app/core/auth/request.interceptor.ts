@@ -13,7 +13,6 @@ export class RequestInterceptor implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    /** Barbada, se o usuário estiver logado e validado pelo Back, colocamos no nossos cabeçalhos nosso x-access-token **/
     if(this.tokenService.hasToken()){
       const token = this.tokenService.getToken()
       req = req.clone({
