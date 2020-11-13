@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 export class SearchComponent {
   filter:string = '';
   users;
+  hasMore:boolean = true;
 
   constructor(
     private route:Router,
@@ -19,6 +20,7 @@ export class SearchComponent {
 
   _filter( value:string ){
     this.filter = value
+    this.hasMore = true
 
     if( !value ){
       this.users = [];
@@ -28,6 +30,14 @@ export class SearchComponent {
       .pipe(debounceTime(300))
       .subscribe(response=> {
         this.users = response;
+      })
+  }
+  moreUsers(){
+    this.photoService.getUserByNamePaginated( this.filter,this.users.length )
+      .subscribe(users=> {
+        this.users = this.users.concat(users);
+        if(!users.length) this.hasMore = false;
+
       })
   }
 }

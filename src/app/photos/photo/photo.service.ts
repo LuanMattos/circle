@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {Photo} from "./photo";
 import {environment} from "../../../environments/environment";
 import {Comments} from '../comments/comments';
+import {User} from '../../core/user/user';
 
 const API = environment.ApiUrl;
 
@@ -96,6 +97,10 @@ export class PhotoService {
   /** Search **/
   getUserByName( name:string ){
     return this.http.put(API + 'search',{name},{ responseType: 'json'})
+  }
+
+  getUserByNamePaginated( name:string,page:number ){
+    return this.http.put<User[]>(API + 'search/' + page,{name},{ responseType: 'json'})
   }
 
 }
