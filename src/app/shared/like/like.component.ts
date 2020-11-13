@@ -23,10 +23,11 @@ export class LikeComponent implements OnInit{
   ) {}
 
   ngOnInit() {
-    this.userService.getUser().subscribe(response=>this.userId = response.user_id)
+    this.userService.getUser().subscribe(response=>this.userId = response?.user_id)
   }
 
   isPhotoLiked( likes ){
+    if(likes)
     return likes.map(function(e) { return e.user_id; }).indexOf(this.userId.toString()) !== -1;
   }
 
