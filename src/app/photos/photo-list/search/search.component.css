@@ -1,20 +1,35 @@
 form {
-  width: 50%; }
-
+  width: 100%; }
+  form i.search-responsive {
+    cursor: pointer;
+    font-size: 20px; }
+  form i.search-responsive:hover {
+    transition: .9s;
+    color: #212121 !important; }
+  form .match-input-search {
+    animation: animation-message 1s;
+    animation-fill-mode: forwards; }
+@keyframes animation-message {
+  0% {
+    width: 50%; }
+  100% {
+    width: 100% !important; } }
 .autocomplete {
   position: absolute;
-  margin-top: -15px;
   background: white;
+  width: 420px;
+  max-width: 420px;
+  height: 80vh;
   border: 1px solid #d2d5d4;
-  z-index: 100;
-  width: 55%;
-  max-height: 420px;
+  z-index: 101;
   border-radius: 2px;
   overflow-y: scroll;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  margin-left: -10%;
+  margin-top: -15px; }
   .autocomplete ul {
-    margin: 0;
-    padding: 0; }
+    padding: 0;
+    margin: 0; }
     .autocomplete ul li {
       list-style: none;
       padding-bottom: 8px;

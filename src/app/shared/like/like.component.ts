@@ -27,7 +27,7 @@ export class LikeComponent implements OnInit{
   }
 
   isPhotoLiked( likes ){
-    if(likes)
+    if(likes && this.userService.isLogged())
     return likes.map(function(e) { return e.user_id; }).indexOf(this.userId.toString()) !== -1;
   }
 

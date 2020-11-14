@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 import {PhotoService} from '../../photo/photo.service';
 import {debounceTime} from 'rxjs/operators';
@@ -9,14 +9,17 @@ import {Router} from '@angular/router';
   templateUrl:'./search.component.html',
   styleUrls:['./search.component.css']
 })
-export class SearchComponent {
+export class SearchComponent{
   filter:string = '';
   users;
   hasMore:boolean = true;
+  _openInputSearch:boolean = false
+  @Output() openInputSearch :EventEmitter<boolean> =  new EventEmitter<boolean>();
 
   constructor(
     private route:Router,
     private photoService:PhotoService ) {}
+
 
   _filter( value:string ){
     this.filter = value
@@ -39,5 +42,13 @@ export class SearchComponent {
         if(!users.length) this.hasMore = false;
 
       })
+  }
+  toggleSearch(value){
+    this._openInputSearch = value;
+    this.filter = ''
+    this.openInputSearch.emit(this._openInputSearch);
+  }
+  load(){
+    this.moreUsers()
   }
 }

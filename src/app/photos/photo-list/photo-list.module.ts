@@ -26,7 +26,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     SearchComponent
   ],
   exports: [
-    PhotosComponent
+    PhotosComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,

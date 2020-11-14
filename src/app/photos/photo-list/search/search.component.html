@@ -1,33 +1,43 @@
-<div class="text-center mt-3 mb-3" showIsLogged>
-  <form class="mx-auto">
-    <mat-form-field class="w-75">
-      <mat-label>Buscar</mat-label>
+<div class="text-center w-100" showIsLogged>
+  <form>
+    <mat-form-field  class="match-input-search {{_openInputSearch?'':'hide'}}">
+      <mat-label class="border-0">Buscar</mat-label>
       <input
         matInput
         autocomplete="off"
         type="search"
         (keyup)="_filter($event.target.value)"
       >
-      <mat-icon matSuffix><i class="fa fa-search text-muted"></i></mat-icon>
+      <mat-icon matSuffix><i class="fa fa-close text-muted" (click)="toggleSearch(false)"></i></mat-icon>
     </mat-form-field>
-      <div *ngIf="filter" class="autocomplete">
-        <ul>
-          <li *ngFor="let user of users">
-            <a href="/user/{{user.user_name}}">
-              {{user.user_full_name | titlecase}}
-              <p class="text-muted">{{user.user_name}}   {{user?.address | titlecase}}</p>
-            </a>
-          </li>
-          <li *ngIf="users;" class="text-muted text-center m-0" (click)="moreUsers()">
-            <div class="w-100 h-100 more-text" *ngIf="hasMore;else emptyResult">
-              +
-            </div>
-            <ng-template #emptyResult class="w-100 h-100">
-                Nada mais encontrado
-            </ng-template>
-          </li>
+    <i *ngIf="!_openInputSearch" class="fa fa-search text-muted search-responsive" (click)="toggleSearch(true);"></i>
 
-        </ul>
+
+    <div
+      class="search-results"
+      infiniteScroll
+      [infiniteScrollDistance]="1"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="load()"
+    >
+      <div *ngIf="filter && _openInputSearch" class="autocomplete">
+          <ul>
+            <li *ngFor="let user of users">
+              <a href="/user/{{user.user_name}}">
+                {{user.user_full_name | titlecase}}
+                <p class="text-muted">{{user.user_name}}   {{user?.address | titlecase}}</p>
+              </a>
+            </li>
+            <li *ngIf="users;" class="text-muted text-center m-0" (click)="moreUsers()">
+              <div class="w-100 h-100 more-text" *ngIf="hasMore;else emptyResult">
+                +
+              </div>
+              <ng-template #emptyResult class="w-100 h-100">
+                  Nada mais encontrado
+              </ng-template>
+            </li>
+          </ul>
+      </div>
     </div>
   </form>
 </div>

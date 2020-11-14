@@ -1,18 +1,19 @@
 <header class="fixed-top">
   <nav class="navbar navbar-light bg-white">
-    <a class="navbar-brand" href="/">
+    <a *ngIf="!openSearch" class="navbar-brand title-header" href="/">
       Sq<span class="text-muted">u</span>are
     </a>
-    <div *ngIf="(user$ | async) as user;else login">
-      <i class="fa fa-user-circle mr-2"></i>
-      <a class="ml-2">{{user?.user_name | titlecase}}</a>
-      <a class="ml-2 " (click)="logout()">Sair</a>
+    <app-search (openInputSearch)="openSearch = $event" class="m-auto"></app-search>
+    <div *ngIf="!openSearch">
+      <div *ngIf="(user$ | async) as user;else login">
+        <a class="ml-2 " (click)="logout()">Sair</a>
+      </div>
+      <ng-template #login>
+        <span class="navbar-text">
+          Por favor, faça <a [routerLink]="['']">login</a>
+        </span>
+      </ng-template>
     </div>
-    <ng-template #login>
-      <span class="navbar-text">
-        Por favor, faça <a [routerLink]="['']">login</a>
-      </span>
-    </ng-template>
   </nav>
   <app-alert></app-alert>
 </header>

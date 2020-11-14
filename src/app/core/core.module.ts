@@ -7,17 +7,19 @@ import {HeaderComponent} from "./header/header.component";
 import {RequestInterceptor} from "./auth/request.interceptor";
 import {FooterComponent} from "./footer/footer.component";
 import {AlertModule} from "../shared/alert/alert.module";
+import {PhotoListModule} from '../photos/photo-list/photo-list.module';
 
 @NgModule({
   declarations:[
     HeaderComponent,
     FooterComponent
   ],
-  imports:[
-    CommonModule,
-    RouterModule,
-    AlertModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        AlertModule,
+        PhotoListModule
+    ],
   exports:[
     HeaderComponent,
     FooterComponent
