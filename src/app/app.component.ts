@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
 import {slideInAnimation} from "./core/ux/animations";
 import {Title} from "@angular/platform-browser";
+import {Observable} from 'rxjs';
+import {SpinnerService} from './shared/spinner/spinner.service';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +14,10 @@ import {Title} from "@angular/platform-browser";
   ]
 })
 export class AppComponent{
-  title='App'
+  isSpinnerVisibile$: Observable<boolean> = this.spinnerService.isNavigationPending$;
+
   constructor(
+    private spinnerService:SpinnerService,
     private titleService:Title) {}
 
   prepareRoute(outlet: RouterOutlet) {

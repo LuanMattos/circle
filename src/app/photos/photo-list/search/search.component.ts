@@ -3,6 +3,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PhotoService} from '../../photo/photo.service';
 import {debounceTime} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {User} from '../../../core/user/user';
 
 @Component({
   selector:'app-search',
@@ -11,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class SearchComponent{
   filter:string = '';
-  users;
+  users:User[] = [];
   hasMore:boolean = true;
   _openInputSearch:boolean = false
   @Output() openInputSearch :EventEmitter<boolean> =  new EventEmitter<boolean>();
@@ -40,7 +41,6 @@ export class SearchComponent{
       .subscribe(users=> {
         this.users = this.users.concat(users);
         if(!users.length) this.hasMore = false;
-
       })
   }
   toggleSearch(value){

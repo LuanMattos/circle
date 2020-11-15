@@ -96,7 +96,7 @@ export class PhotoService {
 
   /** Search **/
   getUserByName( name:string ){
-    return this.http.put(API + 'search',{name},{ responseType: 'json'})
+    return this.http.put<User[]>(API + 'search',{name},{ responseType: 'json'})
   }
 
   getUserByNamePaginated( name:string,page:number ){

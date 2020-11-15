@@ -13,9 +13,6 @@ import {HomeRoutingModule} from "./home.routing.module";
 import {SignupService} from "./signup/signup.service";
 import {UxModule} from "../core/ux/ux-module";
 
-/**
- * Como ele vai ser carregado pelo app.module e está a nível de página, não precisamos usar Exports
- * **/
 @NgModule({
   declarations:[
     SignInComponent,
@@ -28,11 +25,6 @@ import {UxModule} from "../core/ux/ux-module";
     FormsModule,
     VmessageModule,
     UxModule,
-    /**
-     * No app.routing.module, já temos o mesmo importado, e deve funcionar em todos os filhos
-     * pois estão dentro (juntos) do import.
-     * Porém ainda é uma boa prática colocar ele no home.module pra gente saber que home.module depende do mesmo
-     * **/
     RouterModule,
     HomeRoutingModule
   ],
