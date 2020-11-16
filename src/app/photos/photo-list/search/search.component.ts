@@ -48,7 +48,4 @@ export class SearchComponent{
     this.filter = ''
     this.openInputSearch.emit(this._openInputSearch);
   }
-  load(){
-    this.moreUsers()
-  }
 }

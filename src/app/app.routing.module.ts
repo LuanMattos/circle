@@ -12,6 +12,8 @@ import {AuthRequiredGuard} from "./core/auth/auth-required.guard";
 /** Resolvers */
 import {PhotoListResolver} from "./photos/photo-list/photo-list.resolver";
 import {PhotoDetailComponent} from "./photos/photo-detail/photo-detail.component";
+import {PhotoListTimelineComponent} from './photos/photo-list-timeline/photo-list-timeline.component';
+import {PhotoListTimelineResolver} from './photos/photo-list-timeline/photo-list-timeline.resolver';
 
 
 const routes:Routes = [
@@ -29,6 +31,17 @@ const routes:Routes = [
     data: {
       animation: 'HomePage',
       title:'Home'
+    }
+  },
+  {
+    path:'timeline/:userName',
+    component:PhotoListTimelineComponent,
+    resolve:{
+      photos:PhotoListTimelineResolver
+    },
+    data: {
+      animation: 'AboutPage',
+      title:'Timeline'
     }
   },
   {

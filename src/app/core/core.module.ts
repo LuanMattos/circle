@@ -8,6 +8,7 @@ import {RequestInterceptor} from "./auth/request.interceptor";
 import {FooterComponent} from "./footer/footer.component";
 import {AlertModule} from "../shared/alert/alert.module";
 import {PhotoListModule} from '../photos/photo-list/photo-list.module';
+import {UxModule} from './ux/ux-module';
 
 @NgModule({
   declarations:[
@@ -18,13 +19,13 @@ import {PhotoListModule} from '../photos/photo-list/photo-list.module';
         CommonModule,
         RouterModule,
         AlertModule,
-        PhotoListModule
+        PhotoListModule,
+        UxModule
     ],
   exports:[
     HeaderComponent,
     FooterComponent
   ],
-  /** Apartir de agora, o Angular 'não manda mais nas rotas' e sim nosso request.interceptor **/
   providers:[
     {
       provide:HTTP_INTERCEPTORS,

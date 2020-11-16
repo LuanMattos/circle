@@ -13,14 +13,11 @@
     <i *ngIf="!_openInputSearch" class="fa fa-search text-muted search-responsive" (click)="toggleSearch(true);"></i>
 
 
-    <div
-      class="search-results"
-      infiniteScroll
-      [infiniteScrollDistance]="1"
-      [infiniteScrollThrottle]="50"
-      (scrolled)="load()"
-    >
-      <div *ngIf="filter && _openInputSearch" class="autocomplete">
+      <div infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="50"
+        (scrolled)="moreUsers()"
+        *ngIf="filter && _openInputSearch" class="autocomplete">
           <ul>
             <li *ngFor="let user of users">
               <a href="/user/{{user.user_name}}">
@@ -38,6 +35,5 @@
             </li>
           </ul>
       </div>
-    </div>
   </form>
 </div>

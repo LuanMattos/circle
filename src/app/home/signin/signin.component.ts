@@ -42,12 +42,12 @@ export class SignInComponent implements OnInit{
       .subscribe(
         (res)=> {
           this.authInvalid = '';
-
           this.fromUrl
             ?
             this.router.navigateByUrl(this.fromUrl)
             :
-            this.router.navigate(['user', userName])
+
+            this.router.navigate(['timeline', userName])
         },
         err=> {
           this.authInvalid = 'Usuário / senha incorreto(s)';

@@ -7,7 +7,7 @@ form {
     transition: .9s;
     color: #212121 !important; }
   form .match-input-search {
-    animation: animation-message 1s;
+    animation: animation-message .4s;
     animation-fill-mode: forwards; }
 @keyframes animation-message {
   0% {
