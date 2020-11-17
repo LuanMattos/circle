@@ -1,0 +1,54 @@
+<form [formGroup]="settingForm" (submit)="save()" #form="ngForm" autocomplete="off">
+  <div class="container">
+    <img class="avatar rounded-circle" src="{{user.user_avatar_url?user.user_avatar_url:imgProfileDefault}}" alt="Img">
+    <div class="form-group">
+      <mat-form-field class="w-100">
+        <mat-label>E-mail</mat-label>
+        <input #inputEmail matInput placeholder="E-mail" autofocus formControlName="userEmail">
+      </mat-form-field>
+      <app-vmessage *ngIf="settingForm.get('userEmail').errors?.required" text="E-mail é obrigatório!"></app-vmessage>
+      <app-vmessage *ngIf="settingForm.get('userEmail').errors?.email" text="E-mail inválido!"></app-vmessage>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="w-100">
+        <mat-label>Alterar Senha</mat-label>
+        <input matInput [type]="hidePass ? 'password' : 'text'" placeholder="Alterar Senha" autofocus formControlName="userPasswordChange">
+        <button type="button" mat-icon-button matSuffix (click)="hidePass = !hidePass" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePass">
+          <i class='fa fa-low-vision' (click)="hidePass ? 'fa-low-vision' : 'visibility'"></i>
+        </button>
+      </mat-form-field>
+      <app-vmessage *ngIf="settingForm.get('userPassword').errors?.minlength"
+                    text="Mínimo 8 caractéres!"></app-vmessage>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="w-100">
+        <mat-label>Senha Atual</mat-label>
+        <input matInput [type]="hidePass ? 'password' : 'text'" placeholder="Senha Atual"  formControlName="userPassword" >
+        <button type="button" mat-icon-button matSuffix (click)="hidePass = !hidePass" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePass">
+          <i class='fa fa-low-vision' (click)="hidePass ? 'fa-low-vision' : 'visibility'"></i>
+        </button>
+      </mat-form-field>
+      <app-vmessage *ngIf="settingForm.get('userPassword').errors?.message"
+                    text="Senha incorreta"></app-vmessage>
+      <app-vmessage *ngIf="settingForm.get('userPassword').errors?.required"
+                    text="Senha é obrigatório!"></app-vmessage>
+      <app-vmessage *ngIf="settingForm.get('userPassword').errors?.minlength"
+                    text="Mínimo 8 caractéres!"></app-vmessage>
+
+    </div>
+    <div class="form-group">
+      <mat-form-field class="w-100">
+        <mat-label>Mora em</mat-label>
+        <input matInput placeholder="Local"  formControlName="userAddress">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <div class="col-auto w-100 m-auto">
+        <textarea matInput placeholder="Sobre você" autofocus formControlName="userDescription"></textarea>
+      </div>
+    </div>
+    <button  class="w-100 bg-dark text-white" [disabled]="this.settingForm.invalid && !this.settingForm.pending" mat-raised-button>Salvar</button>
+  </div>
+</form>
+
+

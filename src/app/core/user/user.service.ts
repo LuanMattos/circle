@@ -3,6 +3,10 @@ import {TokenService} from "../token/token.service";
 import {BehaviorSubject} from "rxjs";
 import {User} from "./user";
 import * as jwt_decode from 'jwt-decode';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+
+const API  = environment.ApiUrl;
 
 @Injectable({providedIn:'root'})
 export class UserService{
@@ -10,7 +14,9 @@ export class UserService{
   private userSubject = new BehaviorSubject<User>(null);
   private userName:string;
 
-  constructor(private tokenService:TokenService) {
+  constructor(
+    private http:HttpClient,
+    private tokenService:TokenService) {
     this.tokenService.hasToken() && this.decodeAndNotify()
   }
 
@@ -40,6 +46,9 @@ export class UserService{
   }
   getUserName(){
     return this.userName;
+  }
+  saveSettings( data ){
+    return this.http.post(API + 'save_setting',data);
   }
 
 }

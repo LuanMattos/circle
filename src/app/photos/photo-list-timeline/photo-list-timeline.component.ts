@@ -17,6 +17,7 @@ export class PhotoListTimelineComponent implements OnInit {
   canLoad = false;
   pendingLoad = false;
   stopRequest = false;
+  user
 
   constructor(
     private activatedRoute:ActivatedRoute,
@@ -26,6 +27,7 @@ export class PhotoListTimelineComponent implements OnInit {
   ngOnInit():void{
     this.userName = this.activatedRoute.snapshot.params.userName;
     this.photos = this.activatedRoute.snapshot.data['photos'];
+
 
     setInterval( () => {
       this.canLoad = true;

@@ -1,12 +1,12 @@
-form {
+.general {
   width: 100%; }
-  form i.search-responsive {
+  .general i.search-responsive {
     cursor: pointer;
     font-size: 20px; }
-  form i.search-responsive:hover {
+  .general i.search-responsive:hover {
     transition: .9s;
     color: #212121 !important; }
-  form .match-input-search {
+  .general .match-input-search {
     animation: animation-message .4s;
     animation-fill-mode: forwards; }
 @keyframes animation-message {

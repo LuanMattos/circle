@@ -5,7 +5,6 @@ import {switchMap, tap} from 'rxjs/operators';
 
 import {PhotoService} from '../photo/photo.service';
 import {Comments} from './comments';
-import {UserService} from '../../core/user/user.service';
 import {PhotoCommentsService} from '../photo-detail/photo-comments/photo-comments.service';
 
 @Component({

@@ -3,7 +3,8 @@ import {ActivatedRoute} from "@angular/router";
 
 import {Photo} from '../photo/photo';
 import {PhotoService} from '../photo/photo.service';
-import {map} from 'rxjs/operators';
+import {UserService} from '../../core/user/user.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-photo-list',
@@ -18,8 +19,11 @@ export class PhotoListComponent implements OnInit {
   canLoad = false;
   pendingLoad = false;
   stopRequest = false;
+  user;
+  imgProfileDefault:string = environment.ApiUrl + '/storage/profile_default/default.png'
 
   constructor(
+    private userService:UserService,
     private activatedRoute:ActivatedRoute,
     private photoService : PhotoService,
   ) {}
@@ -27,6 +31,7 @@ export class PhotoListComponent implements OnInit {
   ngOnInit():void{
     this.userName = this.activatedRoute.snapshot.params.userName;
     this.photos = this.activatedRoute.snapshot.data['photos'];
+    this.userService.getUser().subscribe(user=>this.user = user)
 
     setInterval( () => {
       this.canLoad = true;

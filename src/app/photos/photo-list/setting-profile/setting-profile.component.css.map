@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,IAAI;EACF,MAAM,EAAE,KAAK;EAEX,uBAAQ;IACN,MAAM,EAAE,qCAA4B;IACpC,aAAa,EAAE,IAAI;IACnB,SAAS,EAAE,IAAI",
+"sources": ["setting-profile.component.scss"],
+"names": [],
+"file": "setting-profile.component.css"
+}

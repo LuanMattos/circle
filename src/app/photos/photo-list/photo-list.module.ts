@@ -15,6 +15,9 @@ import {ShowIsLoggedModule} from "../../shared/directives/show-is-logged/show-is
 import {PhotoDetailModule} from '../photo-detail/photo-detail.module';
 import {LikeModule} from '../../shared/like/like.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {SettingProfileComponent} from './setting-profile/setting-profile.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {VmessageModule} from '../../shared/vmessage/vmessage.module';
 
 
 @NgModule({
@@ -23,7 +26,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     FilterByDescription,
     PhotosComponent,
     LoadButtonComponent,
-    SearchComponent
+    SearchComponent,
+    SettingProfileComponent
   ],
   exports: [
     PhotosComponent,
@@ -39,7 +43,9 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ShowIsLoggedModule,
     PhotoDetailModule,
     LikeModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    ReactiveFormsModule,
+    VmessageModule
   ]
 })
 export class PhotoListModule{}

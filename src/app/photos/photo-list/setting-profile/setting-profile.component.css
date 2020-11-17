@@ -1,0 +1,8 @@
+form {
+  height: 680px; }
+  form .container .avatar {
+    border: 0.3rem solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 1rem;
+    max-width: 9rem; }
+
+/*# sourceMappingURL=setting-profile.component.css.map */

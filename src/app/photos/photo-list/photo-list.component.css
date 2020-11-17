@@ -1,0 +1,12 @@
+.container .avatar {
+  border: 0.3rem solid rgba(255, 255, 255, 0.3);
+  margin-top: -6rem;
+  margin-bottom: 1rem;
+  max-width: 9rem; }
+.container .card-img-top {
+  background: #90979c;
+  width: 100% !important;
+  height: 350px !important;
+  object-fit: cover !important; }
+
+/*# sourceMappingURL=photo-list.component.css.map */

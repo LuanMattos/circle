@@ -14,6 +14,7 @@ import {PhotoListResolver} from "./photos/photo-list/photo-list.resolver";
 import {PhotoDetailComponent} from "./photos/photo-detail/photo-detail.component";
 import {PhotoListTimelineComponent} from './photos/photo-list-timeline/photo-list-timeline.component';
 import {PhotoListTimelineResolver} from './photos/photo-list-timeline/photo-list-timeline.resolver';
+import {SettingProfileComponent} from './photos/photo-list/setting-profile/setting-profile.component';
 
 
 const routes:Routes = [
@@ -36,6 +37,7 @@ const routes:Routes = [
   {
     path:'timeline/:userName',
     component:PhotoListTimelineComponent,
+    canActivate:[AuthRequiredGuard],
     resolve:{
       photos:PhotoListTimelineResolver
     },
@@ -70,6 +72,15 @@ const routes:Routes = [
     data: {
       animation: 'HomePage',
       title:'Detail Photo'
+    },
+  },
+  {
+    path:'setting',
+    component:SettingProfileComponent,
+    canActivate:[AuthRequiredGuard],
+    data: {
+      animation: 'HomePage',
+      title:'Setting Profile'
     },
   },
   {

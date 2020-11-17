@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACE,kBAAQ;EACN,MAAM,EAAE,qCAA4B;EACpC,UAAU,EAAE,KAAK;EACjB,aAAa,EAAE,IAAI;EACnB,SAAS,EAAE,IAAI;AAIjB,wBAAa;EACX,UAAU,EAAE,OAAO;EACnB,KAAK,EAAE,eAAe;EACtB,MAAM,EAAE,gBAAgB;EACxB,UAAU,EAAE,gBAAgB",
+"sources": ["photo-list.component.scss"],
+"names": [],
+"file": "photo-list.component.css"
+}
