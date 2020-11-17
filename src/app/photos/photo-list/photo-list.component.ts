@@ -5,6 +5,7 @@ import {Photo} from '../photo/photo';
 import {PhotoService} from '../photo/photo.service';
 import {UserService} from '../../core/user/user.service';
 import {environment} from '../../../environments/environment';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-photo-list',
@@ -21,8 +22,10 @@ export class PhotoListComponent implements OnInit {
   stopRequest = false;
   user;
   imgProfileDefault:string = environment.ApiUrl + '/storage/profile_default/default.png'
+  userAvatarUrl
 
   constructor(
+    private sanitizer:DomSanitizer,
     private userService:UserService,
     private activatedRoute:ActivatedRoute,
     private photoService : PhotoService,
@@ -32,6 +35,14 @@ export class PhotoListComponent implements OnInit {
     this.userName = this.activatedRoute.snapshot.params.userName;
     this.photos = this.activatedRoute.snapshot.data['photos'];
     this.userService.getUser().subscribe(user=>this.user = user)
+
+    this.userService.getImgProfile().subscribe(profile=>this.userAvatarUrl = profile );
+
+    if(this.userAvatarUrl){
+      this.userAvatarUrl = this.sanitizer.bypassSecurityTrustUrl(this.userAvatarUrl)
+    }else{
+      this.userAvatarUrl = this.sanitizer.bypassSecurityTrustUrl(environment.ApiUrl + '/storage/profile_default/default.png')
+    }
 
     setInterval( () => {
       this.canLoad = true;

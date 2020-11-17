@@ -37,18 +37,34 @@ export class UserService{
     this.userSubject.next(user);
 
   }
+
   logout(){
     this.tokenService.removeToken();
     this.userSubject.next(null);
   }
+
   isLogged(){
     return this.tokenService.hasToken();
   }
   getUserName(){
     return this.userName;
   }
+  getImgProfile(){
+     return this.http.post(API + 'img_profile',false);
+  }
   saveSettings( data ){
     return this.http.post(API + 'save_setting',data);
+  }
+  uploadImgProfile(file:File){
+    const formData = new FormData();
+    formData.append('imageFile',file);
+
+    return this.http.post(API + 'upload_img_profile', formData,
+      {
+        observe:"events",
+        reportProgress:true
+      }
+    )
   }
 
 }

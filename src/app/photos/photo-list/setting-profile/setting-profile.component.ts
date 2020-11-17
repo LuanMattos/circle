@@ -7,8 +7,9 @@ import {User} from '../../../core/user/user';
 import {UserService} from '../../../core/user/user.service';
 import {environment} from '../../../../environments/environment';
 import {Router} from '@angular/router';
-import {HttpErrorResponse} from '@angular/common/http';
+import {HttpErrorResponse, HttpEvent, HttpEventType} from '@angular/common/http';
 import {AlertService} from '../../../shared/alert/alert.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-setting-profile',
@@ -17,11 +18,15 @@ import {AlertService} from '../../../shared/alert/alert.service';
 })
 export class SettingProfileComponent implements OnInit {
   user:User;
-  imgProfileDefault:string = environment.ApiUrl + '/storage/profile_default/default.png'
+  imgProfileDefaultSanitizer
   settingForm:FormGroup
   hidePass = true
+  userAvatarUrl
+  file:File
+  progress
 
   constructor(
+    private sanitizer:DomSanitizer,
     private alertService:AlertService,
     private route:Router,
     private userService:UserService,
@@ -30,6 +35,13 @@ export class SettingProfileComponent implements OnInit {
 
   ngOnInit():void{
     this.userService.getUser().subscribe(user => this.user = user);
+    this.userService.getImgProfile().subscribe(profile=>this.userAvatarUrl = profile );
+
+    if(this.userAvatarUrl){
+      this.userAvatarUrl = this.sanitizer.bypassSecurityTrustUrl(this.userAvatarUrl)
+    }else{
+      this.userAvatarUrl = this.sanitizer.bypassSecurityTrustUrl(environment.ApiUrl + '/storage/profile_default/default.png')
+    }
 
     this.settingForm = this.formBuilder.group({
         userEmail:[
@@ -54,6 +66,7 @@ export class SettingProfileComponent implements OnInit {
           Validators.maxLength(50),
         ]
       ],
+      file:[],
       userAddress:[''],
       userDescription:[''],
     })
@@ -77,6 +90,32 @@ export class SettingProfileComponent implements OnInit {
         this.settingForm.controls['userPassword'].setErrors({'message':response.error.text})
       }
     )
+  }
+  handleFile( file:File ){
+    this.file = file;
+    const reader = new FileReader();
+    reader.onload = (event:any) => this.file = event.target.result;
+    reader.readAsDataURL(file);
+
+    this.userService
+      .uploadImgProfile( this.file )
+      .subscribe(
+        ( event:HttpEvent<any> ) => {
+
+          if( event.type == HttpEventType.UploadProgress ){
+
+            this.progress = Math.round(100 * event.loaded / event.total);
+
+          }else if( event.type == HttpEventType.Response ){
+            this.userAvatarUrl = event.body
+            this.alertService.success('Upload completo');
+          }
+        },
+        err => {
+          this.alertService.danger('Falha ao carregar o arquivo, tente mais tarde')
+        }
+      )
+
   }
 
 }

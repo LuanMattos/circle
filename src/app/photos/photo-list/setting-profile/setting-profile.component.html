@@ -1,6 +1,10 @@
 <form [formGroup]="settingForm" (submit)="save()" #form="ngForm" autocomplete="off">
   <div class="container">
-    <img class="avatar rounded-circle" src="{{user.user_avatar_url?user.user_avatar_url:imgProfileDefault}}" alt="Img">
+    <img class="avatar rounded-circle e2e-iframe-trusted-src cursor-pointer"
+         (click)="fileInput.click()"
+         [src]="userAvatarUrl"
+         alt="Img">
+    <input type="file" class="hide" formControlName="file" accept="image/*" (change)="handleFile( $event.target.files[0] )" #fileInput>
     <div class="form-group">
       <mat-form-field class="w-100">
         <mat-label>E-mail</mat-label>

@@ -74,6 +74,7 @@ export class PhotoService {
 
   }
 
+
   findById(id : number){
     return this.http.get<Photo>(API + 'get_photo_id/' + id);
   }

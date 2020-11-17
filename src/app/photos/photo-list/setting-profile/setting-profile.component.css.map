@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,IAAI;EACF,MAAM,EAAE,KAAK;EAEX,uBAAQ;IACN,MAAM,EAAE,qCAA4B;IACpC,aAAa,EAAE,IAAI;IACnB,SAAS,EAAE,IAAI",
+"mappings": "AAAA,IAAI;EACF,MAAM,EAAE,KAAK;EAEX,uBAAQ;IACN,MAAM,EAAE,qCAA4B;IACpC,aAAa,EAAE,IAAI;IACnB,KAAK,EAAE,KAAK;IACZ,MAAM,EAAE,KAAK;IACb,UAAU,EAAE,KAAK;IACjB,eAAe,EAAE,KAAK",
 "sources": ["setting-profile.component.scss"],
 "names": [],
 "file": "setting-profile.component.css"

@@ -65,7 +65,6 @@ export class PhotoFormComponent implements OnInit {
       )
   }
   handleFile(file:File){
-    /** Convertemos nossa imagem para base64 data:.... **/
       this.file = file;
       const reader = new FileReader();
       reader.onload = (event:any) => this.preview = event.target.result;
