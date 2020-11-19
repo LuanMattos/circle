@@ -1,10 +1,10 @@
 <div class="container w-100">
   <div class="container-cover">
-    <img *ngIf="user.user_cover_url" class="card-img-top w-100 e2e-iframe-trusted-src" [src]="user.user_cover_url" alt="">
+    <img *ngIf="user.user_cover_url" class="border-0 w-100 e2e-iframe-trusted-src" [src]="user.user_cover_url" >
   </div>
   <div class="card-body text-center">
-    <img  class="avatar rounded-circle e2e-iframe-trusted-src" [src]="user.user_avatar_url" alt="Img">
-    <i photoOwnerOnly class="fa fa-cogs cursor-pointer" aria-hidden="true" [routerLink]="['/setting']"></i>
+    <img  class="avatar rounded-circle e2e-iframe-trusted-src" [src]="user.user_avatar_url">
+    <i itemOwnerOnly [ownedItem]="user" class="fa fa-cogs cursor-pointer" aria-hidden="true" [routerLink]="['/setting',user.user_name]"></i>
     <h4 class="card-title">{{user.user_full_name | titlecase}}</h4>
     <h6 class="card-subtitle mb-2 text-muted">{{user.address | titlecase}}</h6>
     <p class="card-text">{{user.description}} </p>

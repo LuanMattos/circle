@@ -18,6 +18,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {SettingProfileComponent} from './setting-profile/setting-profile.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {VmessageModule} from '../../shared/vmessage/vmessage.module';
+import {PhotoOwnerOnlyModule} from '../../shared/directives/owner-only/photo-owner-only.module';
 
 
 @NgModule({
@@ -33,20 +34,21 @@ import {VmessageModule} from '../../shared/vmessage/vmessage.module';
     PhotosComponent,
     SearchComponent
   ],
-  imports: [
-    CommonModule,
-    PhotoModule,
-    CardModule,
-    DarkenOnHoverModule,
-    UxModule,
-    RouterModule,
-    ShowIsLoggedModule,
-    PhotoDetailModule,
-    LikeModule,
-    InfiniteScrollModule,
-    ReactiveFormsModule,
-    VmessageModule
-  ]
+    imports: [
+        CommonModule,
+        PhotoModule,
+        CardModule,
+        DarkenOnHoverModule,
+        UxModule,
+        RouterModule,
+        ShowIsLoggedModule,
+        PhotoDetailModule,
+        LikeModule,
+        InfiniteScrollModule,
+        ReactiveFormsModule,
+        VmessageModule,
+        PhotoOwnerOnlyModule
+    ]
 })
 export class PhotoListModule{}
 

@@ -1,17 +1,18 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 
-@Injectable({providedIn:'root'})
+@Injectable({providedIn: 'root'})
 export class SecurityCommonsService{
 
   constructor(
-    private sanitizer:DomSanitizer,
+    private sanitizer: DomSanitizer,
   ) {}
 
-  passSecurityUrl( instance ){
-    if( instance )
-      instance = <string>this.sanitizer.bypassSecurityTrustUrl( instance );
-    else
-      instance = <string>this.sanitizer.bypassSecurityTrustUrl('');
+  passSecurityUrl( instance, urlDefault= '' ): any{
+    if ( instance ) {
+      return this.sanitizer.bypassSecurityTrustUrl(instance);
+    } else {
+      return this.sanitizer.bypassSecurityTrustUrl(urlDefault);
+    }
   }
 }

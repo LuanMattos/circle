@@ -15,6 +15,7 @@ import {PhotoDetailComponent} from "./photos/photo-detail/photo-detail.component
 import {PhotoListTimelineComponent} from './photos/photo-list-timeline/photo-list-timeline.component';
 import {PhotoListTimelineResolver} from './photos/photo-list-timeline/photo-list-timeline.resolver';
 import {SettingProfileComponent} from './photos/photo-list/setting-profile/setting-profile.component';
+import {UserResolver} from './core/user/user.resolver';
 
 
 const routes:Routes = [
@@ -37,7 +38,7 @@ const routes:Routes = [
   {
     path:'timeline/:userName',
     component:PhotoListTimelineComponent,
-    canActivate:[AuthRequiredGuard],
+    canActivate: [AuthRequiredGuard],
     resolve:{
       photos:PhotoListTimelineResolver
     },
@@ -47,20 +48,21 @@ const routes:Routes = [
     }
   },
   {
-    path:'user/:userName',
-    component:PhotoListComponent,
-    resolve:{
-      photos:PhotoListResolver
+    path: 'user/:userName',
+    component: PhotoListComponent,
+    resolve: {
+      photos: PhotoListResolver,
+      user: UserResolver
     },
     data: {
       animation: 'AboutPage',
-      title:'Timeline'
+      title: 'Timeline'
     }
   },
   {
     path:'p/add',
     component:PhotoFormComponent,
-    canActivate:[AuthRequiredGuard],
+    canActivate: [AuthRequiredGuard],
     data: {
       animation: 'HomePage',
       title:'Add Photo'
@@ -75,12 +77,15 @@ const routes:Routes = [
     },
   },
   {
-    path:'setting',
-    component:SettingProfileComponent,
-    canActivate:[AuthRequiredGuard],
+    path: 'setting/:userName',
+    component: SettingProfileComponent,
+    canActivate: [AuthRequiredGuard],
+    resolve: {
+      user: UserResolver
+    },
     data: {
       animation: 'HomePage',
-      title:'Setting Profile'
+      title: 'Setting Profile'
     },
   },
   {

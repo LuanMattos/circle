@@ -1,13 +1,13 @@
 import {NgModule} from "@angular/core";
-import {PhotoOwnerOnlyDirective} from "./photo-owner-only.directive";
+import {ItemOwnerOnlyDirective} from "./item-owner-only.directive";
 
 
 @NgModule({
   declarations:[
-    PhotoOwnerOnlyDirective
+    ItemOwnerOnlyDirective
   ],
   exports:[
-    PhotoOwnerOnlyDirective
+    ItemOwnerOnlyDirective
   ]
 })
 export class PhotoOwnerOnlyModule {}

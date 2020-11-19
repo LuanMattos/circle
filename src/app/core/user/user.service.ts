@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {TokenService} from "../token/token.service";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from "./user";
 import * as jwt_decode from 'jwt-decode';
 import {HttpClient} from '@angular/common/http';
@@ -31,7 +31,7 @@ export class UserService{
   setDataUser( data ){
     this.user.next(data);
   }
-  getUser(){
+  getUser(): Observable<User>{
     return this.user.asObservable();
   }
 
@@ -58,8 +58,8 @@ export class UserService{
   }
 
 
-  dataUserBasic(){
-     return this.http.post<any>(API + 'data_user_basic',false);
+  dataUserBasic(userName:string){
+     return this.http.post<any>(API + 'data_user_basic/' + userName,false);
   }
   saveSettings( data ){
     return this.http.post(API + 'save_setting',data);
