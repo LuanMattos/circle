@@ -89,7 +89,7 @@ export class PhotoService {
 
   /** Likes **/
   like( photoId:number,userName:string ){
-    return this.http.put<[]>(API + 'add_like',{photoId,userName},{ responseType: 'json'})
+    return this.http.put<any>(API + 'add_like',{photoId,userName},{ responseType: 'json'})
   }
 
 

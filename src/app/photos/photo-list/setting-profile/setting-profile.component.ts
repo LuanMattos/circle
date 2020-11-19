@@ -83,8 +83,9 @@ export class SettingProfileComponent implements OnInit {
     const data = this.settingForm.getRawValue();
     this.userService.saveSettings(data).subscribe(success=> {
 
+        this.userService.logout()
         this.route.navigate(['']);
-        this.alertService.success('Salvo com sucesso');
+        this.alertService.success('Por segurança, faça login novamente!');
       },
       (response: HttpErrorResponse)=>{
         this.settingForm.controls['userPassword'].setErrors({'message':response.error.text})

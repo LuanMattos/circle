@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
-import {Photo} from '../photo/photo';
+
 import {PhotoService} from '../photo/photo.service';
 import {UserService} from '../../core/user/user.service';
 import {environment} from '../../../environments/environment';
 import {DomSanitizer} from '@angular/platform-browser';
+
+
 
 @Component({
   selector: 'app-photo-list',
@@ -15,14 +17,14 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class PhotoListComponent implements OnInit {
 
   title = 'App';
-  photos:Photo[] = [];
+  photos = [];
   userName:string = '';
   canLoad = false;
   pendingLoad = false;
-  stopRequest = false;
   user;
   imgProfileDefault:string = environment.ApiUrl + '/storage/profile_default/default.png'
   userAvatarUrl
+  setLength = 0
 
   constructor(
     private sanitizer:DomSanitizer,
@@ -57,7 +59,6 @@ export class PhotoListComponent implements OnInit {
     if ( this.canLoad ) {
       this.canLoad = false;
       this.pendingLoad = false;
-
       this.requestItem();
     } else {
       this.pendingLoad = true;
@@ -65,15 +66,16 @@ export class PhotoListComponent implements OnInit {
 
   }
   requestItem(){
-    if(!this.stopRequest)
-      this.photoService
-        .listFromUserPaginated(this.userName,this.photos.length)
-        .subscribe(photos=>{
-          if(!photos.length){
-            this.stopRequest = true;
-          }else{
-            this.photos = this.photos.concat(photos)
-          }
-        })
+
+   if( this.photos.length > this.setLength )
+
+    this.photoService
+          .listFromUserPaginated( this.userName,this.photos.length )
+          .toPromise()
+          .then(res => {
+            this.setLength = this.photos.length
+            this.photos = this.photos.concat(res);
+          });
+
   }
 }

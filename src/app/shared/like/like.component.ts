@@ -26,10 +26,7 @@ export class LikeComponent implements OnInit{
     this.userService.getUser().subscribe(response=>this.userId = response?.user_id)
   }
 
-  isPhotoLiked( likes ){
-    if(likes && this.userService.isLogged())
-    return likes.map(function(e) { return e.user_id; }).indexOf(this.userId.toString()) !== -1;
-  }
+     // return this.photo.map(function(e) { return e.user_id; }).indexOf(this.userId.toString()) !== -1;
 
   like( photoId:number ){
 
@@ -38,8 +35,8 @@ export class LikeComponent implements OnInit{
       .like( photoId,userName )
       .subscribe(response => {
         if(response)
-        this.photo.photo_likes = response.length;
-        this.photo.likes = response;
+        this.photo.photo_likes = response.count;
+        this.photo.liked = response.liked
         }
       )
   }

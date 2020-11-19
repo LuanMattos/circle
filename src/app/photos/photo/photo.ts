@@ -9,5 +9,5 @@ export interface Photo{
   user_id:number,
   photo_public:number,
   likes:[]
-  liked:false
+  liked:boolean
 }
