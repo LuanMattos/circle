@@ -10,9 +10,9 @@
           <i class="fa fa-user fa-2x" aria-hidden="true"></i>
         </div>
         <mat-menu #menu="matMenu" class="mt-3">
-          <div mat-menu-item (click)="redirectToProfile()">
-            <a class="ml-2">Perfil</a>
-          </div>
+          <a mat-menu-item [href]="['user/' + user.user_name]">
+            <span class="ml-2" >Perfil</span>
+          </a>
           <div mat-menu-item (click)="logout()">
             <a class="ml-2">Sair</a>
           </div>

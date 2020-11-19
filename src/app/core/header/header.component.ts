@@ -6,33 +6,33 @@ import {User} from "../user/user";
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector:'app-header',
-  templateUrl:'./header.component.html',
-  styleUrls:['./header.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
-  user$:Observable<User>;
+  user$: Observable<User>;
   user;
-  openSearch:boolean;
+  openSearch: boolean;
 
   constructor(
-    private activatedRoute:ActivatedRoute,
-    private userService:UserService,
-    private router:Router
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService,
+    private router: Router
     ) {
     this.user$ = userService.getUserByToken();
   }
-  ngOnInit():void{
-    this.user$.subscribe(user=>this.user = user);
+  ngOnInit(): void{
+    this.user$.subscribe(user => this.user = user);
   }
-  logout(){
-    this.router.navigate([''])
+  logout(): void{
+    this.router.navigate(['']);
     this.userService.logout();
   }
-  redirect(){
-    this.router.navigate(['timeline', this.user.user_name])
+  redirect(): void{
+    this.router.navigate(['timeline', this.user.user_name]);
   }
-  redirectToProfile(){
-    this.router.navigate(['user', this.user.user_name])
+  redirectToProfile(): void{
+    this.router.navigate(['user', this.user.user_name]);
   }
 }
