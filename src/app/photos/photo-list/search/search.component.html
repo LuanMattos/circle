@@ -20,8 +20,11 @@
           <ul>
             <li *ngFor="let user of users">
               <a href="/user/{{user.user_name}}">
+                <img [src]="user.user_avatar_url?user.user_avatar_url:avatarDefault" class="avatar rounded-circle">
                 {{user.user_full_name | titlecase}}
-                <p class="text-muted">{{user.user_name}}   {{user?.address | titlecase}}</p>
+                <p class="text-muted">
+                  {{user.user_name}}{{user?.address | titlecase}}
+                </p>
               </a>
             </li>
             <li *ngIf="users;" class="text-muted text-center m-0" (click)="moreUsers()">

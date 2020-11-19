@@ -1,9 +1,10 @@
 .container .container-cover {
-  border-radius: 2px 2px 0 0;
+  border-radius: 10px;
   background-color: #90979c;
   width: 100% !important;
   height: 350px !important; }
   .container .container-cover img {
+    border-radius: 10px;
     background: #90979c;
     width: 100% !important;
     height: 350px !important;
