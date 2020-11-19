@@ -17,7 +17,8 @@
   .general .avatar {
     background-color: #90979c;
     width: 40px;
-    height: 40px; }
+    height: 40px;
+    object-fit: cover; }
 
 .autocomplete {
   position: absolute;
