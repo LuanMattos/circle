@@ -12,6 +12,7 @@ const API  = environment.ApiUrl;
 export class UserService{
 
   private userSubject = new BehaviorSubject<User>(null);
+  private user = new BehaviorSubject<User>(null);
   private userName:string;
 
   constructor(
@@ -24,8 +25,14 @@ export class UserService{
     this.tokenService.setToken(token)
     this.decodeAndNotify()
   }
-  getUser(){
+  getUserByToken(){
     return this.userSubject.asObservable();
+  }
+  setDataUser( data ){
+    this.user.next(data);
+  }
+  getUser(){
+    return this.user.asObservable();
   }
 
   private decodeAndNotify(){
@@ -49,8 +56,10 @@ export class UserService{
   getUserName(){
     return this.userName;
   }
-  getImgProfile(){
-     return this.http.post(API + 'img_profile',false);
+
+
+  dataUserBasic(){
+     return this.http.post<any>(API + 'data_user_basic',false);
   }
   saveSettings( data ){
     return this.http.post(API + 'save_setting',data);
@@ -60,6 +69,17 @@ export class UserService{
     formData.append('imageFile',file);
 
     return this.http.post(API + 'upload_img_profile', formData,
+      {
+        observe:"events",
+        reportProgress:true
+      }
+    )
+  }
+  uploadImgCover(file:File){
+    const formData = new FormData();
+    formData.append('imageFile',file);
+
+    return this.http.post(API + 'upload_img_cover', formData,
       {
         observe:"events",
         reportProgress:true

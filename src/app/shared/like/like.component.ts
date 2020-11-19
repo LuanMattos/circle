@@ -23,7 +23,7 @@ export class LikeComponent implements OnInit{
   ) {}
 
   ngOnInit() {
-    this.userService.getUser().subscribe(response=>this.userId = response?.user_id)
+    this.userService.getUserByToken().subscribe(response=>this.userId = response?.user_id)
   }
 
      // return this.photo.map(function(e) { return e.user_id; }).indexOf(this.userId.toString()) !== -1;

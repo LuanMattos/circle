@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 import {HttpErrorResponse, HttpEvent, HttpEventType} from '@angular/common/http';
 import {AlertService} from '../../../shared/alert/alert.service';
 import {DomSanitizer} from '@angular/platform-browser';
+import {SecurityCommonsService} from '../../../shared/services/security-commons.service';
 
 @Component({
   selector: 'app-setting-profile',
@@ -21,11 +22,11 @@ export class SettingProfileComponent implements OnInit {
   imgProfileDefaultSanitizer
   settingForm:FormGroup
   hidePass = true
-  userAvatarUrl
   file:File
   progress
 
   constructor(
+    private securityCommons:SecurityCommonsService,
     private sanitizer:DomSanitizer,
     private alertService:AlertService,
     private route:Router,
@@ -34,14 +35,10 @@ export class SettingProfileComponent implements OnInit {
   ) {}
 
   ngOnInit():void{
-    this.userService.getUser().subscribe(user => this.user = user);
-    this.userService.getImgProfile().subscribe(profile=>this.userAvatarUrl = profile );
+    this.userService.getUser().subscribe(response=>this.user = response );
 
-    if(this.userAvatarUrl){
-      this.userAvatarUrl = this.sanitizer.bypassSecurityTrustUrl(this.userAvatarUrl)
-    }else{
-      this.userAvatarUrl = this.sanitizer.bypassSecurityTrustUrl(environment.ApiUrl + '/storage/profile_default/default.png')
-    }
+    this.securityCommons.passSecurityUrl(this.user.user_cover_url)
+    this.securityCommons.passSecurityUrl(this.user.user_avatar_url)
 
     this.settingForm = this.formBuilder.group({
         userEmail:[
@@ -92,7 +89,7 @@ export class SettingProfileComponent implements OnInit {
       }
     )
   }
-  handleFile( file:File ){
+  uploadProfile( file:File ){
     this.file = file;
     const reader = new FileReader();
     reader.onload = (event:any) => this.file = event.target.result;
@@ -108,7 +105,33 @@ export class SettingProfileComponent implements OnInit {
             this.progress = Math.round(100 * event.loaded / event.total);
 
           }else if( event.type == HttpEventType.Response ){
-            this.userAvatarUrl = event.body
+            this.user.user_avatar_url = event.body
+            this.alertService.success('Upload completo');
+          }
+        },
+        err => {
+          this.alertService.danger('Falha ao carregar o arquivo, tente mais tarde')
+        }
+      )
+
+  }
+  uploadCover( file:File ){
+    this.file = file;
+    const reader = new FileReader();
+    reader.onload = (event:any) => this.file = event.target.result;
+    reader.readAsDataURL(file);
+
+    this.userService
+      .uploadImgCover( this.file )
+      .subscribe(
+        ( event:HttpEvent<any> ) => {
+
+          if( event.type == HttpEventType.UploadProgress ){
+
+            this.progress = Math.round(100 * event.loaded / event.total);
+
+          }else if( event.type == HttpEventType.Response ){
+            this.user.user_cover_url = event.body
             this.alertService.success('Upload completo');
           }
         },

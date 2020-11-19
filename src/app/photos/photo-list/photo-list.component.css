@@ -1,3 +1,13 @@
+.container .container-cover {
+  border-radius: 2px 2px 0 0;
+  background-color: #90979c;
+  width: 100% !important;
+  height: 350px !important; }
+  .container .container-cover img {
+    background: #90979c;
+    width: 100% !important;
+    height: 350px !important;
+    object-fit: cover !important; }
 .container .avatar {
   border: 0.3rem solid rgba(255, 255, 255, 0.3);
   margin-top: -6rem;
@@ -6,10 +16,5 @@
   object-position: 50% 0;
   width: 180px;
   height: 180px; }
-.container .card-img-top {
-  background: #90979c;
-  width: 100% !important;
-  height: 350px !important;
-  object-fit: cover !important; }
 
 /*# sourceMappingURL=photo-list.component.css.map */

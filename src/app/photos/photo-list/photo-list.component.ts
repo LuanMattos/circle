@@ -6,6 +6,8 @@ import {PhotoService} from '../photo/photo.service';
 import {UserService} from '../../core/user/user.service';
 import {environment} from '../../../environments/environment';
 import {DomSanitizer} from '@angular/platform-browser';
+import {User} from '../../core/user/user';
+import {SecurityCommonsService} from '../../shared/services/security-commons.service';
 
 
 
@@ -21,12 +23,11 @@ export class PhotoListComponent implements OnInit {
   userName:string = '';
   canLoad = false;
   pendingLoad = false;
-  user;
-  imgProfileDefault:string = environment.ApiUrl + '/storage/profile_default/default.png'
-  userAvatarUrl
+  user:User;
   setLength = 0
 
   constructor(
+    private securityCommons:SecurityCommonsService,
     private sanitizer:DomSanitizer,
     private userService:UserService,
     private activatedRoute:ActivatedRoute,
@@ -36,15 +37,11 @@ export class PhotoListComponent implements OnInit {
   ngOnInit():void{
     this.userName = this.activatedRoute.snapshot.params.userName;
     this.photos = this.activatedRoute.snapshot.data['photos'];
+
     this.userService.getUser().subscribe(user=>this.user = user)
 
-    this.userService.getImgProfile().subscribe(profile=>this.userAvatarUrl = profile );
-
-    if(this.userAvatarUrl){
-      this.userAvatarUrl = this.sanitizer.bypassSecurityTrustUrl(this.userAvatarUrl)
-    }else{
-      this.userAvatarUrl = this.sanitizer.bypassSecurityTrustUrl(environment.ApiUrl + '/storage/profile_default/default.png')
-    }
+    this.securityCommons.passSecurityUrl(this.user.user_cover_url)
+    this.securityCommons.passSecurityUrl(this.user.user_avatar_url)
 
     setInterval( () => {
       this.canLoad = true;

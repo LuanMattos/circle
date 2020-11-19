@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit{
     private userService:UserService,
     private router:Router
     ) {
-    this.user$ = userService.getUser();
+    this.user$ = userService.getUserByToken();
   }
   ngOnInit():void{
     this.user$.subscribe(user=>this.user = user);

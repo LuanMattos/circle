@@ -6,4 +6,5 @@ export interface User{
   address:string,
   description:string,
   user_avatar_url:string
+  user_cover_url:string
 }

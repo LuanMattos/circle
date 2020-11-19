@@ -1,10 +1,18 @@
 <form [formGroup]="settingForm" (submit)="save()" #form="ngForm" autocomplete="off">
   <div class="container">
+    <div class="container-cover cursor-pointer" (click)="fileInputCover.click()">
+      <img *ngIf="user.user_cover_url.length"
+           class="e2e-iframe-trusted-src cursor-pointer"
+           [src]="user.user_cover_url"
+           alt="Img">
+    </div>
     <img class="avatar rounded-circle e2e-iframe-trusted-src cursor-pointer"
          (click)="fileInput.click()"
-         [src]="userAvatarUrl"
+         [src]="user.user_avatar_url"
          alt="Img">
-    <input type="file" class="hide" formControlName="file" accept="image/*" (change)="handleFile( $event.target.files[0] )" #fileInput>
+    <input type="file" class="hide" formControlName="file" accept="image/*" (change)="uploadProfile( $event.target.files[0] )" #fileInput>
+    <input type="file" class="hide" formControlName="file" accept="image/*" (change)="uploadCover( $event.target.files[0] )" #fileInputCover>
+
     <div class="form-group">
       <mat-form-field class="w-100">
         <mat-label>E-mail</mat-label>

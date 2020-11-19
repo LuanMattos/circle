@@ -1,7 +1,9 @@
 <div class="container w-100">
-  <img class="card-img-top w-100 e2e-iframe-trusted-src" [src]="'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/oslo.jpg'" alt="Bologna">
+  <div class="container-cover">
+    <img *ngIf="user.user_cover_url" class="card-img-top w-100 e2e-iframe-trusted-src" [src]="user.user_cover_url" alt="">
+  </div>
   <div class="card-body text-center">
-    <img  class="avatar rounded-circle e2e-iframe-trusted-src" [src]="userAvatarUrl" alt="Img">
+    <img  class="avatar rounded-circle e2e-iframe-trusted-src" [src]="user.user_avatar_url" alt="Img">
     <i photoOwnerOnly class="fa fa-cogs cursor-pointer" aria-hidden="true" [routerLink]="['/setting']"></i>
     <h4 class="card-title">{{user.user_full_name | titlecase}}</h4>
     <h6 class="card-subtitle mb-2 text-muted">{{user.address | titlecase}}</h6>
