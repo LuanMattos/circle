@@ -23,6 +23,7 @@ export class PhotoListComponent implements OnInit {
   user: User;
   setLength = 0;
   following;
+  user_cover_url;
 
   constructor(
     private securityCommons: SecurityCommonsService,
@@ -37,7 +38,7 @@ export class PhotoListComponent implements OnInit {
     this.following = this.activatedRoute.snapshot.data.user?.following;
     this.photos = this.activatedRoute.snapshot.data.photos;
 
-    this.user.user_cover_url = this.securityCommons.passSecurityUrl(this.user.user_cover_url);
+    this.user_cover_url = this.securityCommons.passSecurityUrl(this.user.user_cover_url);
     this.user.user_avatar_url = this.securityCommons.passSecurityUrl(this.user.user_avatar_url, environment.ApiUrl + 'storage/profile_default/default.png');
 
   }
