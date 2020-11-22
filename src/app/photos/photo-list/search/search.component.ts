@@ -12,7 +12,7 @@ import {SecurityCommonsService} from '../../../shared/services/security-commons.
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit{
+export class SearchComponent{
   filter: string = '';
   users: User[] = [];
   hasMore: boolean = true;

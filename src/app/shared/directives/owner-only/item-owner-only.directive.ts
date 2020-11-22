@@ -6,6 +6,7 @@ import {UserService} from '../../../core/user/user.service';
 })
 export class ItemOwnerOnlyDirective implements OnInit{
   @Input() ownedItem;
+  @Input() noOwnedItem = false;
 
   constructor(
       private userService: UserService,
@@ -17,8 +18,10 @@ export class ItemOwnerOnlyDirective implements OnInit{
     this.userService.getUserByToken()
       .subscribe(user => {
         if (this.userService.isLogged()){
-          if (user && (user.user_id !== this.ownedItem.user_id)) {
+          if (user && (user.user_id !== this.ownedItem.user_id) && !this.noOwnedItem) {
             this.render.setStyle(this.el.nativeElement, 'display', 'none');
+            }else if (user && (user.user_id === this.ownedItem.user_id) && this.noOwnedItem){
+              this.render.setStyle(this.el.nativeElement, 'display', 'none');
             }
           }
         }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 
@@ -22,6 +22,7 @@ export class PhotoListComponent implements OnInit {
   pendingLoad = false;
   user: User;
   setLength = 0;
+  following;
 
   constructor(
     private securityCommons: SecurityCommonsService,
@@ -33,31 +34,14 @@ export class PhotoListComponent implements OnInit {
 
   ngOnInit(): void{
     this.user = this.activatedRoute.snapshot.data.user;
+    this.following = this.activatedRoute.snapshot.data.user?.following;
     this.photos = this.activatedRoute.snapshot.data.photos;
 
     this.user.user_cover_url = this.securityCommons.passSecurityUrl(this.user.user_cover_url);
     this.user.user_avatar_url = this.securityCommons.passSecurityUrl(this.user.user_avatar_url, environment.ApiUrl + 'storage/profile_default/default.png');
 
-    setInterval( () => {
-      this.canLoad = true;
-      if ( this.pendingLoad ) {
-        this.load();
-      }
-    }, 2000);
-
   }
-
   load(): void{
-    if ( this.canLoad ) {
-      this.canLoad = false;
-      this.pendingLoad = false;
-      this.requestItem();
-    } else {
-      this.pendingLoad = true;
-    }
-
-  }
-  requestItem(): void{
 
    if ( this.photos.length > this.setLength ) {
 
@@ -69,5 +53,11 @@ export class PhotoListComponent implements OnInit {
          this.photos = this.photos.concat(res);
        });
    }
+  }
+  follow(): void{
+    this.photoService.follow( this.user.user_id ).subscribe(follow => {
+      this.following = follow;
+      // follow ? this.following = 'Seguindo' : this.following = 'Seguir';
+    });
   }
 }

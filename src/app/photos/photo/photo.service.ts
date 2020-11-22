@@ -1,9 +1,10 @@
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpParams} from '@angular/common/http';
 import {Injectable} from "@angular/core";
 import {Photo} from "./photo";
 import {environment} from "../../../environments/environment";
 import {Comments} from '../comments/comments';
 import {User} from '../../core/user/user';
+import {Observable} from 'rxjs';
 
 const API = environment.ApiUrl;
 
@@ -47,40 +48,40 @@ export class PhotoService {
 
 
   /** Photo **/
-  listFromUser(userName : string){
+  listFromUser(userName: string): Observable<Photo[]>{
     return this.http.get<Photo[]>(API + 'photos/' + userName);
   }
 
-  listFromUserPaginated( userName : string,page:number ){
+  listFromUserPaginated( userName: string, page: number ): Observable<Photo[]>{
         const params = new HttpParams()
-                  .append('page',page.toString());
-        return this.http.get<Photo[]>(API +   'photos/' + userName , {params:params});
+                  .append('page', page.toString());
+        return this.http.get<Photo[]>(API +   'photos/' + userName , { params });
   }
 
-  upload(description:string, allowComments:boolean,_public:boolean, file){
+  upload(description: string, allowComments: boolean, publico: boolean, file): Observable<any>{
     const formData = new FormData();
 
-    formData.append('description',description);
-    formData.append('public',_public?'true':'false');
-    formData.append('allowComments',allowComments?'true':'false');
-    formData.append('imageFile',file);
+    formData.append('description', description);
+    formData.append('public', publico ? 'true' : 'false');
+    formData.append('allowComments', allowComments ? 'true' : 'false');
+    formData.append('imageFile', file);
 
     return this.http.post(API + 'photos_upload', formData,
       {
-          observe:"events",
-          reportProgress:true
+          observe: 'events',
+          reportProgress: true
         }
-      )
+      );
 
   }
 
 
-  findById(id : number){
+  findById(id: number): Observable<Photo>{
     return this.http.get<Photo>(API + 'get_photo_id/' + id);
   }
 
-  removePhoto( photoId:number ){
-    return this.http.delete(API + 'photos/' + photoId)
+  removePhoto( photoId: number ): Observable<any>{
+    return this.http.delete(API + 'photos/' + photoId);
   }
 
 
@@ -102,6 +103,12 @@ export class PhotoService {
 
   getUserByNamePaginated( name:string,page:number ){
     return this.http.put<User[]>(API + 'search/' + page,{name},{ responseType: 'json'})
+  }
+
+  /** Follow **/
+
+  follow( userId: number ): Observable<boolean>{
+    return this.http.put<boolean>(API + 'follow/' + userId, {},{ responseType: 'json' });
   }
 
 }

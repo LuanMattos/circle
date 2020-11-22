@@ -40,7 +40,8 @@ const routes: Routes = [
     component: PhotoListTimelineComponent,
     canActivate: [AuthRequiredGuard],
     resolve: {
-      photos: PhotoListTimelineResolver
+      photos: PhotoListTimelineResolver,
+      user: UserResolver,
     },
     data: {
       animation: 'AboutPage',

@@ -7,4 +7,5 @@ export interface User{
   description: string;
   user_avatar_url: string;
   user_cover_url: string;
+  following: boolean;
 }
