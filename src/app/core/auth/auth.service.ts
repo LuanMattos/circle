@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 
-import {UserService} from "../user/user.service";
-import {environment} from "../../../environments/environment";
+import {UserService} from '../user/user.service';
+import {environment} from '../../../environments/environment';
 
 
 const API_URL = environment.ApiUrl;
@@ -22,7 +22,7 @@ export class AuthService {
   authenticate(userName:string,password:string){
     const data = {password,userName};
     return this.http
-      .post(API_URL + 'userLogin',JSON.stringify(data),{observe:"response"})
+      .post(API_URL + 'userLogin',JSON.stringify(data),{observe:'response'})
       .pipe(
         tap(
           res=>{

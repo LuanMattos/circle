@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 
-import {Photo} from "../../photo/photo";
+import {Photo} from '../../photo/photo';
 import {Comments} from '../../comments/comments';
 
 @Component({
@@ -10,17 +10,18 @@ import {Comments} from '../../comments/comments';
 })
 export class PhotosComponent implements OnChanges {
 
-  @Input() photos:Photo[] = [];
-  comments:Comments[] = [];
-  viewFormComment:boolean;
-  rows:any[] = [];
-  photoId:number;
+  @Input() photos: Photo[] = [];
+  comments: Comments[] = [];
+  viewFormComment: boolean;
+  rows: any[] = [];
+  photoId: number;
 
   constructor() { }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if(changes.photos)
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.photos){
       this.rows = this.photos;
+    }
   }
 
 }

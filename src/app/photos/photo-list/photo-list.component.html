@@ -10,10 +10,10 @@
     <p class="card-text">{{user.description}} </p>
     <div class="row pb-4 font-weight-bold m-auto w-100" showIsLogged>
       <div class="col m-auto cursor-pointer">
-        <span>366</span> Seguidores
+        <span>{{user.user_followers}}</span> Seguidores
       </div>
       <div class="col m-auto cursor-pointer">
-        <span>366</span> Seguindo
+        <span>{{user.user_following}}</span> Seguindo
       </div>
     </div>
     <div class="row" showIsLogged itemOwnerOnly [ownedItem]="user" [noOwnedItem]="true">

@@ -8,4 +8,6 @@ export interface User{
   user_avatar_url: string;
   user_cover_url: string;
   following: boolean;
+  user_followers: bigint;
+  user_following: bigint;
 }

@@ -21,7 +21,6 @@ export class PhotoListComponent implements OnInit {
   canLoad = false;
   pendingLoad = false;
   user: User;
-  setLength = 0;
   following;
   user_cover_url;
 
@@ -44,16 +43,10 @@ export class PhotoListComponent implements OnInit {
   }
   load(): void{
 
-   if ( this.photos.length > this.setLength ) {
-
      this.photoService
        .listFromUserPaginated(this.user.user_name, this.photos.length)
-       .toPromise()
-       .then(res => {
-         this.setLength = this.photos.length;
-         this.photos = this.photos.concat(res);
+       .subscribe(res => {
        });
-   }
   }
   follow(): void{
     this.photoService.follow( this.user.user_id ).subscribe(follow => {
