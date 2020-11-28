@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "fast-939d3": {
+      "hosting": {
+        "App": [
+          "fast-939d3"
+        ]
+      }
+    }
+  }
+}
