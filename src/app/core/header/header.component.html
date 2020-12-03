@@ -1,7 +1,7 @@
 <header class="fixed-top">
   <nav class="navbar navbar-light bg-white">
     <a *ngIf="!openSearch" class="navbar-brand title-header" (click)="redirect()">
-      Sq<span class="text-muted">u</span>are
+      Circle
     </a>
     <app-search (openInputSearch)="openSearch = $event" class="m-auto"></app-search>
     <div *ngIf="!openSearch">
