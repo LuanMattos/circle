@@ -1,4 +1,4 @@
-<header class="fixed-top">
+<header class="fixed-top" id="navbar-scrool">
   <nav class="navbar navbar-light bg-white">
     <a *ngIf="!openSearch && (user$ | async) as user; else circle" class="navbar-brand title-header" (click)="redirect()">
       Circle

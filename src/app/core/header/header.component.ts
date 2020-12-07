@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit{
   user$: Observable<User>;
   user;
   openSearch: boolean;
+  private prevScrollpos;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,7 +25,20 @@ export class HeaderComponent implements OnInit{
     this.user$ = userService.getUserByToken();
   }
   ngOnInit(): void{
+    this.scrollHideHeader();
     this.user$.subscribe(user => this.user = user);
+  }
+  scrollHideHeader(): void{
+    this.prevScrollpos = window.pageYOffset;
+    window.onscroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      if (this.prevScrollpos > currentScrollPos) {
+        document.getElementById('navbar-scrool').style.top = '0';
+      } else {
+        document.getElementById('navbar-scrool').style.top = '-50px';
+      }
+      this.prevScrollpos = currentScrollPos;
+    };
   }
   logout(): void{
     this.router.navigate(['']);
