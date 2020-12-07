@@ -1,9 +1,14 @@
 <header class="fixed-top">
   <nav class="navbar navbar-light bg-white">
-    <a *ngIf="!openSearch" class="navbar-brand title-header" (click)="redirect()">
+    <a *ngIf="!openSearch && (user$ | async) as user; else circle" class="navbar-brand title-header" (click)="redirect()">
       Circle
     </a>
-    <app-search (openInputSearch)="openSearch = $event" class="m-auto"></app-search>
+    <ng-template #circle>
+      <a class="navbar-brand title-header" [routerLink]="['']">
+        Circle
+      </a>
+    </ng-template>
+    <app-search *ngIf="(user$ | async) as user;" (openInputSearch)="openSearch = $event" class="m-auto"></app-search>
     <div *ngIf="!openSearch">
       <div *ngIf="(user$ | async) as user;else login">
         <div class="cursor-pointer" [matMenuTriggerFor]="menu">
@@ -20,7 +25,7 @@
       </div>
       <ng-template #login>
         <span class="navbar-text">
-          Por favor, faça <a [routerLink]="['']">login</a>
+          Para interagir e ver mais, faça <a [routerLink]="['']">login</a>
         </span>
       </ng-template>
     </div>

@@ -1,41 +1,41 @@
-import {Injectable} from "@angular/core";
-import {TokenService} from "../token/token.service";
+import {Injectable} from '@angular/core';
+import {TokenService} from '../token/token.service';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {User} from "./user";
+import {User} from './user';
 import * as jwt_decode from 'jwt-decode';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 
 const API  = environment.ApiUrl;
 
-@Injectable({providedIn:'root'})
+@Injectable({providedIn: 'root'})
 export class UserService{
 
   private userSubject = new BehaviorSubject<User>(null);
   private user = new BehaviorSubject<User>(null);
-  private userName:string;
+  private userName: string;
 
   constructor(
-    private http:HttpClient,
-    private tokenService:TokenService) {
-    this.tokenService.hasToken() && this.decodeAndNotify()
+    private http: HttpClient,
+    private tokenService: TokenService) {
+    this.tokenService.hasToken() && this.decodeAndNotify();
   }
 
-  setToken(token:string){
-    this.tokenService.setToken(token)
-    this.decodeAndNotify()
+  setToken( token: string ): void{
+    this.tokenService.setToken(token);
+    this.decodeAndNotify();
   }
-  getUserByToken(){
+  getUserByToken(): Observable<any>{
     return this.userSubject.asObservable();
   }
-  setDataUser( data ){
+  setDataUser( data ): void{
     this.user.next(data);
   }
   getUser(): Observable<User>{
     return this.user.asObservable();
   }
 
-  private decodeAndNotify(){
+  private decodeAndNotify(): void{
     const token = this.tokenService.getToken();
     const user = jwt_decode(token) as User;
 
@@ -45,46 +45,46 @@ export class UserService{
 
   }
 
-  logout(){
+  logout(): void{
     this.tokenService.removeToken();
     this.userSubject.next(null);
   }
 
-  isLogged(){
+  isLogged(): boolean{
     return this.tokenService.hasToken();
   }
-  getUserName(){
+  getUserName(): string{
     return this.userName;
   }
 
 
-  dataUserBasic(userName:string){
-     return this.http.post<any>(API + 'data_user_basic/' + userName,false);
+  dataUserBasic(userName: string): any{
+     return this.http.post<any>(API + 'data_user_basic/' + userName, false);
   }
-  saveSettings( data ){
-    return this.http.post(API + 'save_setting',data);
+  saveSettings( data ): Observable<any>{
+    return this.http.post(API + 'save_setting', data);
   }
-  uploadImgProfile(file:File){
+  uploadImgProfile( file: File ): Observable<any>{
     const formData = new FormData();
-    formData.append('imageFile',file);
+    formData.append('imageFile', file);
 
     return this.http.post(API + 'upload_img_profile', formData,
       {
-        observe:"events",
-        reportProgress:true
+        observe: 'events',
+        reportProgress: true
       }
-    )
+    );
   }
-  uploadImgCover(file:File){
+  uploadImgCover(file: File): Observable<any>{
     const formData = new FormData();
-    formData.append('imageFile',file);
+    formData.append('imageFile', file);
 
     return this.http.post(API + 'upload_img_cover', formData,
       {
-        observe:"events",
-        reportProgress:true
+        observe: 'events',
+        reportProgress: true
       }
-    )
+    );
   }
 
 }

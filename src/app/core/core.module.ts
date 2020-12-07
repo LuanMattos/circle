@@ -9,6 +9,7 @@ import {FooterComponent} from "./footer/footer.component";
 import {AlertModule} from "../shared/alert/alert.module";
 import {PhotoListModule} from '../photos/photo-list/photo-list.module';
 import {UxModule} from './ux/ux-module';
+import {ShowIsLoggedModule} from "../shared/directives/show-is-logged/show-is-logged.module";
 
 @NgModule({
   declarations:[
@@ -20,7 +21,8 @@ import {UxModule} from './ux/ux-module';
         RouterModule,
         AlertModule,
         PhotoListModule,
-        UxModule
+        UxModule,
+        ShowIsLoggedModule
     ],
   exports:[
     HeaderComponent,

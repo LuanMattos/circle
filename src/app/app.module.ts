@@ -10,6 +10,7 @@ import {PhotosModule} from "./photos/photos.module";
 import {CoreModule} from "./core/core.module";
 import {SpinnerService} from './shared/spinner/spinner.service';
 import {NgxLoadingModule} from 'ngx-loading';
+import {ShowIsLoggedModule} from "./shared/directives/show-is-logged/show-is-logged.module";
 
 
 
@@ -19,16 +20,17 @@ import {NgxLoadingModule} from 'ngx-loading';
     AppComponent
   ],
 
-  imports: [
+    imports: [
 
-    BrowserModule,
-    AppRoutingModule,
-    PhotosModule,
-    CoreModule,
-    BrowserAnimationsModule,
-    NgxLoadingModule.forRoot({})
+        BrowserModule,
+        AppRoutingModule,
+        PhotosModule,
+        CoreModule,
+        BrowserAnimationsModule,
+        NgxLoadingModule.forRoot({}),
+        ShowIsLoggedModule
 
-  ],
+    ],
   providers: [
     SpinnerService
   ],

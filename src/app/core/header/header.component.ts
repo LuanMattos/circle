@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
-
-import {UserService} from "../user/user.service";
-import {User} from "../user/user";
+import {Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
+
+
+import {UserService} from '../user/user.service';
+import {User} from '../user/user';
 
 @Component({
   selector: 'app-header',
