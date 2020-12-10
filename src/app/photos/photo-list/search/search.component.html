@@ -1,10 +1,11 @@
-<div class="text-center w-100 general" showIsLogged>
-    <mat-form-field  class="match-input-search {{_openInputSearch?'':'hide'}}">
+<div class="text-center w-100 general " showIsLogged>
+    <mat-form-field  class="match-input-search  {{_openInputSearch?'':'hide'}}">
       <mat-label class="border-0">Buscar</mat-label>
       <input
         matInput
         autocomplete="off"
         type="search"
+        #search
         (keyup)="_filter($event.target.value)"
       >
       <mat-icon matSuffix><i class="fa fa-close text-muted" (click)="toggleSearch(false)"></i></mat-icon>
@@ -16,7 +17,7 @@
         [infiniteScrollDistance]="2"
         [infiniteScrollThrottle]="50"
         (scrolled)="moreUsers()"
-        *ngIf="filter && _openInputSearch" class="autocomplete">
+        *ngIf="filter && _openInputSearch" class="autocomplete m-auto">
           <ul>
             <li *ngFor="let user of users">
               <a href="/user/{{user.user_name}}">

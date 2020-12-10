@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 
 import {PhotoService} from '../../photo/photo.service';
 import {debounceTime} from 'rxjs/operators';
@@ -17,6 +17,7 @@ export class SearchComponent{
   users: User[] = [];
   hasMore: boolean = true;
   _openInputSearch: boolean = false;
+  @ViewChild('search') searchInput: ElementRef<HTMLInputElement>;
   avatarDefault: string = environment.ApiUrl + 'storage/profile_default/default.png';
   @Output() openInputSearch: EventEmitter<boolean> =  new EventEmitter<boolean>();
 
@@ -48,6 +49,7 @@ export class SearchComponent{
       });
   }
   toggleSearch(value): void{
+    this.searchInput.nativeElement.value = '';
     this._openInputSearch = value;
     this.filter = '';
     this.openInputSearch.emit(this._openInputSearch);
