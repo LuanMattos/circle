@@ -1,29 +1,28 @@
-import {Injectable} from "@angular/core";
-import {Subject} from "rxjs";
-import {Alert, AlertType} from "./alert";
+import {Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {Alert, AlertType} from './alert';
 
-@Injectable({providedIn:'root'})
+@Injectable({providedIn: 'root'})
 export class AlertService {
 
   alertSubject: Subject<Alert> = new Subject<Alert>();
 
-  success(message:string){
+  success(message: string): void{
     this.alert(AlertType.SUCCESS, message);
   }
-  warning(message:string){
+  warning(message: string): void{
     this.alert(AlertType.WARNING, message);
   }
-  danger(message:string){
+  danger(message: string): void{
     this.alert(AlertType.DANGER, message);
   }
-  info(message:string){
+  info(message: string): void{
     this.alert(AlertType.INFO, message);
   }
-  private alert(alertType: AlertType,message:string){
-    /** cria um novo array com todos os elementos que passaram no teste implementado pela função fornecida. **/
-      this.alertSubject.next(new Alert(alertType,message))
+  private alert(alertType: AlertType, message: string): void{
+      this.alertSubject.next(new Alert(alertType, message));
   }
-  getAlert(){
+  getAlert(): Observable<any>{
     return this.alertSubject.asObservable();
   }
 }

@@ -1,36 +1,37 @@
-import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 
-import {fieldsSignupValidator} from "../../shared/validators/fields-signup.validator";
-import {UserNotTakenValidatorService} from "./user-not-taken.validator.service";
-import {NewUser} from "./new-user.interface";
-import {SignupService} from "./signup.service";
-import {PlatformDetectorService} from "../../core/platform-detector/platform-detector.service";
-import {userNamePassword} from "../../shared/validators/fields-signin.validator";
+import {fieldsSignupValidator} from '../../shared/validators/fields-signup.validator';
+import {UserNotTakenValidatorService} from './user-not-taken.validator.service';
+import {NewUser} from './new-user.interface';
+import {SignupService} from './signup.service';
+import {PlatformDetectorService} from '../../core/platform-detector/platform-detector.service';
+import {userNamePassword} from '../../shared/validators/fields-signin.validator';
+import {AlertService} from '../../shared/alert/alert.service';
+
 
 @Component({
   selector: 'app-signup',
   templateUrl: 'signup.component.html',
-  providers:[UserNotTakenValidatorService]
+  providers: [UserNotTakenValidatorService]
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, AfterViewInit {
 
   signupForm: FormGroup;
-  @ViewChild('inputEmail') inputEmail:ElementRef<HTMLInputElement>;
+  @ViewChild('inputEmail') inputEmail: ElementRef<HTMLInputElement>;
 
   constructor(
-    private userNotTakenValidator:UserNotTakenValidatorService,
+    private userNotTakenValidator: UserNotTakenValidatorService,
     private formBuilder: FormBuilder,
-    private signUpService:SignupService,
-    private router:Router,
-    private platformDetectionService:PlatformDetectorService
-    ) {
+    private signUpService: SignupService,
+    private router: Router,
+    private platformDetectionService: PlatformDetectorService,
+    private alertService: AlertService
+  ) {}
 
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
 
     this.signupForm = this.formBuilder.group({
       email: ['',
@@ -66,25 +67,30 @@ export class SignUpComponent implements OnInit {
         ]
       },
       {
-        validator:userNamePassword
+        validator: userNamePassword
       }
-    )
+    );
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.platformDetectionService.isPlatformBrowser()
     && this.inputEmail.nativeElement.value;
   }
 
-  signUp(){
+  signUp(): void{
     const newUser = this.signupForm.getRawValue() as NewUser;
-    if(this.signupForm.valid && !this.signupForm.pending)
+    if (this.signupForm.valid && !this.signupForm.pending)
     this.signUpService
       .newUser(newUser)
       .subscribe(
-        ()=>this.router.navigate(['']),
-        err=>console.log(err.message)
-      )
+        () => {
+          this.alertService.success('Parabéns! Logo você receberá um E-mail com um código de confirmação. Não esqueça de verificar sua caixa de spam.');
+          this.router.navigate(['']);
+        },
+        err => {
+            this.alertService.danger('Um erro ocorreu, por favor tente mais tarde');
+        }
+      );
   }
 
 }
