@@ -37,6 +37,8 @@ export class SettingProfileComponent implements OnInit {
 
   ngOnInit(): void{
     this.user = this.activatedRoute.snapshot.data.user;
+    this.user.user_cover_url = this.securityCommons.passSecurityUrl(this.user.user_cover_url);
+    this.user.user_avatar_url = this.securityCommons.passSecurityUrl(this.user.user_avatar_url, environment.ApiUrl + 'storage/profile_default/default.png');
 
     this.settingForm = this.formBuilder.group({
         userEmail: [
