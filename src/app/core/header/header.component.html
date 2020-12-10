@@ -3,7 +3,7 @@
     <div class="row w-100">
       <div class="col">
         <div *ngIf="!openSearch">
-          <a *ngIf="(user$ | async) as user; else circle" class="navbar-brand title-header" (click)="redirect()">
+          <a *ngIf="(user$ | async) && verifiedAccount(); else circle" class="navbar-brand title-header" (click)="redirect()">
             Circle
           </a>
           <ng-template #circle>
@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="col">
-        <app-search *ngIf="(user$ | async) as user;" (openInputSearch)="openSearch = $event" class="m-auto" ></app-search>
+        <app-search *ngIf="(user$ | async) && verifiedAccount();" (openInputSearch)="openSearch = $event" class="m-auto" ></app-search>
       </div>
       <div class="col">
         <div *ngIf="!openSearch" class="float-right">
@@ -33,7 +33,7 @@
           </div>
           <ng-template #login>
         <span class="navbar-text">
-          Para interagir e ver mais, faça <a [routerLink]="['']">login</a>
+          Para interagir faça <a [routerLink]="['']">login</a>
         </span>
           </ng-template>
         </div>

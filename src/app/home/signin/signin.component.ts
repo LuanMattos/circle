@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit{
     });
   }
 
-    login(): void{
+  login(): void{
     const userName = this.loginForm.get('userName').value;
     const password = this.loginForm.get('password').value;
     this.blockSubmited = true;
@@ -43,11 +43,12 @@ export class SignInComponent implements OnInit{
       .subscribe(
         (res) => {
           this.authInvalid = '';
-          this.fromUrl
-            ?
-            this.router.navigateByUrl(this.fromUrl)
-            :
+          const verification = res.body?.user_code_verification;
+          if (verification){
+            this.router.navigate(['confirmation', userName]);
+          }else{
             this.router.navigate(['timeline', userName]);
+          }
         },
         err => {
           this.authInvalid = 'Usuário / senha incorreto(s)';

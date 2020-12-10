@@ -50,4 +50,7 @@ export class HeaderComponent implements OnInit{
   redirectToProfile(): void{
     this.router.navigate(['user', this.user.user_name]);
   }
+  verifiedAccount(): boolean{
+    return this.userService.verifiedAccount();
+  }
 }

@@ -10,4 +10,5 @@ export interface User{
   following: boolean;
   user_followers: bigint;
   user_following: bigint;
+  user_code_verification: boolean;
 }

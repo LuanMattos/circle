@@ -16,6 +16,7 @@ import {PhotoListTimelineComponent} from './photos/photo-list-timeline/photo-lis
 import {PhotoListTimelineResolver} from './photos/photo-list-timeline/photo-list-timeline.resolver';
 import {SettingProfileComponent} from './photos/photo-list/setting-profile/setting-profile.component';
 import {UserResolver} from './core/user/user.resolver';
+import {ConfirmationComponent} from './confirmation/confirmation.component';
 
 
 const routes: Routes = [
@@ -91,6 +92,12 @@ const routes: Routes = [
     },
   },
   {
+    path: 'confirmation/:userName',
+    component: ConfirmationComponent,
+    data: {
+      title: 'Confirmation account'
+    }
+  }, {
     path: 'not-found',
     component: NotFoundComponent,
     data: {

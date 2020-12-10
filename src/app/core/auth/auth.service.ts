@@ -15,21 +15,21 @@ const API_URL = environment.ApiUrl;
 export class AuthService {
 
   constructor(
-    private  http:HttpClient,
-    private userService:UserService
+    private  http: HttpClient,
+    private userService: UserService
   ) { }
 
-  authenticate(userName:string,password:string){
-    const data = {password,userName};
+  authenticate(userName: string, password: string): any{
+    const data = {password, userName};
     return this.http
-      .post(API_URL + 'userLogin',JSON.stringify(data),{observe:'response'})
+      .post(API_URL + 'userLogin', JSON.stringify(data), {observe: 'response'})
       .pipe(
         tap(
-          res=>{
-            const authToken = res.headers.get('x-access-token')
+          res => {
+            const authToken = res.headers.get('x-access-token');
             this.userService.setToken(authToken);
           }
         )
-      )
+      );
   }
 }
