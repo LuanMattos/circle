@@ -24,6 +24,7 @@ export class SettingProfileComponent implements OnInit {
   hidePass = true;
   file: File;
   progress;
+  userCoverUrl: any;
 
   constructor(
     private securityCommons: SecurityCommonsService,
@@ -37,7 +38,7 @@ export class SettingProfileComponent implements OnInit {
 
   ngOnInit(): void{
     this.user = this.activatedRoute.snapshot.data.user;
-    this.user.user_cover_url = this.securityCommons.passSecurityUrl(this.user.user_cover_url);
+    this.user.user_cover_url = this.securityCommons.passSecurityUrl(this.user.user_cover_url, environment.ApiUrl + 'storage/cover_default/default.png');
     this.user.user_avatar_url = this.securityCommons.passSecurityUrl(this.user.user_avatar_url, environment.ApiUrl + 'storage/profile_default/default.png');
 
     this.settingForm = this.formBuilder.group({
@@ -85,34 +86,34 @@ export class SettingProfileComponent implements OnInit {
         this.alertService.success('Por segurança, faça login novamente!');
       },
       (response: HttpErrorResponse) => {
-        this.settingForm.controls.userPassword.setErrors({'message' : response.error.text});
+        this.settingForm.controls.userPassword.setErrors({message : response.error.text});
       }
     );
   }
   uploadProfile( file: File ): void{
     this.file = file;
     const reader = new FileReader();
-    reader.onload = (event:any) => this.file = event.target.result;
+    reader.onload = (event: any) => this.file = event.target.result;
     reader.readAsDataURL(file);
 
     this.userService
       .uploadImgProfile( this.file )
       .subscribe(
-        ( event:HttpEvent<any> ) => {
+        ( event: HttpEvent<any> ) => {
 
-          if( event.type == HttpEventType.UploadProgress ){
+          if ( event.type === HttpEventType.UploadProgress ){
 
             this.progress = Math.round(100 * event.loaded / event.total);
 
-          }else if( event.type == HttpEventType.Response ){
-            this.user.user_avatar_url = event.body
+          }else if ( event.type === HttpEventType.Response ){
+            this.user.user_avatar_url = event.body;
             this.alertService.success('Upload completo');
           }
         },
         err => {
-          this.alertService.danger('Falha ao carregar o arquivo, tente mais tarde')
+          this.alertService.danger('Falha ao carregar o arquivo, tente mais tarde');
         }
-      )
+      );
 
   }
   uploadCover( file:File ){

@@ -1,8 +1,7 @@
 <form #form="ngForm" [formGroup]="settingForm" (submit)="save()"  autocomplete="off">
   <div class="container">
     <div class="container-cover cursor-pointer" (click)="fileInputCover.click()">
-      <img *ngIf="user.user_cover_url && user.user_cover_url.length"
-           class="e2e-iframe-trusted-src cursor-pointer"
+      <img class="e2e-iframe-trusted-src cursor-pointer"
            [src]="user.user_cover_url"
            alt="Img">
     </div>
