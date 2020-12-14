@@ -46,12 +46,19 @@ export class PhotoListComponent implements OnInit {
      this.photoService
        .listFromUserPaginated(this.user.user_name, this.photos.length)
        .subscribe(res => {
+         res.reduce((acc, current) => {
+           const x = this.photos.find(item => item.photo_id === current.photo_id);
+           if (!x) {
+             return this.photos = this.photos.concat(res);
+           } else {
+             return acc;
+           }
+         }, []);
        });
   }
   follow(): void{
     this.photoService.follow( this.user.user_id ).subscribe(follow => {
       this.following = follow;
-      // follow ? this.following = 'Seguindo' : this.following = 'Seguir';
     });
   }
 }
