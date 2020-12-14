@@ -49,12 +49,10 @@ export class SignInComponent implements OnInit{
           }else{
             this.router.navigate(['timeline', userName]);
           }
-        },
-        err => {
-          this.authInvalid = 'Usuário / senha incorreto(s)';
-          this.platformDetectionService.isPlatformBrowser()
-            && this.userNameInput.nativeElement.focus();
+          this.authInvalid = res.body;
           this.blockSubmited = false;
+          this.platformDetectionService.isPlatformBrowser()
+          && this.userNameInput.nativeElement.focus();
         }
       );
   }
