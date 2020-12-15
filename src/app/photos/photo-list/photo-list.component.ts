@@ -23,6 +23,7 @@ export class PhotoListComponent implements OnInit {
   user: User;
   following;
   user_cover_url;
+  stoppedRequest: boolean;
 
   constructor(
     private securityCommons: SecurityCommonsService,
@@ -42,19 +43,24 @@ export class PhotoListComponent implements OnInit {
 
   }
   load(): void{
-
-     this.photoService
-       .listFromUserPaginated(this.user.user_name, this.photos.length)
-       .subscribe(res => {
-         res.reduce((acc, current) => {
-           const x = this.photos.find(item => item.photo_id === current.photo_id);
-           if (!x) {
-             return this.photos = this.photos.concat(res);
-           } else {
-             return acc;
-           }
-         }, []);
-       });
+    if (!this.stoppedRequest) {
+      this.photoService
+        .listFromUserPaginated(this.user.user_name, this.photos.length)
+        .subscribe(res => {
+          this.stoppedRequest = false;
+          if (res && !res.length) {
+            this.stoppedRequest = true;
+          }
+          res.reduce((acc, current) => {
+            const x = this.photos.find(item => item.photo_id === current.photo_id);
+            if (!x) {
+              return this.photos = this.photos.concat(res);
+            } else {
+              return acc;
+            }
+          }, []);
+        });
+    }
   }
   follow(): void{
     this.photoService.follow( this.user.user_id ).subscribe(follow => {
