@@ -22,14 +22,15 @@ export class SignInComponent implements OnInit{
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private platformDetectionService: PlatformDetectorService
-    ) {}
+    private platformDetectionService: PlatformDetectorService,
+  ) {}
 
   ngOnInit(): void{
     this.loginForm = this.formBuilder.group({
         userName: ['', Validators.required],
         password: ['', Validators.required]
     });
+     this.authService.stopRefreshTokenTimer();
   }
 
   login(): void{

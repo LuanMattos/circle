@@ -5,6 +5,7 @@ import {User} from './user';
 import * as jwt_decode from 'jwt-decode';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import {AuthService} from '../auth/auth.service';
 
 const API  = environment.ApiUrl;
 
@@ -18,7 +19,8 @@ export class UserService{
 
   constructor(
     private http: HttpClient,
-    private tokenService: TokenService) {
+    private tokenService: TokenService
+    ) {
     this.tokenService.hasToken() && this.decodeAndNotify();
   }
 

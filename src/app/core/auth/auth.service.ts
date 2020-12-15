@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {tap} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 
 import {UserService} from '../user/user.service';
 import {environment} from '../../../environments/environment';
+import {TokenService} from '../token/token.service';
+import {User} from '../user/user';
+import * as jwt_decode from 'jwt-decode';
 
 
 const API_URL = environment.ApiUrl;
@@ -13,10 +16,11 @@ const API_URL = environment.ApiUrl;
 })
 
 export class AuthService {
-
+  private refreshTokenTimeout;
   constructor(
     private  http: HttpClient,
-    private userService: UserService
+    private userService: UserService,
+    private tokenService: TokenService
   ) { }
 
   authenticate(userName: string, password: string): any{
@@ -29,10 +33,34 @@ export class AuthService {
             const authToken = res.headers.get('x-access-token');
             if (authToken){
               this.userService.setToken(authToken);
+              this.startRefreshTokenTimer();
             }
           }
         )
       );
+  }
+  refreshToken(): any {
+    return this.http.post<any>(`${environment.ApiUrl}/valid`, {}, {observe: 'response'})
+      .pipe(map((res) => {
+        const authToken = res.headers.get('x-access-token');
+        if (authToken){
+          this.userService.setToken(authToken);
+        }
+        this.startRefreshTokenTimer();
+        return res;
+        }
+      )
+    );
+  }
+  stopRefreshTokenTimer(): void {
+    clearTimeout(this.refreshTokenTimeout);
+  }
+  private startRefreshTokenTimer(): any {
+    this.tokenService.getToken();
+    const token = this.tokenService.getToken();
+    const jwtToken = jwt_decode(token) as User;
+    const timeout = jwtToken.time_expire * 1000;
+    this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
   }
   verification(code: string): any{
     return this.http.post(API_URL + 'verify', JSON.stringify(code), {observe: 'response'});

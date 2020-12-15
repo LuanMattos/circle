@@ -1,6 +1,6 @@
 
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
@@ -12,6 +12,8 @@ import {SpinnerService} from './shared/spinner/spinner.service';
 import {NgxLoadingModule} from 'ngx-loading';
 import {ShowIsLoggedModule} from './shared/directives/show-is-logged/show-is-logged.module';
 import {ConfirmationModule} from './confirmation/confirmation.module';
+import {AuthService} from './core/auth/auth.service';
+import {appInitializer} from './shared/initializer/app.initializer';
 
 
 
@@ -32,6 +34,7 @@ import {ConfirmationModule} from './confirmation/confirmation.module';
         ShowIsLoggedModule
     ],
   providers: [
+    { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthService] },
     SpinnerService
   ],
   bootstrap: [AppComponent]
