@@ -14,6 +14,7 @@ import {ShowIsLoggedModule} from './shared/directives/show-is-logged/show-is-log
 import {ConfirmationModule} from './confirmation/confirmation.module';
 import {AuthService} from './core/auth/auth.service';
 import {appInitializer} from './shared/initializer/app.initializer';
+import {ChangePasswordModule} from "./change-password/change-password.module";
 
 
 
@@ -22,8 +23,7 @@ import {appInitializer} from './shared/initializer/app.initializer';
   declarations: [
     AppComponent
   ],
-
-    imports: [
+  imports: [
         BrowserModule,
         AppRoutingModule,
         PhotosModule,
@@ -31,8 +31,9 @@ import {appInitializer} from './shared/initializer/app.initializer';
         ConfirmationModule,
         BrowserAnimationsModule,
         NgxLoadingModule.forRoot({}),
-        ShowIsLoggedModule
-    ],
+        ShowIsLoggedModule,
+        ChangePasswordModule
+  ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthService] },
     SpinnerService

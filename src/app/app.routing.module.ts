@@ -17,6 +17,7 @@ import {PhotoListTimelineResolver} from './photos/photo-list-timeline/photo-list
 import {SettingProfileComponent} from './photos/photo-list/setting-profile/setting-profile.component';
 import {UserResolver} from './core/user/user.resolver';
 import {ConfirmationComponent} from './confirmation/confirmation.component';
+import {ChangePasswordComponent} from './change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -98,6 +99,12 @@ const routes: Routes = [
       title: 'Confirmation account'
     }
   }, {
+    path: 'change-password/:code',
+    component: ChangePasswordComponent,
+    data: {
+      title: 'Change'
+    }
+  }, {
     path: 'not-found',
     component: NotFoundComponent,
     data: {
@@ -106,8 +113,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'not-found',
-
+    redirectTo: 'not-found'
   },
 
 ];

@@ -6,17 +6,18 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {CoreModule} from '../core/core.module';
 import {AppRoutingModule} from '../app.routing.module';
-import {ForgotPasswordComponent} from './forgot-password.component';
 import {NgxLoadingModule} from 'ngx-loading';
 import {SpinnerService} from '../shared/spinner/spinner.service';
 import {VmessageModule} from '../shared/vmessage/vmessage.module';
 import {UxModule} from '../core/ux/ux-module';
+import {ChangePasswordComponent} from './change-password.component';
+import {ConfirmationModule} from "../confirmation/confirmation.module";
 
 
 @NgModule({
 
   declarations: [
-    ForgotPasswordComponent
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
@@ -28,10 +29,11 @@ import {UxModule} from '../core/ux/ux-module';
     FormsModule,
     VmessageModule,
     UxModule,
+    ConfirmationModule,
   ],
   providers: [
     SpinnerService
   ],
 })
-export class ForgotPasswordModule {
+export class ChangePasswordModule {
 }

@@ -16,24 +16,27 @@ import {LasVegasComponent} from "./animation/las-vegas.component";
 
 @NgModule({
 
-  declarations: [
-    ConfirmationComponent,
-    LasVegasComponent
-  ],
-  imports: [
-    CommonModule,
-    AppRoutingModule,
-    CoreModule,
-    BrowserAnimationsModule,
-    NgxLoadingModule.forRoot({}),
-    ReactiveFormsModule,
-    FormsModule,
-    VmessageModule,
-    UxModule,
-  ],
-  providers: [
-    SpinnerService
-  ],
+    declarations: [
+        ConfirmationComponent,
+        LasVegasComponent
+    ],
+    imports: [
+        CommonModule,
+        AppRoutingModule,
+        CoreModule,
+        BrowserAnimationsModule,
+        NgxLoadingModule.forRoot({}),
+        ReactiveFormsModule,
+        FormsModule,
+        VmessageModule,
+        UxModule,
+    ],
+    providers: [
+        SpinnerService
+    ],
+    exports: [
+        LasVegasComponent
+    ]
 })
 export class ConfirmationModule {
 }

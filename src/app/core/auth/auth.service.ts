@@ -68,4 +68,7 @@ export class AuthService {
   forgoutPassword(userNameEmail: string): any{
     return this.http.post(API_URL + 'forgot', JSON.stringify(userNameEmail), {observe: 'response'});
   }
+  changePassword(data: string ): any{
+    return this.http.post(API_URL + 'change_pass', JSON.stringify(data), {observe: 'response'});
+  }
 }

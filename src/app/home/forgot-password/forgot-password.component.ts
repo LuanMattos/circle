@@ -42,10 +42,13 @@ export class ForgotPasswordComponent implements OnInit{
         .forgoutPassword(userNameEmail)
         .subscribe(
           success => {
-           this.message = success.body;
+           this.message = '';
+            this.alertService.success(this.message);
+            this.forgotPasswordForm.reset();
           },
           error => {
             this.message = error.body;
+            this.forgotPasswordForm.reset();
           }
         );
     }
