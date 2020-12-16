@@ -65,4 +65,7 @@ export class AuthService {
   verification(code: string): any{
     return this.http.post(API_URL + 'verify', JSON.stringify(code), {observe: 'response'});
   }
+  forgoutPassword(userNameEmail: string): any{
+    return this.http.post(API_URL + 'forgot', JSON.stringify(userNameEmail), {observe: 'response'});
+  }
 }

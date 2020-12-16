@@ -7,6 +7,7 @@ import {AuthGuard} from '../core/auth/auth.guard';
 import {HomeComponent} from './home.component';
 import {SignInComponent} from './signin/signin.component';
 import {SignUpComponent} from './signup/signup.component';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 
 /** Resolvers */
 
@@ -28,6 +29,13 @@ const routes: Routes = [
         component: SignUpComponent,
         data: {
           title: 'Sign Up'
+        }
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+        data: {
+          title: 'Forgot password'
         }
       },
     ]

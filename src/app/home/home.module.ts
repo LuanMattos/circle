@@ -12,11 +12,13 @@ import {HomeComponent} from './home.component';
 import {HomeRoutingModule} from './home.routing.module';
 import {SignupService} from './signup/signup.service';
 import {UxModule} from '../core/ux/ux-module';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
     SignInComponent,
     SignUpComponent,
+    ForgotPasswordComponent,
     HomeComponent
   ],
   imports: [

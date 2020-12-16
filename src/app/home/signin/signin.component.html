@@ -29,7 +29,7 @@
     ></app-vmessage>
     <app-vmessage *ngIf="authInvalid?.length" text="{{authInvalid}}"></app-vmessage>
   </div>
-
+  <p><a [routerLink]="['forgot-password']" class="ml-2">Esqueceu a senha?</a></p>
   <button class="w-100 bg-dark text-white"  mat-raised-button [disabled]="loginForm.invalid || blockSubmited" type="submit">Entrar</button>
 
 </form>
