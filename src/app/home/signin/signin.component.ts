@@ -54,6 +54,10 @@ export class SignInComponent implements OnInit{
           this.blockSubmited = false;
           this.platformDetectionService.isPlatformBrowser()
           && this.userNameInput.nativeElement.focus();
+        },
+        error => {
+          this.blockSubmited = false;
+          this.authInvalid = 'Usuário e/ou senha incorreto(s)';
         }
       );
   }
