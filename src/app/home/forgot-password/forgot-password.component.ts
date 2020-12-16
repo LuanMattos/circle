@@ -42,8 +42,8 @@ export class ForgotPasswordComponent implements OnInit{
         .forgoutPassword(userNameEmail)
         .subscribe(
           success => {
-           this.message = '';
-            this.alertService.success(this.message);
+            this.message = '';
+            this.alertService.success(success.body);
             this.forgotPasswordForm.reset();
           },
           error => {
