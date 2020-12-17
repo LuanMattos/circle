@@ -190,4 +190,51 @@ a{
   }
 
 }
+.swal2-container{
+  padding: 0 !important;
+}
+.swal2-content{
+  padding: 0 !important;
+  min-width: 100% !important;
+  min-height: 80vh !important;
+}
+.textarea-alert{
+  font-family: "Calibri Light" !important;
+  font-size: 12px !important;
+  border-radius: 0 !important;
+}
+.thumb-edit-description {
+  width: 80%;
+  height: 500px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  object-position: 50% 50%;
+  filter: grayscale(1);
+}
+.button-alert{
+  width: 35% !important;
+  border-radius: 0 !important;
+  max-height: 35px !important;
+  font-size: 12px !important;
+
+}
+@media only screen and (max-width: 600px) {
+  .button-alert{
+    width: 100% !important;
+  }
+}
+@media only screen and (min-width: 600px) {
+
+  .swal2-content{
+    min-width: 50% !important;
+    min-height: 1vh !important;
+  }
+  .thumb-edit-description {
+    width: 25%;
+    height: 250px;
+    margin-bottom: 1rem;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+}
 

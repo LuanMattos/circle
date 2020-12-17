@@ -14,7 +14,7 @@
               <i class="fa fa-ellipsis-h text-black" aria-hidden="true"></i>
             </div>
             <mat-menu #menu="matMenu" class="mt-3">
-              <a mat-menu-item [href]="['user/']">
+              <a mat-menu-item href="javascript:void(0)" (click)="edit(photo, i)">
                 <span class="ml-2" >Editar</span>
               </a>
               <a mat-menu-item  href="javascript:void(0)" (click)="delete(photo, i)">
@@ -25,6 +25,7 @@
           <div class="body-comment-text">
             <span class="break-word mb-2">
                    {{photo.photo_description.substring(0,100)}}
+
             </span>
             <details *ngIf="photo.photo_description.length >= 100">
               <summary>
@@ -56,6 +57,9 @@
     </div>
   </div>
 </div>
-<app-comments-form (viewFormComment)="viewFormComment = $event" [viewComponent]="viewFormComment" [photoId]="photoId"></app-comments-form>
+<app-comments-form (viewFormComment)="viewFormComment = $event"
+                   [viewComponent]="viewFormComment"
+                   [photoId]="photoId"
+></app-comments-form>
 
 

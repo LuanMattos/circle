@@ -83,32 +83,35 @@ export class PhotoService {
   removePhoto( photoId: number ): Observable<any>{
     return this.http.delete(API + 'photos/' + photoId);
   }
+  updatePhoto( photoDescription, photoId ): Observable<any>{
+    return this.http.put(API + 'update_photo/', { photoDescription, photoId });
+  }
 
 
 
 
 
   /** Likes **/
-  like( photoId:number,userName:string ){
-    return this.http.put<any>(API + 'add_like',{photoId,userName},{ responseType: 'json'})
+  like( photoId: number, userName: string ): any{
+    return this.http.put<any>(API + 'add_like', { photoId, userName}, { responseType: 'json'});
   }
 
 
 
 
   /** Search **/
-  getUserByName( name:string ){
-    return this.http.put<User[]>(API + 'search',{name},{ responseType: 'json'})
+  getUserByName( name: string ): any{
+    return this.http.put<User[]>(API + 'search', {name}, { responseType: 'json'});
   }
 
-  getUserByNamePaginated( name:string,page:number ){
-    return this.http.put<User[]>(API + 'search/' + page,{name},{ responseType: 'json'})
+  getUserByNamePaginated( name: string, page: number ): any{
+    return this.http.put<User[]>(API + 'search/' + page, {name}, { responseType: 'json'});
   }
 
   /** Follow **/
 
   follow( userId: number ): Observable<boolean>{
-    return this.http.put<boolean>(API + 'follow/' + userId, {},{ responseType: 'json' });
+    return this.http.put<boolean>(API + 'follow/' + userId, {}, { responseType: 'json' });
   }
 
 }
