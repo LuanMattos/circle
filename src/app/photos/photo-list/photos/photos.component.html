@@ -7,7 +7,7 @@
          class="col-lg-4 {{i === 0?'col-md-12':'col-md-6'}} mb-4 z-depth-1-half wow fadeIn">
 
         <app-card>
-          <img  class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src" [src]="photo.photo_url">
+          <img  class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src" [src]="photo.user.user_avatar_url">
           <span class="ml-2 font-weight-bold">{{photo.user.user_full_name?photo.user.user_full_name:photo.user.user_name}}</span>
           <div class="dropdown float-right pb-4">
             <div class="cursor-pointer " [matMenuTriggerFor]="menu">
