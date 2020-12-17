@@ -1,14 +1,14 @@
 import {HttpClient, HttpEvent, HttpParams} from '@angular/common/http';
-import {Injectable} from "@angular/core";
-import {Photo} from "./photo";
-import {environment} from "../../../environments/environment";
+import {Injectable} from '@angular/core';
+import {Photo} from './photo';
+import {environment} from '../../../environments/environment';
 import {Comments} from '../comments/comments';
 import {User} from '../../core/user/user';
 import {Observable} from 'rxjs';
 
 const API = environment.ApiUrl;
 
-@Injectable({providedIn:'root'})
+@Injectable({providedIn: 'root'})
 export class PhotoService {
 
   constructor(private http: HttpClient) {}
@@ -18,28 +18,28 @@ export class PhotoService {
 
 
   /** Comments **/
-  getComments(photoId : number){
-    return this.http.get<Comments[]>(API + '/comments_photo/' + photoId)
+  getComments(photoId: number): any{
+    return this.http.get<Comments[]>(API + '/comments_photo/' + photoId);
   }
 
-  listFromCommentsPaginated(photoId : number,page:number ){
-    return this.http.get<Comments[]>(API + '/comments_photo/' + photoId + '/' + page)
+  listFromCommentsPaginated(photoId: number, page: number ): any{
+    return this.http.get<Comments[]>(API + '/comments_photo/' + photoId + '/' + page);
   }
 
-  addComment(photoId:number,commentText:string,userName : string){
+  addComment(photoId: number, commentText: string, userName: string): any{
     return this.http.post(
       API + 'comments/' + photoId,
-      {commentText:commentText,userName:userName}
-    )
+      {commentText, userName}
+    );
   }
-  saveComment(photoId:number,commentText,commentId:number){
+  saveComment(photoId: number, commentText, commentId: number): any{
     return this.http.put<Comments>(
       API + 'save_comment/' + photoId,
-      {commentText,commentId}
-    )
+      {commentText, commentId}
+    );
   }
-  deleteComment(commentId : number){
-    return this.http.delete(API + 'delete_comment/' + commentId)
+  deleteComment(commentId: number): any{
+    return this.http.delete(API + 'delete_comment/' + commentId);
   }
 
 
