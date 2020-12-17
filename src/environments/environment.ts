@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  ApiUrl: 'http://localhost/'
+  ApiUrl: 'https://be.mycircle.click/'
 };
 
