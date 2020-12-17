@@ -1,3 +1,13 @@
+.dropdown i {
+  float: right;
+  font-size: 24px;
+  color: #5A5C6C; }
 
+.avatar {
+  width: 30px;
+  height: 30px;
+  image-resolution: 1dpi !important;
+  object-fit: cover;
+  object-position: 50% 0; }
 
 /*# sourceMappingURL=photos.component.css.map */

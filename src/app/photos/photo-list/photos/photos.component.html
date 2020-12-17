@@ -5,9 +5,40 @@
   <div class="row">
     <div *ngFor="let photo of rows; let i = index"
          class="col-lg-4 {{i === 0?'col-md-12':'col-md-6'}} mb-4 z-depth-1-half wow fadeIn">
-      <a [routerLink]="['/p',photo.photo_id]">
+
         <app-card>
+          <img  class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src" [src]="photo.photo_url">
+          <span class="ml-2 font-weight-bold">{{photo.user.user_full_name?photo.user.user_full_name:photo.user.user_name}}</span>
+          <div class="dropdown float-right pb-4">
+            <div class="cursor-pointer " [matMenuTriggerFor]="menu">
+              <i class="fa fa-ellipsis-h text-black" aria-hidden="true"></i>
+            </div>
+            <mat-menu #menu="matMenu" class="mt-3">
+              <a mat-menu-item [href]="['user/']">
+                <span class="ml-2" >Editar</span>
+              </a>
+              <a mat-menu-item [href]="['user/']">
+                <span class="ml-2" >Excluir</span>
+              </a>
+            </mat-menu>
+          </div>
+          <div class="body-comment-text">
+            <span class="break-word mb-2">
+                   {{photo.photo_description.substring(0,100)}}
+            </span>
+            <details *ngIf="photo.photo_description.length >= 100">
+              <summary>
+                <span class="open">Ver mais</span>
+                <span class="close mb-2">Ver menos</span>
+              </summary>
+              <span>
+               {{photo.photo_description.substring(100,1000)}}
+            </span>
+            </details>
+          </div>
           <app-photo
+            class="cursor-pointer"
+            [routerLink]="['/p',photo.photo_id]"
             appDarkenOnHover
             brightness="55%"
             [url]="photo.photo_url"
@@ -15,7 +46,6 @@
           >
           </app-photo>
         </app-card>
-      </a>
       <div class="ml-0" showIsLogged>
         <app-like
           [photo]="photo" (viewFormComment)="viewFormComment = $event"

@@ -12,12 +12,24 @@
           </div>
         </div>
       </div>
+
       <div class="row mt-3">
         <div class="col-12">
           <small>
-            <p class="ml-4 text-left break-word">
-              {{photo?.photo_description}}
-            </p>
+            <div class="body-comment-text p-1">
+              <span class="break-word mb-2">
+                {{photo.photo_description.substring(0,100)}}
+              </span>
+              <details *ngIf="photo.photo_description.length >= 100">
+                <summary>
+                  <span class="open">Ver mais</span>
+                  <span class="close mb-2">Ver menos</span>
+                </summary>
+                <span>
+                  {{photo.photo_description.substring(100,1000)}}
+                </span>
+              </details>
+            </div>
             <hr>
             <app-like
               [photo]="photo"

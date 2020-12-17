@@ -1,52 +1,51 @@
 import {Component, OnInit, SimpleChanges} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Observable} from "rxjs";
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 
-import {PhotoService} from "../photo/photo.service";
-import {Photo} from "../photo/photo";
-import {AlertService} from "../../shared/alert/alert.service";
+import {PhotoService} from '../photo/photo.service';
+import {Photo} from '../photo/photo';
+import {AlertService} from '../../shared/alert/alert.service';
 import {Comments} from '../comments/comments';
 
 @Component({
-  selector:'app-photo-detail',
-  templateUrl:'photo-detail.component.html',
-  styleUrls:['./photo-detail.css']
+  selector:  'app-photo-detail',
+  templateUrl:  'photo-detail.component.html',
+  styleUrls:  ['./photo-detail.css']
 })
 export class PhotoDetailComponent implements OnInit{
 
-  photo$:Observable<Photo>;
-  photoId:number;
-  photoComment:boolean = false;
-  comments:Comments[] = [];
+  photo$: Observable<Photo>;
+  photoId: number;
+  photoComment: boolean = false;
+  comments: Comments[] = [];
 
   constructor(
-    private alertService:AlertService,
-    private router:Router,
-    private activatedRoute:ActivatedRoute,
-    private photoService:PhotoService) {}
+    private alertService: AlertService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private photoService: PhotoService) {}
 
-    ngOnInit():void {
-    this.photoId  = this.activatedRoute.snapshot.params.photoId
+    ngOnInit(): void {
+    this.photoId  = this.activatedRoute.snapshot.params.photoId;
     this.photo$    = this.photoService.findById(this.photoId);
 
-    this.photo$.subscribe(()=>{},(err)=>{
-      this.router.navigate(['not-found'])
-    })
+    this.photo$.subscribe(() => {}, (err) => {
+      this.router.navigate(['not-found']);
+    });
   }
-
-  removePhoto(){
+  removePhoto(): any{
     this.alertService.success('Imagem excluída! (código comentado para não excluir)')
-    this.router.navigate([''])
-    return
+    this.router.navigate(['']);
+    return;
     return this.photoService.removePhoto(this.photoId)
-      .subscribe(()=>{
+      .subscribe(() => {
 
-        this.router.navigate([''],{replaceUrl:true})
+        this.router.navigate([''], {replaceUrl: true});
       },
-        error=>{
-        this.alertService.warning('Ocorreu um erro, tente mais tarde!')
+        error => {
+        this.alertService.warning('Ocorreu um erro, tente mais tarde!');
           }
-        )
+        );
   }
 }

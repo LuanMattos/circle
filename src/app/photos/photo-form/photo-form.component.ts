@@ -59,7 +59,6 @@ export class PhotoFormComponent implements OnInit {
             }
       },
       err => {
-          console.log(err)
           this.alertService.danger('Falha ao carregar o arquivo, tente mais tarde')
         }
       )

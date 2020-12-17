@@ -1,21 +1,21 @@
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {RouterModule} from "@angular/router";
-import {ReactiveFormsModule} from "@angular/forms";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
+import {ReactiveFormsModule} from '@angular/forms';
 
-import {PhotoDetailComponent} from "./photo-detail.component";
-import {PhotoModule} from "../photo/photo.module";
-import {PhotoCommentsComponent} from "./photo-comments/photo-comments.component";
-import {VmessageModule} from "../../shared/vmessage/vmessage.module";
-import {UxModule} from "../../core/ux/ux-module";
-import {PhotoOwnerOnlyModule} from "../../shared/directives/owner-only/photo-owner-only.module";
-import {ShowIsLoggedModule} from "../../shared/directives/show-is-logged/show-is-logged.module";
+import {PhotoDetailComponent} from './photo-detail.component';
+import {PhotoModule} from '../photo/photo.module';
+import {PhotoCommentsComponent} from './photo-comments/photo-comments.component';
+import {VmessageModule} from '../../shared/vmessage/vmessage.module';
+import {UxModule} from '../../core/ux/ux-module';
+import {PhotoOwnerOnlyModule} from '../../shared/directives/owner-only/photo-owner-only.module';
+import {ShowIsLoggedModule} from '../../shared/directives/show-is-logged/show-is-logged.module';
 import {CommentsFormComponent} from '../comments/comments-form.component';
 import {LikeModule} from '../../shared/like/like.module';
 
 
 @NgModule({
-  declarations:[
+  declarations: [
     PhotoDetailComponent,
     PhotoCommentsComponent,
     CommentsFormComponent
