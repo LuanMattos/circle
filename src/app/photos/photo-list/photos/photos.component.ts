@@ -4,7 +4,7 @@ import {Photo} from '../../photo/photo';
 import {Comments} from '../../comments/comments';
 import {PhotoService} from '../../photo/photo.service';
 import Swal from 'sweetalert2';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AlertService} from '../../../shared/alert/alert.service';
 
 @Component({
   selector: 'app-photos',
@@ -22,7 +22,7 @@ export class PhotosComponent implements OnChanges {
   @ViewChild('descriptionEl') descriptionEl: ElementRef;
   constructor(
     private photoService: PhotoService,
-    private formBuilder: FormBuilder
+    private alertService: AlertService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -64,7 +64,11 @@ export class PhotosComponent implements OnChanges {
       html: `<div class='m-auto'><div class='form-group m-auto  pt-4'><img class='m-auto thumb-edit-description' src='` + photo.photo_url + `'></div>` + `</div>`,
     }).then((result) => {
       if (result.isConfirmed) {
-         this.save( result.value, this.photoId, i );
+        if (result.value.length >= 900){
+          this.alertService.warning('Limite de 900 caractéres ultrapassado!');
+        }else{
+          this.save( result.value, this.photoId, i );
+        }
       }
     });
   }
