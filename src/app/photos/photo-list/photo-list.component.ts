@@ -24,6 +24,7 @@ export class PhotoListComponent implements OnInit {
   following;
   user_cover_url;
   stoppedRequest: boolean;
+  isExplorer: boolean;
 
   constructor(
     private securityCommons: SecurityCommonsService,
@@ -34,18 +35,45 @@ export class PhotoListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void{
-    this.user = this.activatedRoute.snapshot.data.user;
-    this.following = this.activatedRoute.snapshot.data.user?.following;
+    this.isModuleExplorer();
     this.photos = this.activatedRoute.snapshot.data.photos;
-
-    this.user_cover_url = this.securityCommons.passSecurityUrl(this.user.user_cover_url);
-    this.user.user_avatar_url = this.securityCommons.passSecurityUrl(this.user.user_avatar_url, environment.ApiUrl + 'storage/profile_default/default.png');
-
+    if (!this.isExplorer){
+      this.user = this.activatedRoute.snapshot.data.user;
+      this.following = this.activatedRoute.snapshot.data.user?.following;
+      this.user_cover_url = this.securityCommons.passSecurityUrl(this.user.user_cover_url);
+      this.user.user_avatar_url = this.securityCommons.passSecurityUrl(this.user.user_avatar_url, environment.ApiUrl + 'storage/profile_default/default.png');
+    }
+  }
+  isModuleExplorer(): void{
+    if (this.activatedRoute.snapshot.data.isToExplorer){
+      this.isExplorer = true;
+    }else{
+      this.isExplorer = false;
+    }
   }
   load(): void{
-    if (!this.stoppedRequest) {
+    if (!this.isExplorer) {
+      if (!this.stoppedRequest) {
+        this.photoService
+          .listFromUserPaginated(this.user.user_name, this.photos.length)
+          .subscribe(res => {
+            this.stoppedRequest = false;
+            if (res && !res.length) {
+              this.stoppedRequest = true;
+            }
+            res.reduce((acc, current) => {
+              const x = this.photos.find(item => item.photo_id === current.photo_id);
+              if (!x) {
+                return this.photos = this.photos.concat(res);
+              } else {
+                return acc;
+              }
+            }, []);
+          });
+      }
+    }else{
       this.photoService
-        .listFromUserPaginated(this.user.user_name, this.photos.length)
+        .listFromToExplorerPaginated(this.photos.length)
         .subscribe(res => {
           this.stoppedRequest = false;
           if (res && !res.length) {

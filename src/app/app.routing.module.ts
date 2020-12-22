@@ -18,6 +18,7 @@ import {SettingProfileComponent} from './photos/photo-list/setting-profile/setti
 import {UserResolver} from './core/user/user.resolver';
 import {ConfirmationComponent} from './confirmation/confirmation.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
+import {PhotoListToExplorerResolver} from './photos/photo-list/photo-list-to-explorer.resolver';
 
 
 const routes: Routes = [
@@ -104,7 +105,19 @@ const routes: Routes = [
     data: {
       title: 'Change'
     }
-  }, {
+  },
+  {
+    path: 'to-explore',
+    component: PhotoListComponent,
+    resolve: {
+      photos: PhotoListToExplorerResolver
+    },
+    data: {
+      title: 'Explorer Photos Circle',
+      isToExplorer: true
+    }
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent,
     data: {

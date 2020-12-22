@@ -5,6 +5,8 @@ import {Comments} from '../../comments/comments';
 import {PhotoService} from '../../photo/photo.service';
 import Swal from 'sweetalert2';
 import {AlertService} from '../../../shared/alert/alert.service';
+import {environment} from '../../../../environments/environment';
+import {SecurityCommonsService} from '../../../shared/services/security-commons.service';
 
 @Component({
   selector: 'app-photos',
@@ -19,12 +21,13 @@ export class PhotosComponent implements OnChanges {
   photoId: number;
   description: string;
   viewFormComment: boolean;
+  avatarDefault: string = environment.ApiUrl + 'storage/profile_default/default.png';
   @ViewChild('descriptionEl') descriptionEl: ElementRef;
   constructor(
+    private securityCommons: SecurityCommonsService,
     private photoService: PhotoService,
     private alertService: AlertService
   ) { }
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.photos){
       this.rows = this.photos;

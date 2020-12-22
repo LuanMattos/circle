@@ -17,7 +17,7 @@
         <app-search *ngIf="(user$ | async) && verifiedAccount();" (openInputSearch)="openSearch = $event" class="m-auto" ></app-search>
       </div>
       <div class="col">
-        <div *ngIf="!openSearch" class="float-right">
+        <div *ngIf="!openSearch" class="float-right ml-4">
           <div *ngIf="(user$ | async) as user;else login">
             <div class="cursor-pointer" [matMenuTriggerFor]="menu">
               <i class="fa fa-user fa-2x" aria-hidden="true"></i>
@@ -36,6 +36,9 @@
           Para interagir faça <a [routerLink]="['']">login</a>
         </span>
           </ng-template>
+        </div>
+        <div *ngIf="(user$ | async) && !openSearch" class="float-right">
+          <i class="fa fa-compass fa-2x cursor-pointer"  [routerLink]="['to-explore']"  aria-hidden="true"></i>
         </div>
       </div>
     </div>

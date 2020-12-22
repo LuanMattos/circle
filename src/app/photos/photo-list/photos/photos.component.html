@@ -7,8 +7,11 @@
          class="col-lg-4 {{i === 0?'col-md-12':'col-md-6'}} mb-4 z-depth-1-half wow fadeIn">
 
         <app-card>
-          <img  class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src" [src]="photo.user.user_avatar_url">
-          <span class="ml-2 font-weight-bold">{{photo.user.user_full_name?photo.user.user_full_name:photo.user.user_name}}</span>
+          <img *ngIf="photo.user.user_avatar_url?.length else notImage" class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src" [src]="photo.user.user_avatar_url">
+          <ng-template #notImage>
+            <img  class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src" [src]="avatarDefault">
+          </ng-template>
+          <span class="ml-2 font-weight-bold font-user-full-name">{{photo.user.user_full_name?photo.user.user_full_name:photo.user.user_name}}</span>
           <div class="dropdown float-right pb-4">
             <div class="cursor-pointer " [matMenuTriggerFor]="menu">
               <i class="fa fa-ellipsis-h text-black" aria-hidden="true"></i>
@@ -23,17 +26,16 @@
             </mat-menu>
           </div>
           <div class="body-comment-text">
-            <span class="break-word mb-2">
-                   {{photo.photo_description.substring(0,100)}}
-
+            <span class="break-word ">
+                   {{photo.photo_description.substring(0,40)}}
             </span>
-            <details *ngIf="photo.photo_description.length >= 100">
+            <details *ngIf="photo.photo_description.length >= 40">
               <summary>
                 <span class="open">Ver mais</span>
-                <span class="close mb-2">Ver menos</span>
+                <span class="close">Ver menos</span>
               </summary>
               <span>
-               {{photo.photo_description.substring(100,1000)}}
+               {{photo.photo_description.substring(40,1000)}}
             </span>
             </details>
           </div>

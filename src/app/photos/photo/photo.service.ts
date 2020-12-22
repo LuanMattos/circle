@@ -58,6 +58,12 @@ export class PhotoService {
         return this.http.get<Photo[]>(API +   'photos/' + userName , { params });
   }
 
+  listFromToExplorerPaginated( page: number ): Observable<Photo[]>{
+        const params = new HttpParams()
+                  .append('page', page.toString());
+        return this.http.get<Photo[]>(API +   'photos_to_explorer', { params });
+  }
+
   upload(description: string, allowComments: boolean, publico: boolean, file): Observable<any>{
     const formData = new FormData();
 
