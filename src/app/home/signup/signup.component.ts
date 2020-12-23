@@ -34,10 +34,14 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
 
     this.signupForm = this.formBuilder.group({
-      email: ['',
+      email: [
+        '',
         [
           Validators.required,
           Validators.email
+        ],
+        [
+          this.userNotTakenValidator.checkUserEmailTaken()
         ]
       ],
       userName: [

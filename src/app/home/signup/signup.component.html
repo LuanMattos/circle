@@ -4,6 +4,7 @@
       <mat-label>E-mail</mat-label>
     <input  #inputEmail matInput placeholder="E-mail"  autofocus formControlName="email">
     </mat-form-field>
+    <app-vmessage text="E-mail já cadastrado" *ngIf="signupForm.get('email').errors?.usuarioJaCadastrado"></app-vmessage>
     <app-vmessage  *ngIf="signupForm.get('email').errors?.required && form.submitted" text="E-mail é obrigatório!"></app-vmessage>
     <app-vmessage *ngIf="signupForm.get('email').errors?.email && form.submitted" text="E-mail inválido!"></app-vmessage>
   </div>
@@ -26,7 +27,7 @@
     <app-vmessage *ngIf="signupForm.get('userName').errors?.validadorPersonalizado && form.submitted" text="Campo obrigatório!"></app-vmessage>
 
     <small *ngIf="signupForm.get('userName').valid" class="text-success">Disponível</small>
-    <app-vmessage text="Usuário já cadastrado" *ngIf="signupForm.get('userName').errors?.usuarioJaCadastrado && form.submitted"></app-vmessage>
+    <app-vmessage text="Usuário já cadastrado" *ngIf="signupForm.get('userName').errors?.usuarioJaCadastrado"></app-vmessage>
   </div>
 
   <div class="form-group">

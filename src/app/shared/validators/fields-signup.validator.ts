@@ -1,14 +1,9 @@
-import {AbstractControl} from "@angular/forms";
+import {AbstractControl} from '@angular/forms';
 
-/** Podemos tambem usar o control:FormControl para validação de campos entre campos **/
-export function fieldsSignupValidator(control:AbstractControl ){
+export function fieldsSignupValidator(control: AbstractControl ): any{
 
-  /**
-   * Apenas como exemplo vamos criar nosso próprio validador
-   * Podemos usar como forma de não precisar repetir nosso <app-message> ;)
-   **/
-  if(!control.value.length){
-    return {validadorPersonalizado:true}
+  if (!control.value.length){
+    return {validadorPersonalizado: true};
   }
-  return null
+  return null;
 }
