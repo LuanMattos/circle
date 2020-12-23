@@ -92,7 +92,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
           this.router.navigate(['']);
         },
         err => {
-            this.alertService.danger('Um erro ocorreu, por favor tente mais tarde');
+            this.alertService.danger(err);
         }
       );
   }
