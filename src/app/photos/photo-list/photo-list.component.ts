@@ -110,7 +110,7 @@ export class PhotoListComponent implements OnInit {
           this.html = '';
           users.forEach((user, i) => {
             const url = user.user_avatar_url && user.user_avatar_url.length ? user.user_avatar_url : this.avatarDefault;
-            this.html +=  `<div class='row'><div class='col cursor-pointer' onClick="window.location.href = 'user/` + user.user_name + `' "><img class="avatar-alert" src="` + url + `">` + user.user_name.charAt(0).toUpperCase() + user.user_name.slice(1) + `</div></div>`;
+            this.html +=  `<div class='row'><div class='col cursor-pointer' onClick="window.location.href = 'user/` + user.user_name + `' "><img class="avatar-alert rounded-circle" src="` + url + `">` + user.user_name.charAt(0).toUpperCase() + user.user_name.slice(1) + `</div></div>`;
           });
           Swal.fire({
             html: this.html,
