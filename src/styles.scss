@@ -248,3 +248,9 @@ a{
   image-resolution: 1dpi !important;
 }
 
+.alert-list-followers{
+  max-height: 80vh;
+  min-width: 100%;
+  overflow-x: scroll;
+  overflow-x: hidden;
+}

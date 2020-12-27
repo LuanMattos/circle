@@ -108,10 +108,12 @@ export class PhotoListComponent implements OnInit {
       .subscribe(
         users => {
           this.html = '';
+          this.html = `<div class='container alert-list-followers'>`;
           users.forEach((user, i) => {
             const url = user.user_avatar_url && user.user_avatar_url.length ? user.user_avatar_url : this.avatarDefault;
-            this.html +=  `<div class='row'><div class='col cursor-pointer' onClick="window.location.href = 'user/` + user.user_name + `' "><img class="avatar-alert rounded-circle" src="` + url + `">` + user.user_name.charAt(0).toUpperCase() + user.user_name.slice(1) + `</div></div>`;
+            this.html +=  `<div class='row '><div class='col cursor-pointer' onClick="window.location.href = 'user/` + user.user_name + `' "><img class="avatar-alert rounded-circle" src="` + url + `">` + user.user_name.charAt(0).toUpperCase() + user.user_name.slice(1) + `</div></div>`;
           });
+          this.html += '</div>';
           Swal.fire({
             html: this.html,
             showConfirmButton: false,
