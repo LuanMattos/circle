@@ -94,4 +94,8 @@ export class UserService{
     );
   }
 
+  getFollowersByUser(): Observable<any>{
+    return this.http.post(API + 'get_followers', {});
+  }
+
 }

@@ -7,6 +7,7 @@ import {UserService} from '../../core/user/user.service';
 import {environment} from '../../../environments/environment';
 import {User} from '../../core/user/user';
 import {SecurityCommonsService} from '../../shared/services/security-commons.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class PhotoListComponent implements OnInit {
   user_cover_url;
   stoppedRequest: boolean;
   isExplorer: boolean;
+  avatarDefault: string = environment.ApiUrl + 'storage/profile_default/default.png';
+  html: string;
 
   constructor(
     private securityCommons: SecurityCommonsService,
@@ -94,5 +97,28 @@ export class PhotoListComponent implements OnInit {
     this.photoService.follow( this.user.user_id ).subscribe(follow => {
       this.following = follow;
     });
+  }
+  redirect(): void{
+    alert('pau no toba dos curioso')
+  }
+  openFollowers(): void{
+
+    this.userService
+      .getFollowersByUser()
+      .subscribe(
+        users => {
+          this.html = '';
+          users.forEach((user, i) => {
+            const url = user.user_avatar_url && user.user_avatar_url.length ? user.user_avatar_url : this.avatarDefault;
+            this.html +=  `<div class='row'><div class='col cursor-pointer' onClick="window.location.href = 'user/` + user.user_name + `' "><img class="avatar-alert" src="` + url + `">` + user.user_name.charAt(0).toUpperCase() + user.user_name.slice(1) + `</div></div>`;
+          });
+          Swal.fire({
+            html: this.html,
+            showConfirmButton: false,
+            showCancelButton: true,
+            cancelButtonText: 'Sair'
+          });
+        }
+      );
   }
 }

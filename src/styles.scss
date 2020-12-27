@@ -238,4 +238,12 @@ a{
     object-position: 50% 50%;
   }
 }
+.avatar-alert {
+  border: 0.3rem solid rgba(#fff, 0.3);
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  object-position: 50% 0;
+  float: left;
+}
 
