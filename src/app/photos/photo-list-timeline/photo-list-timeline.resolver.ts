@@ -12,11 +12,11 @@ export class PhotoListTimelineResolver implements Resolve<Observable<Photo[]>>{
   constructor(private router: Router, private service: PhotoService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Photo[]>{
-      const userName = route.params.userName;
-      this.service.listFromUser(userName).subscribe(() => {}, error => {
+      this.service.listFromTimelinePaginated(0).subscribe((response) => {
+      }, error => {
         this.router.navigate(['not-found']);
       });
-      return this.service.listFromUser(userName);
+      return this.service.listFromTimelinePaginated( 0);
   }
 
 

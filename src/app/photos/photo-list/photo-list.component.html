@@ -1,4 +1,4 @@
-<div class="container w-100" *ngIf="!isExplorer">
+<div class="container w-100" *ngIf="!isExplorer && !isTimeline">
   <div class="container-cover">
     <img *ngIf="this.user.user_cover_url" class="w-100 e2e-iframe-trusted-src" [src]="user_cover_url"/>
   </div>

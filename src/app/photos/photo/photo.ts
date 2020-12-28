@@ -12,4 +12,6 @@ export interface Photo{
   liked: boolean;
   user_full_name: string;
   user_name: string;
+  user_cover_url: string;
+  user_avatar_url: string;
 }

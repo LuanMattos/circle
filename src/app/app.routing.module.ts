@@ -44,15 +44,16 @@ const routes: Routes = [
   },
   {
     path: 'timeline/:userName',
-    component: PhotoListTimelineComponent,
+    component: PhotoListComponent,
     canActivate: [AuthRequiredGuard],
     resolve: {
       photos: PhotoListTimelineResolver,
-      user: UserResolver,
+      user: UserResolver
     },
     data: {
       animation: 'AboutPage',
-      title: 'Timeline'
+      title: 'Timeline',
+      isTimeline: true
     }
   },
   {
