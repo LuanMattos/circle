@@ -21,6 +21,8 @@ import {ChangePasswordComponent} from './change-password/change-password.compone
 import {PhotoListToExplorerResolver} from './photos/photo-list/photo-list-to-explorer.resolver';
 import {FollowersComponent} from './photos/photo-list/followers/followers.component';
 import {FollowerResolver} from './core/follower/follower.resolver';
+import {FollowingComponent} from './photos/photo-list/following/following.component';
+import {FollowingResolver} from './core/following/following.resolver';
 
 
 const routes: Routes = [
@@ -124,6 +126,16 @@ const routes: Routes = [
     resolve: {
       user: UserResolver,
       follower: FollowerResolver
+    },
+    data: {
+      title: 'Followers'
+    }
+  }, {
+    path: 'followings',
+    component: FollowingComponent,
+    resolve: {
+      user: UserResolver,
+      following: FollowingResolver
     },
     data: {
       title: 'Followers'

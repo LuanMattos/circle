@@ -103,4 +103,7 @@ export class PhotoListComponent implements OnInit {
   openFollowers(): void{
     this.router.navigate(['followers']);
   }
+  openFollowings(): void{
+    this.router.navigate(['followings']);
+  }
 }
