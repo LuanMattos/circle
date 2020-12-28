@@ -19,6 +19,7 @@ import {SettingProfileComponent} from './setting-profile/setting-profile.compone
 import {ReactiveFormsModule} from '@angular/forms';
 import {VmessageModule} from '../../shared/vmessage/vmessage.module';
 import {PhotoOwnerOnlyModule} from '../../shared/directives/owner-only/photo-owner-only.module';
+import {FollowersComponent} from './followers/followers.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {PhotoOwnerOnlyModule} from '../../shared/directives/owner-only/photo-own
     PhotosComponent,
     LoadButtonComponent,
     SearchComponent,
-    SettingProfileComponent
+    SettingProfileComponent,
+    FollowersComponent
   ],
   exports: [
     PhotosComponent,

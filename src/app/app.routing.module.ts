@@ -19,6 +19,8 @@ import {UserResolver} from './core/user/user.resolver';
 import {ConfirmationComponent} from './confirmation/confirmation.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {PhotoListToExplorerResolver} from './photos/photo-list/photo-list-to-explorer.resolver';
+import {FollowersComponent} from './photos/photo-list/followers/followers.component';
+import {FollowerResolver} from './core/follower/follower.resolver';
 
 
 const routes: Routes = [
@@ -116,8 +118,17 @@ const routes: Routes = [
       title: 'Explorer Photos Circle',
       isToExplorer: true
     }
-  },
-  {
+  }, {
+    path: 'followers',
+    component: FollowersComponent,
+    resolve: {
+      user: UserResolver,
+      follower: FollowerResolver
+    },
+    data: {
+      title: 'Followers'
+    }
+  }, {
     path: 'not-found',
     component: NotFoundComponent,
     data: {

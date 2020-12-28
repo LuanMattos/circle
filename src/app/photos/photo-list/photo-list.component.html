@@ -3,8 +3,9 @@
     <img *ngIf="this.user.user_cover_url" class="w-100 e2e-iframe-trusted-src" [src]="user_cover_url"/>
   </div>
   <div class="card-body text-center">
-    <img  class="avatar rounded-circle e2e-iframe-trusted-src" [src]="user.user_avatar_url">
-    <i itemOwnerOnly showIsLogged [ownedItem]="user" class="fa fa-cogs cursor-pointer" aria-hidden="true" [routerLink]="['/setting',user.user_name]"></i>
+    <img class="avatar rounded-circle e2e-iframe-trusted-src" [src]="user.user_avatar_url">
+    <i itemOwnerOnly showIsLogged [ownedItem]="user" class="fa fa-cogs cursor-pointer" aria-hidden="true"
+       [routerLink]="['/setting',user.user_name]"></i>
     <h4 class="card-title">{{user.user_full_name | titlecase}}</h4>
     <h6 class="card-subtitle mb-2 text-muted">{{user.address | titlecase}}</h6>
     <p class="card-text">{{user.description}} </p>
@@ -18,7 +19,8 @@
     </div>
     <div class="row" showIsLogged itemOwnerOnly [ownedItem]="user" [noOwnedItem]="true">
       <div class="col">
-        <button class="btn {{this.following?'btn-info':'btn-light'}}" (click)="follow()">{{this.following?'Seguindo':'Seguir'}}</button>
+        <button class="btn {{this.following?'btn-info':'btn-light'}}"
+                (click)="follow()">{{this.following ? 'Seguindo' : 'Seguir'}}</button>
       </div>
     </div>
   </div>
@@ -29,5 +31,5 @@
   [infiniteScrollThrottle]="50"
   (scrolled)="load()"
 >
-  <app-photos  [photos]="photos"></app-photos>
+  <app-photos [photos]="photos"></app-photos>
 </div>

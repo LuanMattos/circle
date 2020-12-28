@@ -1,5 +1,5 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 
 import {PhotoService} from '../photo/photo.service';
@@ -28,13 +28,15 @@ export class PhotoListComponent implements OnInit {
   isExplorer: boolean;
   avatarDefault: string = environment.ApiUrl + 'storage/profile_default/default.png';
   html: string;
+  private prevScrollpos;
 
   constructor(
     private securityCommons: SecurityCommonsService,
     private sanitizer: DomSanitizer,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private photoService: PhotoService
+    private photoService: PhotoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void{
@@ -98,29 +100,7 @@ export class PhotoListComponent implements OnInit {
       this.following = follow;
     });
   }
-  redirect(): void{
-    alert('pau no toba dos curioso')
-  }
   openFollowers(): void{
-
-    this.userService
-      .getFollowersByUser()
-      .subscribe(
-        users => {
-          this.html = '';
-          this.html = `<div class='container alert-list-followers'>`;
-          users.forEach((user, i) => {
-            const url = user.user_avatar_url && user.user_avatar_url.length ? user.user_avatar_url : this.avatarDefault;
-            this.html +=  `<div class='row '><div class='col cursor-pointer' onClick="window.location.href = 'user/` + user.user_name + `' "><img class="avatar-alert rounded-circle" src="` + url + `">` + user.user_name.charAt(0).toUpperCase() + user.user_name.slice(1) + `</div></div>`;
-          });
-          this.html += '</div>';
-          Swal.fire({
-            html: this.html,
-            showConfirmButton: false,
-            showCancelButton: true,
-            cancelButtonText: 'Sair'
-          });
-        }
-      );
+    this.router.navigate(['followers']);
   }
 }
