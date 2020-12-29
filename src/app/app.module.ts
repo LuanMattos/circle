@@ -14,7 +14,8 @@ import {ShowIsLoggedModule} from './shared/directives/show-is-logged/show-is-log
 import {ConfirmationModule} from './confirmation/confirmation.module';
 import {AuthService} from './core/auth/auth.service';
 import {appInitializer} from './shared/initializer/app.initializer';
-import {ChangePasswordModule} from "./change-password/change-password.module";
+import {ChangePasswordModule} from './change-password/change-password.module';
+import {NgtUniversalModule} from '@ng-toolkit/universal';
 
 
 
@@ -24,7 +25,7 @@ import {ChangePasswordModule} from "./change-password/change-password.module";
     AppComponent
   ],
   imports: [
-        BrowserModule,
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
         AppRoutingModule,
         PhotosModule,
         CoreModule,
@@ -32,7 +33,8 @@ import {ChangePasswordModule} from "./change-password/change-password.module";
         BrowserAnimationsModule,
         NgxLoadingModule.forRoot({}),
         ShowIsLoggedModule,
-        ChangePasswordModule
+        ChangePasswordModule,
+        NgtUniversalModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthService] },

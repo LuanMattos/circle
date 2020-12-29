@@ -1,20 +1,29 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
+// @ts-ignore
+import {LOCAL_STORAGE, WINDOW} from '@ng-toolkit/universal';
+
 
 const KEY = 'authToken';
 
 @Injectable({providedIn: 'root'})
 
 export class TokenService{
+  constructor(
+    @Inject(WINDOW) private window: Window,
+    @Inject(LOCAL_STORAGE) private localStorage: any
+  ) {}
+
+
   hasToken(): boolean{
     return !!this.getToken();
   }
   setToken(token): void{
-      window.localStorage.setItem(KEY, token);
+      this.localStorage.setItem(KEY, token);
   }
   getToken(): any{
-    return window.localStorage.getItem(KEY);
+    return this.localStorage.getItem(KEY);
   }
   removeToken(): void{
-    window.localStorage.removeItem(KEY);
+    this.localStorage.removeItem(KEY);
   }
 }
