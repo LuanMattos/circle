@@ -1,0 +1,13 @@
+[debug] [2020-12-29T14:24:20.405Z] ----------------------------------------------------------------------
+[debug] [2020-12-29T14:24:20.407Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\patrick.mattos\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2020-12-29T14:24:20.407Z] CLI Version:   9.1.0
+[debug] [2020-12-29T14:24:20.407Z] Platform:      win32
+[debug] [2020-12-29T14:24:20.407Z] Node Version:  v14.15.3
+[debug] [2020-12-29T14:24:20.408Z] Time:          Tue Dec 29 2020 11:24:20 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2020-12-29T14:24:20.408Z] ----------------------------------------------------------------------
+[debug] [2020-12-29T14:24:20.408Z] 
+[debug] [2020-12-29T14:24:20.413Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-12-29T14:24:20.414Z] > authorizing via signed-in user
+[debug] [2020-12-29T14:24:20.414Z] [iam] checking project circle-5d1a1 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-12-29T14:24:20.416Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/circle-5d1a1:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
