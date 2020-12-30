@@ -21,7 +21,6 @@ export class UserResolver implements Resolve<Observable<User>>{
           }else{
             user.verified = true;
           }
-          console.log(user.verified)
           this.userService.setDataUser( user );
         });
     }, error => {

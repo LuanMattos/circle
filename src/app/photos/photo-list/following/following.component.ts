@@ -21,7 +21,7 @@ export class FollowingComponent implements OnInit{
     this.followings = this.activatedRoute.snapshot.data.following;
   }
   loadFollowing(): void{
-    console.log('td')
+    'td')
     if (!this.stoppedRequest) {
       this.followingService
         .getFollowingsByUser(this.followings.length)
