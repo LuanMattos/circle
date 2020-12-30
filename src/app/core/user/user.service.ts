@@ -6,6 +6,7 @@ import * as jwt_decode from 'jwt-decode';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {AuthService} from '../auth/auth.service';
+import {map} from 'rxjs/operators';
 
 const API  = environment.ApiUrl;
 
@@ -15,7 +16,6 @@ export class UserService{
   private userSubject = new BehaviorSubject<User>(null);
   private user = new BehaviorSubject<User>(null);
   private userName: string;
-  private verified: boolean;
 
   constructor(
     private http: HttpClient,
@@ -43,7 +43,6 @@ export class UserService{
     const user = jwt_decode(token) as User;
 
     this.userName = user.user_name;
-    this.verified = user.user_code_verification;
 
     this.userSubject.next(user);
 
@@ -57,14 +56,12 @@ export class UserService{
   isLogged(): boolean{
     return this.tokenService.hasToken();
   }
-  verifiedAccount(): boolean{
-    return !this.verified;
+  verifiedAccount(): Observable<any>{
+    return this.http.post<any>(API + 'account_is_verify', {});
   }
   getUserName(): string{
     return this.userName;
   }
-
-
   dataUserBasic(userName: string): any{
      return this.http.post<any>(API + 'data_user_basic/' + userName, false);
   }

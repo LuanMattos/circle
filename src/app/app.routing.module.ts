@@ -114,6 +114,7 @@ const routes: Routes = [
   {
     path: 'to-explore',
     component: PhotoListComponent,
+    canActivate: [AuthRequiredGuard],
     resolve: {
       photos: PhotoListToExplorerResolver
     },

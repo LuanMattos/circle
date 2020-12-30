@@ -11,19 +11,22 @@ export class AuthRequiredGuard implements CanActivate{
     private activatedRoute: ActivatedRoute
   ) {}
 
-  canActivate(){
+  canActivate(): any{
+
     if (!this.userService.isLogged()){
       this.router.navigate(['']);
       return false;
-    }else if ( !this.userService.verifiedAccount() ){
-      this.userService
-        .getUserByToken()
-        .subscribe(user => {
-          const userName = user?.user_name;
-          this.router.navigate(['confirmation', userName]);
-      });
-      return true;
     }
+    this.userService
+        .verifiedAccount()
+        .subscribe(verified => {
+          this.userService.getUser().subscribe(user => {
+            if (!verified){
+              this.router.navigate(['confirmation', user?.user_name]);
+            }
+          });
+      });
+
     return true;
   }
 }

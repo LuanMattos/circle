@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit{
   user;
   openSearch: boolean;
   private prevScrollpos;
+  private verified;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit{
     private windowRef: WindowRefService
     ) {
     this.user$ = userService.getUserByToken();
+    this.userService.verifiedAccount().subscribe( verified => this.verified = verified);
   }
   ngOnInit(): void{
     this.scrollHideHeader();
@@ -57,6 +59,6 @@ export class HeaderComponent implements OnInit{
     this.router.navigate(['user', this.user.user_name]);
   }
   verifiedAccount(): boolean{
-    return this.userService.verifiedAccount();
+    return this.verified;
   }
 }
