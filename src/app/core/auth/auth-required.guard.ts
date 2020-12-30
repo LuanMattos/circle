@@ -19,7 +19,6 @@ export class AuthRequiredGuard implements CanActivate{
     }
 
     this.userService.getUser().subscribe( user => {
-      user)
       if (user && !user.verified){
         this.router.navigate(['confirmation', user?.user_name]);
       }

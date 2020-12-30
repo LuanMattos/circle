@@ -70,7 +70,7 @@ export class PhotoCommentsComponent implements OnInit {
   }
 
   report(): void{
-    'Report');
+    console.log('Report');
   }
 
 }
