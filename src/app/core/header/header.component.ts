@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, OnChanges, OnInit, PLATFORM_ID, SimpleChanges} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit{
   user;
   openSearch: boolean;
   private prevScrollpos;
-  private verified;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
@@ -28,7 +27,6 @@ export class HeaderComponent implements OnInit{
     private windowRef: WindowRefService
     ) {
     this.user$ = userService.getUserByToken();
-    this.userService.verifiedAccount().subscribe( verified => this.verified = verified);
   }
   ngOnInit(): void{
     this.scrollHideHeader();
@@ -59,6 +57,12 @@ export class HeaderComponent implements OnInit{
     this.router.navigate(['user', this.user.user_name]);
   }
   verifiedAccount(): boolean{
-    return this.verified;
+    if (this.userService.isLogged() && !this.user.verified){
+     return false;
+    }
+    return true;
+  }
+  isLogged(): any{
+    return this.userService.isLogged();
   }
 }

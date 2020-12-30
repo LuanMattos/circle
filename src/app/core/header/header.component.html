@@ -3,14 +3,9 @@
     <div class="row w-100">
       <div class="col">
         <div *ngIf="!openSearch">
-          <a *ngIf="(user$ | async) && verifiedAccount(); else circle" class="navbar-brand title-header" (click)="redirect()">
+          <a *ngIf="(user$ | async)" class="navbar-brand title-header" (click)="redirect()">
             Circle
           </a>
-          <ng-template #circle>
-            <a class="navbar-brand title-header text-danger" [routerLink]="['']">
-              Conta não <b class="cursor-pointer" [routerLink]="['to-explore']">verificada</b>
-            </a>
-          </ng-template>
         </div>
       </div>
       <div class="col">

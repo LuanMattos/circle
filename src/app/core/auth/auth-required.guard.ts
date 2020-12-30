@@ -17,15 +17,13 @@ export class AuthRequiredGuard implements CanActivate{
       this.router.navigate(['']);
       return false;
     }
-    this.userService
-        .verifiedAccount()
-        .subscribe(verified => {
-          this.userService.getUser().subscribe(user => {
-            if (!verified){
-              this.router.navigate(['confirmation', user?.user_name]);
-            }
-          });
-      });
+
+    this.userService.getUser().subscribe( user => {
+      console.log(user)
+      if (user && !user.verified){
+        this.router.navigate(['confirmation', user?.user_name]);
+      }
+    });
 
     return true;
   }

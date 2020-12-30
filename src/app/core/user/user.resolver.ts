@@ -12,12 +12,22 @@ export class UserResolver implements Resolve<Observable<User>>{
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User>{
     const userName = route.params.userName;
-
     this.userService.dataUserBasic(userName).subscribe( user => {
-      this.userService.setDataUser( user );
+      this.userService
+        .verifiedAccount()
+        .subscribe(verified => {
+          if (!verified){
+            user.verified = false;
+          }else{
+            user.verified = true;
+          }
+          console.log(user.verified)
+          this.userService.setDataUser( user );
+        });
     }, error => {
       this.router.navigate(['not-found']);
     });
+
     return this.userService.dataUserBasic(userName);
   }
 
