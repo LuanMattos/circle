@@ -13,5 +13,5 @@ export interface User{
   user_code_verification: boolean;
   exp;
   time_expire;
-  verified;
+  verified: boolean;
 }

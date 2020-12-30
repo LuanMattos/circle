@@ -45,6 +45,7 @@ export class ConfirmationComponent implements OnInit{
         .subscribe(
           success => {
             this.userService.logout();
+            this.userService.setDataUser([]);
             this.router.navigate(['']);
           },
           error => {

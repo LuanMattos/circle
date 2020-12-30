@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="col">
-        <app-search *ngIf="(user$ | async) && verifiedAccount();" (openInputSearch)="openSearch = $event" class="m-auto" ></app-search>
+        <app-search *ngIf="(user$ | async)" (openInputSearch)="openSearch = $event" class="m-auto" ></app-search>
       </div>
       <div class="col">
         <div *ngIf="!openSearch" class="float-right ml-4">
