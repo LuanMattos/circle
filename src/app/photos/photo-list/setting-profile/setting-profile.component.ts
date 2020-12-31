@@ -52,7 +52,6 @@ export class SettingProfileComponent implements OnInit {
       userPassword: [
         '',
         [
-          Validators.required,
           Validators.minLength(8),
           Validators.maxLength(50),
         ],
@@ -80,10 +79,15 @@ export class SettingProfileComponent implements OnInit {
   save(): void{
     const data = this.settingForm.getRawValue();
     this.userService.saveSettings(data).subscribe(success => {
-
-        this.userService.logout();
-        this.route.navigate(['']);
-        this.alertService.success('Por segurança, faça login novamente!');
+        if (!success){
+          this.settingForm.controls.userPassword.setErrors({message : 'Senha incorreta!'});
+        } else if ( success === 'auth' ){
+          this.userService.logout();
+          this.route.navigate(['']);
+          this.alertService.success('Por segurança, faça login novamente!');
+        }else if ( success === 'common'){
+          this.route.navigate(['']);
+        }
       },
       (response: HttpErrorResponse) => {
         this.settingForm.controls.userPassword.setErrors({message : response.error.text});

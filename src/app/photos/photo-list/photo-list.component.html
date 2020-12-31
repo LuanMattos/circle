@@ -4,7 +4,7 @@
   </div>
   <div class="card-body text-center">
     <img class="avatar rounded-circle e2e-iframe-trusted-src" [src]="user.user_avatar_url">
-    <i itemOwnerOnly showIsLogged [ownedItem]="user" class="fa fa-cogs cursor-pointer" aria-hidden="true"
+    <i itemOwnerOnly showIsLogged [ownedItem]="user" class="fa fa-cogs cursor-pointer fa-2x" aria-hidden="true"
        [routerLink]="['/setting',user.user_name]"></i>
     <h4 class="card-title">{{user.user_full_name | titlecase}}</h4>
     <h6 class="card-subtitle mb-2 text-muted">{{user.address | titlecase}}</h6>
