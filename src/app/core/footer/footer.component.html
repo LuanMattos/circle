@@ -8,7 +8,7 @@
           </a>
         </div>
         <div class="col-6">
-          <a [routerLink]="['p', 'add']">
+          <a [routerLink]="['add', (user$ | async).user_name]">
             <i class="fa fa-plus-circle fa-2x text-dark"></i>
           </a>
         </div>

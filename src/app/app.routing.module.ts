@@ -70,9 +70,12 @@ const routes: Routes = [
     }
   },
   {
-    path: 'p/add',
+    path: 'add/:userName',
     component: PhotoFormComponent,
     canActivate: [AuthRequiredGuard],
+    resolve: {
+      user: UserResolver
+    },
     data: {
       animation: 'HomePage',
       title: 'Add Photo'

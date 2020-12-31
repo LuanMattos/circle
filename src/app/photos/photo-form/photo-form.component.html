@@ -1,70 +1,85 @@
-<div class="container mt-5">
-  <form class="row" [formGroup]="photoForm" (submit)="upload()">
-
-    <div class="col-md-6 text-center">
-      <div class="form-group card border-0" *ngIf="!preview; else showPreview">
-        <button type="button" (click)="fileInput.click()" class="bg-transparent border-0 cursor-pointer">
-          <i class="fa fa-image fa-4x align-middle text-dark"></i>
-        </button>
-        <input formControlName="file"
-               #fileInput
-               hidden
-               type="file"
-               accept="image/*"
-               (change)="handleFile( $event.target.files[0] )"
-        >
-        <app-vmessage
-          *ngIf="photoForm.get('file').errors?.required"
-          text="Insira uma imagem">
-        </app-vmessage>
-      </div>
-      <ng-template #showPreview>
-        <div class="text-center " appDarkenOnHover brightness="70%">
-          <i class="fa fa-times pb-2 text-danger cursor-pointer" (click)="removeFile()"></i>
-          <app-photo [url]="preview" title="Preview" class="mt-lg-5">
-          </app-photo>
+<div class="container-photo-form">
+  <form class="pb-4" [formGroup]="photoForm" (submit)="upload()">
+    <div>
+      <div class="row">
+        <div class="col-auto w-50">
+          <span class="ml-2 mb-4 cursor-pointer text-muted font-weight-bold close-char" [routerLink]="['']">&#10005;</span>
         </div>
-      </ng-template>
-    </div>
-
-    <div class="col-md-6">
-      <div class="form-group">
-        <mat-form-field class="w-100">
-          <mat-label>Descreva este momento</mat-label>
-          <textarea
-            rows="10"
-            matInput
-            formControlName="description"
+        <div class="col-auto w-50">
+          <div *ngIf="!progress; else toProgress">
+            <input type="checkbox" [checked]="allowComments" class="hide">
+            <input type="checkbox" [checked]="public" class="hide">
+            <button [disabled]="photoForm.invalid"
+                    type="submit"
+                    class="cursor-pointer bg-transparent btns-headers float-right">
+              <span>Publicar</span>
+              <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-auto">
+          <img [src]="avatar" class="avatar rounded-circle">
+        </div>
+        <div class="col-auto">
+          <div class="mt-2 menu-options-public" (click)="public = !public">
+            <span class="ml-2">Público</span>
+            <i class="m-1 fa fa-globe {{public?'text-primary':'text-black'}}" aria-hidden="true" title="Público"></i>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="mt-2 menu-options-public" (click)="allowComments = !allowComments">
+            <span class="ml-1">Comentar</span>
+            <i class="m-1 fa fa-comments-o {{allowComments?'text-primary':'text-black'}}" aria-hidden="true"
+               title="Ativar comentários"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row w-100">
+        <div class="col-auto w-100 mt-2">
+            <textarea
+              rows="5"
+              cols="100"
+              matInput
+              placeholder="Descreva este momento"
+              formControlName="description"
+            >
+            </textarea>
+          <app-vmessage
+            *ngIf="photoForm.get('description').errors?.maxlength"
+            text="Máximo 300 caracteres"></app-vmessage>
+        </div>
+        <div class="col-auto w-100 mt-2 border-top">
+          <input formControlName="file"
+                 #fileInput
+                 hidden
+                 type="file"
+                 accept="image/*"
+                 (change)="handleFile( $event.target.files[0] )"
           >
-        </textarea>
-        </mat-form-field>
-        <app-vmessage
-          *ngIf="photoForm.get('description').errors?.maxlength"
-          text="Máximo 300 caracteres"></app-vmessage>
-      </div>
-
-      <div class="form-group">
-        <input type="checkbox" [checked]="allowComments" class="hide">
-        <input type="checkbox" [checked]="public" class="hide">
-        <i (click)="public = !public" class="m-3 fa fa-globe cursor-pointer {{public?'text-primary':'text-black'}}" aria-hidden="true" title="Público"></i>
-        <i (click)="allowComments = !allowComments" class="m-3 fa fa-comments-o cursor-pointer {{allowComments?'text-primary':'text-black'}}" aria-hidden="true" title="Ativar comentários"></i>
-      </div>
-
-      <div *ngIf="!progress; else toProgress">
-        <div class="form-group">
-          <button [disabled]="photoForm.invalid"
-                  type="submit"
-                  mat-raised-button
-                  class="w-100 bg-dark text-white">
-            Postar
-          </button>
+          <div class="cursor-pointer ml-1" (click)="fileInput.click()">
+            <i class="mt-3 fa fa-camera-retro text-muted icons-footer" aria-hidden="true"></i>
+            <span class="ml-2 text-muted font-weight-bold">Imagem</span>
+          </div>
+          <span class="ml-1 text-danger error-validate"
+               *ngIf="photoForm.get('file').errors?.required && !preview; else showPreview">
+            Insira uma imagem
+          </span>
         </div>
-        <div class="form-group">
-          <a class="w-100 bg-dark text-white" [routerLink]="['']" mat-raised-button>Cancelar</a>
+        <div class="col-auto w-100 mt-1">
+          <ng-template #showPreview>
+            <div class="text-center " appDarkenOnHover brightness="70%">
+              <i class="fa fa-times pb-2 text-danger cursor-pointer mr-2" (click)="removeFile()"></i>
+              <img [src]="preview" title="Preview photo circle" class="mt-lg-5 preview" >
+            </div>
+          </ng-template>
         </div>
       </div>
+    </div>
+    <div class="col-md-6">
       <ng-template #toProgress>
-        <div class="text-center">
+        <div class="text-center text-muted">
           <span>Progresso {{progress}} %</span>
         </div>
       </ng-template>
