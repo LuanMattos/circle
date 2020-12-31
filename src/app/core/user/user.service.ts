@@ -65,6 +65,9 @@ export class UserService{
   dataUserBasic(userName: string): any{
      return this.http.post<any>(API + 'data_user_basic/' + userName, false);
   }
+  dataUserBasicNotAuth(userName: string): any{
+     return this.http.post<any>(API + 'data_user_basic_not_auth/' + userName, false);
+  }
   saveSettings( data ): Observable<any>{
     return this.http.post(API + 'save_setting', data);
   }

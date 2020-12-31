@@ -11,7 +11,7 @@
             <img  class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src" [src]="avatarDefault">
           </ng-template>
           <span class="cursor-pointer ml-2 font-weight-bold font-user-full-name" [routerLink]="['/user',photo.user_name]">{{photo.user_full_name?photo.user_full_name:photo.user_name}}</span>
-          <div class="dropdown float-right pb-4">
+          <div class="dropdown float-right pb-4" showIsLogged>
             <div class="cursor-pointer " [matMenuTriggerFor]="menu">
               <i class="fa fa-ellipsis-h text-black" aria-hidden="true"></i>
             </div>
