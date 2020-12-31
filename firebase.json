@@ -3,6 +3,7 @@
     "site": "circle-73cde",
     "public": "dist/App",
     "ignore": [
+      "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ]

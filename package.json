@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "dev:ssr": "ng run App:serve-ssr",
     "serve:ssr": "node dist/App/server/main.js",
-    "build:ssr": "ng build --prod && ng run App:server:production",
+    "build:ssr": "run App:server:production",
     "prerender": "ng run App:prerender"
   },
   "private": true,
