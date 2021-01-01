@@ -25,6 +25,7 @@ export class UserResolver implements Resolve<Observable<User>>{
           });
         this.userService.setDataUser(user);
       }, error => {
+        this.userService.logout();
         this.router.navigate(['']);
       });
       return this.userService.dataUserBasic(userName);
@@ -32,6 +33,7 @@ export class UserResolver implements Resolve<Observable<User>>{
       this.userService.dataUserBasicNotAuth(userName).subscribe(user => {
         this.userService.setDataUser(user);
       }, error => {
+        this.userService.logout();
         this.router.navigate(['']);
       });
       return this.userService.dataUserBasicNotAuth(userName);
