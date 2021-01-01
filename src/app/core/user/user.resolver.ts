@@ -25,14 +25,14 @@ export class UserResolver implements Resolve<Observable<User>>{
           });
         this.userService.setDataUser(user);
       }, error => {
-        this.router.navigate(['not-found']);
+        this.router.navigate(['']);
       });
       return this.userService.dataUserBasic(userName);
     }else{
       this.userService.dataUserBasicNotAuth(userName).subscribe(user => {
         this.userService.setDataUser(user);
       }, error => {
-        this.router.navigate(['not-found']);
+        this.router.navigate(['']);
       });
       return this.userService.dataUserBasicNotAuth(userName);
     }
