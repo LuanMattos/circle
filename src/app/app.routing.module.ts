@@ -23,6 +23,9 @@ import {FollowersComponent} from './photos/photo-list/followers/followers.compon
 import {FollowerResolver} from './core/follower/follower.resolver';
 import {FollowingComponent} from './photos/photo-list/following/following.component';
 import {FollowingResolver} from './core/following/following.resolver';
+import {AboutComponent} from './home/footer/about/about.component';
+import {PrivacyComponent} from './home/footer/privacy/privacy.component';
+import {TermsComponent} from './home/footer/terms/terms.component';
 
 
 const routes: Routes = [
@@ -144,6 +147,24 @@ const routes: Routes = [
     },
     data: {
       title: 'Followers'
+    }
+  }, {
+    path: 'about',
+    component: AboutComponent,
+    data: {
+      title: 'About'
+    }
+  }, {
+    path: 'privacy',
+    component: PrivacyComponent,
+    data: {
+      title: 'Privacy'
+    }
+  }, {
+    path: 'terms',
+    component: TermsComponent,
+    data: {
+      title: 'Terms and Condition'
     }
   }, {
     path: 'not-found',

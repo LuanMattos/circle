@@ -1,4 +1,4 @@
-<footer class="mt-5" *ngIf="(user$ | async) as user" id="nav-bottom-scrool">
+<footer class="mt-5" *ngIf="isLogged() && (user$ | async) as user" id="nav-bottom-scrool">
   <div class="fixed-bottom bg-white p-1">
     <div class="container">
       <div class="row text-center">
@@ -15,4 +15,12 @@
       </div>
     </div>
   </div>
+</footer>
+<footer *ngIf="!isLogged()" class="blockquote-footer p-1 fixed-bottom bg-light">
+    <small class="text-muted mr-5">
+      Circle <cite title="Source Title">Todos os direitos reservados</cite>
+    </small>
+    <a [routerLink]="['about']" class="badge badge-dark mr-2">Sobre</a>
+    <a [routerLink]="['privacy']" class="badge badge-dark mr-2">Privacidade</a>
+    <a [routerLink]="['terms']" class="badge badge-dark mr-2">Termos e condições</a>
 </footer>

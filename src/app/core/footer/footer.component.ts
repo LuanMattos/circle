@@ -6,7 +6,7 @@ import {User} from '../user/user';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit{
   user$: Observable<User>;
@@ -14,5 +14,8 @@ export class FooterComponent implements OnInit{
 
   ngOnInit(): void {
     this.user$ = this.userService.getUserByToken();
+  }
+  isLogged(): boolean{
+    return this.userService.isLogged();
   }
 }

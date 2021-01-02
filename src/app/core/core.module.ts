@@ -1,20 +1,27 @@
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {RouterModule} from "@angular/router";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
-import {HeaderComponent} from "./header/header.component";
-import {RequestInterceptor} from "./auth/request.interceptor";
-import {FooterComponent} from "./footer/footer.component";
-import {AlertModule} from "../shared/alert/alert.module";
+import {HeaderComponent} from './header/header.component';
+import {RequestInterceptor} from './auth/request.interceptor';
+import {FooterComponent} from './footer/footer.component';
+import {AlertModule} from '../shared/alert/alert.module';
 import {PhotoListModule} from '../photos/photo-list/photo-list.module';
 import {UxModule} from './ux/ux-module';
-import {ShowIsLoggedModule} from "../shared/directives/show-is-logged/show-is-logged.module";
+import {ShowIsLoggedModule} from '../shared/directives/show-is-logged/show-is-logged.module';
+import {AboutComponent} from '../home/footer/about/about.component';
+import {PrivacyComponent} from '../home/footer/privacy/privacy.component';
+import {TermsComponent} from '../home/footer/terms/terms.component';
+
 
 @NgModule({
   declarations:[
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AboutComponent,
+    PrivacyComponent,
+    TermsComponent
   ],
     imports: [
         CommonModule,
