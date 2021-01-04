@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import {AlertService} from '../../../shared/alert/alert.service';
 import {environment} from '../../../../environments/environment';
 import {SecurityCommonsService} from '../../../shared/services/security-commons.service';
+import {UserService} from '../../../core/user/user.service';
 
 @Component({
   selector: 'app-photos',
@@ -26,7 +27,8 @@ export class PhotosComponent implements OnChanges {
   constructor(
     private securityCommons: SecurityCommonsService,
     private photoService: PhotoService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private userService: UserService
   ) { }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.photos){
@@ -74,6 +76,19 @@ export class PhotosComponent implements OnChanges {
         }
       }
     });
+  }
+  dbClickLike( photoId: number, index: number ): void{
+
+    const userName = this.userService.getUserName();
+    this.photoService
+      .like( photoId, userName )
+      .subscribe(response => {
+          if (response) {
+            this.rows[index].photo_likes = response.count;
+            this.rows[index].liked = response.liked;
+          }
+        }
+      );
   }
 
 }

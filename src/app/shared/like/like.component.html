@@ -2,12 +2,12 @@
   <div class="pull-left text-muted" (click)="like( photo.photo_id )" >
     <div class="row">
       <div class="col text-center">
-        <i aria-hidden="true" class="fa fa-hand-peace-o fa-2x ml-3 cursor-pointer {{photo.liked?'text-primary':'text-muted'}}"></i>
+        <i aria-hidden="true" class="fa fa-hand-peace-o icons-interaction ml-3 cursor-pointer {{photo.liked?'text-primary':'text-muted'}}"></i>
       </div>
     </div>
     <div class="row">
       <div class="col text-center font-weight-bold ">
-        <span class="pl-3 cursor-pointer">Like</span>
+        <span class="pl-3 cursor-pointer text-interaction">Like</span>
       </div>
     </div>
   </div>
@@ -21,12 +21,12 @@
   <div class="pull-left text-muted" (click)="emitChanges(photo);" *ngIf="photo.photo_allow_comments == '1';">
     <div class="row ml-2">
       <div class="col text-center">
-        <i class="fa fa-commenting-o fa-2x mr-2 ml-2 cursor-pointer"></i>
+        <i class="fa fa-commenting-o icons-interaction mr-2 ml-2 cursor-pointer"></i>
         {{ photo.photo_comments }}
       </div>
     </div>
     <div class="row ml-2">
-      <div class="col text-center font-weight-bold cursor-pointer">
+      <div class="col text-center font-weight-bold cursor-pointer text-interaction">
         Comentar
       </div>
     </div>
