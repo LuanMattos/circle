@@ -1,10 +1,10 @@
-<div class="text-center mt-lg-5 font-weight-bold">Acesso</div>
+<div class="text-center mt-lg-5  responsive-width register-text">Já é registrado?</div>
 
 <form class="form mt-lg-5" [formGroup]="loginForm" (submit)="login()" #form="ngForm">
 
   <div class="form-group">
 
-    <mat-form-field class="w-100">
+    <mat-form-field class="responsive-width">
       <mat-label>Usuário</mat-label>
       <input #userNameInput
              formControlName="userName"
@@ -18,7 +18,7 @@
   </div>
 
   <div class="form-group">
-    <mat-form-field class="w-100">
+    <mat-form-field class="responsive-width">
       <mat-label>Senha</mat-label>
       <input formControlName="password"
              matInput type="password" >
@@ -30,7 +30,7 @@
     <app-vmessage *ngIf="authInvalid?.length" text="{{authInvalid}}"></app-vmessage>
   </div>
   <p><a [routerLink]="['forgot-password']" class="ml-2">Esqueceu a senha?</a></p>
-  <button class="w-100 bg-dark text-white"  mat-raised-button [disabled]="loginForm.invalid || blockSubmited" type="submit">Entrar</button>
+  <button class="responsive-width bg-dark text-white"  mat-raised-button [disabled]="loginForm.invalid || blockSubmited" type="submit">Entrar</button>
 
 </form>
 

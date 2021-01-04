@@ -9,3 +9,10 @@
 .img-background{
   width: 60%;
 }
+img{
+  animation: moveBody 5s !important;
+}
+@keyframes moveBody {
+  0%    {opacity: 0;}
+  100%  {opacity: 1;}
+}

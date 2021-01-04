@@ -15,6 +15,7 @@ import {AlertService} from '../../shared/alert/alert.service';
 @Component({
   selector: 'app-signup',
   templateUrl: 'signup.component.html',
+  styleUrls: ['./signup.component.scss'],
   providers: [UserNotTakenValidatorService]
 })
 export class SignUpComponent implements OnInit, AfterViewInit {

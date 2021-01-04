@@ -6,7 +6,8 @@ import {AuthService} from '../../core/auth/auth.service';
 import {PlatformDetectorService} from '../../core/platform-detector/platform-detector.service';
 
 @Component({
-  templateUrl: './signin.component.html'
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.scss']
 })
 export class SignInComponent implements OnInit{
 

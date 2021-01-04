@@ -1,0 +1,12 @@
+.responsive-width{
+  width: 75%;
+}
+.register-text{
+  margin-top:50px;
+  color:#363636;
+}
+@media only screen and (max-width: 600px) {
+  .responsive-width{
+    width: 100%;
+  }
+}

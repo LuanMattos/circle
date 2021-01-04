@@ -1,6 +1,7 @@
-<form #form="ngForm" class="form mt-4" [formGroup]="signupForm" (submit)="signUp()">
+<div class="text-center simple-text responsive-width">É simples e rápido</div>
+<form #form="ngForm" class="form" [formGroup]="signupForm" (submit)="signUp()">
   <div class="form-group">
-    <mat-form-field class="w-100">
+    <mat-form-field class="responsive-width">
       <mat-label>E-mail</mat-label>
     <input  #inputEmail matInput placeholder="E-mail"  autofocus formControlName="email">
     </mat-form-field>
@@ -10,7 +11,7 @@
   </div>
 
   <div class="form-group">
-    <mat-form-field class="w-100">
+    <mat-form-field class="responsive-width">
       <mat-label>Nome completo</mat-label>
     <input matInput placeholder="Nome completo" formControlName="fullName">
     </mat-form-field>
@@ -18,7 +19,7 @@
   </div>
 
   <div class="form-group">
-    <mat-form-field class="w-100">
+    <mat-form-field class="responsive-width">
       <mat-label>Nome de usuário</mat-label>
     <input matInput placeholder="Nome de usuário"  formControlName="userName">
     </mat-form-field>
@@ -31,7 +32,7 @@
   </div>
 
   <div class="form-group">
-    <mat-form-field class="w-100">
+    <mat-form-field class="responsive-width">
       <mat-label>Senha</mat-label>
     <input matInput type="password" placeholder="password" formControlName="password">
     </mat-form-field>
@@ -42,7 +43,7 @@
   </div>
 
 
-  <button type="submit" class="w-100 bg-dark text-white" [disabled]="this.signupForm.invalid && !this.signupForm.pending" mat-raised-button>Registrar</button>
+  <button type="submit" class="responsive-width bg-dark text-white" [disabled]="this.signupForm.invalid && !this.signupForm.pending" mat-raised-button>Registrar</button>
 
 
   <p class="p-3">Já é registrado?<a [routerLink]="['']" class="ml-2">Login</a></p>

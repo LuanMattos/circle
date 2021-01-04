@@ -1,0 +1,15 @@
+form{
+  height: 80vh;
+}
+.simple-text{
+  margin-top: 70px;
+  margin-bottom: 30px;
+}
+.responsive-width{
+  width: 75%;
+}
+@media only screen and (max-width: 600px) {
+  .responsive-width{
+    width: 100%;
+  }
+}
