@@ -7,6 +7,7 @@ import {UserService} from '../../core/user/user.service';
 import {environment} from '../../../environments/environment';
 import {User} from '../../core/user/user';
 import {SecurityCommonsService} from '../../shared/services/security-commons.service';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-photo-list',
@@ -67,14 +68,7 @@ export class PhotoListComponent implements OnInit {
             if (res && !res.length) {
               this.stoppedRequest = true;
             }
-            res.reduce((acc, current) => {
-              const x = this.photos.find(item => item.photo_id === current.photo_id);
-              if (!x) {
-                return this.photos = this.photos.concat(res);
-              } else {
-                return acc;
-              }
-            }, []);
+            this.pushPhotos( res );
           });
       }
     }else if (this.isTimeline){
@@ -85,14 +79,7 @@ export class PhotoListComponent implements OnInit {
           if (res && !res.length) {
             this.stoppedRequest = true;
           }
-          res.reduce((acc, current) => {
-            const x = this.photos.find(item => item.photo_id === current.photo_id);
-            if (!x) {
-              return this.photos = this.photos.concat(res);
-            } else {
-              return acc;
-            }
-          }, []);
+          this.pushPhotos( res );
         });
     }else{
       this.photoService
@@ -102,16 +89,24 @@ export class PhotoListComponent implements OnInit {
           if (res && !res.length) {
             this.stoppedRequest = true;
           }
-          res.reduce((acc, current) => {
-            const x = this.photos.find(item => item.photo_id === current.photo_id);
-            if (!x) {
-              return this.photos = this.photos.concat(res);
-            } else {
-              return acc;
-            }
-          }, []);
+          this.pushPhotos( res );
         });
     }
+  }
+  pushPhotos( res ): any{
+    function arrayUnique(array): any {
+      var a = array;
+      for (var i = 0; i < a.length; i++) {
+        for (var j = i + 1; j < a.length; j++) {
+          if (a[i].photo_id === a[j].photo_id) {
+            a.splice(j--, 1);
+          }
+        }
+      }
+
+      return a;
+    }
+    this.photos = arrayUnique(this.photos.concat(res));
   }
   follow(): void{
     this.photoService.follow( this.user.user_id ).subscribe(follow => {
