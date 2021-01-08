@@ -19,16 +19,16 @@
             </div>
             <mat-menu #menu="matMenu" class="mt-3">
               <a mat-menu-item [href]="['user/' + user.user_name]">
-                <span class="ml-2" >Perfil</span>
+                <span class="ml-2" >Profile</span>
               </a>
               <div mat-menu-item (click)="logout()">
-                <a class="ml-2">Sair</a>
+                <a class="ml-2">Logout</a>
               </div>
             </mat-menu>
           </div>
           <ng-template #login>
         <span class="navbar-text">
-          Go to <a [routerLink]="['']">login</a>
+          Go to <a [routerLink]="['']">sign-in</a>
         </span>
           </ng-template>
         </div>
