@@ -1,0 +1,17 @@
+{
+  "projectName": "circle",
+  "version": "3.0",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "angular",
+    "config": {
+      "SourceDir": "src",
+      "DistributionDir": "dist/App",
+      "BuildCommand": "ng build --prod",
+      "StartCommand": "ng serve"
+    }
+  },
+  "providers": [
+    "awscloudformation"
+  ]
+}

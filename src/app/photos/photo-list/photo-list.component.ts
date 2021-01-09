@@ -7,7 +7,6 @@ import {UserService} from '../../core/user/user.service';
 import {environment} from '../../../environments/environment';
 import {User} from '../../core/user/user';
 import {SecurityCommonsService} from '../../shared/services/security-commons.service';
-import * as _ from 'underscore';
 
 @Component({
   selector: 'app-photo-list',

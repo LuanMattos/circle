@@ -16,6 +16,8 @@ import {AuthService} from './core/auth/auth.service';
 import {appInitializer} from './shared/initializer/app.initializer';
 import {ChangePasswordModule} from './change-password/change-password.module';
 import {NgtUniversalModule} from '@ng-toolkit/universal';
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+
 
 
 
@@ -34,7 +36,8 @@ import {NgtUniversalModule} from '@ng-toolkit/universal';
         NgxLoadingModule.forRoot({}),
         ShowIsLoggedModule,
         ChangePasswordModule,
-        NgtUniversalModule
+        NgtUniversalModule,
+        AmplifyUIAngularModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthService] },
