@@ -7,21 +7,26 @@ import { join } from 'path';
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
-import { applyDomino } from '@ntegral/ngx-universal-window';
+
 
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
-  const distFolder = join(process.cwd(), 'dist/App/browser');
+  const domino = require('domino');
+  const distFolder = join(process.cwd(), 'dist/App');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
-  applyDomino(global, join(distFolder, 'index.html'));
-
-
-
-
-
-
+  const win = domino.createWindow(indexHtml);
+//
+//
+//   global['window'] = win;
+//   global['document'] = win.document;
+//   global['DOMTokenList'] = win.DOMTokenList;
+//   global['Node'] = win.Node;
+//   global['Text'] = win.Text;
+//   global['HTMLElement'] = win.HTMLElement;
+//   global['navigator'] = win.navigator;
+// console.log(window)
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule,
@@ -51,7 +56,7 @@ function run(): void {
   // Start up the Node server
   const server = app();
   server.listen(port, () => {
-    `Node Express server listening on http://localhost:${port}`);
+    console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
 

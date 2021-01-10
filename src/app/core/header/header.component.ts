@@ -33,18 +33,18 @@ export class HeaderComponent implements OnInit{
     this.user$.subscribe(user => this.user = user);
   }
   scrollHideHeader(): void{
-    if (isPlatformBrowser(this.platformId)) {
-      this.prevScrollpos = this.windowRef.nativeWindow.pageYOffset;
-      this.windowRef.nativeWindow.onscroll = () => {
-        const currentScrollPos = this.windowRef.nativeWindow.pageYOffset;
-        if (this.prevScrollpos > currentScrollPos) {
-          document.getElementById('navbar-scrool').style.top = '0';
-        } else {
-          document.getElementById('navbar-scrool').style.top = '-50px';
-        }
-        this.prevScrollpos = currentScrollPos;
-      };
-    }
+    // if (isPlatformBrowser(this.platformId)) {
+    //   this.prevScrollpos = this.windowRef.nativeWindow.pageYOffset;
+    //   this.windowRef.nativeWindow.onscroll = () => {
+    //     const currentScrollPos = this.windowRef.nativeWindow.pageYOffset;
+    //     if (this.prevScrollpos > currentScrollPos) {
+    //       document.getElementById('navbar-scrool').style.top = '0';
+    //     } else {
+    //       document.getElementById('navbar-scrool').style.top = '-50px';
+    //     }
+    //     this.prevScrollpos = currentScrollPos;
+    //   };
+    // }
   }
   logout(): void{
     this.router.navigate(['']);
