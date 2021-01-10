@@ -18,10 +18,11 @@ import {AlertService} from '../../shared/alert/alert.service';
   styleUrls: ['./signup.component.scss'],
   providers: [UserNotTakenValidatorService]
 })
-export class SignUpComponent implements OnInit, AfterViewInit {
+export class SignUpComponent implements OnInit {
 
   signupForm: FormGroup;
   @ViewChild('inputEmail') inputEmail: ElementRef<HTMLInputElement>;
+  classButton = '';
 
   constructor(
     private userNotTakenValidator: UserNotTakenValidatorService,
@@ -77,25 +78,23 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     );
   }
 
-  ngAfterViewInit(): void {
-    this.platformDetectionService.isPlatformBrowser()
-    && this.inputEmail.nativeElement.value;
-  }
-
   signUp(): void{
     const newUser = this.signupForm.getRawValue() as NewUser;
-    if (this.signupForm.valid && !this.signupForm.pending)
-    this.signUpService
-      .newUser(newUser)
-      .subscribe(
-        () => {
-          this.alertService.success('Parabéns! Logo você receberá um E-mail com um código de confirmação. Não esqueça de verificar sua caixa de spam.');
-          this.router.navigate(['']);
-        },
-        err => {
+    if (this.signupForm.valid && !this.signupForm.pending && !this.classButton) {
+      this.classButton = 'disabled';
+      this.signUpService
+        .newUser(newUser)
+        .subscribe(
+          () => {
+            this.alertService.success('Congratulations! Soon you will receive an E-mail with a confirmation code. Don\'t forget to check your spam box.\n');
+            this.router.navigate(['']);
+          },
+          err => {
+            this.classButton = '';
             this.alertService.danger(err.message);
-        }
-      );
+          }
+        );
+    }
   }
 
 }

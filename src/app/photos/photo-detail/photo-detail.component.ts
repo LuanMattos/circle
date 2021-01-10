@@ -35,7 +35,7 @@ export class PhotoDetailComponent implements OnInit{
     });
   }
   removePhoto(): any{
-    this.alertService.success('Imagem excluída! (código comentado para não excluir)')
+    this.alertService.success('Image deleted!');
     this.router.navigate(['']);
     return;
     return this.photoService.removePhoto(this.photoId)
@@ -44,7 +44,7 @@ export class PhotoDetailComponent implements OnInit{
         this.router.navigate([''], {replaceUrl: true});
       },
         error => {
-        this.alertService.warning('Ocorreu um erro, tente mais tarde!');
+        this.alertService.warning('An error occurred, please try later!');
           }
         );
   }

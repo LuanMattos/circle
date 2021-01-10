@@ -1,37 +1,81 @@
-<div class="text-center mt-lg-5  responsive-width register-text"><p>Is already registered?</p></div>
-
-<form class="form mt-lg-5" [formGroup]="loginForm" (submit)="login()" #form="ngForm">
-
-  <div class="form-group">
-
-    <mat-form-field class="responsive-width">
-      <mat-label>User/Phone</mat-label>
-      <input #userNameInput
-             formControlName="userName"
-             matInput type="text" >
-    </mat-form-field>
-
-    <app-vmessage
-      *ngIf="loginForm.get('userName').errors?.required && form.submitted"
-      text="User name is required!"
-    ></app-vmessage>
+<div class="full">
+  <div class="form">
+    <form class="form mt-lg-5" [formGroup]="loginForm" (submit)="login()" #form="ngForm">
+      <div class="row">
+        <div class="col m-auto">
+          <h2 class="stext">Sign Up</h2>
+        </div>
+      </div>
+      <div class="form-group w-75 m-auto">
+        <input class="form-control w-100" type="text" name="name" placeholder="User name or Phone number"
+               formControlName="userName"><br>
+            <app-vmessage
+              *ngIf="loginForm.get('userName').errors?.required && form.submitted"
+              text="User name is required!"
+            ></app-vmessage>
+      </div>
+      <div class="form-group w-75 m-auto">
+        <input class="form-control w-100" type="password" name="password" placeholder="Password"
+               formControlName="password"><br>
+        <app-vmessage
+          *ngIf="loginForm.get('password').errors?.required && form.submitted"
+          text="Password is required!"
+        ></app-vmessage>
+        <app-vmessage *ngIf="authInvalid?.length" text="{{authInvalid}}"></app-vmessage>-->
+      </div>
+      <div class="form-group w-75 m-auto">
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-circle-primary float-right" [routerLink]="['signup']">Sign Up
+            </button>
+          </div>
+          <div class="col">
+            <button type="submit" [disabled]="loginForm.invalid || blockSubmited" class="btn btn-circle-primary">Sign In</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <p class="pt-4"><a [routerLink]="['forgot-password']" class="ml-2">Forgot password ?</a></p>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
+</div>
+<!--<div class="text-center mt-lg-5  responsive-width register-text"><p>Is already registered?</p></div>-->
 
-  <div class="form-group">
-    <mat-form-field class="responsive-width">
-      <mat-label>Password</mat-label>
-      <input formControlName="password"
-             matInput type="password" >
-    </mat-form-field>
-    <app-vmessage
-      *ngIf="loginForm.get('password').errors?.required && form.submitted"
-      text="Password is required "
-    ></app-vmessage>
-    <app-vmessage *ngIf="authInvalid?.length" text="{{authInvalid}}"></app-vmessage>
-  </div>
-  <p><a [routerLink]="['forgot-password']" class="ml-2">Forgot password ?</a></p>
-  <button class="responsive-width bg-dark text-white"  mat-raised-button [disabled]="loginForm.invalid || blockSubmited" type="submit">SIGN-IN</button>
+<!--<form class="form mt-lg-5" [formGroup]="loginForm" (submit)="login()" #form="ngForm">-->
 
-</form>
+<!--  <div class="form-group">-->
 
-<p class="p-5">Not registered ?<a [routerLink]="['signup']" class="ml-2">register now</a></p>
+<!--    <mat-form-field class="responsive-width">-->
+<!--      <mat-label>User/Phone</mat-label>-->
+<!--      <input #userNameInput-->
+<!--             formControlName="userName"-->
+<!--             matInput type="text" >-->
+<!--    </mat-form-field>-->
+
+<!--    <app-vmessage-->
+<!--      *ngIf="loginForm.get('userName').errors?.required && form.submitted"-->
+<!--      text="User name is required!"-->
+<!--    ></app-vmessage>-->
+<!--  </div>-->
+
+<!--  <div class="form-group">-->
+<!--    <mat-form-field class="responsive-width">-->
+<!--      <mat-label>Password</mat-label>-->
+<!--      <input formControlName="password"-->
+<!--             matInput type="password" >-->
+<!--    </mat-form-field>-->
+<!--    <app-vmessage-->
+<!--      *ngIf="loginForm.get('password').errors?.required && form.submitted"-->
+<!--      text="Password is required "-->
+<!--    ></app-vmessage>-->
+<!--    <app-vmessage *ngIf="authInvalid?.length" text="{{authInvalid}}"></app-vmessage>-->
+<!--  </div>-->
+<!--  <p><a [routerLink]="['forgot-password']" class="ml-2">Forgot password ?</a></p>-->
+<!--  <button class="responsive-width bg-dark text-white"  mat-raised-button [disabled]="loginForm.invalid || blockSubmited" type="submit">SIGN-IN</button>-->
+
+<!--</form>-->
+
+<!--<p class="p-5">Not registered ?<a [routerLink]="['signup']" class="ml-2">register now</a></p>-->

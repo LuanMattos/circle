@@ -70,7 +70,7 @@ export class PhotosComponent implements OnChanges {
     }).then((result) => {
       if (result.isConfirmed) {
         if (result.value.length >= 900){
-          this.alertService.warning('Limite de 900 caractéres ultrapassado!');
+          this.alertService.warning('900 character limit exceeded!');
         }else{
           this.save( result.value, this.photoId, i );
         }

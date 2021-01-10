@@ -49,7 +49,7 @@ export class ConfirmationComponent implements OnInit{
             this.router.navigate(['']);
           },
           error => {
-            this.alertService.warning('Código inválido! Verifique espaços, e outros acentos.');
+            this.alertService.warning('Invalid code! Check spaces, and other accents.');
           }
         );
     }

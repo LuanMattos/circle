@@ -80,11 +80,11 @@ export class SettingProfileComponent implements OnInit {
     const data = this.settingForm.getRawValue();
     this.userService.saveSettings(data).subscribe(success => {
         if (!success){
-          this.settingForm.controls.userPassword.setErrors({message : 'Senha incorreta!'});
+          this.settingForm.controls.userPassword.setErrors({message : 'Incorrect password!'});
         } else if ( success === 'auth' ){
           this.userService.logout();
           this.route.navigate(['']);
-          this.alertService.success('Por segurança, faça login novamente!');
+          this.alertService.success('For security, log in again!');
         }else if ( success === 'common'){
           this.route.navigate(['']);
         }
@@ -111,11 +111,11 @@ export class SettingProfileComponent implements OnInit {
 
           }else if ( event.type === HttpEventType.Response ){
             this.user.user_avatar_url = event.body;
-            this.alertService.success('Upload completo');
+            this.alertService.success('Upload complete');
           }
         },
         err => {
-          this.alertService.danger('Falha ao carregar o arquivo, tente mais tarde');
+          this.alertService.danger('Failed to load the file, try later\n');
         }
       );
 
@@ -137,11 +137,11 @@ export class SettingProfileComponent implements OnInit {
 
           }else if( event.type == HttpEventType.Response ){
             this.user.user_cover_url = event.body
-            this.alertService.success('Upload completo');
+            this.alertService.success('Upload complete');
           }
         },
         err => {
-          this.alertService.danger('Falha ao carregar o arquivo, tente mais tarde')
+          this.alertService.danger('Failed to load the file, try later\n');
         }
       )
 

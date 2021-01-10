@@ -58,7 +58,7 @@ export class SignInComponent implements OnInit{
         },
         error => {
           this.blockSubmited = false;
-          this.authInvalid = 'Usuário e/ou senha incorreto(s)';
+          this.authInvalid = 'Error try later';
         }
       );
   }

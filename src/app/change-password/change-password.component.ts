@@ -43,7 +43,7 @@ export class ChangePasswordComponent implements OnInit{
   save(): void{
     const data = this.changePasswordForm.getRawValue();
     if (this.changePasswordForm.get('password').value !== this.changePasswordForm.get('repPassword').value){
-      this.message = 'Senhas não conferem!';
+      this.message = 'Passwords don\'t match!\n';
       return;
     }
     data.code = this.paramUri;
@@ -53,7 +53,7 @@ export class ChangePasswordComponent implements OnInit{
         .subscribe(
           success => {
            this.message = '';
-           this.alertService.success('Sucesso! Logue novamente para confirmar a nova identidade.');
+           this.alertService.success('Success! Log in again to confirm the new identity.\n');
            this.router.navigate(['']);
           },
           error => {

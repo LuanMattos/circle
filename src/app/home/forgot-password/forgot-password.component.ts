@@ -19,6 +19,7 @@ export class ForgotPasswordComponent implements OnInit{
   isSpinnerVisibile$: Observable<boolean> = this.spinnerService.isNavigationPending$;
   forgotPasswordForm: FormGroup;
   message: string;
+  formSubmited: boolean;
 
   constructor(
     private spinnerService: SpinnerService,
@@ -37,18 +38,19 @@ export class ForgotPasswordComponent implements OnInit{
   }
   save(): void{
     const userNameEmail = this.forgotPasswordForm.get('userNameEmail').value;
-    if ( !this.forgotPasswordForm.invalid){
+    if ( !this.forgotPasswordForm.invalid && !this.formSubmited){
+      this.formSubmited = true;
       this.authService
         .forgoutPassword(userNameEmail)
         .subscribe(
           success => {
             this.message = '';
             this.alertService.success(success.body);
-            this.forgotPasswordForm.reset();
           },
           error => {
             this.message = error.body;
             this.forgotPasswordForm.reset();
+            this.formSubmited = false;
           }
         );
     }

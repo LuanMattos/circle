@@ -5,8 +5,8 @@
         Ops!
       </div>
       <div class="col-10 m-auto">
-        Olá <em>{{userName}}</em>, precisamos que você confirme sua conta.
-        Insira o código de verificação enviado para sua conta de E-mail, lembre-se de conferir a caixa de spam e/ou promoções.
+        Hi <em>{{userName}}</em>,
+        we need you to verify your account. Enter the verification code sent to your email account, remember to check the spam box and / or promotions.
       </div>
       <div class="col-sm-10 m-auto">
         <div class="form-group pt-4" >
@@ -14,17 +14,17 @@
             <input type="text"
                    class="form-control"
                    formControlName="code"
-                   placeholder="Código de verificação"
+                   placeholder="Code Verification"
             >
           </div>
           <app-vmessage
             *ngIf="confirmationForm.get('code').errors?.required && form.submitted"
-            text="Senha é obrigatória "
+            text="Code is required "
           ></app-vmessage>
         </div>
       </div>
       <div class="col-sm-10 m-auto" style="z-index: 1000 !important;">
-        <button class="w-100 bg-light text-black-50"  mat-raised-button [disabled]="confirmationForm.invalid && !form.submitted" type="submit">Confirmar</button>
+        <button class="w-100 bg-light text-black-50"  mat-raised-button [disabled]="confirmationForm.invalid && !form.submitted" type="submit">Confirm</button>
       </div>
     </div>
     <app-las-vegas></app-las-vegas>

@@ -67,11 +67,11 @@ export class PhotoFormComponent implements OnInit {
               this.progress = Math.round(100 * event.loaded / event.total);
 
             }else if ( event.type === HttpEventType.Response ){
-              this.alertService.success('Upload completo');
+              this.alertService.success('Upload complete');
             }
       },
       err => {
-          this.alertService.danger('Falha ao carregar o arquivo, tente mais tarde')
+          this.alertService.danger('Failed to load the file, try later');
         }
       );
   }
