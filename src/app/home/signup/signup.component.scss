@@ -1,49 +1,41 @@
-//form{
-//  height: 80vh;
-//}
-//.simple-text{
-//  margin-top: 70px;
-//  margin-bottom: 30px;
-//}
-//.responsive-width{
-//  width: 75%;
-//}
-//@media only screen and (max-width: 800px) {
-//  .responsive-width{
-//    width: 100%;
-//  }
-//}
 
 @import url('https://fonts.googleapis.com/css2?family=Martel:wght@200&display=swap');
 
 .full {
-  //background-image: url("https://projectno51.000webhostapp.com/data/extended%20sources/My%20Post%20(1).png");
+  background-image: url("https://projectno51.000webhostapp.com/data/extended%20sources/My%20Post%20(1).png");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  min-height: 100vh;
 }
 .form {
   margin: auto;
   background-color: #303030;
-  height: 550px;
   width: 400px;
-  margin-top: 25px;
   border-radius: 10px;
   box-shadow: 5px 8px 15px #404040;
   transition: z-index 0.5s linear;
+  height: 100vh;
   input{
     height: 8vh;
   }
 }
+.container-form{
+  padding-top: 70px;
+  padding-bottom: 100px;
+}
 .stext {
   color: white;
   text-align: center;
-  padding: 50px;
-  font-family: 'Martel', serif;
+  padding: 30px;
   letter-spacing: 1px;
+  font-size: 12px;
 }
 .btn-circle-primary{
   background-color: #6eb6ff;
   width: 100%;
+}
+.text-logo{
+  font-size: 32px;
 }
 
