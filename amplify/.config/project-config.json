@@ -8,7 +8,7 @@
       "SourceDir": "src",
       "DistributionDir": "dist/App",
       "BuildCommand": "npm run build:ssr",
-      "StartCommand": "ng serve"
+      "StartCommand": "bunda"
     }
   },
   "providers": [
