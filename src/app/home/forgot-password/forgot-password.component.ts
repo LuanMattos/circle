@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {SpinnerService} from '../../shared/spinner/spinner.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -15,7 +15,7 @@ import {AlertService} from '../../shared/alert/alert.service';
     slideInAnimation
   ]
 })
-export class ForgotPasswordComponent implements OnInit{
+export class ForgotPasswordComponent implements OnInit, AfterViewInit, OnDestroy{
   isSpinnerVisibile$: Observable<boolean> = this.spinnerService.isNavigationPending$;
   forgotPasswordForm: FormGroup;
   message: string;
@@ -35,6 +35,13 @@ export class ForgotPasswordComponent implements OnInit{
     this.forgotPasswordForm = this.formBuilder.group({
       userNameEmail: ['', Validators.required]
     });
+  }
+  ngAfterViewInit(): void {
+    document.querySelector('body').style.background = '#161616';
+  }
+
+  ngOnDestroy(): void{
+    document.querySelector('body').style.background = 'white';
   }
   save(): void{
     const userNameEmail = this.forgotPasswordForm.get('userNameEmail').value;

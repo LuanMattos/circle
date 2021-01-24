@@ -43,7 +43,7 @@
         <div class="col z-100">
           <div class="lp__nav__linkSet mr-2 z-100">
             <i *ngIf="!showFillerLogged" class="fa fa-bars text-white fa-2x cursor-pointer" aria-hidden="true"
-               (click)="eventMenuIcon()"></i>
+               (click)="eventMenuDesktop()"></i>
             <span *ngIf="showFillerLogged" class="text-white fa-2x  cursor-pointer z-100" aria-hidden="true"
                   (click)="showFillerLogged = !showFillerLogged">&#10005;</span>
           </div>
@@ -84,8 +84,8 @@
         <a [routerLink]="['terms']" class="lp__nav__link">Terms and conditions</a>
       </div>
       <div class="lp__nav__linkSet">
-        <a [routerLink]="['home/signup']" class="lp__nav__link">Sign Up</a>
-        <a [routerLink]="['']" class="lp__nav__link">Login</a>
+        <a [routerLink]="['home/signup']" (click)="eventMenuMobileItemMenu()" class="lp__nav__link">Sign Up</a>
+        <a [routerLink]="['']" (click)="eventMenuMobileItemMenu()" class="lp__nav__link">Login</a>
       </div>
     </nav>
     <nav class="menu-mobile" *ngIf="!(user$ | async)">
@@ -96,7 +96,7 @@
         <div class="col">
           <div class="lp__nav__linkSet mr-2">
             <i *ngIf="!showFiller" class="fa fa-bars text-white fa-2x cursor-pointer" aria-hidden="true"
-               (click)="eventMenuIcon()"></i>
+               (click)="eventMenuMobile()"></i>
             <span *ngIf="showFiller" class="text-white fa-2x  cursor-pointer" aria-hidden="true"
                   (click)="showFiller = !showFiller">&#10005;</span>
           </div>
@@ -109,12 +109,12 @@
 <div class="menu-responsive m-auto" *ngIf="showFiller && !(user$ | async)">
   <div class="row">
     <div class="col">
-      <a [routerLink]="['home/signup']" (click)="eventMenu()">Sign Up</a>
+      <a [routerLink]="['home/signup']" (click)="eventMenuMobileItemMenu()">Sign Up</a>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <a [routerLink]="['']" (click)="eventMenu()">Login</a>
+      <a [routerLink]="['']" (click)="eventMenuMobileItemMenu()">Login</a>
     </div>
   </div>
   <div class="row">

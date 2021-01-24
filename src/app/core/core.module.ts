@@ -5,7 +5,6 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {HeaderComponent} from './header/header.component';
 import {RequestInterceptor} from './auth/request.interceptor';
-import {FooterComponent} from './footer/footer.component';
 import {AlertModule} from '../shared/alert/alert.module';
 import {PhotoListModule} from '../photos/photo-list/photo-list.module';
 import {UxModule} from './ux/ux-module';
@@ -13,15 +12,16 @@ import {ShowIsLoggedModule} from '../shared/directives/show-is-logged/show-is-lo
 import {AboutComponent} from '../home/footer/about/about.component';
 import {PrivacyComponent} from '../home/footer/privacy/privacy.component';
 import {TermsComponent} from '../home/footer/terms/terms.component';
+import {SearchComponent} from './search/search.component';
 
 
 @NgModule({
   declarations:[
     HeaderComponent,
-    FooterComponent,
     AboutComponent,
     PrivacyComponent,
-    TermsComponent
+    TermsComponent,
+    SearchComponent
   ],
     imports: [
         CommonModule,
@@ -31,15 +31,14 @@ import {TermsComponent} from '../home/footer/terms/terms.component';
         UxModule,
         ShowIsLoggedModule
     ],
-  exports:[
+  exports: [
     HeaderComponent,
-    FooterComponent
   ],
-  providers:[
+  providers: [
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:RequestInterceptor,
-      multi:true
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true
     }
   ]
 })

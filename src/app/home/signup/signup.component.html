@@ -31,7 +31,7 @@
         <input class="form-control w-100" type="password" name="password" placeholder="Password"
                formControlName="password"><br>
         <app-vmessage *ngIf="signupForm.get('password').errors?.required && form.submitted"
-                      text="Pass is required!"></app-vmessage>
+                      text="Password is required!"></app-vmessage>
         <app-vmessage *ngIf="signupForm.get('password').errors?.minlength && form.submitted"
                       text="Min 2 characters!"></app-vmessage>
         <app-vmessage *ngIf="signupForm.get('password').errors?.maxlength && form.submitted"
