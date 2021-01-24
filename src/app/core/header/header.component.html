@@ -1,44 +1,135 @@
-<header class="fixed-top" id="navbar-scrool">
-  <nav class="navbar navbar-light bg-white">
-    <div class="row w-100">
+<main id="navbar-scrool">
+  <div class="lp fixed-top">
+
+    <!--    Menu logado desktop-->
+    <div class="row menu-desktop-logged pt-2" *ngIf="(user$ | async)">
       <div class="col">
-        <div *ngIf="!openSearch">
-          <a *ngIf="(user$ | async)" class="navbar-brand title-header" (click)="redirect()">
-            <img src="assets/img/logo.png" class="logo">
-            Circle
-          </a>
-        </div>
-      </div>
-      <div class="col">
-        <app-search *ngIf="(user$ | async)" (openInputSearch)="openSearch = $event" class="m-auto" ></app-search>
-      </div>
-      <div class="col">
-        <div *ngIf="!openSearch" class="float-right ml-4">
-          <div *ngIf="(user$ | async) as user;else login">
-            <div class="cursor-pointer" [matMenuTriggerFor]="menu">
-              <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-            </div>
-            <mat-menu #menu="matMenu" class="mt-3">
-              <a mat-menu-item [href]="['user/' + user.user_name]">
-                <span class="ml-2" >Profile</span>
-              </a>
-              <div mat-menu-item (click)="logout()">
-                <a class="ml-2">Logout</a>
-              </div>
-            </mat-menu>
+        <div class="ml-auto mr-auto" style="width: 40vw">
+          <div class="pb-2">
+            <app-search *ngIf="(user$ | async)" (openInputSearch)="openSearch = $event"></app-search>
           </div>
-          <ng-template #login>
-        <span class="navbar-text">
-          Go to <a [routerLink]="['']">sign-in</a>
-        </span>
-          </ng-template>
         </div>
-        <div *ngIf="(user$ | async) && !openSearch" class="float-right">
-          <i class="fa fa-compass fa-2x cursor-pointer"  [routerLink]="['to-explore']"  aria-hidden="true"></i>
+      </div>
+      <div class="col-auto nav-desktop">
+        <div class="float-right">
+          <div *ngIf="!openSearch" class="float-right pr-4">
+            <div *ngIf="(user$ | async) as user;">
+              <div class="cursor-pointer" [matMenuTriggerFor]="menu">
+                <i class="fa fa-user fa-2x text-white" aria-hidden="true"></i>
+              </div>
+              <mat-menu #menu="matMenu" class="mt-3">
+                <a [href]="['user/' + user.user_name]" mat-menu-item>
+                  <span class="ml-2 text-black-50">Profile</span>
+                </a>
+                <div mat-menu-item (click)="logout()">
+                  <a class="ml-2 text-black-50">Logout</a>
+                </div>
+              </mat-menu>
+            </div>
+          </div>
+          <div class="float-right pr-4" *ngIf="(user$ | async) && !openSearch">
+            <i class="fa fa-compass fa-2x cursor-pointer text-white" [routerLink]="['to-explore']"
+               aria-hidden="true"></i>
+          </div>
         </div>
       </div>
     </div>
-  </nav>
-  <app-alert></app-alert>
-</header>
 
+    <nav class="menu-mobile-logged z-100" *ngIf="(user$ | async)">
+      <div class="row">
+        <div class="col">
+          <div class="lp__nav__logo"><span><a [href]="['timeline/' + (user$ | async).user_name]">Circle</a></span></div>
+        </div>
+        <div class="col z-100">
+          <div class="lp__nav__linkSet mr-2 z-100">
+            <i *ngIf="!showFillerLogged" class="fa fa-bars text-white fa-2x cursor-pointer" aria-hidden="true"
+               (click)="eventMenuIcon()"></i>
+            <span *ngIf="showFillerLogged" class="text-white fa-2x  cursor-pointer z-100" aria-hidden="true"
+                  (click)="showFillerLogged = !showFillerLogged">&#10005;</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!--    Menu logado mobile-->
+    <div class="menu-responsive-logged m-auto" *ngIf="showFillerLogged && (user$ | async)">
+      <div class="row">
+        <div class="col">
+          Search&nbsp;<i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" [routerLink]="['to-explore']" (click)="showFillerLogged = !showFillerLogged">
+          Explore&nbsp;<i class="fa fa-compass" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <a [href]="['user/' + user.user_name]">Profile</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" (click)="logout()">
+          Logout
+        </div>
+      </div>
+    </div>
+
+    <!--    Menu Não logado desktop-->
+    <nav class="menu-desktop" *ngIf="!(user$ | async)">
+      <div class="lp__nav__logo"><span>Circle</span></div>
+      <div class="lp__nav__linkSet">
+        <a [routerLink]="['about']" class="lp__nav__link" >About</a>
+        <a [routerLink]="['privacy']" class="lp__nav__link">Privacy</a>
+        <a [routerLink]="['terms']" class="lp__nav__link">Terms and conditions</a>
+      </div>
+      <div class="lp__nav__linkSet">
+        <a [routerLink]="['home/signup']" class="lp__nav__link">Sign Up</a>
+        <a [routerLink]="['']" class="lp__nav__link">Login</a>
+      </div>
+    </nav>
+    <nav class="menu-mobile" *ngIf="!(user$ | async)">
+      <div class="row">
+        <div class="col">
+          <div class="lp__nav__logo"><span>Circle</span></div>
+        </div>
+        <div class="col">
+          <div class="lp__nav__linkSet mr-2">
+            <i *ngIf="!showFiller" class="fa fa-bars text-white fa-2x cursor-pointer" aria-hidden="true"
+               (click)="eventMenuIcon()"></i>
+            <span *ngIf="showFiller" class="text-white fa-2x  cursor-pointer" aria-hidden="true"
+                  (click)="showFiller = !showFiller">&#10005;</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <app-alert></app-alert>
+</main>
+<div class="menu-responsive m-auto" *ngIf="showFiller && !(user$ | async)">
+  <div class="row">
+    <div class="col">
+      <a [routerLink]="['home/signup']" (click)="eventMenu()">Sign Up</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <a [routerLink]="['']" (click)="eventMenu()">Login</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <a [routerLink]="['about']" (click)="showFiller = !showFiller">About</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <a [routerLink]="['privacy']" (click)="showFiller = !showFiller">Privacy</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <a [routerLink]="['terms']" (click)="showFiller = !showFiller">Terms and conditions</a>
+    </div>
+  </div>
+</div>

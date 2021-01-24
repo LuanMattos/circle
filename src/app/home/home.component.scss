@@ -1,0 +1,121 @@
+$font-color: #fafafa;
+
+.text-outline {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fafafa;
+  color: transparent;
+}
+
+img {
+  width: 100%;
+}
+.lp {
+  width:100%;
+  margin: 0;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+h1, p, a {
+  color: $font-color;
+}
+
+/*GRID*/
+.lp__grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 16px 48px;
+}
+.lp__grid__item {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+/*...grid item 1...*/
+.lp__grid-col {
+  display: grid;
+  grid-template-columns: 24px auto;
+  position: relative;
+}
+.textHolder {
+  position: relative;
+}
+.lp__grid-col p {
+  transform: rotate(270deg);
+  height: 24px;
+  margin: 0;
+  font-size: 16px;
+  position: absolute;
+  bottom: 130px;
+  left: -130px;
+  font-size: 12px;
+}
+.lp__gridImage-1 {
+  height: 496px;
+  background: url('https://cdn.pixabay.com/photo/2015/07/29/00/08/photographer-865295_1280.jpg') no-repeat -300px;
+  background-size: cover;
+}
+
+/*grid item 2 + 3*/
+.lp__subgrid {
+  display: grid;
+  height: 100%;
+}
+.lp__subgrid-sm {
+  grid-template-rows: 72px auto;
+}
+.lp__subgrid-sm p {
+  line-height: 1.4;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+}
+.lp__subgrid-md {
+  grid-template-rows: 144px auto;
+}
+
+.lp__subgrid-md h1 {
+  font-size: 64px;
+  line-height: 1;
+  margin: 0
+}
+.lp__subgrid-md h1 span {
+  display: block;
+  @extend .text-outline;
+}
+
+
+.lp__gridImage-2 {
+  background: url('https://cdn.pixabay.com/photo/2017/07/31/23/51/people-2562109_1280.jpg') no-repeat right;
+  background-size: cover;
+}
+.lp__gridImage-3 {
+  background: url('https://cdn.pixabay.com/photo/2016/11/29/06/49/beach-1867908_1280.jpg') no-repeat center;
+  background-size: cover;
+
+}
+
+@media screen and (max-width: 650px) {
+  .lp{
+    width:100%;
+    margin: 0;
+    height: auto;
+    display: block;
+    flex-direction: row;
+    position: relative;
+  }
+  h1, p,a{}
+  .lp__grid-3{
+    display: block;
+    grid-template-columns: unset;
+    padding: 16px 48px;
+  }
+  .lp__grid__item{}
+  .lp__grid-col{}
+  .lp__gridImage-1{}
+  .lp__gridImage-2{}
+  .lp__gridImage-3{}
+}

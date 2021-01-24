@@ -1,6 +1,7 @@
-<div class="text-center w-100 general " showIsLogged>
-    <mat-form-field  class="match-input-search  {{_openInputSearch?'':'hide'}}">
-      <mat-label class="border-0">Search</mat-label>
+<!--showIsLogged-->
+<div class="general text-center">
+    <mat-form-field  class="match-input-search w-100 {{_openInputSearch?'':'hide'}}">
+      <mat-label class="text-white">Search</mat-label>
       <input
         matInput
         autocomplete="off"
@@ -8,11 +9,9 @@
         #search
         (keyup)="_filter($event.target.value)"
       >
-      <mat-icon matSuffix><i class="fa fa-close text-muted" (click)="toggleSearch(false)"></i></mat-icon>
+      <mat-icon matSuffix><i class="fa fa-close text-white cursor-pointer" (click)="toggleSearch(false)"></i></mat-icon>
     </mat-form-field>
-    <i *ngIf="!_openInputSearch" class="fa fa-search text-muted search-responsive" (click)="toggleSearch(true);"></i>
-
-
+    <i *ngIf="!_openInputSearch" class="fa fa-search text-white search-responsive mt-2" (click)="toggleSearch(true);"></i>
       <div infiniteScroll
         [infiniteScrollDistance]="2"
         [infiniteScrollThrottle]="50"

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
@@ -18,7 +18,7 @@ import {AlertService} from '../../shared/alert/alert.service';
   styleUrls: ['./signup.component.scss'],
   providers: [UserNotTakenValidatorService]
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, AfterViewInit, OnDestroy {
 
   signupForm: FormGroup;
   @ViewChild('inputEmail') inputEmail: ElementRef<HTMLInputElement>;
@@ -76,6 +76,14 @@ export class SignUpComponent implements OnInit {
         validator: userNamePassword
       }
     );
+  }
+
+  ngAfterViewInit(): void {
+    document.querySelector('body').style.background = '#161616';
+  }
+
+  ngOnDestroy(): void{
+    document.querySelector('body').style.background = 'white';
   }
 
   signUp(): void{

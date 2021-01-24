@@ -1,41 +1,49 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Martel:wght@200&display=swap');
-
 .full {
-  background-image: url("https://projectno51.000webhostapp.com/data/extended%20sources/My%20Post%20(1).png");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  min-height: 100vh;
+  height: auto;
+  padding-bottom: 1%;
 }
-.form {
-  margin: auto;
-  background-color: #303030;
-  width: 400px;
-  border-radius: 10px;
-  box-shadow: 5px 8px 15px #404040;
-  transition: z-index 0.5s linear;
-  height: 100vh;
-  input{
-    height: 8vh;
-  }
+
+input {
+  height: 8vh;
 }
+
 .container-form{
-  padding-top: 70px;
-  padding-bottom: 100px;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
 }
+
 .stext {
-  color: white;
+  color: #eff0eb;
   text-align: center;
   padding: 30px;
   letter-spacing: 1px;
   font-size: 12px;
+  width:80%;
+  margin:auto;
+  border-top:1px solid #a3a3a3;
 }
+
 .btn-circle-primary{
-  background-color: #6eb6ff;
+  background-color: white;
   width: 100%;
 }
-.text-logo{
+.responsive-div{
+  width:60%;
+}
+.text-logo {
   font-size: 32px;
+}
+@media screen and (max-width: 285px) {
+  .icon-btns{
+    display: none;
+  }
+}
+@media screen and (max-width: 660px) {
+  .responsive-div{
+    width:100%;
+  }
 }
 

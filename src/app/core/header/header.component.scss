@@ -1,19 +1,140 @@
-.title-header{
-  font-size:20px;
+.z-100{
+  z-index: 100;
 }
-@media only screen and (max-width: 600px) {
-  .title-header{
-    font-size: 12px;
+$font-color: #fafafa;
+.lp {
+  width: 100%;
+  margin: auto;
+  min-height: 56px;
+  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  background: #161616;
+}
+
+.text-outline {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fafafa;
+  color: transparent;
+}
+
+nav {
+  padding: 10px 8px;
+  display: grid;
+  grid-template-columns: 120px auto auto;
+}
+
+.lp__nav__logo {
+  color: $font-color;
+  font-weight: 600;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.lp__nav__logo span {
+  @extend .text-outline;
+  -webkit-text-stroke-width: 0.5px;
+  padding-top: 5px;
+}
+
+.lp__nav__linkSet {
+  text-align: right;
+}
+
+.lp__nav__link {
+  padding: 0 16px;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+a {
+  color: white;
+}
+
+.menu-mobile {
+  display: none;
+}
+.menu-mobile-logged {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .menu-responsive-logged{
+    display: none;
+  }
+}
+@media screen and (max-width: 600px) {
+  .fade-in-f {
+    -webkit-animation: fadeIn .2s ease-in;
+    -moz-animation: fadeIn .2s ease-in;
+    -o-animation: fadeIn .2s ease-in;
+    animation: fadeIn .2s ease-in;
+  }
+
+  .menu-desktop {
+    display: none;
+  }
+
+  .menu-desktop-logged {
+    display: none;
+  }
+  .menu-mobile {
+    display: block;
+  }
+  .menu-mobile-logged {
+    display: block;
+  }
+
+  .menu-responsive-fun{
+    @extend .fade-in-f;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    position: absolute;
+    z-index: 99;
+    opacity: .8;
+    color:white;
+    padding-top: 100px;
+    font-size:4vw;
+    .row{
+      text-align: center;
+      margin:auto !important;
+      padding:10px;
+      .col{
+        cursor: pointer;
+        margin: auto !important;
+      }
+    }
+  }
+
+  .menu-responsive-logged{
+    @extend .menu-responsive-fun;
+  }
+  .menu-responsive {
+    @extend .menu-responsive-fun;
   }
 }
 
-#navbar-scrool {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: block;
-  transition: top 0.3s;
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
 }
-img.logo{
-  max-width: 25px !important;
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
 }

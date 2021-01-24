@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router} from '@angular/router';
 
@@ -6,10 +6,11 @@ import {AuthService} from '../../core/auth/auth.service';
 import {PlatformDetectorService} from '../../core/platform-detector/platform-detector.service';
 
 @Component({
+  selector: 'app-sign-in',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss']
 })
-export class SignInComponent implements OnInit{
+export class SignInComponent implements OnInit, AfterViewInit, OnDestroy{
 
   loginForm: FormGroup;
   authInvalid: string;
@@ -25,6 +26,14 @@ export class SignInComponent implements OnInit{
     private router: Router,
     private platformDetectionService: PlatformDetectorService,
   ) {}
+
+  ngAfterViewInit(): void {
+    document.querySelector('body').style.background = '#161616';
+  }
+
+  ngOnDestroy(): void{
+    document.querySelector('body').style.background = 'white';
+  }
 
   ngOnInit(): void{
     this.loginForm = this.formBuilder.group({
@@ -53,8 +62,8 @@ export class SignInComponent implements OnInit{
           }
           this.authInvalid = res.body;
           this.blockSubmited = false;
-          this.platformDetectionService.isPlatformBrowser()
-          && this.userNameInput.nativeElement.focus();
+          // this.platformDetectionService.isPlatformBrowser()
+          // && this.userNameInput.nativeElement.focus();
         },
         error => {
           this.blockSubmited = false;

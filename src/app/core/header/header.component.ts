@@ -18,6 +18,8 @@ export class HeaderComponent implements OnInit{
   user;
   openSearch: boolean;
   private prevScrollpos;
+  showFiller;
+  showFillerLogged = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
@@ -64,5 +66,15 @@ export class HeaderComponent implements OnInit{
   }
   isLogged(): any{
     return this.userService.isLogged();
+  }
+  eventMenu(): void{
+    window.scrollBy(0, 2000000000000);
+    window.scrollBy(0, 2000000000000);
+    this.showFiller = !this.showFiller;
+  }
+  eventMenuIcon(): void{
+    window.scrollBy(0, -1000);
+    window.scrollBy(0, -1000);
+    this.showFillerLogged = !this.showFillerLogged;
   }
 }

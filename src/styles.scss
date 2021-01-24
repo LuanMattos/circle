@@ -35,7 +35,7 @@ $App-theme: mat-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 100%;  scroll-behavior: smooth;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body{
   padding-top: 60px;
@@ -250,4 +250,7 @@ a{
 }
 .alert-warning{
   background-color: #ff2e63 !important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline{
+  background-color: white !important;
 }
