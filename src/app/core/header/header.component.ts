@@ -67,9 +67,12 @@ export class HeaderComponent implements OnInit{
   isLogged(): any{
     return this.userService.isLogged();
   }
+  eventMenuDesktopLogged(): void{
+    window.scrollBy(null, 0);
+    this.showFillerLogged = !this.showFillerLogged;
+  }
   eventMenuDesktop(): void{
     window.scrollBy(null, 2000000000000);
-    this.showFillerLogged = !this.showFillerLogged;
   }
   eventMenuMobile(): void{
     window.scrollBy(null, -1000);
