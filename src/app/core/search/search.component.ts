@@ -9,7 +9,7 @@ import {WindowRefService} from '../nativejs/windowRef.service';
 import {isPlatformBrowser} from '@angular/common';
 
 @Component({
-  selector: 'app-search',
+  selector: 'app-search-page',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })

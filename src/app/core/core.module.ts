@@ -13,15 +13,17 @@ import {AboutComponent} from '../home/footer/about/about.component';
 import {PrivacyComponent} from '../home/footer/privacy/privacy.component';
 import {TermsComponent} from '../home/footer/terms/terms.component';
 import {SearchComponent} from './search/search.component';
+import {FooterComponent} from './footer/footer.component';
 
 
 @NgModule({
-  declarations:[
+  declarations: [
     HeaderComponent,
     AboutComponent,
     PrivacyComponent,
     TermsComponent,
-    SearchComponent
+    SearchComponent,
+    FooterComponent
   ],
     imports: [
         CommonModule,
@@ -33,6 +35,7 @@ import {SearchComponent} from './search/search.component';
     ],
   exports: [
     HeaderComponent,
+    FooterComponent,
   ],
   providers: [
     {
