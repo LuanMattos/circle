@@ -54,7 +54,7 @@
     <!--    Menu logado mobile-->
     <div class="menu-responsive-logged m-auto" *ngIf="showFillerLogged && (user$ | async)">
       <div class="row">
-        <div class="col">
+        <div class="col" [routerLink]="['search']" (click)="showFillerLogged = !showFillerLogged">
           Search&nbsp;<i class="fa fa-search" aria-hidden="true"></i>
         </div>
       </div>

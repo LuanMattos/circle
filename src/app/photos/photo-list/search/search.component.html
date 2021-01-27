@@ -1,22 +1,24 @@
-<!--showIsLogged-->
-<div class="general text-center">
-    <mat-form-field  class="match-input-search w-100 {{_openInputSearch?'':'hide'}}">
-      <mat-label class="text-white">Search</mat-label>
+<div class="general text-center" showIsLogged>
+  <div class="row">
+    <div class="col">
       <input
-        matInput
         autocomplete="off"
-        type="search"
+        type="text"
         #search
+        class="form-control float-right {{_openInputSearch?'':'hide'}}"
         (keyup)="_filter($event.target.value)"
-      >
-      <mat-icon matSuffix><i class="fa fa-close text-white cursor-pointer" (click)="toggleSearch(false)"></i></mat-icon>
-    </mat-form-field>
-    <i *ngIf="!_openInputSearch" class="fa fa-search text-white search-responsive mt-2" (click)="toggleSearch(true);"></i>
+      />
+    </div>
+    <div class="col-auto">
+      <i class="fa fa-close text-white m-0 pt-1 cursor-pointer {{_openInputSearch?'':'hide'}}" (click)="toggleSearch(false)"></i>
+    </div>
+  </div>
+    <i *ngIf="!_openInputSearch" class="fa fa-search ml-5 text-white search-responsive mt-2" (click)="toggleSearch(true);"></i>
       <div infiniteScroll
         [infiniteScrollDistance]="2"
         [infiniteScrollThrottle]="50"
         (scrolled)="moreUsers()"
-        *ngIf="filter && _openInputSearch" class="autocomplete m-auto">
+        *ngIf="filter && _openInputSearch" class="autocomplete m-auto w-50">
           <ul>
             <li *ngFor="let user of users">
               <a href="/user/{{user.user_name}}">

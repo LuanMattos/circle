@@ -26,6 +26,7 @@ import {FollowingResolver} from './core/following/following.resolver';
 import {AboutComponent} from './home/footer/about/about.component';
 import {PrivacyComponent} from './home/footer/privacy/privacy.component';
 import {TermsComponent} from './home/footer/terms/terms.component';
+import {SearchComponent} from "./core/search/search.component";
 
 
 const routes: Routes = [
@@ -90,6 +91,13 @@ const routes: Routes = [
     data: {
       animation: 'HomePage',
       title: 'Detail Photo'
+    },
+  }, {
+    path: 'search',
+    component: SearchComponent,
+    data: {
+      animation: 'HomePage',
+      title: 'Search user'
     },
   },
   {
@@ -179,12 +187,13 @@ const routes: Routes = [
   },
 
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     initialNavigation: 'enabled'
-}) ],
+  })],
   exports: [RouterModule]
 })
-export class AppRoutingModule{
+export class AppRoutingModule {
 
 }
