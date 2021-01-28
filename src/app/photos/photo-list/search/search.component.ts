@@ -13,10 +13,10 @@ import {SecurityCommonsService} from '../../../shared/services/security-commons.
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent{
-  filter: string = '';
+  filter = '';
   users: User[] = [];
-  hasMore: boolean = true;
-  _openInputSearch: boolean = false;
+  hasMore = true;
+  _openInputSearch = false;
   @ViewChild('search') searchInput: ElementRef<HTMLInputElement>;
   avatarDefault: string = environment.ApiUrl + 'storage/profile_default/default.png';
   @Output() openInputSearch: EventEmitter<boolean> =  new EventEmitter<boolean>();

@@ -14,6 +14,7 @@ import {PrivacyComponent} from '../home/footer/privacy/privacy.component';
 import {TermsComponent} from '../home/footer/terms/terms.component';
 import {SearchComponent} from './search/search.component';
 import {FooterComponent} from './footer/footer.component';
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {FooterComponent} from './footer/footer.component';
         AlertModule,
         PhotoListModule,
         UxModule,
-        ShowIsLoggedModule
+        ShowIsLoggedModule,
+        InfiniteScrollModule
     ],
   exports: [
     HeaderComponent,
