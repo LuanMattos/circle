@@ -21,6 +21,7 @@ import {VmessageModule} from '../../shared/vmessage/vmessage.module';
 import {PhotoOwnerOnlyModule} from '../../shared/directives/owner-only/photo-owner-only.module';
 import {FollowersComponent} from './followers/followers.component';
 import {FollowingComponent} from './following/following.component';
+import {ImgOnerrorModule} from '../../shared/directives/img-onerror/img-onerror.module';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import {FollowingComponent} from './following/following.component';
         InfiniteScrollModule,
         ReactiveFormsModule,
         VmessageModule,
-        PhotoOwnerOnlyModule
+        PhotoOwnerOnlyModule,
+        ImgOnerrorModule
     ]
 })
 export class PhotoListModule{}

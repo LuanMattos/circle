@@ -25,7 +25,7 @@ export class PhotoListComponent implements OnInit {
   stoppedRequest: boolean;
   isExplorer: boolean;
   isTimeline: boolean;
-  avatarDefault: string = environment.ApiUrl + 'storage/profile_default/default.png';
+  avatarDefault = environment.ApiUrl + 'storage/profile_default/default.png';
   html: string;
   private prevScrollpos;
 
@@ -113,9 +113,9 @@ export class PhotoListComponent implements OnInit {
     });
   }
   openFollowers(): void{
-    this.router.navigate(['followers']);
+    this.router.navigate(['followers/' + this.user.user_name]);
   }
   openFollowings(): void{
-    this.router.navigate(['followings']);
+    this.router.navigate(['followings/' + this.user.user_name]);
   }
 }

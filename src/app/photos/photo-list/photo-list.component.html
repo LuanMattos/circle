@@ -1,9 +1,10 @@
 <div class="container w-100" *ngIf="!isExplorer && !isTimeline">
   <div class="container-cover">
-    <img *ngIf="this.user.user_cover_url" class="w-100 e2e-iframe-trusted-src" [src]="user_cover_url"/>
+<!--    onerror="this.src='https://be.mycircle.click/storage/profile_default/cover-default-grey.png'"-->
+    <img *ngIf="this.user.user_cover_url" class="w-100 e2e-iframe-trusted-src" [src]="user_cover_url" onerror="this.src='https://be.mycircle.click/storage/profile_default/cover-default-grey.png'" />
   </div>
   <div class="card-body text-center">
-    <img class="avatar rounded-circle e2e-iframe-trusted-src" [src]="user.user_avatar_url">
+    <img class="avatar rounded-circle e2e-iframe-trusted-src" [src]="user.user_avatar_url" onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'">
     <i itemOwnerOnly showIsLogged [ownedItem]="user" class="fa fa-cogs cursor-pointer fa-2x" aria-hidden="true"
        [routerLink]="['/setting',user.user_name]"></i>
     <h4 class="card-title">{{user.user_full_name | titlecase}}</h4>

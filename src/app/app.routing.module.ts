@@ -137,7 +137,7 @@ const routes: Routes = [
       isToExplorer: true
     }
   }, {
-    path: 'followers',
+    path: 'followers/:userName',
     component: FollowersComponent,
     resolve: {
       user: UserResolver,
@@ -147,7 +147,7 @@ const routes: Routes = [
       title: 'Followers'
     }
   }, {
-    path: 'followings',
+    path: 'followings/:userName',
     component: FollowingComponent,
     resolve: {
       user: UserResolver,

@@ -20,7 +20,7 @@
       </div>
       <div class="row">
         <div class="col-auto">
-          <img [src]="avatar" class="avatar rounded-circle">
+          <img [src]="avatar" class="avatar rounded-circle" onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'">
         </div>
         <div class="col-auto">
           <div class="mt-2 menu-options-public" (click)="public = !public">
