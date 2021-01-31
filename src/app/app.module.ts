@@ -16,6 +16,8 @@ import {AuthService} from './core/auth/auth.service';
 import {appInitializer} from './shared/initializer/app.initializer';
 import {ChangePasswordModule} from './change-password/change-password.module';
 import {NgtUniversalModule} from '@ng-toolkit/universal';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
 // import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 
 
@@ -37,7 +39,8 @@ import {NgtUniversalModule} from '@ng-toolkit/universal';
         ShowIsLoggedModule,
         ChangePasswordModule,
         NgtUniversalModule,
-        // AmplifyUIAngularModule
+        // AmplifyUIAngularModule,
+        AngularFireModule.initializeApp (environment.firabase),
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthService] },
@@ -47,3 +50,4 @@ import {NgtUniversalModule} from '@ng-toolkit/universal';
 })
 export class AppModule {
 }
+

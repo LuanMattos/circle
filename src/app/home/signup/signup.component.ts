@@ -11,7 +11,6 @@ import {PlatformDetectorService} from '../../core/platform-detector/platform-det
 import {userNamePassword} from '../../shared/validators/fields-signin.validator';
 import {AlertService} from '../../shared/alert/alert.service';
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: 'signup.component.html',
@@ -52,7 +51,7 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnDestroy {
           fieldsSignupValidator,
           Validators.minLength(2),
           Validators.maxLength(30),
-          Validators.pattern(/^[a-z0-9_\-]+$/)
+          Validators.pattern(/^[A-z0-9_\-]+$/)
         ],
         [
           this.userNotTakenValidator.checkUserNameTaken()

@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "circle-73cde"
+  },
+  "targets": {
+    "circle-73cde": {
+      "hosting": {
+        "App": [
+          "circle-73cde"
+        ]
+      }
+    }
   }
 }
