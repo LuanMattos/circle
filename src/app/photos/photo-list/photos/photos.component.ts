@@ -50,6 +50,7 @@ export class PhotosComponent implements OnChanges {
         }
       );
   }
+
   edit(photo, i): void{
     this.photoId = photo.photo_id;
     this.description = photo.photo_description;

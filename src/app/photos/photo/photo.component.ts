@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {environment} from '../../../environments/environment';
+import {PhotoService} from './photo.service';
 
 const CLOUD = environment.ApiUrl + '/storage/img/';
 
@@ -9,7 +10,9 @@ const CLOUD = environment.ApiUrl + '/storage/img/';
   styleUrls: ['./photo.css'],
 })
 export class PhotoComponent{
-
+  constructor(
+    private photoService: PhotoService
+  ) { }
   @Input() description = '';
   @Input() _url = '';
 
@@ -20,9 +23,11 @@ export class PhotoComponent{
       this._url = url;
     }
   }
-
   get url(): string{
     return this._url;
+  }
+  errorHandler(event): any {
+    event.target.src = 'https://be.mycircle.click/storage/default/error-photo.png';
   }
 
 }
