@@ -7,7 +7,7 @@
         <i class="fa fa-arrow-left text-white back-to-explore mt-2" aria-hidden="true" (click)="closeDialog()"></i>
       </div>
       <div *ngIf="(currentSession$ | async) == 'photo-form'" class="col-auto mt-2">
-          <span class="close-char" [routerLink]="['']">&#10005;</span>
+          <span class="close-char" (click)="closeDialogForm()">&#10005;</span>
       </div>
       <div class="col">
         <div class="ml-auto mr-auto" style="width: 40vw">
@@ -47,7 +47,7 @@
           <i class="fa fa-arrow-left text-white back-to-explore mt-2" aria-hidden="true" (click)="closeDialog()"></i>
         </div>
         <div *ngIf="(currentSession$ | async) == 'photo-form'" class="col-auto mt-2">
-          <span class="close-char" [routerLink]="['']">&#10005;</span>
+          <span class="close-char" (click)="closeDialogForm()">&#10005;</span>
         </div>
         <div class="col z-100">
           <div class="lp__nav__linkSet mr-2 z-100">

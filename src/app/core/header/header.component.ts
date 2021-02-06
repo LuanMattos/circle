@@ -40,11 +40,16 @@ export class HeaderComponent implements OnInit{
     this.user$.subscribe(user => this.user = user);
     this.currentSession$ = this.headerService.getCurrentSession();
   }
+  closeDialogForm(): void {
+    this.headerService.setCurrentSession('');
+    this.router.navigate(['']);
+  }
   closeDialog(): void {
     this.showFillerLogged = false;
     this.headerService.setCurrentSession('');
     this.dialog.closeAll();
   }
+
   scrollHideHeader(): void{
     // if (isPlatformBrowser(this.platformId)) {
     //   this.prevScrollpos = this.windowRef.nativeWindow.pageYOffset;
