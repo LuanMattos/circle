@@ -7,6 +7,8 @@ import {UserService} from '../user/user.service';
 import {User} from '../user/user';
 import {WindowRefService} from '../nativejs/windowRef.service';
 import {isPlatformBrowser} from '@angular/common';
+import {HeaderService} from "./header.service";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-header',
@@ -20,19 +22,28 @@ export class HeaderComponent implements OnInit{
   private prevScrollpos;
   showFiller;
   showFillerLogged;
+  currentSession$: Observable<any>;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private router: Router,
-    private windowRef: WindowRefService
+    private windowRef: WindowRefService,
+    public headerService: HeaderService,
+    public dialog: MatDialog
     ) {
     this.user$ = userService.getUserByToken();
   }
   ngOnInit(): void{
     this.scrollHideHeader();
     this.user$.subscribe(user => this.user = user);
+    this.currentSession$ = this.headerService.getCurrentSession();
+  }
+  closeDialog(): void {
+    this.showFillerLogged = false;
+    this.headerService.setCurrentSession('');
+    this.dialog.closeAll();
   }
   scrollHideHeader(): void{
     // if (isPlatformBrowser(this.platformId)) {

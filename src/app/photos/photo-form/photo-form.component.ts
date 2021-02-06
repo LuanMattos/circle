@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 import {User} from '../../core/user/user';
 import {environment} from '../../../environments/environment';
 import {SecurityCommonsService} from '../../shared/services/security-commons.service';
+import {HeaderService} from "../../core/header/header.service";
 
 @Component({
   selector:  'app-photo-form',
@@ -34,8 +35,11 @@ export class PhotoFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private securityCommons: SecurityCommonsService
-    ) { }
+    private securityCommons: SecurityCommonsService,
+    public headerService: HeaderService
+    ) {
+    this.headerService.setCurrentSession('photo-form');
+  }
 
   ngOnInit(): void {
     this.user = this.activatedRoute.snapshot.data.user;

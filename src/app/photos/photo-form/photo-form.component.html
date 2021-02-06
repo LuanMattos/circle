@@ -3,18 +3,9 @@
     <div>
       <div class="row">
         <div class="col-auto w-50">
-          <span class="ml-2 mb-4 cursor-pointer text-muted font-weight-bold close-char" [routerLink]="['']">&#10005;</span>
-        </div>
-        <div class="col-auto w-50">
           <div *ngIf="!progress; else toProgress">
             <input type="checkbox" [checked]="allowComments" class="hide">
             <input type="checkbox" [checked]="public" class="hide">
-            <button [disabled]="photoForm.invalid"
-                    type="submit"
-                    class="cursor-pointer bg-transparent btns-headers float-right">
-              <span>Publish</span>
-              <i class="fa fa-paper-plane" aria-hidden="true"></i>
-            </button>
           </div>
         </div>
       </div>
@@ -36,7 +27,7 @@
           </div>
         </div>
       </div>
-      <div class="row w-100">
+      <div class="row w-100 m-auto">
         <div class="col-auto w-100 mt-2">
             <textarea
               rows="5"
@@ -74,6 +65,14 @@
               <img [src]="preview" title="Preview photo circle" class="mt-lg-5 preview" >
             </div>
           </ng-template>
+        </div>
+        <div class="col-auto m-auto w-100 pt-4">
+          <button [disabled]="photoForm.invalid"
+                  type="submit"
+                  class="cursor-pointer btn btn-primary m-auto w-100">
+            <span>Publish</span>
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
     </div>

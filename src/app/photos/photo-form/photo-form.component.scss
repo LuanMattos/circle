@@ -7,6 +7,9 @@
     border: 0;
     border: none;
   }
+  .fa{
+    margin-left:8px;
+  }
   .fa-times{
     color: #363636;
   }
@@ -30,19 +33,6 @@
 
 ::placeholder {
   padding-left: 10px;
-}
-.btns-headers{
-  border:1.3px solid #c4c4c4;
-  margin-right: 5px;
-  border-radius: 50px;
-  padding: 7px;
-  span{
-    font-size: 15px;
-    margin-right: 6px;
-  }
-  font-size:14px;
-  background-color: transparent !important;
-  font-weight: bold;
 }
 .avatar {
   border: 0.3rem solid rgba(#fff, 0.3);
@@ -71,6 +61,7 @@
   }
   i{
     font-size: 14px;
+    margin-left: 5px;
   }
 }
 @media only screen and (min-width: 600px) {

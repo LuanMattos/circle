@@ -3,16 +3,22 @@
 
     <!--    Menu logado desktop-->
     <div class="row menu-desktop-logged pt-2" *ngIf="(user$ | async)">
+      <div class="col-auto" *ngIf="(currentSession$ | async) == 'dialog-photo'">
+        <i class="fa fa-arrow-left text-white back-to-explore mt-2" aria-hidden="true" (click)="closeDialog()"></i>
+      </div>
+      <div *ngIf="(currentSession$ | async) == 'photo-form'" class="col-auto mt-2">
+          <span class="close-char" [routerLink]="['']">&#10005;</span>
+      </div>
       <div class="col">
         <div class="ml-auto mr-auto" style="width: 40vw">
           <div class="pb-2">
-            <app-search *ngIf="(user$ | async)" (openInputSearch)="openSearch = $event"></app-search>
+            <app-search *ngIf="(user$ | async) && (currentSession$ | async) !== 'photo-form'" (openInputSearch)="openSearch = $event"></app-search>
           </div>
         </div>
       </div>
-      <div class="col-auto nav-desktop">
-        <div class="float-right">
-          <div *ngIf="!openSearch" class="float-right pr-4">
+      <div class="col-auto nav-desktop" >
+        <div class="float-right" *ngIf="!openSearch && (currentSession$ | async) !== 'photo-form'">
+          <div  class="float-right pr-4" >
             <div *ngIf="(user$ | async) as user;">
               <div class="cursor-pointer" [matMenuTriggerFor]="menu">
                 <i class="fa fa-user fa-2x text-white" aria-hidden="true"></i>
@@ -37,8 +43,11 @@
 
     <nav class="menu-mobile-logged z-100" *ngIf="(user$ | async)">
       <div class="row">
-        <div class="col">
-          <div class="lp__nav__logo"><span><a [href]="['timeline/' + (user$ | async).user_name]">Circle</a></span></div>
+        <div class="col-auto" *ngIf="(currentSession$ | async) == 'dialog-photo'">
+          <i class="fa fa-arrow-left text-white back-to-explore mt-2" aria-hidden="true" (click)="closeDialog()"></i>
+        </div>
+        <div *ngIf="(currentSession$ | async) == 'photo-form'" class="col-auto mt-2">
+          <span class="close-char" [routerLink]="['']">&#10005;</span>
         </div>
         <div class="col z-100">
           <div class="lp__nav__linkSet mr-2 z-100">
@@ -59,7 +68,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col" [routerLink]="['to-explore']" (click)="showFillerLogged = !showFillerLogged">
+        <div class="col" (click)="closeDialog()" [routerLink]="['to-explore']" >
           Explore&nbsp;<i class="fa fa-compass" aria-hidden="true"></i>
         </div>
       </div>
