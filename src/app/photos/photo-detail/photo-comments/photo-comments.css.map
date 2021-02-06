@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AAAA,yBAA0B;EACxB,aAAa,EAAE,IAAI;EACnB,uCAAc;IACZ,UAAU,EAAE,IAAI;EAIhB,gDAAoB;IAClB,UAAU,EAAE,OAAO;IACnB,OAAO,EAAE,GAAG;IACZ,MAAM,EAAE,eAAe;IACvB,aAAa,EAAE,MAAM;IACrB,MAAM,EAAE,IAAI;IAEZ,+DAAe;MACb,SAAS,EAAE,IAAI;MACf,KAAK,EAAE,OAAO",
-"sources": ["photo-comments.scss"],
-"names": [],
-"file": "photo-comments.css"
-}
+{"version":3,"sourceRoot":"","sources":["photo-comments.scss"],"names":[],"mappings":"AAAA;EACE;;AACA;EACE;;AAIA;EACE;EACA;EACA;EACA;EACA;;AAEA;EACE;EACA;;AAGJ;EACE","file":"photo-comments.css"}

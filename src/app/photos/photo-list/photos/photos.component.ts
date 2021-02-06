@@ -8,6 +8,8 @@ import {AlertService} from '../../../shared/alert/alert.service';
 import {environment} from '../../../../environments/environment';
 import {SecurityCommonsService} from '../../../shared/services/security-commons.service';
 import {UserService} from '../../../core/user/user.service';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogComponent} from '../../../shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-photos',
@@ -28,12 +30,21 @@ export class PhotosComponent implements OnChanges {
     private securityCommons: SecurityCommonsService,
     private photoService: PhotoService,
     private alertService: AlertService,
-    private userService: UserService
+    private userService: UserService,
+    public dialog: MatDialog
   ) { }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.photos){
       this.rows = this.photos;
     }
+  }
+  openPhoto(photo): void{
+   this.dialog.open(DialogComponent, {
+      width: '100%',
+      height: '100%',
+      data: photo,
+     panelClass: 'full-width-dialog'
+    });
   }
   delete( photo, i ): void{
     this.photos.splice(i, 1);

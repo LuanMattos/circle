@@ -6,16 +6,19 @@
 
   ul {
     li:not(:last-child) {
-      background: #e8e8f5;
+      background: #f9f7f7;
       padding: 8px;
       border: 8px solid white;
-      border-radius: 0 18px;
+      border-radius:18px;
       height: auto;
 
       span.text-date {
         font-size: 10px;
         color: #90979c;
       }
+    }
+    .text-name{
+      font-size:10px;
     }
   }
 }

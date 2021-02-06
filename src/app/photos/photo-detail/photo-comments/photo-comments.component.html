@@ -2,15 +2,15 @@
   <div *ngIf="comments as comments">
     <ul class="list-unstyled comment-list">
       <li *ngFor="let comment of comments;let i = index" >
-        <a class="text-dark font-weight-bold mr-1 " [routerLink]="['/user', comment.user_name]">
+        <a class="text-dark font-weight-bold mr-1 text-name" [routerLink]="['/user', comment.user_name]">
           {{ comment.user_full_name | titlecase }}
         </a>
         <div class="row float-right" *ngIf="comment.user_name === userName">
-          <div class="col-12 cursor-pointer">
+          <div class="col-10 cursor-pointer">
             <i [matMenuTriggerFor]="menu" class="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i>
-            <mat-menu #menu="matMenu" >
-              <span mat-menu-item class="text-center" (click)="edit( comment )">Editar</span>
-              <span mat-menu-item class="text-center" (click)="delete( comment )">Excluir</span>
+            <mat-menu #menu="matMenu">
+              <span mat-menu-item class="text-center" (click)="edit( comment )">Edit</span>
+              <span mat-menu-item class="text-center" (click)="delete( comment )">Delete</span>
             </mat-menu>
           </div>
         </div>
@@ -37,13 +37,13 @@
         <div *ngIf="allowComments == '1';else noAllowComments">
           <div *ngIf="comments.length;else noComments" class="comments-message" >
             <div *ngIf="hasMore;else messageTemplate" (click)="load()" class="text-primary text-muted cursor-pointer text-center pt-2">
-              Carregar mais comentários
+              Load more
             </div>
-            <ng-template #messageTemplate><p class="text-center text-muted">Não existem mais comentários</p></ng-template>
+            <ng-template #messageTemplate><p class="text-center text-muted">No more comments</p></ng-template>
           </div>
-          <ng-template #noComments><p class="text-center text-muted">Sem comentários</p></ng-template>
+          <ng-template #noComments><p class="text-center text-muted mt-2">No comments</p></ng-template>
         </div>
-        <ng-template #noAllowComments><p class="text-muted text-center">O usuário desativou os comentários</p></ng-template>
+        <ng-template #noAllowComments><p class="text-muted text-center">User has disabled comments</p></ng-template>
       </li>
     </ul>
   </div>

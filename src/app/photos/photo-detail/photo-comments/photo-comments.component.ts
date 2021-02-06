@@ -38,7 +38,7 @@ export class PhotoCommentsComponent implements OnInit {
   ngOnInit(): void {
     const photoId  = this.activatedRoute.snapshot.params.photoId;
     this.userName = this.userService.getUserName();
-    this.photoService.getComments(photoId)
+    this.photoService.getComments(this.photoId)
       .subscribe(response => this.comments = response);
   }
 

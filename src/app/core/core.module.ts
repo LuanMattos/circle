@@ -14,7 +14,8 @@ import {PrivacyComponent} from '../home/footer/privacy/privacy.component';
 import {TermsComponent} from '../home/footer/terms/terms.component';
 import {SearchComponent} from './search/search.component';
 import {FooterComponent} from './footer/footer.component';
-import {InfiniteScrollModule} from "ngx-infinite-scroll";
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {DialogModule} from '../shared/dialog/dialog.module';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {InfiniteScrollModule} from "ngx-infinite-scroll";
         PhotoListModule,
         UxModule,
         ShowIsLoggedModule,
-        InfiniteScrollModule
+        InfiniteScrollModule,
+        DialogModule
     ],
   exports: [
     HeaderComponent,
