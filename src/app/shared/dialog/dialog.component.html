@@ -4,11 +4,7 @@
       <div class="row">
         <div class="col col-responsive">
           <div class="img-container">
-            <app-photo
-              [url]="data.photo_url"
-              [description]="data.photo_description"
-            >
-            </app-photo>
+            <img class="img-fluid mb-4 w-100" [src]="data.photo_url" [alt]="data.photo_description" data-wow-delay="0.3s" onerror="this.src = 'https://be.mycircle.click/storage/default/error-photo.png';">
           </div>
         </div>
       </div>

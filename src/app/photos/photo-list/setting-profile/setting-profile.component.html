@@ -3,7 +3,9 @@
     <div class="container-cover cursor-pointer" (click)="fileInputCover.click()">
       <img class="e2e-iframe-trusted-src cursor-pointer"
            [src]="user.user_cover_url"
-           alt="Img">
+           alt="Img"
+           onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
+      >
     </div>
     <img class="avatar rounded-circle e2e-iframe-trusted-src cursor-pointer"
          (click)="fileInput.click()"
