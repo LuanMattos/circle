@@ -10,6 +10,11 @@ import {SignupService} from './signup.service';
 import {PlatformDetectorService} from '../../core/platform-detector/platform-detector.service';
 import {userNamePassword} from '../../shared/validators/fields-signin.validator';
 import {AlertService} from '../../shared/alert/alert.service';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {UserService} from '../../core/user/user.service';
+import {AuthService} from '../../core/auth/auth.service';
+import firebase from 'firebase';
+import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 
 @Component({
   selector: 'app-signup',
@@ -22,6 +27,8 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnDestroy {
   signupForm: FormGroup;
   @ViewChild('inputEmail') inputEmail: ElementRef<HTMLInputElement>;
   classButton = '';
+  blockSubmited: boolean = false;
+  authInvalid: string;
 
   constructor(
     private userNotTakenValidator: UserNotTakenValidatorService,
@@ -29,7 +36,10 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnDestroy {
     private signUpService: SignupService,
     private router: Router,
     private platformDetectionService: PlatformDetectorService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    public afAuth: AngularFireAuth,
+    private userService: UserService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -73,6 +83,38 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       {
         validator: userNamePassword
+      }
+    );
+  }
+
+  GoogleAuth(): any {
+    return this.signInSignUpGoogle(new GoogleAuthProvider());
+  }
+  signInSignUpGoogle(provider): any {
+    this.afAuth.signInWithPopup(provider)
+      .then((result) => {
+        const isNewUser = result.additionalUserInfo.isNewUser,
+          profile = result.additionalUserInfo.profile;
+        this.signUpOrSignInGoogle(profile, isNewUser);
+      }).catch((err) => {
+      this.authInvalid = 'Error try later';
+    });
+  }
+  signUpOrSignInGoogle( data, isNewUser ): any{
+    this.authService.authenticateWithGoogle(data, isNewUser).subscribe(
+      (res) => {
+        this.authInvalid = '';
+        this.authInvalid = res.body;
+        this.blockSubmited = false;
+        this.userService.getUserByToken().subscribe(response => {
+          if (response?.user_name){
+            this.router.navigate(['timeline', response.user_name]);
+          }
+        });
+      },
+      error => {
+        this.blockSubmited = false;
+        this.authInvalid = 'Error try later';
       }
     );
   }

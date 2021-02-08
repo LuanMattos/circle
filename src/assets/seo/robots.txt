@@ -4,5 +4,4 @@ Allow: /privacy
 Allow: /terms
 Allow: /home
 Allow: /home/signup
-Allow: /home/signin
 Sitemap: https://mycircle.click/assets/seo/sitemap_location.xml

@@ -10,7 +10,7 @@ input {
   height: 53px;
 }
 
-.container-form{
+.container-form {
   padding-top: 1vw;
   padding-bottom: 1vw;
 }
@@ -21,33 +21,35 @@ input {
   padding: 30px;
   letter-spacing: 1px;
   font-size: 12px;
-  width:80%;
-  margin:auto;
-  border-top:1px solid #a3a3a3;
+  width: 80%;
+  margin: auto;
+  border-top: 1px solid #a3a3a3;
 }
 
-.btn-circle-primary{
+.btn-circle-primary {
   background-color: white;
   width: 100%;
   height: 45px;
 }
-.responsive-div{
-  width:60%;
+
+.responsive-div {
+  width: 60%;
 }
+
 .text-logo {
   font-size: 32px;
 }
+
 @media screen and (max-width: 285px) {
-  .icon-btns{
+  .icon-btns {
     display: none;
   }
 }
 @media screen and (max-width: 660px) {
-  .responsive-div{
-    width:100%;
+  .responsive-div {
+    width: 100%;
   }
 }
-
 .google-button__icon {
   float: left;
   display: inline-block;
@@ -55,7 +57,6 @@ input {
   width: 28px;
   height: 28px;
   box-sizing: border-box;
-
 }
 
 .google-button__icon--plus {
@@ -66,11 +67,15 @@ input {
   * {
     font-size: 12px;
   }
+
   .google-button__icon {
     width: 20px;
     height: 20px;
   }
+
   .google-button__icon--plus {
     width: 20px;
   }
 }
+
+/*# sourceMappingURL=signup.component.css.map */
