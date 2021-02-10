@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WW82S48');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8">
   <title>Circle Social Network</title>
   <base href="/">
@@ -43,9 +50,31 @@
 
     gtag('config', 'G-TP73FF67S1');
   </script>
+  <!-- Event snippet for Inscrição conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+  <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+        'send_to': 'AW-969075138/eosACLDkwe8BEMLTi84D',
+        'event_callback': callback
+      });
+      return false;
+    }
+  </script>
+
 
 </head>
+
 <body class="mat-typography">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WW82S48"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
   <app-root></app-root>
 </body>
 </html>
