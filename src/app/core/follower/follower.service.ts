@@ -12,8 +12,8 @@ export class FollowerService{
   constructor(
     private http: HttpClient
     ) {}
-  getFollowersByUser( page: string ): Observable<any>{
-    return this.http.post(API + 'get_followers/' + page, {});
+  getFollowersByUser(user, page: string ): Observable<any>{
+    return this.http.post(API + 'get_followers/' + page, {user});
   }
 
 }

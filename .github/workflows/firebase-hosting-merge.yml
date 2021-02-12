@@ -14,8 +14,8 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CIRCLE_5D1A1 }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CIRCLE_73CDE }}'
           channelId: live
-          projectId: circle-5d1a1
+          projectId: circle-73cde
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
