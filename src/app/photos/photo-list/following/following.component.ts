@@ -23,7 +23,7 @@ export class FollowingComponent implements OnInit{
   loadFollowing(): void{
     if (!this.stoppedRequest) {
       this.followingService
-        .getFollowingsByUser(this.followings.length)
+        .getFollowingsByUser(this.user.userName, this.followings.length)
         .subscribe(res => {
           this.stoppedRequest = false;
           if (res && !res.length) {

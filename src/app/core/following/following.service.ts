@@ -10,8 +10,8 @@ export class FollowingService {
   constructor(
     private http: HttpClient
     ) {}
-  getFollowingsByUser( page: string ): Observable<any>{
-    return this.http.post(API + 'get_followings/' + page, {});
+  getFollowingsByUser(user, page: string ): Observable<any>{
+    return this.http.post(API + 'get_followings/' + page, {user});
   }
 
 }

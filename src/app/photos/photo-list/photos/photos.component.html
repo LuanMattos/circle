@@ -6,16 +6,16 @@
     <div *ngFor="let photo of rows; let i = index"
          class="col-lg-4 {{i === 0?'col-md-12':'col-md-6'}} mb-4 z-depth-1-half wow fadeIn">
         <app-card>
-          <img *ngIf="photo.user_avatar_url?.length else notImage" [routerLink]="['/user',photo.user_name]" class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src cursor-pointer"
+          <img *ngIf="photo.user_avatar_url?.length else notImage" [routerLink]="['/user',photo.user_name]" class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src cursor-pointer mb-2"
                [src]="photo.user_avatar_url"
                onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
           >
           <ng-template #notImage>
-            <img  class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src" [src]="avatarDefault"
+            <img  class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src mb-2" [src]="avatarDefault"
                   onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
             >
           </ng-template>
-          <span class="cursor-pointer ml-2 font-weight-bold font-user-full-name" [routerLink]="['/user',photo.user_name]">{{photo.user_full_name?photo.user_full_name:photo.user_name}}</span>
+          <span class="cursor-pointer ml-2 font-weight-bold font-user-full-name mb-2" [routerLink]="['/user',photo.user_name]">{{photo.user_full_name?photo.user_full_name:photo.user_name}}</span>
           <div class="dropdown float-right pb-4" showIsLogged>
             <div class="cursor-pointer " [matMenuTriggerFor]="menu">
               <i class="fa fa-ellipsis-h text-black" aria-hidden="true"></i>

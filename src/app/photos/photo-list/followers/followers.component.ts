@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 import {FollowerService} from '../../../core/follower/follower.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class FollowersComponent implements OnInit{
   loadFollowers(): void{
     if (!this.stoppedRequest) {
       this.followerService
-        .getFollowersByUser(this.followers.length)
+        .getFollowersByUser(this.user.userName, this.followers.length)
         .subscribe(res => {
           this.stoppedRequest = false;
           if (res && !res.length) {

@@ -11,11 +11,11 @@ export class FollowingResolver implements Resolve<Observable<Following>>{
   constructor(private router: Router, private followingService: FollowingService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Following>{
-    this.followingService.getFollowingsByUser('0').subscribe( following => {
+    this.followingService.getFollowingsByUser(route.params.userName, '0').subscribe( following => {
     }, error => {
       this.router.navigate(['not-found']);
     });
-    return this.followingService.getFollowingsByUser('0');
+    return this.followingService.getFollowingsByUser(route.params.userName, '0');
   }
 
 
