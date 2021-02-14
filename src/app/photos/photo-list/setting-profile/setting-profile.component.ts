@@ -11,6 +11,8 @@ import {HttpErrorResponse, HttpEvent, HttpEventType} from '@angular/common/http'
 import {AlertService} from '../../../shared/alert/alert.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {SecurityCommonsService} from '../../../shared/services/security-commons.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+
 
 @Component({
   selector: 'app-setting-profile',
@@ -25,6 +27,10 @@ export class SettingProfileComponent implements OnInit {
   file: File;
   progress;
   userCoverUrl: any;
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  fileToReturn: any = '';
+  stopClick;
 
   constructor(
     private securityCommons: SecurityCommonsService,
@@ -75,7 +81,42 @@ export class SettingProfileComponent implements OnInit {
 
 
   }
+  fileChangeEvent(event: any): void {
+    this.croppedImage = 'l';
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent): void {
+    this.croppedImage = event.base64;
+  }
+  base64ToFile(data, filename): any {
 
+    const arr = data.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+
+    while (n--){
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+  }
+  cropperReady(): void {
+    // cropper ready
+  }
+  loadImageFailed(): void {
+    // show message
+  }
+  getImageCropped(): void{
+    const file = this.base64ToFile(
+      this.croppedImage,
+      this.imageChangedEvent.target.files[0].name,
+    );
+    this.file = this.imageChangedEvent.target.files[0];
+
+    this.uploadProfile(file);
+  }
   save(): void{
     const data = this.settingForm.getRawValue();
     this.userService.saveSettings(data).subscribe(success => {
@@ -95,13 +136,12 @@ export class SettingProfileComponent implements OnInit {
     );
   }
   uploadProfile( file: File ): void{
-    this.file = file;
     const reader = new FileReader();
     reader.onload = (event: any) => this.file = event.target.result;
     reader.readAsDataURL(file);
 
     this.userService
-      .uploadImgProfile( this.file )
+      .uploadImgProfile( file )
       .subscribe(
         ( event: HttpEvent<any> ) => {
 
@@ -113,23 +153,29 @@ export class SettingProfileComponent implements OnInit {
             this.user.user_avatar_url = event.body;
             this.alertService.success('Upload complete');
           }
+          this.stopClick = false;
+          this.croppedImage = '';
         },
         err => {
+          this.stopClick = false;
+          this.croppedImage = '';
           this.alertService.danger('Failed to load the file, try later\n');
         }
       );
 
   }
-  uploadCover( file:File ){
+  uploadCover( file: File ): any{
     this.file = file;
     const reader = new FileReader();
-    reader.onload = (event:any) => this.file = event.target.result;
-    reader.readAsDataURL(file);
+    reader.onload = (event: any) => this.file = event.target.result;
 
+    reader.readAsDataURL(file);
+    console.log(this.file);
+    return;
     this.userService
       .uploadImgCover( this.file )
       .subscribe(
-        ( event:HttpEvent<any> ) => {
+        ( event: HttpEvent<any> ) => {
 
           if( event.type == HttpEventType.UploadProgress ){
 
@@ -143,8 +189,7 @@ export class SettingProfileComponent implements OnInit {
         err => {
           this.alertService.danger('Failed to load the file, try later\n');
         }
-      )
-
+      );
   }
 
 }

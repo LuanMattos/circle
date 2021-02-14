@@ -22,6 +22,8 @@ import {PhotoOwnerOnlyModule} from '../../shared/directives/owner-only/photo-own
 import {FollowersComponent} from './followers/followers.component';
 import {FollowingComponent} from './following/following.component';
 import {ImgOnerrorModule} from '../../shared/directives/img-onerror/img-onerror.module';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import {DialogSettingComponent} from './setting-profile/dialog/dialog-setting.component';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import {ImgOnerrorModule} from '../../shared/directives/img-onerror/img-onerror.
     SearchComponent,
     SettingProfileComponent,
     FollowersComponent,
-    FollowingComponent
+    FollowingComponent,
+    DialogSettingComponent
   ],
   exports: [
     PhotosComponent,
@@ -53,7 +56,8 @@ import {ImgOnerrorModule} from '../../shared/directives/img-onerror/img-onerror.
         ReactiveFormsModule,
         VmessageModule,
         PhotoOwnerOnlyModule,
-        ImgOnerrorModule
+        ImgOnerrorModule,
+        ImageCropperModule
     ]
 })
 export class PhotoListModule{}
