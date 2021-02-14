@@ -170,8 +170,7 @@ export class SettingProfileComponent implements OnInit {
     reader.onload = (event: any) => this.file = event.target.result;
 
     reader.readAsDataURL(file);
-    console.log(this.file);
-    return;
+
     this.userService
       .uploadImgCover( this.file )
       .subscribe(
