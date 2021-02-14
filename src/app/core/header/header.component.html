@@ -24,7 +24,7 @@
                 <i class="fa fa-user fa-2x text-white" aria-hidden="true"></i>
               </div>
               <mat-menu #menu="matMenu" class="mt-3">
-                <a [href]="['user/' + user.user_name]" mat-menu-item>
+                <a [href]="['i/' + user.user_name]" mat-menu-item>
                   <span class="ml-2 text-black-50">Profile</span>
                 </a>
                 <div mat-menu-item (click)="logout()">
@@ -74,7 +74,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <a [href]="['user/' + user.user_name]">Profile</a>
+          <a [href]="['i/' + user.user_name]">Profile</a>
         </div>
       </div>
       <div class="row">

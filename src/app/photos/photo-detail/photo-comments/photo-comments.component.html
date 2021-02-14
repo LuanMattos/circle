@@ -2,7 +2,7 @@
   <div *ngIf="comments as comments">
     <ul class="list-unstyled comment-list">
       <li *ngFor="let comment of comments;let i = index" >
-        <a class="text-dark font-weight-bold mr-1 text-name" [routerLink]="['/user', comment.user_name]">
+        <a class="text-dark font-weight-bold mr-1 text-name" [routerLink]="['/i', comment.user_name]">
           {{ comment.user_full_name | titlecase }}
         </a>
         <div class="row float-right" *ngIf="comment.user_name === userName">

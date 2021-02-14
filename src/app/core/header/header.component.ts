@@ -72,7 +72,7 @@ export class HeaderComponent implements OnInit{
     this.router.navigate(['timeline', this.user.user_name]);
   }
   redirectToProfile(): void{
-    this.router.navigate(['user', this.user.user_name]);
+    this.router.navigate(['i', this.user.user_name]);
   }
   verifiedAccount(): boolean{
     if (this.userService.isLogged() && !this.user.verified){

@@ -41,6 +41,6 @@ export class FollowingComponent implements OnInit{
     }
   }
   redirectUser( following ): void{
-    this.router.navigate(['user/' + following?.user_name]);
+    this.router.navigate(['i/' + following?.user_name]);
   }
 }

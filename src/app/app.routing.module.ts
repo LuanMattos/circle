@@ -26,7 +26,7 @@ import {FollowingResolver} from './core/following/following.resolver';
 import {AboutComponent} from './home/footer/about/about.component';
 import {PrivacyComponent} from './home/footer/privacy/privacy.component';
 import {TermsComponent} from './home/footer/terms/terms.component';
-import {SearchComponent} from "./core/search/search.component";
+import {SearchComponent} from './core/search/search.component';
 
 
 const routes: Routes = [
@@ -61,7 +61,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'user/:userName',
+    path: 'i/:userName',
     component: PhotoListComponent,
     pathMatch: 'full',
     resolve: {
