@@ -23,7 +23,7 @@
                  *ngIf="filter" class="autocomplete m-auto w-100">
               <ul>
                 <li *ngFor="let user of users">
-                  <a href="/user/{{user.user_name}}">
+                  <a href="/i/{{user.user_name}}">
                     <img [src]="user.user_avatar_url?user.user_avatar_url:avatarDefault"
                          onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
                          class="avatar rounded-circle mr-2">
