@@ -58,7 +58,7 @@
         <textarea matInput placeholder="About me" autofocus formControlName="userDescription"></textarea>
       </div>
     </div>
-    <button  class="w-100 bg-dark text-white" [disabled]="this.settingForm.invalid && !this.settingForm.pending" mat-raised-button>Change</button>
+    <button  class="w-100 button-alert" [disabled]="this.settingForm.invalid && !this.settingForm.pending" mat-raised-button>Change</button>
   </div>
 </form>
 

@@ -70,9 +70,9 @@ export class PhotosComponent implements OnChanges {
       input: 'textarea',
       inputValue: this.description,
       padding: '5px',
-      confirmButtonText: 'Publicar',
+      confirmButtonText: 'Publish',
       showCancelButton: true,
-      cancelButtonText: 'Cancelar',
+      cancelButtonText: 'Cancel',
       customClass: {
         input: 'textarea-alert',
         confirmButton: 'button-alert',

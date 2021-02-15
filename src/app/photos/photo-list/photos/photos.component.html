@@ -32,14 +32,14 @@
               </a>
             </mat-menu>
           </div>
-          <div class="body-comment-text" *ngIf="photo.photo_description.length">
+          <div class="body-comment-text">
             <span class="break-word ">
                 {{photo.photo_description.substring(0,40)}}
             </span>
             <details *ngIf="photo.photo_description.length >= 40">
               <summary>
-                <span class="open">View more</span>
-                <span class="close">Ver less</span>
+                <span class="open">More</span>
+                <span class="close pb-2">Less</span>
               </summary>
               <span>
                {{photo.photo_description.substring(40,1000)}}
