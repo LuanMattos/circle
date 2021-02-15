@@ -11,6 +11,7 @@ import {User} from '../../core/user/user';
 import {environment} from '../../../environments/environment';
 import {SecurityCommonsService} from '../../shared/services/security-commons.service';
 import {HeaderService} from "../../core/header/header.service";
+import {ImageCroppedEvent} from "ngx-image-cropper";
 
 @Component({
   selector:  'app-photo-form',
@@ -21,12 +22,14 @@ export class PhotoFormComponent implements OnInit {
 
   photoForm: FormGroup;
   file: File;
-  preview: string;
   progress = 0;
   public: boolean = true;
   allowComments: boolean = true;
   avatar: string;
   user: User;
+  imageChangedEvent: any = '';
+  croppedImage;
+  blockSubmit = false;
 
 
   constructor(
@@ -49,16 +52,49 @@ export class PhotoFormComponent implements OnInit {
       description: ['', Validators.maxLength(300)]
     });
   }
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent): void {
+    this.croppedImage = event.base64;
+  }
+  base64ToFile(data, filename): any {
 
-  upload(): void{
+    const arr = data.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+
+    while (n--){
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+  }
+  cropperReady(): void {
+    // cropper ready
+  }
+  loadImageFailed(): void {
+    // show message
+  }
+  getImageCropped(): void{
+    this.blockSubmit = true;
+    const file = this.base64ToFile(
+      this.croppedImage,
+      this.imageChangedEvent.target.files[0].name,
+    );
+    this.file = this.imageChangedEvent.target.files[0];
+    this.upload(file);
+  }
+  upload(file: File): void{
     const description = this.photoForm.get('description').value;
     const allowComments = this.allowComments;
-    const _public = this.public;
-
     this.photoService
-      .upload( description, allowComments, _public, this.file )
+      .upload( description, allowComments, this.public, file )
       .pipe(
             finalize(() => {
+            this.blockSubmit = false;
             this.router.navigate(['']);
           }
         )
@@ -71,23 +107,24 @@ export class PhotoFormComponent implements OnInit {
               this.progress = Math.round(100 * event.loaded / event.total);
 
             }else if ( event.type === HttpEventType.Response ){
+              this.blockSubmit = false;
               this.alertService.success('Upload complete');
             }
       },
       err => {
+          this.blockSubmit = false;
           this.alertService.danger('Failed to load the file, try later');
         }
       );
   }
-  handleFile(file: File): void{
-      this.file = file;
-      const reader = new FileReader();
-      reader.onload = (event: any) => this.preview = event.target.result;
-      reader.readAsDataURL(file);
-  }
+  // handleFile(file: File): void{
+  //     this.file = file;
+  //     const reader = new FileReader();
+  //     reader.onload = (event: any) => this.file = event.target.result;
+  //     reader.readAsDataURL(file);
+  // }
   removeFile(): void{
     this.photoForm.get('file').reset();
-    this.preview = null;
   }
 
 }

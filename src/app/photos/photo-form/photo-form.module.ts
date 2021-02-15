@@ -8,21 +8,23 @@ import {VmessageModule} from "../../shared/vmessage/vmessage.module";
 import {PhotoModule} from "../photo/photo.module";
 import {UxModule} from "../../core/ux/ux-module";
 import {DarkenOnHoverModule} from "../../shared/directives/dark-on-hover/darken-on-hover.module";
+import {ImageCropperModule} from "ngx-image-cropper";
 
 @NgModule({
   declarations:[
     PhotoFormComponent,
   ],
-  imports:[
-    CommonModule,
-    ReactiveFormsModule,
-    VmessageModule,
-    FormsModule,
-    RouterModule,
-    PhotoModule,
-    UxModule,
-    DarkenOnHoverModule
-  ]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        VmessageModule,
+        FormsModule,
+        RouterModule,
+        PhotoModule,
+        UxModule,
+        DarkenOnHoverModule,
+        ImageCropperModule
+    ]
 })
 export class PhotoFormModule{
 
