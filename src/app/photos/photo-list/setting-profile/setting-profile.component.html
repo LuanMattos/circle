@@ -1,20 +1,6 @@
 <form #form="ngForm" [formGroup]="settingForm" (submit)="save()"  autocomplete="off">
   <div class="container">
-    <image-cropper
-      [imageChangedEvent]="imageChangedEvent"
-      [maintainAspectRatio]="true"
-      [aspectRatio]="4/3"
-      format="png"
-      (imageCropped)="imageCropped($event)"
-      (cropperReady)="cropperReady()"
-      (loadImageFailed)="loadImageFailed()"
-      *ngIf="croppedImage.length"
-    ></image-cropper>
-    <div class="container m-auto" *ngIf="croppedImage.length">
-      <i class="fa fa-times fa-4x text-danger cursor-pointer text-left" aria-hidden="true" (click)="croppedImage = '';"></i>
-      <i class="fa fa-check fa-4x {{stopClick?'text-muted':'text-info'}} cursor-pointer text-right float-right  mr-0" aria-hidden="true" (click)="getImageCropped();stopClick = true;"></i>
-    </div>
-    <div class="container-cover cursor-pointer" (click)="fileInputCover.click()">
+    <div class="container-cover cursor-pointer">
       <img class="e2e-iframe-trusted-src cursor-pointer"
            [src]="user.user_cover_url"
            alt="Img"
@@ -22,11 +8,11 @@
       >
     </div>
     <img class="avatar rounded-circle e2e-iframe-trusted-src cursor-pointer"
-         (click)="fileInput.click();"
-         [src]="croppedImage.length?croppedImage:user.user_avatar_url"
+         (click)="openDialog()"
+         [src]="user.user_avatar_url"
          alt="Img">
-    <input type="file" class="hide" formControlName="file" accept="image/*" (change)="fileChangeEvent( $event )" #fileInput>
-    <input type="file" class="hide" formControlName="file" accept="image/*" (change)="uploadCover( $event.target.files[0] )" #fileInputCover>
+<!--    <input type="file" class="hide" formControlName="file" accept="image/*" (change)="fileChangeEvent( $event )" #fileInput>-->
+<!--    <input type="file" class="hide" formControlName="file" accept="image/*" (change)="uploadCover( $event.target.files[0] )" #fileInputCover>-->
 
     <div class="form-group">
       <mat-form-field class="w-100">

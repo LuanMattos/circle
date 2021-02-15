@@ -34,11 +34,17 @@ export class HeaderComponent implements OnInit{
     public dialog: MatDialog
     ) {
     this.user$ = userService.getUserByToken();
+    this.user$.subscribe(user => this.user = user);
   }
   ngOnInit(): void{
     this.scrollHideHeader();
-    this.user$.subscribe(user => this.user = user);
+
     this.currentSession$ = this.headerService.getCurrentSession();
+  }
+  closeDialogFormSettings(): void {
+    this.headerService.setCurrentSession('');
+    this.dialog.closeAll();
+    this.router.navigate(['/setting', this.user.user_name]);
   }
   closeDialogForm(): void {
     this.headerService.setCurrentSession('');
