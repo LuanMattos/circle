@@ -3,16 +3,18 @@
     <div class="container-cover cursor-pointer">
       <img class="e2e-iframe-trusted-src cursor-pointer"
            [src]="user.user_cover_url"
+           (click)="openDialogCover()"
            alt="Img"
            onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
       >
+      <i class="fa fa-pencil" aria-hidden="true"></i>
     </div>
     <img class="avatar rounded-circle e2e-iframe-trusted-src cursor-pointer"
          (click)="openDialog()"
          [src]="user.user_avatar_url"
          alt="Img">
 <!--    <input type="file" class="hide" formControlName="file" accept="image/*" (change)="fileChangeEvent( $event )" #fileInput>-->
-<!--    <input type="file" class="hide" formControlName="file" accept="image/*" (change)="uploadCover( $event.target.files[0] )" #fileInputCover>-->
+    <input type="file" class="hide" formControlName="file" accept="image/*" (change)="uploadCover( $event.target.files[0] )" #fileInputCover>
 
     <div class="form-group">
       <mat-form-field class="w-100">

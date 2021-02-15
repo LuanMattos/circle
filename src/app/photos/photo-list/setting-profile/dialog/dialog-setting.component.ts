@@ -6,12 +6,16 @@ import {UserService} from '../../../../core/user/user.service';
 import {User} from '../../../../core/user/user';
 import {AlertService} from '../../../../shared/alert/alert.service';
 import {environment} from '../../../../../environments/environment';
-import {HeaderService} from "../../../../core/header/header.service";
-import {Router} from "@angular/router";
-import {Observable} from "rxjs";
+import {HeaderService} from '../../../../core/header/header.service';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
-export interface Photo {
-  user_avatar_url: string;
+export interface Setting {
+  user: {
+    user_avatar_url: string,
+    user_cover_url: string
+  };
+  type: string;
 }
 
 @Component({
@@ -37,7 +41,7 @@ export class DialogSettingComponent implements OnInit{
 
   constructor(
     public dialogRef: MatDialogRef<DialogSettingComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Photo,
+    @Inject(MAT_DIALOG_DATA) public data: Setting,
     private userService: UserService,
     private alertService: AlertService,
     private headerService: HeaderService,
@@ -57,7 +61,6 @@ export class DialogSettingComponent implements OnInit{
   fileChangeEvent(event: any): void {
     this.viewCrop = true;
     this.imageChangedEvent = event;
-    console.log(this.imageChangedEvent.target.files[0].name);
   }
   imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.base64;
@@ -90,6 +93,15 @@ export class DialogSettingComponent implements OnInit{
     this.file = this.imageChangedEvent.target.files[0];
 
     this.uploadProfile(file);
+  }
+  getImageCroppedCover(): void{
+    const file = this.base64ToFile(
+      this.croppedImage,
+      this.imageChangedEvent.target.files[0].name,
+    );
+    this.file = this.imageChangedEvent.target.files[0];
+
+    this.uploadCover(file);
   }
   uploadProfile( file: File ): void{
     const reader = new FileReader();
@@ -142,8 +154,14 @@ export class DialogSettingComponent implements OnInit{
 
           }else if ( event.type === HttpEventType.Response ){
             this.user.user_cover_url = event.body;
+            document.location.reload(true);
             this.alertService.success('Upload complete');
           }
+          this.stopClick = false;
+          this.croppedImage = '';
+          this.headerService.setCurrentSession('');
+          this.dialog.closeAll();
+          this.router.navigate(['/setting', this.user.user_name]);
         },
         err => {
           this.alertService.danger('Failed to load the file, try later\n');

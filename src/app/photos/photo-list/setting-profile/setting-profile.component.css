@@ -7,14 +7,22 @@ form .container {
 form .container .container-cover {
   width: 100%;
   height: 150px;
-  border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 4px 4px;
 }
 form .container .container-cover img {
-  border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 4px 4px;
   width: 100%;
   height: 150px;
   object-fit: cover;
   object-position: 50% 50%;
+}
+form .container .container-cover i.fa {
+  position: absolute;
+  color: #4e4f4b;
+  text-align: center;
+  font-size: 25px;
+  margin-left: -30px;
+  margin-top: 10px;
 }
 form .container .avatar {
   border: 0.3rem solid rgba(255, 255, 255, 0.3);
