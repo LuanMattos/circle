@@ -305,71 +305,72 @@ $size: 100vw;
 
 /** --FILTERS-- **/
 .grayscale-circle {
-  filter: grayscale(50%);
+  filter: grayscale(50%) !important;
 }
 
 .saturate-circle {
-  filter: saturate(360%);
+  filter: saturate(360%) !important;
 }
 
 .invert-circle {
-  filter: invert(100%);
+  filter: invert(100%) !important;
 }
 
 .saturate-circle {
-  filter: saturate(100%);
+  filter: saturate(100%) !important;
 }
 
 .opacity-circle {
-  filter: opacity(50%);
+  filter: opacity(50%) !important;
 }
 
 .brightness-circle {
-  filter: brightness(120%);
+  filter: brightness(120%) !important;
 }
 
 .contrast-circle {
-  filter: contrast(160%);
+  filter: contrast(160%) !important;
 }
 .contrast-2-circle {
-  filter: contrast(2);
-  -webkit-filter: contrast(2);
+  filter: contrast(2) !important;
+  -webkit-filter: contrast(2) !important;
 }
 
 .hue-rotate-circle {
-  filter: hue-rotate(160deg);
+  filter: hue-rotate(160deg) !important;
 }
 
 .blur-circle {
-  filter: blur(2px);
+  filter: blur(2px) !important;
 }
 .all-the-things-circle {
-  filter: contrast(1.4) saturate(1.8) sepia(.6);
-  -webkit-filter: contrast(1.4) saturate(1.8) sepia(.6);
+  filter: contrast(1.4) saturate(1.8) sepia(.6) !important;
+  -webkit-filter: contrast(1.4) saturate(1.8) sepia(.6) !important;
 }
 .brightness-contrast-1-circle{
-  filter: brightness(1.07) contrast(0.59) ;
+  filter: brightness(1.07) contrast(0.59) !important;
 }
 .filter-2-circle{
-  filter: hue-rotate(46deg) invert(0.15) opacity(0.83) ;
+  filter: hue-rotate(46deg) invert(0.15) opacity(0.83) !important;
 }
 .filter-3-circle{
-  filter: sepia(0.42) ;
+  filter: sepia(0.42) !important;
 }
 .filter-4-circle{
-  filter: contrast(1.66) grayscale(0.1) hue-rotate(-15deg) invert(0.03) opacity(0.96) sepia(0.5) ;
+  filter: contrast(1.66) grayscale(0.1) hue-rotate(-15deg) invert(0.03) opacity(0.96) sepia(0.5) !important;
 }
 .filter-5-circle{
-  filter: contrast(0.83) grayscale(0.1) hue-rotate(-15deg) invert(0.03) opacity(0.96) sepia(0.5) ;
+  filter: contrast(0.83) grayscale(0.1) hue-rotate(-15deg) invert(0.03) opacity(0.96) sepia(0.5) !important;
 }
 .fitler-6-circle{
-  position: absolute; content: ''; display: block; top: 0; left: 0; height: 100%; width: 100%;
-  background: linear-gradient(to left,rgba(244, 112, 181, 0.4) 0%, rgba(255, 0, 212, 0.4) 100%);
-  mix-blend-mode: multiply
+  position: absolute; content: ''; display: block; top: 0; left: 0; height: 100%; width: 100%  !important;
+  background: linear-gradient(to left,rgba(244, 112, 181, 0.4) 0%, rgba(255, 0, 212, 0.4) 100%) !important;
+  mix-blend-mode: multiply  !important;
 }
 .filter-7-circle{
-  filter: contrast(2.65) ;
+  filter: contrast(2.65) !important;
 }
+/** --END-FILTERS-- **/
 .container-photo-form{
   .swiper-container {
     width: 100% !important;
