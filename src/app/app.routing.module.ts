@@ -12,7 +12,6 @@ import {AuthRequiredGuard} from './core/auth/auth-required.guard';
 /** Resolvers */
 import {PhotoListResolver} from './photos/photo-list/photo-list.resolver';
 import {PhotoDetailComponent} from './photos/photo-detail/photo-detail.component';
-import {PhotoListTimelineComponent} from './photos/photo-list-timeline/photo-list-timeline.component';
 import {PhotoListTimelineResolver} from './photos/photo-list-timeline/photo-list-timeline.resolver';
 import {SettingProfileComponent} from './photos/photo-list/setting-profile/setting-profile.component';
 import {UserResolver} from './core/user/user.resolver';

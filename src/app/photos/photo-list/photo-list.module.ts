@@ -5,7 +5,6 @@ import {RouterModule} from '@angular/router';
 import {PhotoListComponent} from './photo-list.component';
 import {FilterByDescription} from './filter-by-description.pipe';
 import {PhotosComponent} from './photos/photos.component';
-import {LoadButtonComponent} from './load-button/load-button.component';
 import {PhotoModule} from '../photo/photo.module';
 import {CardModule} from '../../shared/card/card.module';
 import {SearchComponent} from './search/search.component';
@@ -31,7 +30,6 @@ import {DialogSettingComponent} from './setting-profile/dialog/dialog-setting.co
     PhotoListComponent,
     FilterByDescription,
     PhotosComponent,
-    LoadButtonComponent,
     SearchComponent,
     SettingProfileComponent,
     FollowersComponent,
