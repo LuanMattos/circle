@@ -3,13 +3,14 @@
     <div>
       <div class="row">
         <div class="col-auto w-50">
-            <input type="checkbox" [checked]="allowComments" class="hide">
-            <input type="checkbox" [checked]="public" class="hide">
+          <input type="checkbox" [checked]="allowComments" class="hide">
+          <input type="checkbox" [checked]="public" class="hide">
         </div>
       </div>
       <div class="row">
         <div class="col-auto">
-          <img [src]="avatar" class="avatar rounded-circle" onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'">
+          <img [src]="avatar" class="avatar rounded-circle"
+               onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'">
         </div>
         <div class="col-auto">
           <div class="mt-2 menu-options-public" (click)="public = !public">
@@ -51,14 +52,20 @@
             <span class="ml-2 text-muted font-weight-bold">Image</span>
           </div>
           <span class="ml-1 text-danger error-validate"
-               *ngIf="photoForm.get('file').errors?.required; else showPreview">
+                *ngIf="photoForm.get('file').errors?.required; else showPreview">
             Insert at image
           </span>
+        </div>
+        <div class="col">
+          <div *ngFor="let item of items(); let i = index;">
+            <img src="assets/img/example-filter.png" class="example--filter  {{item}}">
+          </div>
         </div>
         <div class="col-auto w-100 mt-1">
           <ng-template #showPreview>
             <div class="text-center " appDarkenOnHover brightness="70%">
               <i class="fa fa-times pb-2 text-danger cursor-pointer mr-2 fa-3x" (click)="removeFile()"></i>
+              <!--              aqui-->
               <image-cropper
                 class="preview"
                 [imageChangedEvent]="imageChangedEvent"
@@ -80,7 +87,7 @@
           </button>
         </div>
         <div class="col">
-          <ng-template  *ngIf="progress">
+          <ng-template *ngIf="progress">
             <div class="text-center text-muted">
               <span>Progress {{progress}} %</span>
             </div>

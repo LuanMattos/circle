@@ -10,13 +10,13 @@ import {Observable} from 'rxjs';
 import {User} from '../../core/user/user';
 import {environment} from '../../../environments/environment';
 import {SecurityCommonsService} from '../../shared/services/security-commons.service';
-import {HeaderService} from "../../core/header/header.service";
-import {ImageCroppedEvent} from "ngx-image-cropper";
+import {HeaderService} from '../../core/header/header.service';
+import {ImageCroppedEvent} from 'ngx-image-cropper';
 
 @Component({
-  selector:  'app-photo-form',
-  templateUrl:  './photo-form.component.html',
-  styleUrls:  ['./photo-form.component.scss']
+  selector: 'app-photo-form',
+  templateUrl: './photo-form.component.html',
+  styleUrls: ['./photo-form.component.scss']
 })
 export class PhotoFormComponent implements OnInit {
 
@@ -40,17 +40,41 @@ export class PhotoFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private securityCommons: SecurityCommonsService,
     public headerService: HeaderService
-    ) {
+  ) {
     this.headerService.setCurrentSession('photo-form');
   }
 
   ngOnInit(): void {
+
     this.user = this.activatedRoute.snapshot.data.user;
     this.avatar = this.securityCommons.passSecurityUrl(this.user.user_avatar_url, environment.ApiUrl + 'storage/profile_default/default.png');
     this.photoForm = this.formBuilder.group({
       file: ['', Validators.required],
       description: ['', Validators.maxLength(300)]
     });
+  }
+
+  items(): any[] {
+    return [
+      'grayscale-circle',
+      'saturate-circle',
+      'sepia-circle',
+      'invert-circle',
+      'opacity-circle',
+      'brightness-circle',
+      'contrast-circle',
+      'hue-rotate-circle',
+      'blur-circle',
+      'all-the-things-circle',
+      'contrast-2-circle',
+      'brightness-contrast-1-circle',
+      'filter-2-circle',
+      'filter-3-circle',
+      'filter-4-circle',
+      'filter-5-circle',
+      'filter-6-circle',
+      'filter-7-circle'
+    ];
   }
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
@@ -66,11 +90,11 @@ export class PhotoFormComponent implements OnInit {
     let n = bstr.length;
     const u8arr = new Uint8Array(n);
 
-    while (n--){
+    while (n--) {
       u8arr[n] = bstr.charCodeAt(n);
     }
 
-    return new File([u8arr], filename, { type: mime });
+    return new File([u8arr], filename, {type: mime});
   }
   cropperReady(): void {
     // cropper ready
@@ -78,7 +102,7 @@ export class PhotoFormComponent implements OnInit {
   loadImageFailed(): void {
     // show message
   }
-  getImageCropped(): void{
+  getImageCropped(): void {
     this.blockSubmit = true;
     const file = this.base64ToFile(
       this.croppedImage,
@@ -87,43 +111,37 @@ export class PhotoFormComponent implements OnInit {
     this.file = this.imageChangedEvent.target.files[0];
     this.upload(file);
   }
-  upload(file: File): void{
+  upload(file: File): void {
     const description = this.photoForm.get('description').value;
     const allowComments = this.allowComments;
     this.photoService
-      .upload( description, allowComments, this.public, file )
+      .upload(description, allowComments, this.public, file)
       .pipe(
-            finalize(() => {
+        finalize(() => {
             this.blockSubmit = false;
             this.router.navigate(['']);
           }
         )
       )
       .subscribe(
-        ( event: HttpEvent<any> ) => {
+        (event: HttpEvent<any>) => {
 
-            if ( event.type === HttpEventType.UploadProgress ){
+          if (event.type === HttpEventType.UploadProgress) {
 
-              this.progress = Math.round(100 * event.loaded / event.total);
+            this.progress = Math.round(100 * event.loaded / event.total);
 
-            }else if ( event.type === HttpEventType.Response ){
-              this.blockSubmit = false;
-              this.alertService.success('Upload complete');
-            }
-      },
-      err => {
+          } else if (event.type === HttpEventType.Response) {
+            this.blockSubmit = false;
+            this.alertService.success('Upload complete');
+          }
+        },
+        err => {
           this.blockSubmit = false;
           this.alertService.danger('Failed to load the file, try later');
         }
       );
   }
-  // handleFile(file: File): void{
-  //     this.file = file;
-  //     const reader = new FileReader();
-  //     reader.onload = (event: any) => this.file = event.target.result;
-  //     reader.readAsDataURL(file);
-  // }
-  removeFile(): void{
+  removeFile(): void {
     this.photoForm.get('file').reset();
   }
 
