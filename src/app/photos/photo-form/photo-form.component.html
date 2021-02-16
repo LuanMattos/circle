@@ -56,16 +56,28 @@
             Insert at image
           </span>
         </div>
-        <div class="col">
-          <div *ngFor="let item of items(); let i = index;">
-            <img src="assets/img/example-filter.png" class="example--filter  {{item}}">
+        <div class="col container-photo-form">
+          <div class="row mt-2 pb-1">
+            <div class="col">
+              <span class="text-muted">Filters</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <swiper [spaceBetween]="2" [virtual]="true" effect="fade" [slidesPerView]="cols">
+                <div *ngFor="let item of items(); let i = index;">
+                  <ng-template swiperSlide>
+                    <img src="assets/img/example-filter.png" class="w-100 cursor-pointer {{item}}" (click)="selectItemCarousel(item)">
+                  </ng-template>
+                </div>
+              </swiper>
+            </div>
           </div>
         </div>
-        <div class="col-auto w-100 mt-1">
+        <div class="col-auto w-100">
           <ng-template #showPreview>
             <div class="text-center " appDarkenOnHover brightness="70%">
               <i class="fa fa-times pb-2 text-danger cursor-pointer mr-2 fa-3x" (click)="removeFile()"></i>
-              <!--              aqui-->
               <image-cropper
                 class="preview"
                 [imageChangedEvent]="imageChangedEvent"

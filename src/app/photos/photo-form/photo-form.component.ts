@@ -5,13 +5,15 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HttpEvent, HttpEventType} from '@angular/common/http';
 import {AlertService} from '../../shared/alert/alert.service';
 import {finalize} from 'rxjs/operators';
-import {UserService} from '../../core/user/user.service';
-import {Observable} from 'rxjs';
 import {User} from '../../core/user/user';
 import {environment} from '../../../environments/environment';
 import {SecurityCommonsService} from '../../shared/services/security-commons.service';
 import {HeaderService} from '../../core/header/header.service';
 import {ImageCroppedEvent} from 'ngx-image-cropper';
+import SwiperCore, {Virtual} from 'swiper/core';
+
+SwiperCore.use([Virtual]);
+
 
 @Component({
   selector: 'app-photo-form',
@@ -30,8 +32,8 @@ export class PhotoFormComponent implements OnInit {
   imageChangedEvent: any = '';
   croppedImage;
   blockSubmit = false;
-
-
+  cols;
+  classSelectedCarousel;
   constructor(
     private alertService: AlertService,
     private photoService: PhotoService,
@@ -45,17 +47,36 @@ export class PhotoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.user = this.activatedRoute.snapshot.data.user;
     this.avatar = this.securityCommons.passSecurityUrl(this.user.user_avatar_url, environment.ApiUrl + 'storage/profile_default/default.png');
     this.photoForm = this.formBuilder.group({
       file: ['', Validators.required],
       description: ['', Validators.maxLength(300)]
     });
+    this.resize();
   }
-
+  selectItemCarousel(item: string): void{
+    this.classSelectedCarousel = item;
+    console.log(this.classSelectedCarousel)
+  }
+  resize(): void {
+    if (window.innerWidth < 900) {
+      this.cols = '3';
+    } else {
+      this.cols = '5';
+    }
+    window.addEventListener('resize', () => {
+        if (window.innerWidth < 900) {
+          this.cols = '4';
+        } else {
+          this.cols = '5';
+        }
+      }
+    );
+  }
   items(): any[] {
     return [
+      '',
       'grayscale-circle',
       'saturate-circle',
       'sepia-circle',
@@ -114,8 +135,9 @@ export class PhotoFormComponent implements OnInit {
   upload(file: File): void {
     const description = this.photoForm.get('description').value;
     const allowComments = this.allowComments;
+    console.log('submit ->>>>>' + this.classSelectedCarousel);
     this.photoService
-      .upload(description, allowComments, this.public, file)
+      .upload(description, allowComments, this.public, file, this.classSelectedCarousel)
       .pipe(
         finalize(() => {
             this.blockSubmit = false;
@@ -144,5 +166,4 @@ export class PhotoFormComponent implements OnInit {
   removeFile(): void {
     this.photoForm.get('file').reset();
   }
-
 }

@@ -1,6 +1,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
+@import '~swiper/swiper-bundle';
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -369,5 +370,10 @@ $size: 100vw;
 .filter-7-circle{
   filter: contrast(2.65) ;
 }
+.container-photo-form{
+  .swiper-container {
+    width: 100% !important;
 
+  }
+}
 

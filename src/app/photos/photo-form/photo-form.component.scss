@@ -1,6 +1,9 @@
 .container-photo-form{
-  .example--filter{
-    max-width: 100px;
+  .container-photo-form{
+    img{
+      border-radius: 3px;
+      max-width: 120px;
+    }
   }
   margin-top:25px;
   overflow-x: hidden;
@@ -29,6 +32,7 @@
   .preview{
       min-width: 100px;
       min-height: 300px;
+     border-radius: 5px!important;
   }
   .error-validate{
     font-size: 10px;

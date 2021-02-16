@@ -46,10 +46,8 @@
             </span>
             </details>
           </div>
-<!--          aqui-->
-<!--          [routerLink]="['/p',photo.photo_id]"-->
           <app-photo
-            class="cursor-pointer"
+            class="cursor-pointer {{photo.photo_styles}}"
             (click)="openPhoto(photo)"
             appDarkenOnHover
             brightness="55%"
