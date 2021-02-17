@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PhotoService} from '../photo/photo.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -41,7 +41,9 @@ export class PhotoFormComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private securityCommons: SecurityCommonsService,
-    public headerService: HeaderService
+    public headerService: HeaderService,
+    private el: ElementRef,
+    private render: Renderer2
   ) {
     this.headerService.setCurrentSession('photo-form');
   }
@@ -57,7 +59,6 @@ export class PhotoFormComponent implements OnInit {
   }
   selectItemCarousel(item: string): void{
     this.classSelectedCarousel = item;
-    console.log(this.classSelectedCarousel)
   }
   resize(): void {
     if (window.innerWidth < 900) {

@@ -10,6 +10,7 @@ import {UxModule} from "../../core/ux/ux-module";
 import {DarkenOnHoverModule} from "../../shared/directives/dark-on-hover/darken-on-hover.module";
 import {ImageCropperModule} from "ngx-image-cropper";
 import {SwiperModule} from 'swiper/angular';
+import {ClickCardSelectedModule} from '../../shared/directives/click-card-selected/click-card-selected.module';
 
 @NgModule({
   declarations:[
@@ -25,7 +26,8 @@ import {SwiperModule} from 'swiper/angular';
     UxModule,
     DarkenOnHoverModule,
     ImageCropperModule,
-    SwiperModule
+    SwiperModule,
+    ClickCardSelectedModule
   ]
 })
 export class PhotoFormModule{

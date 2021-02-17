@@ -67,7 +67,7 @@
               <swiper [spaceBetween]="2" [virtual]="true" effect="fade" [slidesPerView]="cols">
                 <div *ngFor="let item of items(); let i = index;">
                   <ng-template swiperSlide>
-                    <img src="assets/img/example-filter.png" class="w-100 cursor-pointer {{item}}" (click)="selectItemCarousel(item)">
+                    <img src="{{croppedImage}}"  class="w-100 cursor-pointer item  {{item}}" (click)="selectItemCarousel(item)" >
                   </ng-template>
                 </div>
               </swiper>
@@ -79,7 +79,7 @@
             <div class="text-center " appDarkenOnHover brightness="70%">
               <i class="fa fa-times pb-2 text-danger cursor-pointer mr-2 fa-3x" (click)="removeFile()"></i>
               <image-cropper
-                class="preview"
+                class="preview {{classSelectedCarousel}}"
                 [imageChangedEvent]="imageChangedEvent"
                 [maintainAspectRatio]="true"
                 [aspectRatio]="3/4"
