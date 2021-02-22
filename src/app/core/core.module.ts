@@ -16,6 +16,7 @@ import {SearchComponent} from './search/search.component';
 import {FooterComponent} from './footer/footer.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {DialogModule} from '../shared/dialog/dialog.module';
+import {MonetizationComponent} from '../home/footer/monetization/monetization.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {DialogModule} from '../shared/dialog/dialog.module';
     AboutComponent,
     PrivacyComponent,
     TermsComponent,
+    MonetizationComponent,
     SearchComponent,
     FooterComponent
   ],

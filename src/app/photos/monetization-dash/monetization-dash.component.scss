@@ -1,0 +1,123 @@
+#monetization-container {
+  select {
+    height: 53px;
+  }
+  input {
+    height: 53px;
+  }
+  .fa-long-arrow-left{
+    display: block;
+  }
+  .fa-arrow-up{
+    display: none;
+  }
+  .btn-primary{
+    width: 145px;
+    background-color: #039be5;
+  }
+  .input-valor{
+    width: 145px;
+  }
+  overflow-x: hidden;
+  .row-top {
+    .col:first-child {
+      max-width: 100px !important;
+    }
+    .col:nth-child(2) {
+      //porcaria do vertical-align
+      display: table;
+      height: 120px;
+      .text-your {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: left;
+        font-size: 24px;
+        color: #2a2a33;
+      }
+    }
+  }
+  .second-row {
+    .col {
+      padding-top: 10px !important;
+      .card {
+        .fa-envelope{
+          font-size: 20px;
+          opacity: .7;
+        }
+        .fa-usd{
+          font-size: 20px;
+          opacity: .7;
+        }
+        .available-text{
+          font-size:12px !important;
+          color:white !important;
+        }
+      }
+      .card-money {
+        background: #f08a5d;
+        height: 120px;
+        min-width: 100px;
+      }
+      .card-invites {
+        background: #393e46;
+        height: 120px;
+        min-width: 100px;
+      }
+      .card-mpc {
+        background: #455d7a;
+        height: 120px;
+        min-width: 100px;
+      }
+    }
+  }
+  .row-conta{
+    height: auto;
+    width: 100%;
+    background-color: #f9f7f7;
+    padding: 5px;
+    border-radius: 8px;
+    border-left:3px solid #e9e9e9;
+  }
+  @media screen and (max-width: 800px) {
+    .fa-long-arrow-left{
+      display: none;
+    }
+    .fa-arrow-up{
+      display: block;
+    }
+    .btn-primary{
+      width: 100%;
+    }
+    .col-cpf{
+      padding-top: 10px;
+    }
+    .input-valor{
+      width: 100%;
+    }
+    .second-row {
+      .col {
+        display: table;
+        height: 120px;
+        .card-money {
+          min-width: 80vw;
+        }
+        .card-invites {
+          min-width: 80vw;
+        }
+        .card-mpc {
+          min-width: 80vw;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 220px) {
+    .row-top {
+      .col:nth-child(2) {
+        height: 40px !important;
+        padding-bottom: 15px;
+        padding-top: 10px;
+      }
+    }
+  }
+
+}

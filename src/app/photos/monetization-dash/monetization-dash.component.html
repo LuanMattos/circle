@@ -1,0 +1,133 @@
+<div id="monetization-container">
+  <div class="row row-top">
+    <div class="col mt-2 ml-2">
+      <img [src]="(user$ | async).user_avatar_url.length?(user$ | async).user_avatar_url:avatarDefault"
+           onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
+           class=" avatar rounded-circle">
+    </div>
+    <div class="col float-left ml-2">
+      <span class="text-your font-weight-bold">Your earnings</span>
+    </div>
+  </div>
+  <div class="container pb-5">
+    <div class="row second-row">
+      <div class="col">
+        <div class="card card-money cursor-pointer">
+          <div class="card-body">
+            <span class="card-title">
+              <i class="fa fa-usd text-white"></i>
+            </span>
+            <h1 class="card-subtitle mb-2 text-white">R$ 89,00</h1>
+            <p class="card-text"><span class="available-text">Available in 01/01/2021</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card card-mpc">
+          <div class="card-body">
+            <span class="card-title">
+              <i class="fa fa-usd text-white"></i>
+            </span>
+            <h1 class="card-subtitle mb-2 text-white">R$ 0,05 MPC</h1>
+            <p class="card-text">
+              <a href="http://docs.mycircle.click/monetization" target="_blank">
+              <span class="available-text">
+              Learn more about MPC
+              </span>
+                <i class="fa fa-question-circle text-white ml-1" aria-hidden="true"></i>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card card-invites cursor-pointer">
+          <div class="card-body">
+            <span class="card-title">
+              <i class="fa fa-envelope text-white"></i>
+            </span>
+            <h1 class="card-subtitle mb-2 text-white">10 registered</h1>
+            <p class="card-text"><span class="available-text">Of a total of 10 invitations</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <form class="container">
+      <div class="form-row pb-4">
+        <div class="col-md-4 pt-2">
+          <input type="email" class="form-control " placeholder="Invite (Email)">
+        </div>
+        <div class="col-md-2 pt-2">
+          <input type="button" class="btn btn-primary" value="Send Invite">
+        </div>
+        <div class="col-md-6 pt-2 text-muted">
+
+          <span>
+            <i class="fa  fa-long-arrow-left pt-2" aria-hidden="true"></i>
+            <i class="fa fa-arrow-up pt-2" aria-hidden="true"></i>
+             Invite your friends and family and earn for it in this place</span>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="dados-conta container pb-5">
+    <div class="row-conta pt-2">
+      <span class="text-black-50 p-4">Detalhes da conta (Brasil):</span>
+      <form class="container p-4">
+        <div class="form-row pt-2">
+          <div class="col-md-4">
+            <input type="text" class="form-control " placeholder="Nome do(a) Beneficiário(a)">
+          </div>
+          <div class="col-md-4 col-cpf">
+            <input type="text" class="form-control" placeholder="CPF">
+          </div>
+        </div>
+        <div class="form-row pt-2">
+          <div class="form-group col-md-4 ">
+            <select class="form-control">
+              <option selected>Instituição</option>
+              <option>001 - Banco do Brasil</option>
+              <option>237 - Banco Bradesco</option>
+              <option>033 - Banco Santander</option>
+              <option>041 - Banco do Estado do Rio Grade do Sul</option>
+              <option>104 - Caixa Econômica Federal</option>
+              <option>341 - Banco Itaú</option>
+              <option>748 - Banco Cooperativo Sicredi</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <select class="form-control">
+              <option selected>Tipo de Conta</option>
+              <option>Conta Corrente</option>
+              <option>Poupança</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <input type="text" class="form-control input-valor" placeholder="Valor (R$)">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <input type="text" class="form-control" placeholder="Agência">
+          </div>
+          <div class="form-group col-md-4">
+            <input type="text" class="form-control" placeholder="Número da Conta">
+          </div>
+          <div class="form-group col-md-4">
+            <input type="button" class="btn btn-primary" value="Solicitar valor $">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4 ">
+            <h2><i class="fa fa-info mr-1" aria-hidden="true"></i>Atenção!</h2>
+            <p>Não nos responsabilizamos por dados incorretos</p>
+            <p>Confira seus dados antes de receber seu pagamento.</p>
+            <p>O valor não é creditado instantaneamente</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

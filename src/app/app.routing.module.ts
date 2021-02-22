@@ -26,6 +26,8 @@ import {AboutComponent} from './home/footer/about/about.component';
 import {PrivacyComponent} from './home/footer/privacy/privacy.component';
 import {TermsComponent} from './home/footer/terms/terms.component';
 import {SearchComponent} from './core/search/search.component';
+import {MonetizationComponent} from './home/footer/monetization/monetization.component';
+import {MonetizationDashComponent} from './photos/monetization-dash/monetization-dash.component';
 
 
 const routes: Routes = [
@@ -161,7 +163,16 @@ const routes: Routes = [
     data: {
       title: 'About'
     }
-  }, {
+  },
+  {
+    path: 'monetization-dash',
+    component: MonetizationDashComponent,
+    canActivate: [AuthRequiredGuard],
+    data: {
+      title: 'Monetization Dashboard'
+    }
+  },
+  {
     path: 'privacy',
     component: PrivacyComponent,
     data: {
@@ -173,7 +184,15 @@ const routes: Routes = [
     data: {
       title: 'Terms and Condition'
     }
-  }, {
+  },
+  {
+    path: 'monetization',
+    component: MonetizationComponent,
+    data: {
+      title: 'Monetization'
+    }
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent,
     data: {

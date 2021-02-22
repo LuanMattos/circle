@@ -19,7 +19,7 @@ import {DialogSettingComponent} from './dialog/dialog-setting.component';
 @Component({
   selector: 'app-setting-profile',
   templateUrl: './setting-profile.component.html',
-  styleUrls: ['./setting-profile.component.css']
+  styleUrls: ['./setting-profile.component.scss']
 })
 export class SettingProfileComponent implements OnInit {
   user: User;

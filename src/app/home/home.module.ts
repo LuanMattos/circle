@@ -13,7 +13,7 @@ import {HomeRoutingModule} from './home.routing.module';
 import {SignupService} from './signup/signup.service';
 import {UxModule} from '../core/ux/ux-module';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
-import {CoreModule} from "../core/core.module";
+import {CoreModule} from '../core/core.module';
 
 @NgModule({
   declarations: [

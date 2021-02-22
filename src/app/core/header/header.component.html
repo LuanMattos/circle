@@ -37,8 +37,10 @@
             </div>
           </div>
           <div class="float-right pr-4" *ngIf="(user$ | async) && !openSearch">
-            <i class="fa fa-compass fa-2x cursor-pointer text-white" [routerLink]="['to-explore']"
-               aria-hidden="true"></i>
+            <i class="fa fa-compass fa-2x cursor-pointer text-white" [routerLink]="['to-explore']" aria-hidden="true"></i>
+          </div>
+          <div class="float-right pr-4" *ngIf="(user$ | async) && !openSearch">
+            <i class="fa fa-usd text cursor-pointer fa-2x text-white" [routerLink]="['monetization-dash']" aria-hidden="true"></i>
           </div>
         </div>
       </div>
@@ -97,6 +99,7 @@
         <a [routerLink]="['about']" class="lp__nav__link" >About</a>
         <a [routerLink]="['privacy']" class="lp__nav__link">Privacy</a>
         <a [routerLink]="['terms']" class="lp__nav__link">Terms and conditions</a>
+        <a href="http://docs.mycircle.click/monetization" target="_blank" class="lp__nav__link">Monetization</a>
       </div>
       <div class="lp__nav__linkSet">
         <a [routerLink]="['home/signup']" (click)="eventMenuDesktop()" class="lp__nav__link">Sign Up</a>

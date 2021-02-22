@@ -163,6 +163,7 @@ export class PhotoFormComponent implements OnInit {
           this.alertService.danger('Failed to load the file, try later');
         }
       );
+    this.headerService.setCurrentSession('');
   }
   removeFile(): void {
     this.photoForm.get('file').reset();
