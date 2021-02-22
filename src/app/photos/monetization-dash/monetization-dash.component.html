@@ -1,12 +1,14 @@
 <div id="monetization-container">
-  <div class="row row-top">
-    <div class="col mt-2 ml-2">
-      <img [src]="(user$ | async).user_avatar_url.length?(user$ | async).user_avatar_url:avatarDefault"
-           onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
-           class=" avatar rounded-circle">
-    </div>
-    <div class="col float-left ml-2">
-      <span class="text-your font-weight-bold">Your earnings</span>
+  <div class="container">
+    <div class="row row-top">
+      <div class="col mt-2 ml-2">
+        <img [src]="(user$ | async).user_avatar_url.length?(user$ | async).user_avatar_url:avatarDefault"
+             onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
+             class=" avatar rounded-circle">
+      </div>
+      <div class="col float-left ml-2">
+        <span class="text-your font-weight-bold">Your earnings</span>
+      </div>
     </div>
   </div>
   <div class="container pb-5">
@@ -54,20 +56,16 @@
     </div>
   </div>
   <div class="container">
-    <form class="container">
+    <form class="container" [formGroup]="inviteForm" (submit)="sendInvite()" #form>
       <div class="form-row pb-4">
         <div class="col-md-4 pt-2">
-          <input type="email" class="form-control " placeholder="Invite (Email)">
+          <input type="text" class="form-control {{inviteForm.get('fullName').errors?.required?'focus-dander':''}}" placeholder="Full Name" formControlName="fullName">
         </div>
-        <div class="col-md-2 pt-2">
-          <input type="button" class="btn btn-primary" value="Send Invite">
+        <div class="col-md-4 pt-2">
+          <input type="email" class="form-control {{inviteForm.get('email').errors?.required || inviteForm.get('email').errors?.email?'focus-dander':''}}" placeholder="Invite (Email)" formControlName="email">
         </div>
-        <div class="col-md-6 pt-2 text-muted">
-
-          <span>
-            <i class="fa  fa-long-arrow-left pt-2" aria-hidden="true"></i>
-            <i class="fa fa-arrow-up pt-2" aria-hidden="true"></i>
-             Invite your friends and family and earn for it in this place</span>
+        <div class="col-md-4 pt-2 text-muted">
+          <input type="submit" class="btn btn-primary" value="Send Invite"  [disabled]="inviteForm.invalid && !form.submitted">
         </div>
       </div>
     </form>
@@ -75,18 +73,18 @@
   <div class="dados-conta container pb-5">
     <div class="row-conta pt-2">
       <span class="text-black-50 p-4">Detalhes da conta (Brasil):</span>
-      <form class="container p-4">
+      <form class="container p-4" [formGroup]="accountForm" (submit)="sendDataAccount()" #formAccount>
         <div class="form-row pt-2">
           <div class="col-md-4">
-            <input type="text" class="form-control " placeholder="Nome do(a) Beneficiário(a)">
+            <input type="text" class="form-control {{accountForm.get('beneficiario').errors?.required ?'focus-dander':''}} " placeholder="Nome do(a) Beneficiário(a)" formControlName="beneficiario">
           </div>
           <div class="col-md-4 col-cpf">
-            <input type="text" class="form-control" placeholder="CPF">
+            <input type="text" class="form-control {{accountForm.get('cpf').errors?.required?'focus-dander':''}}" placeholder="CPF" formControlName="cpf">
           </div>
         </div>
         <div class="form-row pt-2">
           <div class="form-group col-md-4 ">
-            <select class="form-control">
+            <select class="form-control {{accountForm.get('instituicao').errors?.required?'focus-dander':''}}" formControlName="instituicao" >
               <option selected>Instituição</option>
               <option>001 - Banco do Brasil</option>
               <option>237 - Banco Bradesco</option>
@@ -98,25 +96,25 @@
             </select>
           </div>
           <div class="form-group col-md-4">
-            <select class="form-control">
+            <select class="form-control {{accountForm.get('tipoConta').errors?.required?'focus-dander':''}}" formControlName="tipoConta" >
               <option selected>Tipo de Conta</option>
               <option>Conta Corrente</option>
               <option>Poupança</option>
             </select>
           </div>
           <div class="form-group col-md-4">
-            <input type="text" class="form-control input-valor" placeholder="Valor (R$)">
+            <input type="text" class="form-control input-valor {{accountForm.get('valor').errors?.required?'focus-dander':''}}" placeholder="Valor (R$)" formControlName="valor">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
-            <input type="text" class="form-control" placeholder="Agência">
+            <input type="text" class="form-control {{accountForm.get('agencia').errors?.required?'focus-dander':''}}" placeholder="Agência" formControlName="agencia">
           </div>
           <div class="form-group col-md-4">
-            <input type="text" class="form-control" placeholder="Número da Conta">
+            <input type="text" class="form-control {{accountForm.get('conta').errors?.required?'focus-dander':''}}" placeholder="Número da Conta" formControlName="conta">
           </div>
           <div class="form-group col-md-4">
-            <input type="button" class="btn btn-primary" value="Solicitar valor $">
+            <input type="submit" class="btn btn-primary" value="Solicitar valor $" [disabled]="accountForm.invalid && !formAccount.submitted">
           </div>
         </div>
         <div class="form-row">
