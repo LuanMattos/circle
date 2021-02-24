@@ -28,6 +28,7 @@ import {TermsComponent} from './home/footer/terms/terms.component';
 import {SearchComponent} from './core/search/search.component';
 import {MonetizationComponent} from './home/footer/monetization/monetization.component';
 import {MonetizationDashComponent} from './photos/monetization-dash/monetization-dash.component';
+import {MonetizaionResolver} from './core/monetization/monetizaion.resolver';
 
 
 const routes: Routes = [
@@ -168,6 +169,9 @@ const routes: Routes = [
     path: 'monetization-dash',
     component: MonetizationDashComponent,
     canActivate: [AuthRequiredGuard],
+    resolve: {
+      monetization: MonetizaionResolver
+    },
     data: {
       title: 'Monetization Dashboard'
     }

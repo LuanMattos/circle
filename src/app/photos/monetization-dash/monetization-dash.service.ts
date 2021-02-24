@@ -15,5 +15,8 @@ export class MonetizationDashService {
   confirmInvite(userName): Observable<any>{
     return this.http.post(API + 'confirm_money', {userName});
   }
+  getDataDashboard(): Observable<any>{
+    return this.http.post(API + 'get_data_dashboard', {});
+  }
 }
 

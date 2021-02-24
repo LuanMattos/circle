@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MonetizationDashService} from './monetization-dash.service';
 import {AlertService} from '../../shared/alert/alert.service';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -19,18 +20,21 @@ export class MonetizationDashComponent implements OnInit {
   accountForm: FormGroup;
   confirmInviteForm: FormGroup;
   formMonetizationHide = false;
+  dataDashboard;
 
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
     private monetizationDashService: MonetizationDashService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private activatedRoute: ActivatedRoute
   ) {
   }
 
   ngOnInit(): void {
+    this.dataDashboard = this.activatedRoute.snapshot.data.monetization;
+    console.log(this.dataDashboard);
     this.user$ = this.userService.getUserByToken();
-    this.user$.subscribe((teste)=>{console.log(teste)});
     this.inviteForm = this.formBuilder.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]]
