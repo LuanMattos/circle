@@ -33,7 +33,6 @@ export class MonetizationDashComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataDashboard = this.activatedRoute.snapshot.data.monetization;
-    console.log(this.dataDashboard);
     this.user$ = this.userService.getUserByToken();
     this.inviteForm = this.formBuilder.group({
       fullName: ['', Validators.required],

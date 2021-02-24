@@ -84,20 +84,20 @@
   </div>
   <div class="dados-conta container pb-5">
     <div class="row-conta pt-2">
-      <span class="text-black-50 p-4">Detalhes da conta (Brasil):</span>
+      <span class="text-black-50 p-4">Detalhes da conta (Apenas apartir do dia 01/04):</span>
       <form class="container p-4" [formGroup]="accountForm" (submit)="sendDataAccount()" #formAccount>
         <div class="form-row pt-2">
           <div class="col-md-4">
-            <input type="text" class="form-control {{accountForm.get('beneficiario').errors?.required ?'focus-dander':''}} " placeholder="Nome do(a) Beneficiário(a)" formControlName="beneficiario">
+            <input type="text" class="form-control {{accountForm.get('beneficiario').errors?.required ?'focus-dander':''}} " placeholder="Nome do(a) Beneficiário(a) (Em breve)" formControlName="beneficiario" disabled>
           </div>
           <div class="col-md-4 col-cpf">
-            <input type="text" class="form-control {{accountForm.get('cpf').errors?.required?'focus-dander':''}}" placeholder="CPF" formControlName="cpf">
+            <input type="text" class="form-control {{accountForm.get('cpf').errors?.required?'focus-dander':''}}" placeholder="CPF (Em breve)" formControlName="cpf" disabled>
           </div>
         </div>
         <div class="form-row pt-2">
           <div class="form-group col-md-4 ">
-            <select class="form-control {{accountForm.get('instituicao').errors?.required?'focus-dander':''}}" formControlName="instituicao" >
-              <option selected>Instituição</option>
+            <select class="form-control {{accountForm.get('instituicao').errors?.required?'focus-dander':''}}" formControlName="instituicao" disabled>
+              <option selected>Instituição(Em breve)</option>
               <option>001 - Banco do Brasil</option>
               <option>237 - Banco Bradesco</option>
               <option>033 - Banco Santander</option>
@@ -108,22 +108,22 @@
             </select>
           </div>
           <div class="form-group col-md-4">
-            <select class="form-control {{accountForm.get('tipoConta').errors?.required?'focus-dander':''}}" formControlName="tipoConta" >
-              <option selected>Tipo de Conta</option>
+            <select class="form-control {{accountForm.get('tipoConta').errors?.required?'focus-dander':''}}" formControlName="tipoConta" disabled>
+              <option selected>Tipo de Conta(Em breve)</option>
               <option>Conta Corrente</option>
               <option>Poupança</option>
             </select>
           </div>
           <div class="form-group col-md-4">
-            <input type="text" class="form-control input-valor {{accountForm.get('valor').errors?.required?'focus-dander':''}}" placeholder="Valor (R$)" formControlName="valor">
+            <input type="text" class="form-control input-valor {{accountForm.get('valor').errors?.required?'focus-dander':''}}" placeholder="Valor (R$)(Em breve)" formControlName="valor" disabled>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
-            <input type="text" class="form-control {{accountForm.get('agencia').errors?.required?'focus-dander':''}}" placeholder="Agência" formControlName="agencia">
+            <input type="text" class="form-control {{accountForm.get('agencia').errors?.required?'focus-dander':''}}" placeholder="Agência(Em breve)" formControlName="agencia" disabled>
           </div>
           <div class="form-group col-md-4">
-            <input type="text" class="form-control {{accountForm.get('conta').errors?.required?'focus-dander':''}}" placeholder="Número da Conta" formControlName="conta">
+            <input type="text" class="form-control {{accountForm.get('conta').errors?.required?'focus-dander':''}}" placeholder="Número da Conta(Em breve)" formControlName="conta" disabled>
           </div>
           <div class="form-group col-md-4">
             <input type="submit" class="btn btn-primary" value="Solicitar valor $" [disabled]="accountForm.invalid && !formAccount.submitted">
@@ -136,6 +136,8 @@
             <p>Confira seus dados antes de receber seu pagamento.</p>
             <p>O valor não é creditado instantaneamente</p>
             <p>Não convide pessoas que não concordem com o envio deste convite, sua reputação pode cair e o valor de MPC diminuir </p>
+            <p>O valor mínimo para saque é R$20,00</p>
+            <p>Apenas apartir do dia 01/04 os valores começaram a ser debitados</p>
           </div>
         </div>
       </form>
