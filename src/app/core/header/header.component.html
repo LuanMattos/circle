@@ -81,6 +81,11 @@
         </div>
       </div>
       <div class="row">
+        <div class="col" (click)="closeDialog()" [routerLink]="['monetization-dash']" >
+          My Money&nbsp;<i class="fa fa-usd text cursor-pointer text-white" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="row">
         <div class="col">
           <a [href]="['i/' + user.user_name]">Profile</a>
         </div>

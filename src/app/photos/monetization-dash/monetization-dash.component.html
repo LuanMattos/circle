@@ -4,7 +4,7 @@
       <div class="col mt-2 ml-2">
         <img [src]="(user$ | async).user_avatar_url.length?(user$ | async).user_avatar_url:avatarDefault"
              onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
-             class=" avatar rounded-circle-profile">
+             class=" rounded-circle-profile">
       </div>
       <div class="col float-left ml-2">
         <span class="text-your font-weight-bold">Your earnings</span>
@@ -19,7 +19,7 @@
             <span class="card-title">
               <i class="fa fa-usd text-white"></i>
             </span>
-            <h1 class="card-subtitle mb-2 text-white">R$ {{dataDashboard.total.toString().replace('.',',')}}</h1>
+            <h1 class="card-subtitle mb-2 text-white">R$ {{dataDashboard.total?.toString().length?dataDashboard.total.toString().replace('.',','):dataDashboard.total.toString()}}</h1>
             <p class="card-text"><span class="available-text">Available in 01/01/2021</span></p>
           </div>
         </div>
@@ -30,7 +30,7 @@
             <span class="card-title">
               <i class="fa fa-usd text-white"></i>
             </span>
-            <h1 class="card-subtitle mb-2 text-white">R$ {{dataDashboard.mpc.replace('.',',')}} MPC</h1>
+            <h1 class="card-subtitle mb-2 text-white">R$ {{dataDashboard?.mpc?dataDashboard.mpc.replace('.',','):0}} MPC</h1>
             <p class="card-text">
               <a href="http://docs.mycircle.click/monetization" target="_blank">
               <span class="available-text">
@@ -137,7 +137,7 @@
             <p>O valor não é creditado instantaneamente</p>
             <p>Não convide pessoas que não concordem com o envio deste convite, sua reputação pode cair e o valor de MPC diminuir </p>
             <p>O valor mínimo para saque é R$20,00</p>
-            <p>Apenas apartir do dia 01/04 os valores começaram a ser debitados</p>
+            <p>Os valore começaram a ser creditados apartir do dia 01/04</p>
           </div>
         </div>
       </form>
