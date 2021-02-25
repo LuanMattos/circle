@@ -29,6 +29,7 @@ import {SearchComponent} from './core/search/search.component';
 import {MonetizationComponent} from './home/footer/monetization/monetization.component';
 import {MonetizationDashComponent} from './photos/monetization-dash/monetization-dash.component';
 import {MonetizaionResolver} from './core/monetization/monetizaion.resolver';
+import {CronComponent} from './cron/cron.component';
 
 
 const routes: Routes = [
@@ -194,6 +195,13 @@ const routes: Routes = [
     component: MonetizationComponent,
     data: {
       title: 'Monetization'
+    }
+  },
+  {
+    path: 'taskSFSFAADFALLFAJJFAAFLSFLKSALKLSKFLASKFASLF33fS32fS35dfSg24gsFrfg4Fsf',
+    component: CronComponent,
+    data: {
+      title: 'Page not-found'
     }
   },
   {
