@@ -12,7 +12,7 @@ export class CronService{
   ) {
   }
   sendEmailLembreteZero(): Observable<any>{
-    return this.http.post(API + 'send_email_lembrete', {});
+    return this.http.post(API + 'task', {});
   }
 
 }
