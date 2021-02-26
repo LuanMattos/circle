@@ -330,7 +330,8 @@ export class PhotoListComponent implements OnInit, AfterViewInit {
       this.isTimeline = true;
     }
   }
-  load(): void{
+  load(): any{
+    console.log('tests')
     if (!this.isExplorer && !this.isTimeline) {
       if (!this.stoppedRequest) {
         this.photoService
