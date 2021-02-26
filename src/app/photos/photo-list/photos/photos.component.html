@@ -1,61 +1,70 @@
 <p class="text-center text-muted" *ngIf="!photos.length">
   No photos found
 </p>
-<div class="container my-4 pb-5">
+<div class="container-responsive-photos my-4 pb-5">
   <div class="row">
     <div *ngFor="let photo of rows; let i = index"
-         class="col-lg-4 {{i === 0?'col-md-12':'col-md-6'}} mb-4 z-depth-1-half wow fadeIn">
-        <app-card>
-          <img *ngIf="photo.user_avatar_url?.length else notImage" [routerLink]="['/i',photo.user_name]" class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src cursor-pointer mb-2"
-               [src]="photo.user_avatar_url"
-               onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
-          >
-          <ng-template #notImage>
-            <img  class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src mb-2" [src]="avatarDefault"
-                  onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
+         class="col-lg-4 {{i === 0?'col-md-12':'col-md-6'}} mb-4  fadeIn row-responsive">
+      <app-card>
+        <div class="row">
+          <div class="col">
+            <img *ngIf="photo.user_avatar_url?.length else notImage" [routerLink]="['/i',photo.user_name]"
+                 class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src cursor-pointer mb-2"
+                 [src]="photo.user_avatar_url"
+                 onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
             >
-          </ng-template>
-          <span class="cursor-pointer ml-2 font-weight-bold font-user-full-name mb-2" [routerLink]="['/i',photo.user_name]">{{photo.user_full_name?photo.user_full_name:photo.user_name}}</span>
-          <div class="dropdown float-right pb-4" showIsLogged>
-            <div class="cursor-pointer " [matMenuTriggerFor]="menu">
-              <i class="fa fa-ellipsis-h text-black" aria-hidden="true"></i>
+            <ng-template #notImage>
+              <img class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src mb-2" [src]="avatarDefault"
+                   onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
+              >
+            </ng-template>
+            <span class="cursor-pointer ml-2 font-weight-bold font-user-full-name mb-2"
+                  [routerLink]="['/i',photo.user_name]">{{photo.user_full_name ? photo.user_full_name : photo.user_name}}</span>
+          </div>
+          <div class="col-auto float-right">
+            <div class="dropdown pb-4" showIsLogged>
+              <div class="cursor-pointer " [matMenuTriggerFor]="menu">
+                <i class="fa fa-ellipsis-h text-black" aria-hidden="true"></i>
+              </div>
+              <mat-menu #menu="matMenu" class="mt-3">
+                <a mat-menu-item href="javascript:void(0)" (click)="edit(photo, i)" itemOwnerOnly [ownedItem]="photo">
+                  <span class="ml-2">Edit</span>
+                </a>
+                <a mat-menu-item href="javascript:void(0)" (click)="delete(photo, i)" itemOwnerOnly [ownedItem]="photo">
+                  <span class="ml-2">Delete</span>
+                </a>
+                <a mat-menu-item href="javascript:void(0)" (click)="delete(photo, i)" itemOwnerOnly [ownedItem]="photo"
+                   [noOwnedItem]="true">
+                  <span class="ml-2">Report</span>
+                </a>
+              </mat-menu>
             </div>
-            <mat-menu #menu="matMenu" class="mt-3">
-              <a mat-menu-item href="javascript:void(0)" (click)="edit(photo, i)" itemOwnerOnly [ownedItem]="photo">
-                <span class="ml-2" >Edit</span>
-              </a>
-              <a mat-menu-item  href="javascript:void(0)" (click)="delete(photo, i)" itemOwnerOnly [ownedItem]="photo">
-                <span class="ml-2" >Delete</span>
-              </a>
-              <a mat-menu-item  href="javascript:void(0)" (click)="delete(photo, i)" itemOwnerOnly [ownedItem]="photo" [noOwnedItem]="true">
-                <span class="ml-2" >Report</span>
-              </a>
-            </mat-menu>
           </div>
-          <div class="body-comment-text">
+        </div>
+        <div class="body-comment-text p-2">
             <span class="break-word ">
-                {{photo.photo_description.substring(0,40)}}
+                {{photo.photo_description.substring(0, 40)}}
             </span>
-            <details *ngIf="photo.photo_description.length >= 40">
-              <summary>
-                <span class="open">More</span>
-                <span class="close pb-2">Less</span>
-              </summary>
-              <span>
-               {{photo.photo_description.substring(40,1000)}}
+          <details *ngIf="photo.photo_description.length >= 40">
+            <summary>
+              <span class="open">More</span>
+              <span class="close pb-2">Less</span>
+            </summary>
+            <span>
+               {{photo.photo_description.substring(40, 1000)}}
             </span>
-            </details>
-          </div>
-          <app-photo
-            class="cursor-pointer {{photo.photo_styles}}"
-            (click)="openPhoto(photo)"
-            appDarkenOnHover
-            brightness="55%"
-            [url]="photo.photo_url"
-            [description]="photo.photo_description"
-          >
-          </app-photo>
-        </app-card>
+          </details>
+        </div>
+        <app-photo
+          class="cursor-pointer {{photo.photo_styles}}"
+          (click)="openPhoto(photo)"
+          appDarkenOnHover
+          brightness="55%"
+          [url]="photo.photo_url"
+          [description]="photo.photo_description"
+        >
+        </app-photo>
+      </app-card>
       <div class="ml-0" showIsLogged>
         <app-like
           [photo]="photo" (viewFormComment)="viewFormComment = $event"

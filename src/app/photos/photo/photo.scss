@@ -2,17 +2,19 @@ img {
   background: #90979c;
   width: 100% !important;
   height: 600px !important;
-  border-radius: 1px;
+  border-radius: 10px;
 }
+
 .cover {
   width: 100% !important;
   height: 600px !important;
   object-fit: cover !important;
 }
+
 @media (max-width: 600px) {
   img {
-    min-width: 98%;
-    margin-left: 1% !important;
-    margin-right: 1% !important;
+    min-width: 100vw;
+    border-radius: 0;
   }
 }
+
