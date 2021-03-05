@@ -34,7 +34,7 @@ export class PhotosComponent implements OnChanges {
     public dialog: MatDialog
   ) { }
   isPhoto(value): boolean{
-    return value.search('/circle-photo/') > -1;
+    return(value.match(/\.(jpeg|jpg|gif|png)$/) != null);
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.photos){

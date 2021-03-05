@@ -42,23 +42,24 @@
           </div>
         </div>
         <div class="body-comment-text p-2">
-          <span class="break-word">{{photo.photo_description?photo.photo_description.substring(0, 40):''}}</span>
+          <span class="break-word">{{photo.photo_description ? photo.photo_description.substring(0, 40) : ''}}</span>
           <details *ngIf="photo.photo_description?photo.photo_description.length >= 40:''">
             <summary><span class="open">More</span><span class="close pb-2">Less</span></summary>
-            <span>{{photo.photo_description?photo.photo_description.substring(40, 1000):''}}</span>
+            <span>{{photo.photo_description ? photo.photo_description.substring(40, 1000) : ''}}</span>
           </details>
         </div>
-        <app-photo
-          *ngIf="isPhoto( photo.photo_url ) else notPhoto"
-          class="cursor-pointer {{photo.photo_styles}}"
-          (click)="openPhoto(photo)"
-          appDarkenOnHover
-          brightness="55%"
-          [url]="photo.photo_url"
-          [description]="photo.photo_description"
-        >
-        </app-photo>
-        <ng-template #notPhoto>
+        <div *ngIf="isPhoto( photo.photo_url ) else capeta">
+          <app-photo
+            class="cursor-pointer {{photo.photo_styles}}"
+            (click)="openPhoto(photo)"
+            appDarkenOnHover
+            brightness="55%"
+            [url]="photo.photo_url"
+            [description]="photo.photo_description"
+          >
+          </app-photo>
+        </div>
+        <ng-template #capeta>
           <app-videos [url]="photo.photo_url"></app-videos>
         </ng-template>
       </app-card>
