@@ -86,6 +86,23 @@ export class PhotoService {
       );
 
   }
+  uploadVideo(description: string, allowComments: boolean, publico: boolean, file, style: string): Observable<any>{
+    const formData = new FormData();
+
+    formData.append('description', description);
+    formData.append('public', publico ? 'true' : 'false');
+    formData.append('allowComments', allowComments ? 'true' : 'false');
+    formData.append('videoFile', file);
+    formData.append('style', style);
+
+    return this.http.post(API + 'videos_upload', formData,
+      {
+        observe: 'events',
+        reportProgress: true
+      }
+    );
+
+  }
 
 
   findById(id: number): Observable<Photo>{

@@ -23,6 +23,7 @@ import {FollowingComponent} from './following/following.component';
 import {ImgOnerrorModule} from '../../shared/directives/img-onerror/img-onerror.module';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import {DialogSettingComponent} from './setting-profile/dialog/dialog-setting.component';
+import {VideosComponent} from './videos/videos.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {DialogSettingComponent} from './setting-profile/dialog/dialog-setting.co
     PhotoListComponent,
     FilterByDescription,
     PhotosComponent,
+    VideosComponent,
     SearchComponent,
     SettingProfileComponent,
     FollowersComponent,

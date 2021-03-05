@@ -30,10 +30,12 @@ export class PhotoFormComponent implements OnInit {
   avatar: string;
   user: User;
   imageChangedEvent: any = '';
+  videoChangedEvent: any = '';
   croppedImage;
   blockSubmit = false;
   cols;
   classSelectedCarousel;
+  errorSubmitForm = '';
   constructor(
     private alertService: AlertService,
     private photoService: PhotoService,
@@ -42,8 +44,6 @@ export class PhotoFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private securityCommons: SecurityCommonsService,
     public headerService: HeaderService,
-    private el: ElementRef,
-    private render: Renderer2
   ) {
     this.headerService.setCurrentSession('photo-form');
   }
@@ -52,8 +52,9 @@ export class PhotoFormComponent implements OnInit {
     this.user = this.activatedRoute.snapshot.data.user;
     this.avatar = this.securityCommons.passSecurityUrl(this.user.user_avatar_url, environment.ApiUrl + 'storage/profile_default/default.png');
     this.photoForm = this.formBuilder.group({
-      file: ['', Validators.required],
-      description: ['', Validators.maxLength(300)]
+      file: [''],
+      description: ['', Validators.maxLength(300)],
+      video: ['']
     });
     this.resize();
   }
@@ -101,6 +102,9 @@ export class PhotoFormComponent implements OnInit {
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
   }
+  fileChangeEventVideo(event: any): void {
+    this.videoChangedEvent = event;
+  }
   imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.base64;
   }
@@ -124,19 +128,68 @@ export class PhotoFormComponent implements OnInit {
   loadImageFailed(): void {
     // show message
   }
-  getImageCropped(): void {
-    this.blockSubmit = true;
-    const file = this.base64ToFile(
-      this.croppedImage,
-      this.imageChangedEvent.target.files[0].name,
-    );
-    this.file = this.imageChangedEvent.target.files[0];
-    this.upload(file);
+  getImageCropped(): any {
+    const video = this.photoForm.get('video').value;
+    const photo = this.photoForm.get('file').value;
+    const description = this.photoForm.get('description').value;
+    if ( !video && !photo && !description){
+      this.errorSubmitForm = 'Fill in at least one item';
+      return false;
+    }
+
+    if (this.imageChangedEvent){
+      this.blockSubmit = true;
+      const file = this.base64ToFile(
+        this.croppedImage,
+        this.imageChangedEvent.target.files[0].name,
+      );
+      this.file = this.imageChangedEvent.target.files[0];
+      this.upload(file);
+    }else if (this.videoChangedEvent){
+      this.blockSubmit = true;
+      // const file = this.base64ToFile(
+      //   this.videoChangedEvent.target.files[0],
+      //   this.videoChangedEvent.target.files[0].name,
+      // );
+      this.uploadVideo(this.videoChangedEvent.target.files[0]);
+    }
   }
-  upload(file: File): void {
+  uploadVideo(file: File): any {
     const description = this.photoForm.get('description').value;
     const allowComments = this.allowComments;
-    console.log('submit ->>>>>' + this.classSelectedCarousel);
+    // this.classSelectedCarousel
+    this.photoService
+      .uploadVideo(description, allowComments, this.public, file, '')
+      .pipe(
+        finalize(() => {
+            this.blockSubmit = false;
+            this.router.navigate(['']);
+          }
+        )
+      )
+      .subscribe(
+        (event: HttpEvent<any>) => {
+
+          if (event.type === HttpEventType.UploadProgress) {
+
+            this.progress = Math.round(100 * event.loaded / event.total);
+
+          } else if (event.type === HttpEventType.Response) {
+            this.blockSubmit = false;
+            this.alertService.success('Upload complete');
+          }
+        },
+        err => {
+          this.blockSubmit = false;
+          this.alertService.danger('Failed to load the file, try later');
+        }
+      );
+    this.errorSubmitForm = '';
+    this.headerService.setCurrentSession('');
+  }
+  upload(file: File): any {
+    const description = this.photoForm.get('description').value;
+    const allowComments = this.allowComments;
     this.photoService
       .upload(description, allowComments, this.public, file, this.classSelectedCarousel)
       .pipe(
@@ -163,6 +216,7 @@ export class PhotoFormComponent implements OnInit {
           this.alertService.danger('Failed to load the file, try later');
         }
       );
+    this.errorSubmitForm = '';
     this.headerService.setCurrentSession('');
   }
   removeFile(): void {

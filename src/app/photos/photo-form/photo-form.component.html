@@ -9,8 +9,7 @@
       </div>
       <div class="row">
         <div class="col-auto">
-          <img [src]="avatar" class="avatar rounded-circle"
-               onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'">
+          <img [src]="avatar" class="avatar rounded-circle" onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'">
         </div>
         <div class="col-auto">
           <div class="mt-2 menu-options-public" (click)="public = !public">
@@ -28,18 +27,15 @@
       </div>
       <div class="row w-100 m-auto">
         <div class="col-auto w-100 mt-2">
-            <textarea
-              rows="5"
-              matInput
-              placeholder="Describe this moment"
-              formControlName="description"
-            >
-            </textarea>
-          <app-vmessage
-            *ngIf="photoForm.get('description').errors?.maxlength"
-            text="Máximo 300 caracteres"></app-vmessage>
+            <textarea rows="5" #descriptionInput matInput placeholder="Describe this moment" formControlName="description"></textarea>
+            <app-vmessage *ngIf="photoForm.get('description').errors?.maxlength" text="Max 300 characters"></app-vmessage>
         </div>
-        <div class="col-auto w-100 mt-2 border-top">
+      </div>
+      <div class="row w-100 m-auto">
+        <div class="col-auto w-100 border-top"></div>
+      </div>
+      <div class="row w-100 m-auto">
+        <div class="col-auto w-100">
           <input formControlName="file"
                  #fileInput
                  hidden
@@ -51,47 +47,57 @@
             <i class="mt-3 fa fa-camera-retro text-muted icons-footer" aria-hidden="true"></i>
             <span class="ml-2 text-muted font-weight-bold">Image</span>
           </div>
-          <span class="ml-1 text-danger error-validate"
-                *ngIf="photoForm.get('file').errors?.required; else showPreview">
-            Insert at image
-          </span>
-        </div>
-        <div class="col container-photo-form border-bottom" *ngIf="croppedImage">
-          <div class="row mt-2 pb-1 ">
-            <div class="col">
-              <span class="text-muted">Filters(Double click)</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <swiper [spaceBetween]="2" [virtual]="true" effect="fade" [slidesPerView]="cols">
-                <div *ngFor="let item of items(); let i = index;">
-                  <ng-template swiperSlide>
-                    <img src="{{croppedImage}}"  class="w-100 cursor-pointer item  {{item}}" (click)="selectItemCarousel(item)" >
-                  </ng-template>
-                </div>
-              </swiper>
-            </div>
-          </div>
+          <span class="ml-1 text-danger error-validate" *ngIf="!photoForm.get('file').value; else showPreview"></span>
         </div>
         <div class="col-auto w-100">
-          <ng-template #showPreview>
-            <div class="text-center " appDarkenOnHover brightness="70%">
-              <i class="fa fa-times pb-2 text-danger cursor-pointer mr-2 fa-3x" (click)="removeFile()"></i>
-              <image-cropper
-                class="preview {{classSelectedCarousel}}"
-                [imageChangedEvent]="imageChangedEvent"
-                [maintainAspectRatio]="true"
-                [aspectRatio]="3/4"
-                (imageCropped)="imageCropped($event)"
-                (cropperReady)="cropperReady()"
-                (loadImageFailed)="loadImageFailed()"
-              ></image-cropper>
-            </div>
-          </ng-template>
+          <input formControlName="video"
+                 #fileInputVideo
+                 hidden
+                 type="file"
+                 accept="video/*"
+                 (change)="fileChangeEventVideo( $event )"
+          >
+          <div class="cursor-pointer ml-1" (click)="fileInputVideo.click()">
+            <i class="fa fa-video-camera text-muted icons-footer" aria-hidden="true"></i>
+            <span class="ml-2 text-muted font-weight-bold">Movie</span>
+          </div>
         </div>
+        <ng-template #showPreview>
+          <div class="col-auto container-photo-form w-100">
+            <div class="row mt-2 pb-1 ">
+              <div class="col-auto w-100">
+                <span class="text-muted">Filters(Double click)</span>
+              </div>
+            </div>
+            <div class="row w-100">
+              <div class="col-auto w-100">
+                <swiper [spaceBetween]="2" [virtual]="true" effect="fade" [slidesPerView]="cols">
+                  <div *ngFor="let item of items(); let i = index;">
+                    <ng-template swiperSlide>
+                      <img src="{{croppedImage}}"  class="w-100 cursor-pointer item  {{item}}" (click)="selectItemCarousel(item)" >
+                    </ng-template>
+                  </div>
+                </swiper>
+              </div>
+            </div>
+          </div>
+          <div class="col-auto w-100">
+              <div class="text-center " appDarkenOnHover brightness="70%">
+                <i class="fa fa-times pb-2 text-danger cursor-pointer mr-2 fa-3x" (click)="removeFile()"></i>
+                <image-cropper
+                  class="preview {{classSelectedCarousel}}"
+                  [imageChangedEvent]="imageChangedEvent"
+                  [maintainAspectRatio]="true"
+                  [aspectRatio]="3/4"
+                  (imageCropped)="imageCropped($event)"
+                  (cropperReady)="cropperReady()"
+                  (loadImageFailed)="loadImageFailed()"
+                ></image-cropper>
+              </div>
+          </div>
+        </ng-template>
         <div class="col-auto m-auto w-100 pt-4 pb-4">
-          <button [disabled]="photoForm.invalid || blockSubmit"
+          <button [disabled]="photoForm.invalid || blockSubmit || (!fileInputVideo.value && !fileInput.value && !descriptionInput.value)"
                   type="submit"
                   class="cursor-pointer btn button-alert m-auto w-100">
             <span>Publish</span>

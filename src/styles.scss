@@ -333,6 +333,7 @@ $size: 100vw;
 .contrast-circle {
   filter: contrast(160%) !important;
 }
+
 .contrast-2-circle {
   filter: contrast(2) !important;
   -webkit-filter: contrast(2) !important;
@@ -345,303 +346,62 @@ $size: 100vw;
 .blur-circle {
   filter: blur(2px) !important;
 }
+
 .all-the-things-circle {
   filter: contrast(1.4) saturate(1.8) sepia(.6) !important;
   -webkit-filter: contrast(1.4) saturate(1.8) sepia(.6) !important;
 }
-.brightness-contrast-1-circle{
+
+.brightness-contrast-1-circle {
   filter: brightness(1.07) contrast(0.59) !important;
 }
-.filter-2-circle{
+
+.filter-2-circle {
   filter: hue-rotate(46deg) invert(0.15) opacity(0.83) !important;
 }
-.filter-3-circle{
+
+.filter-3-circle {
   filter: sepia(0.42) !important;
 }
-.filter-4-circle{
+
+.filter-4-circle {
   filter: contrast(1.66) grayscale(0.1) hue-rotate(-15deg) invert(0.03) opacity(0.96) sepia(0.5) !important;
 }
-.filter-5-circle{
+
+.filter-5-circle {
   filter: contrast(0.83) grayscale(0.1) hue-rotate(-15deg) invert(0.03) opacity(0.96) sepia(0.5) !important;
 }
-.fitler-6-circle{
-  position: absolute; content: ''; display: block; top: 0; left: 0; height: 100%; width: 100%  !important;
-  background: linear-gradient(to left,rgba(244, 112, 181, 0.4) 0%, rgba(255, 0, 212, 0.4) 100%) !important;
-  mix-blend-mode: multiply  !important;
+
+.fitler-6-circle {
+  position: absolute;
+  content: '';
+  display: block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100% !important;
+  background: linear-gradient(to left, rgba(244, 112, 181, 0.4) 0%, rgba(255, 0, 212, 0.4) 100%) !important;
+  mix-blend-mode: multiply !important;
 }
-.filter-7-circle{
+
+.filter-7-circle {
   filter: contrast(2.65) !important;
 }
+
 /** --END-FILTERS-- **/
-.container-photo-form{
+.container-photo-form {
   .swiper-container {
     width: 100% !important;
 
   }
 }
-.focus-dander:focus{
+
+.focus-dander:focus {
   border-color: #FF0000 !important;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6) !important;
 }
-.btn-primary:disabled{
+
+.btn-primary:disabled {
   background-color: #727272 !important;
-  color:white !important;
-}
-
-.video-circle{
-  height: 600px;
-  button {
-    cursor: pointer;
-  }
-
-  input[type=range] {
-    -webkit-appearance: none;
-    align-self: center;
-    background: rgb(231, 231, 231);
-    height: 20px;
-    opacity: .7;
-    outline: none;
-  }
-
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    background: rgb(0, 174, 255);
-    cursor: pointer;
-    height: 20px;
-    width: 20px;
-  }
-
-  input[type=range]::-moz-range-thumb {
-    background: rgb(0, 174, 255);
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    height: 20px;
-    width: 20px;
-  }
-
-  input[type=range]::-moz-range-track {
-    background: rgb(231, 231, 231);
-    border: none;
-    width: 100%;
-  }
-
-  select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: white;
-    border: none;
-    cursor: pointer;
-    color: black;
-    font-weight: 600;
-    outline: none;
-    text-align: center;
-    text-align-last: center;
-    width: 2.5rem;
-  }
-
-  option {
-    background: rgb(78, 78, 78);
-    color: white;
-    outline:none;
-    text-align: center;
-    text-align-last: center;
-  }
-
-  .player {
-    margin: 0 auto;
-    margin-bottom: 0;
-    max-width: 60%;
-    height: 100%;
-  }
-
-  .player:fullscreen .video-screen {
-    background: rgb(38, 38, 39)
-  }
-
-  .player:fullscreen .file-chooser {
-    transform: translateY(500%);
-  }
-
-  .file-chooser {
-    color: white;
-    cursor: pointer;
-    height: 50px;
-    transform: translateY(-50%);
-  }
-
-  .video-screen {
-    background: rgb(188,188,188);
-    display: block;
-    object-fit: cover;
-    margin: 0 auto;
-    transition: opacity .5s;
-    width: 100%;
-  }
-
-  .controls {
-    background: rgba(0, 0, 0, 0.5);
-    border-top: 5px solid rgba(0, 0, 0, 0.02);
-    border-bottom: 5px solid rgba(0, 0, 0, 0);
-    display: flex;
-    height: 70px;
-    justify-content: space-around;
-    opacity: 0;
-    margin: 0;
-    transition: .5s;
-    transition-property: opacity, visibility;
-    transform: translateY(-69px);
-    visibility: hidden;
-    width: 100%;
-  }
-
-  .controls * {
-    opacity: .7;
-    transition: opacity .3s;
-  }
-
-  .controls.active {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .fullscreen-button {
-    align-self: center;
-    border: 7px dashed white;
-    background: transparent;
-    height: 35px;
-    margin: 0 15px;
-    transition: scale .1s;
-    width: 40px;
-  }
-
-  .play {
-    align-self: center;
-    height: 40px;
-    margin: 0 20px;
-    width: 20px;
-  }
-
-  .play.start {
-    background: none;
-    border: 20px solid transparent;
-    border-right: none;
-    border-left: 35px solid white;
-    margin: 0;
-    margin-left: 25px;
-  }
-
-  .play.pause {
-    background: none;
-    border: none;
-    border-left: 15px solid white;
-    border-right: 15px solid white;
-    padding: 6px;
-    margin: 0;
-    margin-left: 15px;
-    margin-right: 3px;
-  }
-
-  .volume-bar {
-    margin: 0 20px;
-    width: 80px;
-  }
-
-  .time-bar {
-    width: 70%;
-  }
-
-  .time {
-    align-self: center;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 600;
-    line-height: 24px;
-    min-width: 135px;
-    opacity: .9;
-  }
-
-  .speed {
-    align-self: center;
-    color: white;
-    font-weight: bold;
-    opacity: .9;
-    margin-right: 5px;
-    width: 50px;
-  }
-
-  ::-webkit-media-controls {
-    display:none;
-  }
-
-  @media (hover: hover) {
-    .controls *:hover {
-      opacity: .9;
-    }
-
-    .fullscreen-button:active {
-      transform: scale(1.2);
-    }
-  }
-
-  @media only screen and (max-width: 900px) {
-    .player {
-      margin: 0;
-      max-width: 100vw;
-    }
-
-    .controls {
-      justify-content: space-evenly;
-    }
-
-    .controls * {
-      margin: 0;
-      margin-left: 8px;
-    }
-
-    .controls {
-      margin: 0;
-    }
-
-    .play {
-      display: none;
-    }
-
-    .time {
-      font-size: 18px;
-      font-weight: 400;
-      max-width: 14%;
-      min-width: 10%;
-      width: 10%;
-    }
-
-    .time-bar {
-      width: 100%;
-    }
-
-    .volume-bar {
-      max-width: 10%;
-    }
-
-    .speed {
-      display: none;
-    }
-
-    .fullscreen-button {
-      border-width: 3px;
-      height: 25px;
-      margin-right: 8px;
-      min-width: 25px;
-      width: 40px;
-    }
-
-    .file-chooser {
-      display: none;
-    }
-    .video-screen{
-      height: 600px;
-    }
-  }
+  color: white !important;
 }
