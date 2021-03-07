@@ -49,6 +49,7 @@ export class UserService{
   }
 
   logout(): void{
+    this.http.post<any>(API + 'close', {}).subscribe();
     this.tokenService.removeToken();
     this.userSubject.next(null);
   }
