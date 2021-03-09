@@ -19,12 +19,7 @@
               >
             </ng-template>
             <span class="cursor-pointer ml-2 font-weight-bold font-user-full-name mb-2"
-                  [routerLink]="['/i',photo.user_name]">
-              <span *ngIf="photo.user_full_name else userName">
-              {{photo.user_full_name ? photo.user_full_name : '' | titlecase}}
-              </span>
-              <template #userName>{{photo.user_name}}</template>
-            </span>
+                  [routerLink]="['/i',photo.user_name]">{{photo.user_full_name ? photo.user_full_name : photo.user_name}}</span>
           </div>
           <div class="col-auto float-right">
             <div class="dropdown pb-4" showIsLogged>
