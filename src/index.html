@@ -11,7 +11,7 @@
   <!-- End Google Tag Manager -->
   <meta charset="utf-8">
   <title>Circle Social Network</title>
-  <base href="/">
+  <base href="./">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -104,9 +104,14 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
 <body class="mat-typography">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WW82S48"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WW82S48" height="0" width="0" style="display:none;visibility:hidden">
+  </iframe>
+</noscript>
+<script src="cordova.js"></script>
+  <script type=”text/javascript”>
+     cordova.InAppBrowser.open(url,“_blank”);
+  </script>
   <app-root></app-root>
 </body>
 </html>
