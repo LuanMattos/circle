@@ -28,7 +28,7 @@
   background: #161616;
 }
 
-.text-outline, .lp__nav__logo span {
+.text-outline, .lp__nav__logo h1 {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #fafafa;
   color: transparent;
@@ -43,13 +43,12 @@ nav {
 .lp__nav__logo {
   color: #fafafa;
   font-weight: 600;
-  margin-top: 10px;
   font-size: 18px;
 }
 
-.lp__nav__logo span {
+.lp__nav__logo h1 {
   -webkit-text-stroke-width: 0.5px;
-  padding-top: 5px;
+  font-size: 24px;
 }
 
 .lp__nav__linkSet {

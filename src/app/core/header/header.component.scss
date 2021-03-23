@@ -41,14 +41,13 @@ nav {
 .lp__nav__logo {
   color: $font-color;
   font-weight: 600;
-  margin-top: 10px;
   font-size: 18px;
 }
 
-.lp__nav__logo span {
+.lp__nav__logo h1 {
   @extend .text-outline;
   -webkit-text-stroke-width: 0.5px;
-  padding-top: 5px;
+  font-size: 24px;
 }
 
 .lp__nav__linkSet {

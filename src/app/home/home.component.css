@@ -1,6 +1,4 @@
-$font-color: #fafafa;
-
-.text-outline {
+.text-outline, .lp__subgrid-md h2 span {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #fafafa;
   color: transparent;
@@ -9,16 +7,18 @@ $font-color: #fafafa;
 img {
   width: 100%;
 }
+
 .lp {
-  width:100%;
+  width: 100%;
   margin: 0;
   height: auto;
   display: flex;
   flex-direction: column;
   position: relative;
 }
+
 h2, p, a {
-  color: $font-color;
+  color: #fafafa;
 }
 
 /*GRID*/
@@ -27,6 +27,7 @@ h2, p, a {
   grid-template-columns: repeat(3, 1fr);
   padding: 16px 48px;
 }
+
 .lp__grid__item {
   height: 100%;
   width: 100%;
@@ -40,9 +41,11 @@ h2, p, a {
   grid-template-columns: 24px auto;
   position: relative;
 }
+
 .textHolder {
   position: relative;
 }
+
 .lp__grid-col p {
   transform: rotate(270deg);
   height: 24px;
@@ -53,9 +56,10 @@ h2, p, a {
   left: -130px;
   font-size: 12px;
 }
+
 .lp__gridImage-1 {
   height: 496px;
-  background: url('https://cdn.pixabay.com/photo/2015/07/29/00/08/photographer-865295_1280.jpg') no-repeat -300px;
+  background: url("https://cdn.pixabay.com/photo/2015/07/29/00/08/photographer-865295_1280.jpg") no-repeat -300px;
   background-size: cover;
 }
 
@@ -64,15 +68,18 @@ h2, p, a {
   display: grid;
   height: 100%;
 }
+
 .lp__subgrid-sm {
   grid-template-rows: 72px auto;
 }
+
 .lp__subgrid-sm p {
   line-height: 1.4;
   padding: 0;
   margin: 0;
   font-size: 12px;
 }
+
 .lp__subgrid-md {
   grid-template-rows: 144px auto;
 }
@@ -80,42 +87,38 @@ h2, p, a {
 .lp__subgrid-md h2 {
   font-size: 64px;
   line-height: 1;
-  margin: 0
+  margin: 0;
 }
+
 .lp__subgrid-md h2 span {
   display: block;
-  @extend .text-outline;
 }
-
 
 .lp__gridImage-2 {
-  background: url('https://cdn.pixabay.com/photo/2017/07/31/23/51/people-2562109_1280.jpg') no-repeat right;
+  background: url("https://cdn.pixabay.com/photo/2017/07/31/23/51/people-2562109_1280.jpg") no-repeat right;
   background-size: cover;
 }
-.lp__gridImage-3 {
-  background: url('https://cdn.pixabay.com/photo/2016/11/29/06/49/beach-1867908_1280.jpg') no-repeat center;
-  background-size: cover;
 
+.lp__gridImage-3 {
+  background: url("https://cdn.pixabay.com/photo/2016/11/29/06/49/beach-1867908_1280.jpg") no-repeat center;
+  background-size: cover;
 }
 
 @media screen and (max-width: 650px) {
-  .lp{
-    width:100%;
+  .lp {
+    width: 100%;
     margin: 0;
     height: auto;
     display: block;
     flex-direction: row;
     position: relative;
   }
-  h2, p,a{}
-  .lp__grid-3{
+
+  .lp__grid-3 {
     display: block;
     grid-template-columns: unset;
     padding: 16px 48px;
   }
-  .lp__grid__item{}
-  .lp__grid-col{}
-  .lp__gridImage-1{}
-  .lp__gridImage-2{}
-  .lp__gridImage-3{}
 }
+
+/*# sourceMappingURL=home.component.css.map */

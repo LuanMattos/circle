@@ -38,8 +38,8 @@
       "sameAs": "linkedin.com/in/circle-social-sharing-6b410a206",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://www.google.com/search?bih=578&biw=1280&rlz=1C1CHZN_pt-BRBR933BR933&hl=pt-BR&sxsrf=ALeKk01d3zx_hVHL0bG-EBzA4YODh1NW2Q%3A1612732106491&ei=ylYgYO6mHfG45OUP7au2iA4&q=mycircle.click&oq=mycircle.click&gs_lcp=CgZwc3ktYWIQAzIECCMQJzoHCCMQsAMQJzoHCAAQRxCwA1ClKVirK2D9MWgBcAJ4AIABfogB5QKSAQMwLjOYAQCgAQGqAQdnd3Mtd2l6yAEKwAEB&sclient=psy-ab&ved=0ahUKEwjus8yi19juAhVxHLkGHe2VDeEQ4dUDCA0&uact=5login",
-        "query-input": "required name=login"
+        "target": "{Circle}",
+        "query-input": "required name=circle"
       }
     }
   </script>
@@ -51,7 +51,7 @@
       "url": "https://mycircle.click",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "{search_term_string}",
+        "target": "{Circle}",
         "query-input": "required name=search_term_string"
       }
     }
@@ -108,7 +108,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
   <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WW82S48" height="0" width="0" style="display:none;visibility:hidden">
   </iframe>
 </noscript>
-<script src="cordova.js"></script>
+<!--<script src="cordova.js"></script>-->
   <script type=”text/javascript”>
      cordova.InAppBrowser.open(url,“_blank”);
   </script>
