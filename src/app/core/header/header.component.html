@@ -81,11 +81,6 @@
         </div>
       </div>
       <div class="row">
-        <div class="col" (click)="closeDialog()" [routerLink]="['monetization-dash']" >
-          My Money&nbsp;<i class="fa fa-usd text cursor-pointer text-white" aria-hidden="true"></i>
-        </div>
-      </div>
-      <div class="row">
         <div class="col">
           <a [href]="['i/' + user.user_name]">Profile</a>
         </div>
@@ -104,7 +99,6 @@
         <a [routerLink]="['about']" class="lp__nav__link" >About</a>
         <a [routerLink]="['privacy']" class="lp__nav__link">Privacy</a>
         <a [routerLink]="['terms']" class="lp__nav__link">Terms and conditions</a>
-        <a href="http://docs.mycircle.click/monetization" target="_blank" class="lp__nav__link">Monetization</a>
       </div>
       <div class="lp__nav__linkSet">
         <a [routerLink]="['home/signup']" (click)="eventMenuDesktop()" class="lp__nav__link">Sign Up</a>
@@ -114,7 +108,7 @@
     <nav class="menu-mobile" *ngIf="!(user$ | async)">
       <div class="row">
         <div class="col">
-          <div class="lp__nav__logo"><span>Circle</span></div>
+          <div class="lp__nav__logo"><h1>Circle</h1></div>
         </div>
         <div class="col">
           <div class="lp__nav__linkSet mr-2">
