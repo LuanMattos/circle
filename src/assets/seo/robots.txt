@@ -1,7 +1,5 @@
 user-agent: *
-Allow: /about
-Allow: /privacy
-Allow: /terms
+Allow: /
 Allow: /home
 Allow: /home/signup
 Sitemap: https://mycircle.click/assets/seo/sitemap_location.xml
