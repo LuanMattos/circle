@@ -2,11 +2,10 @@
   No photos found
 </p>
 <div class="container-responsive-photos my-4 pb-5">
-  <div class="row">
-    <div *ngFor="let photo of rows; let i = index"
-         class="col-lg-4 {{i === 0?'col-md-12':'col-md-6'}} mb-4  fadeIn row-responsive">
+  <div class="row ml-0 mr-0">
+    <div *ngFor="let photo of rows; let i = index" class="col-lg-4 {{i === 0?'col-md-12':'col-md-6'}} mb-4  fadeIn row-responsive">
       <app-card>
-        <div class="row">
+        <div class="row ml-0 mr-0">
           <div class="col">
             <img *ngIf="photo.user_avatar_url?.length else notImage" [routerLink]="['/i',photo.user_name]"
                  class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src cursor-pointer mb-2"
