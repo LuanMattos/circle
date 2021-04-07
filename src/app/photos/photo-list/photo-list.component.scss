@@ -1,5 +1,6 @@
-.container{
+.--container{
   margin-bottom: 50px;
+  padding: 25px;
   .container-cover{
     border-radius: 15px;
     background-color: #d4d4d4;
@@ -22,6 +23,14 @@
     width: 180px;
     height: 180px;
   }
-
+  @media only screen and (max-width: 990px) {
+    padding: 0;
+    .container-cover{
+      border-radius: 0;
+      img{
+        border-radius: 0;
+      }
+    }
+  }
 }
 

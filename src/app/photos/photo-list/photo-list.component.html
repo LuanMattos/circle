@@ -1,13 +1,10 @@
-<div class="container w-100" *ngIf="!isExplorer && !isTimeline">
+<div class="--container w-100 " *ngIf="!isExplorer && !isTimeline">
   <div class="container-cover">
-    <img *ngIf="this.user.user_cover_url" class="w-100 e2e-iframe-trusted-src" [src]="user_cover_url"
-         onerror="this.src='https://be.mycircle.click/storage/cover_default/cover-default-grey.png'"/>
+    <img *ngIf="this.user.user_cover_url" class="w-100 e2e-iframe-trusted-src" [src]="user_cover_url" onerror="this.src='https://be.mycircle.click/storage/cover_default/cover-default-grey.png'"/>
   </div>
   <div class="card-body text-center">
-    <img class="avatar rounded-circle e2e-iframe-trusted-src cursor-pointer" [src]="user.user_avatar_url"
-         onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'">
-    <i itemOwnerOnly showIsLogged [ownedItem]="user" class="fa fa-cogs cursor-pointer fa-2x" aria-hidden="true"
-       [routerLink]="['/setting',user.user_name]"></i>
+    <img class="avatar rounded-circle e2e-iframe-trusted-src cursor-pointer" [src]="user.user_avatar_url" onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'">
+    <i itemOwnerOnly showIsLogged [ownedItem]="user" class="fa fa-cogs cursor-pointer fa-2x" aria-hidden="true" [routerLink]="['/setting',user.user_name]"></i>
     <h4 class="card-title">{{user.user_full_name | titlecase}}</h4>
     <h6 class="card-subtitle mb-2 text-muted">{{user.address | titlecase}}</h6>
     <p class="card-text">{{user.description}} </p>
@@ -21,17 +18,11 @@
     </div>
     <div class="row" showIsLogged itemOwnerOnly [ownedItem]="user" [noOwnedItem]="true">
       <div class="col">
-        <button class="btn {{this.following?'btn-info':'btn-light'}}"
-                (click)="follow()">{{this.following ? 'Following' : 'Follow'}}</button>
+        <button class="btn {{this.following?'btn-info':'btn-light'}}" (click)="follow()">{{this.following ? 'Following' : 'Follow'}}</button>
       </div>
     </div>
   </div>
 </div>
-<div
-  infiniteScroll
-  [infiniteScrollDistance]="1"
-  [infiniteScrollThrottle]="100"
-  (scrolled)="load()"
->
+<div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="100" (scrolled)="load()">
   <app-photos [photos]="photos"></app-photos>
 </div>
