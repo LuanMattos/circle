@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AAAA,UAAU;EACR,aAAa,EAAE,IAAI;EACnB,2BAAgB;IACd,aAAa,EAAE,aAAa;IAC5B,gBAAgB,EAAE,OAAO;IACzB,KAAK,EAAE,eAAe;IACtB,MAAM,EAAE,gBAAgB;IACxB,+BAAG;MACD,aAAa,EAAE,aAAa;MAC5B,UAAU,EAAE,OAAO;MACnB,KAAK,EAAE,eAAe;MACtB,MAAM,EAAE,gBAAgB;MACxB,UAAU,EAAE,gBAAgB;EAGhC,kBAAQ;IACN,MAAM,EAAE,qCAA4B;IACpC,UAAU,EAAE,KAAK;IACjB,aAAa,EAAE,IAAI;IACnB,UAAU,EAAE,KAAK;IACjB,eAAe,EAAE,KAAK;IACtB,KAAK,EAAE,KAAK;IACZ,MAAM,EAAE,KAAK",
-"sources": ["photo-list.component.scss"],
-"names": [],
-"file": "photo-list.component.css"
-}
+{"version":3,"sourceRoot":"","sources":["photo-list.component.scss"],"names":[],"mappings":"AAAA;EACE;EACA;;AACA;EACE;EACA;EACA;EACA;;AACA;EACE;EACA;EACA;EACA;EACA;;AAGJ;EACE;EACA;EACA;EACA;EACA;EACA;EACA;;AAEF;EAzBF;IA0BI;;EACA;IACE;;EACA;IACE","file":"photo-list.component.css"}

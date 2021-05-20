@@ -61,7 +61,8 @@
     },
     "platforms": [
       "android",
-      "browser"
+      "browser",
+      "ios"
     ]
   },
   "devDependencies": {
@@ -77,6 +78,7 @@
     "bufferutil": "^4.0.2",
     "codelyzer": "^6.0.0",
     "cordova-browser": "^6.0.0",
+    "cordova-ios": "^6.2.0",
     "cordova-plugin-device": "^2.0.3",
     "firebase-admin": "^8.10.0",
     "firebase-functions": "^3.6.0",

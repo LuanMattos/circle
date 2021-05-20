@@ -13,9 +13,8 @@ img {
 
 @media (max-width: 600px) {
   img {
-    min-width: 98%;
-    margin-left: 1% !important;
-    margin-right: 1% !important;
+    min-width: 100%;
+    border-radius: 0;
   }
 }
 
