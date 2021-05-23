@@ -405,3 +405,17 @@ $size: 100vw;
   background-color: #727272 !important;
   color: white !important;
 }
+.no-selected{
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+.fade-in-circle {
+  -webkit-animation: fadeIn .5s ease-in;
+  -moz-animation: fadeIn .5s ease-in;
+  -o-animation: fadeIn .5s ease-in;
+  animation: fadeIn .5s ease-in;
+}

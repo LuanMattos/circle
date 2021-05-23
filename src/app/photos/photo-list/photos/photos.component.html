@@ -47,7 +47,7 @@
             <span>{{photo.photo_description ? photo.photo_description.substring(40, 1000) : ''}}</span>
           </details>
         </div>
-        <div *ngIf="isPhoto( photo.photo_url ) else capeta">
+        <div *ngIf="isPhoto( photo.photo_url ) else video">
           <app-photo
             class="cursor-pointer {{photo.photo_styles}}"
             (click)="openPhoto(photo)"
@@ -58,7 +58,7 @@
           >
           </app-photo>
         </div>
-        <ng-template #capeta>
+        <ng-template #video>
           <app-videos [url]="photo.photo_url"></app-videos>
         </ng-template>
       </app-card>

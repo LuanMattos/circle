@@ -1,17 +1,21 @@
 .player-container {
   .player {
     padding-bottom: 56.25%;
-    box-shadow: 0 10px 0px -3px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     position: relative;
     overflow: hidden;
     background: #000000;
     height: 600px;
-    width: 420px;
+    width: 100%;
     .video {
       object-fit: cover;
       width: 100%;
       height: 600px;
+    }
+    .time{
+      span{
+        color:#fdfdfd;
+      }
     }
   }
   .player:fullscreen {
