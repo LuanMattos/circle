@@ -31,13 +31,19 @@ export class LikeComponent implements OnInit{
 
   like( photoId: number ): void{
 
+    if (this.photo.liked){
+      this.photo.liked = false;
+    }else{
+      this.photo.liked = true;
+    }
+
     const userName = this.userService.getUserName();
     this.photoService
       .like( photoId, userName )
       .subscribe(response => {
         if (response) {
           this.photo.photo_likes = response.count;
-          this.photo.liked = response.liked;
+          // this.photo.liked = response.liked;
           }
         }
       );

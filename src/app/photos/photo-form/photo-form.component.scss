@@ -1,9 +1,25 @@
 .container-photo-form{
+  box-shadow: 1px 1px 1px #eeeeee;
   form{
     margin-top: 1vw;
     background-color: #eeeeee;
     padding: 10px;
     border-radius: 5px;
+
+    .row-menu{
+      display: table;
+      .col-auto{
+        width: auto;
+        margin-left:15px;
+        padding: 0 !important;
+      }
+      .col-sm{
+        width: 100px;
+        padding: 0 !important;
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
   }
   .w-15{
     width: 20% !important;
@@ -20,8 +36,8 @@
   textarea{
     margin-left: 10px;
     margin-right: 10px;
-    border: 0;
-    border: none;
+    border-radius: 5px;
+    border:0;
     width: 100%;
   }
   .fa{
@@ -60,7 +76,6 @@
   height: 50px;
 }
 .menu-options-public{
-  margin-top:80px;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -69,7 +84,7 @@
   user-select: none;
   border-radius: 50px;
   border: 1.5px solid #363636;
-  width: auto;
+  width: 83px;
   padding: 1px;
   cursor: pointer;
   span{

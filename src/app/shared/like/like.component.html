@@ -1,8 +1,10 @@
 <div showIsLogged>
-  <div class="pull-left text-muted" (click)="like( photo.photo_id )" >
+  <div class="pull-left text-muted">
     <div class="row">
-      <div class="col text-center">
-        <i aria-hidden="true" class="fa fa-hand-peace-o icons-interaction ml-3 cursor-pointer {{photo.liked?'text-primary':'text-muted'}}"></i>
+      <div class="col text-center cursor-pointer">
+        <div class="area-interaction" (click)="like( photo.photo_id )">
+          <i aria-hidden="true" class="fa fa-hand-peace-o icons-interaction   {{photo.liked?'text-primary':'text-muted'}}"></i>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -11,7 +13,7 @@
       </div>
     </div>
   </div>
-  <div class="pull-left text-muted ml-2">
+  <div class="pull-left text-muted">
     <div class="row">
       <div class="col text-center">
         <span class="align-middle font-weight-bold  cursor-pointer">{{ photo.photo_likes }}</span>
