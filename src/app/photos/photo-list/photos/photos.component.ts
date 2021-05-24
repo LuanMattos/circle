@@ -9,7 +9,8 @@ import {environment} from '../../../../environments/environment';
 import {SecurityCommonsService} from '../../../shared/services/security-commons.service';
 import {UserService} from '../../../core/user/user.service';
 import {MatDialog} from '@angular/material/dialog';
-import {DialogComponent} from '../../../shared/dialog/dialog.component';
+import {DialogComponent} from '../../photo-detail/dialog/dialog.component';
+
 
 @Component({
   selector: 'app-photos',

@@ -15,8 +15,8 @@ import {TermsComponent} from '../home/footer/terms/terms.component';
 import {SearchComponent} from './search/search.component';
 import {FooterComponent} from './footer/footer.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
-import {DialogModule} from '../shared/dialog/dialog.module';
 import {MonetizationComponent} from '../home/footer/monetization/monetization.component';
+import {DialogModule} from '../photos/photo-detail/dialog/dialog.module';
 
 
 @NgModule({

@@ -1,21 +1,8 @@
 .div-general-photo-detail {
-  margin:auto;
+  margin: auto;
   min-height: 800px;
 }
-.responsive-row{
-  width: 60%;
+
+@media (max-width: 600px) {
+
 }
-
-@media (max-width: 600px){
-    .img-container {
-      min-width: 98%;
-      margin-left: 1% !important;
-      margin-right: 1% !important;
-    }
-    .responsive-row{
-      width: 100%;
-      margin-left: 2px;
-      margin-right: 2px;
-    }
-
-  }

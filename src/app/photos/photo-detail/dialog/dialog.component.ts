@@ -1,6 +1,7 @@
 import {Component, Inject, Input, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {HeaderService} from '../../core/header/header.service';
+import {HeaderService} from '../../../core/header/header.service';
+
 
 export interface Photo {
   photo_id: number;

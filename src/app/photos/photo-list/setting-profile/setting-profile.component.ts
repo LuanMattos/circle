@@ -88,7 +88,7 @@ export class SettingProfileComponent implements OnInit {
     const data = this.settingForm.getRawValue();
     this.userService.saveSettings(data).subscribe(success => {
         if (!success){
-          this.settingForm.controls.userPassword.setErrors({message : 'Incorrect password!'});
+          this.settingForm.controls.userPassword.setErrors({message : success});
         } else if ( success === 'auth' ){
           this.userService.logout();
           this.route.navigate(['']);
