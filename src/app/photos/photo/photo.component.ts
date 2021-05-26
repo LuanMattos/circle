@@ -15,6 +15,7 @@ export class PhotoComponent{
   ) { }
   @Input() description = '';
   @Input() _url = '';
+  @Input() photo_id;
 
   @Input() set url( url: string ){
     if (!url.startsWith('data')){
@@ -28,6 +29,7 @@ export class PhotoComponent{
   }
   errorHandler(event): any {
     event.target.src = 'https://be.mycircle.click/storage/default/error-photo.png';
+    this.photoService.registerErrorPhoto(this.photo_id).subscribe();
   }
 
 }

@@ -101,9 +101,14 @@
 @media only screen and (max-width: 600px) {
   .container-photo-form {
     margin-top:0;
+    .menu-options-public{
+      border:1px solid #727272;
+    }
     form {
       margin-top: 0;
       border-radius: 0;
+      color:#212121;
+      background: white;
       .col-description{
         padding: 0 !important;
       }

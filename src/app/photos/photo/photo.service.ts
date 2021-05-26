@@ -13,9 +13,9 @@ export class PhotoService {
 
   constructor(private http: HttpClient) {}
 
-
-
-
+  registerErrorPhoto(photoId: number): any{
+    return this.http.get<Photo[]>(API + '/register_error_photo/' + photoId);
+  }
 
   /** Comments **/
   getComments(photoId: number): any{
