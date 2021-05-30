@@ -82,12 +82,12 @@ export class PhotoListComponent implements OnInit {
         });
     }else{
       this.photoService
-        .listFromToExplorerPaginated(this.photos.length)
+        .listFromToExplorerPaginated(this.photos[this.photos.length - 1].photo_id)
         .subscribe(res => {
           this.stoppedRequest = false;
-          if (res && !res.length) {
-            this.stoppedRequest = true;
-          }
+          // if (res && !res.length) {
+          //   this.stoppedRequest = true;
+          // }
           this.pushPhotos( res );
         });
     }

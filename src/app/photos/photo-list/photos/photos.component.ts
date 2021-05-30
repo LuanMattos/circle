@@ -35,7 +35,10 @@ export class PhotosComponent implements OnChanges {
     public dialog: MatDialog
   ) { }
   isPhoto(value): boolean{
-    return(value.match(/\.(jpeg|jpg|gif|png)$/) != null);
+    if (value != null){
+      return(value.match(/\.(jpeg|jpg|gif|png)$/) != null);
+    }
+    return false;
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.photos){
