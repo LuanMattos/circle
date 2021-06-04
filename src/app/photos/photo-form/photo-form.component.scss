@@ -74,6 +74,7 @@
   object-fit: cover;
   object-position: 50% 0;
   width: 50px;
+  margin-left: 16px;
   height: 50px;
 }
 .menu-options-public{
@@ -96,6 +97,8 @@
   i{
     font-size: 14px;
     margin-left: 5px;
+    float: right;
+    margin-top: 4px;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -111,6 +114,21 @@
       background: white;
       .col-description{
         padding: 0 !important;
+      }
+    }
+    .avatar {
+      margin-left:0;
+    }
+  }
+}
+@media only screen and (max-width: 220px) {
+  .container-photo-form {
+    .menu-options-public {
+      width: auto;
+      text-align: center;
+      border: 0;
+      span{
+        display: none;
       }
     }
   }

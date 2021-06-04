@@ -1,7 +1,15 @@
 header#header {
+  main{
+    div.menu-logged{
+      display: flex;
+    }
+  }
   $font-color: #fafafa;
   img{
     width: 30px;
+  }
+  img:nth-child(2){
+    width: 5vw;
   }
   .col-100px{
     min-width: 130px;
@@ -90,6 +98,7 @@ header#header {
     }
   }
   @media screen and (max-width: 600px) {
+
     .fade-in-f {
       -webkit-animation: fadeIn .2s ease-in;
       -moz-animation: fadeIn .2s ease-in;
@@ -108,7 +117,7 @@ header#header {
       display: block;
     }
     .menu-mobile-logged {
-      display: block;
+      display: table-cell;
     }
 
     .menu-responsive-fun {

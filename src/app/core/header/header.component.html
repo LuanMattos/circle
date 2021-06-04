@@ -1,6 +1,6 @@
 <header id="header">
   <main>
-    <div class="lp fixed-top">
+    <div class="lp fixed-top menu-logged">
       <!--    Menu logado desktop-->
       <div class="row d-table menu-desktop-logged pt-2" *ngIf="(user$ | async)">
         <div class="col-auto" *ngIf="(currentSession$ | async) == 'dialog-photo'">
@@ -37,7 +37,7 @@
               </div>
             </div>
             <div class="float-right pr-4" *ngIf="(user$ | async) && !openSearch">
-              <img src="assets/icons/explorer-travel.svg" class="text-white cursor-pointer" [routerLink]="['to-explore']">
+              <img src="assets/icons/explorer.svg" class="text-white cursor-pointer" [routerLink]="['to-explore']">
             </div>
             <div class="float-right pr-4" *ngIf="(user$ | async) && !openSearch">
               <!--            <i class="fa fa-usd text cursor-pointer fa-2x text-white" [routerLink]="['monetization-dash']" aria-hidden="true"></i>-->
@@ -46,7 +46,7 @@
         </div>
       </div>
 
-      <nav class="menu-mobile-logged z-100" *ngIf="(user$ | async)">
+      <nav class="menu-mobile-logged z-100  align-middle" *ngIf="(user$ | async)">
         <div class="row">
           <div class="col-auto" *ngIf="(currentSession$ | async) == 'dialog-photo'">
             <i class="fa fa-arrow-left text-white back-to-explore mt-2" aria-hidden="true" (click)="closeDialog()"></i>
@@ -57,7 +57,7 @@
           <div *ngIf="(currentSession$ | async) == 'photo-form'" class="col-auto mt-2">
             <span class="close-char" (click)="closeDialogForm()">&#10005;</span>
           </div>
-          <div class="col z-100">
+          <div class="col z-100 mt-1">
             <div class="lp__nav__linkSet mr-2 z-100">
               <i *ngIf="!showFillerLogged" class="fa fa-bars text-white fa-2x cursor-pointer" aria-hidden="true"
                  (click)="eventMenuDesktopLogged()"></i>
@@ -77,7 +77,7 @@
         </div>
         <div class="row">
           <div class="col" (click)="closeDialog()" [routerLink]="['to-explore']">
-            Explore<img src="assets/icons/explorer-travel.svg" class="text-white cursor-pointer ml-1">
+            Explore<img src="assets/icons/explorer.svg" class="text-white cursor-pointer ml-1">
           </div>
         </div>
         <div class="row">
