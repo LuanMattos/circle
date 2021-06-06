@@ -3,8 +3,8 @@
     <div class="lp fixed-top menu-logged">
       <!--    Menu logado desktop-->
       <div class="row d-table menu-desktop-logged pt-2" *ngIf="(user$ | async)">
-        <div class="col-auto" *ngIf="(currentSession$ | async) == 'dialog-photo'">
-          <i class="fa fa-arrow-left text-white back-to-explore mt-2" aria-hidden="true" (click)="closeDialog()"></i>
+        <div class="col-auto mt-2" *ngIf="(currentSession$ | async) == 'dialog-photo'">
+          <span class="close-char " (click)="closeDialog()">&#10005;</span>
         </div>
         <div *ngIf="(currentSession$ | async) == 'close-to-settings'" class="col-auto mt-2">
           <span class="close-char" (click)="closeDialogFormSettings()">&#10005;</span>
@@ -12,10 +12,10 @@
         <div *ngIf="(currentSession$ | async) == 'photo-form'" class="col-auto mt-2">
           <span class="close-char" (click)="closeDialogForm()">&#10005;</span>
         </div>
-        <div class="col">
+        <div class="col" *ngIf="(user$ | async) && (currentSession$ | async) !== 'photo-form' && (currentSession$ | async) !== 'dialog-photo'">
           <div class="ml-auto mr-auto" style="width: 80vw;">
             <div class="pb-2">
-              <app-search *ngIf="(user$ | async) && (currentSession$ | async) !== 'photo-form'"  (openInputSearch)="openSearch = $event"></app-search>
+              <app-search  (openInputSearch)="openSearch = $event"></app-search>
             </div>
           </div>
         </div>
