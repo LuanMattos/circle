@@ -4,20 +4,15 @@ import {Photo} from './photo';
 import {environment} from '../../../environments/environment';
 import {Comments} from '../comments/comments';
 import {User} from '../../core/user/user';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 const API = environment.ApiUrl;
 
 @Injectable({providedIn: 'root'})
 export class PhotoService {
-
+  public photo = new BehaviorSubject<any>(null);
   constructor(private http: HttpClient) {}
-
-  registerErrorPhoto(photoId: number): any{
-    return this.http.get<Photo[]>(API + '/register_error_photo/' + photoId);
-  }
-
-  /** Comments **/
+  /* Comments */
   getComments(photoId: number): any{
     return this.http.get<Comments[]>(API + '/comments_photo/' + photoId);
   }
@@ -41,13 +36,21 @@ export class PhotoService {
   deleteComment(commentId: number): any{
     return this.http.delete(API + 'delete_comment/' + commentId);
   }
-
-
-
-
-
-
-  /** Photo **/
+  /* Photo */
+  registerViewPhoto(photoId, time): any{
+    const formData = new FormData();
+    formData.append('photoId', photoId.toString());
+    formData.append('time', time.toString());
+    return this.http.post(API + 'statics_photo', formData,
+      {
+        observe: 'events',
+        reportProgress: true
+      }
+    );
+  }
+  registerErrorPhoto(photoId: number): any{
+    return this.http.get<Photo[]>(API + '/register_error_photo/' + photoId);
+  }
   listFromUser(userName: string): Observable<Photo[]>{
     return this.http.get<Photo[]>(API + 'photos/' + userName);
   }
