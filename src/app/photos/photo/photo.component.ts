@@ -43,7 +43,6 @@ export class PhotoComponent implements AfterViewInit{
 
   pauseTimer(): void {
     this.timeLeft = 0;
-    // clearInterval(this.interval);
   }
   ngAfterViewInit(): void{
       const id = this.photo_id;
@@ -52,10 +51,11 @@ export class PhotoComponent implements AfterViewInit{
         if (entry.isIntersecting) {
           this.startTimer();
         }else{
-          if (this.timeLeft){
+          if (this.timeLeft > 2){
             this.sendStatistic(id, this.timeLeft);
           }
           this.pauseTimer();
+          // observador.unobserve(entry.target);
         }
 
       }, {
