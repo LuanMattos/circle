@@ -4,6 +4,8 @@
   margin-top: 60px;
   img{
     border-radius: 10px;
+    object-fit: cover;
+    height: 425px;
   }
 
   @media screen and (max-width: 660px) {

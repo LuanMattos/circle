@@ -30,14 +30,20 @@ export class VideosComponent implements OnChanges, AfterViewInit {
       if (entry.isIntersecting) {
         this.startTimer();
         this.video.nativeElement.mute = true;
-        this.buttonClass = 'play';
-        this.video.nativeElement.play();
+        
+        if(window.innerWidth < 754){
+          alert('ff')
+          this.buttonClass = 'play';
+          this.video.nativeElement.play();
+        }        
       }else{
         if (this.timeLeft > 2){
           this.sendStatisticVideo(id, this.timeLeft);
         }
-        this.buttonClass = '';
-        this.video.nativeElement.pause();
+        if(window.innerWidth < 754){
+          this.buttonClass = '';
+          this.video.nativeElement.pause();
+        }
         this.pauseTimer();
       }
 

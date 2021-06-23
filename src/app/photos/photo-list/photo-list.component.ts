@@ -13,7 +13,7 @@ import {SecurityCommonsService} from '../../shared/services/security-commons.ser
   templateUrl: './photo-list.component.html',
   styleUrls: ['./photo-list.component.scss']
 })
-export class PhotoListComponent implements OnInit {
+export class PhotoListComponent implements OnInit, AfterViewInit {
 
   title = 'App';
   photos = [];
@@ -47,6 +47,22 @@ export class PhotoListComponent implements OnInit {
       this.user_cover_url = this.securityCommons.passSecurityUrl(this.user.user_cover_url);
       this.user.user_avatar_url = this.securityCommons.passSecurityUrl(this.user.user_avatar_url, environment.ApiUrl + 'storage/profile_default/default.png');
     }
+  }
+  ngAfterViewInit(): void{
+    // Trocar toda funcao de scroll por carregamento lento
+    const observerPhotoList = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const {isIntersecting, intersectionRatio} = entry;
+        if (isIntersecting || intersectionRatio > 0 ) {
+        }else{
+          // observador.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: [0, 1],
+      rootMargin: '0px'
+    });
+    observerPhotoList.observe(  document.querySelector('.photos'));
   }
   isModuleExplorer(): void{
     this.isExplorer = false;
