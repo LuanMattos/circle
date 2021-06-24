@@ -5,6 +5,8 @@
            class="video video-{{video_id}}"
            [src]='url'
            muted="muted"
+           webkit-playsinline="true"
+           playsinline="true"
            playsinline>
     </video>
     <div class="play-button-wrapper" (click)="playPause()">

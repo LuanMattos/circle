@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
-import {PhotoService} from "../../photo/photo.service";
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { PhotoService } from "../../photo/photo.service";
 
 @Component({
   selector: 'app-videos',
@@ -7,7 +7,7 @@ import {PhotoService} from "../../photo/photo.service";
   styleUrls: ['./videos.component.scss']
 })
 export class VideosComponent implements OnChanges, AfterViewInit {
-  @ViewChild('video', {static: true}) video: ElementRef;
+  @ViewChild('video', { static: true }) video: ElementRef;
   @Input() url;
   @Input() video_id;
   muted;
@@ -23,24 +23,35 @@ export class VideosComponent implements OnChanges, AfterViewInit {
     this.timeLeft = 0;
   }
   constructor(private photoService: PhotoService) { }
-  ngAfterViewInit(): void{
+  ngAfterViewInit(): void {
     const id = this.video_id;
     const observador = new IntersectionObserver((entries) => {
       const entry = entries[0];
       if (entry.isIntersecting) {
         this.startTimer();
         this.video.nativeElement.mute = true;
-        
-        if(window.innerWidth < 754){
-          alert('ff')
+
+        if (window.innerWidth < 754) {
           this.buttonClass = 'play';
-          this.video.nativeElement.play();
-        }        
-      }else{
-        if (this.timeLeft > 2){
+          // Show loading animation.
+          var playPromise = this.video.nativeElement.play();
+
+          if (playPromise !== undefined) {
+            playPromise.then(_ => {
+              // Automatic playback started!
+              // Show playing UI.
+            })
+              .catch(error => {
+                // Auto-play was prevented
+                // Show paused UI.
+              });
+          }
+        }
+      } else {
+        if (this.timeLeft > 2) {
           this.sendStatisticVideo(id, this.timeLeft);
         }
-        if(window.innerWidth < 754){
+        if (window.innerWidth < 754) {
           this.buttonClass = '';
           this.video.nativeElement.pause();
         }
@@ -51,26 +62,26 @@ export class VideosComponent implements OnChanges, AfterViewInit {
       threshold: [0.6, 1],
       rootMargin: '0px'
     });
-    observador.observe(  document.querySelector('.video-' + id));
+    observador.observe(document.querySelector('.video-' + id));
   }
-  sendStatisticVideo(videoId, time): any{
+  sendStatisticVideo(videoId, time): any {
     this.photoService.registerViewPhoto(videoId, time).subscribe();
   }
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void { }
   playPause(): void {
-    if (this.video.nativeElement.paused){
+    if (this.video.nativeElement.paused) {
       this.buttonClass = 'play';
       this.video.nativeElement.play();
-    }else{
+    } else {
       this.buttonClass = '';
       this.video.nativeElement.pause();
     }
   }
-  startStopSound(): void{
-    if (this.video.nativeElement.volume){
+  startStopSound(): void {
+    if (this.video.nativeElement.volume) {
       this.video.nativeElement.volume = 0;
       this.muted = 'muted';
-    }else{
+    } else {
       this.video.nativeElement.volume = 1;
       this.muted = '';
     }
