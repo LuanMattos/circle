@@ -1,10 +1,10 @@
 <form #form="ngForm" [formGroup]="settingForm" (submit)="save()"  autocomplete="off">
   <div class="container">
     <div class="container-cover cursor-pointer">
-      <img class="e2e-iframe-trusted-src cursor-pointer" [src]="user.user_cover_url" (click)="openDialogCover()" alt="Img" onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'">
+      <img class="e2e-iframe-trusted-src cursor-pointer" [src]="user.user_cover_url" (click)="openDialogCover()" alt="Img" onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'" alt='Profile'>
       <span class='text-edit'>Click to Edit</span>
     </div>
-    <img class="avatar rounded-circle e2e-iframe-trusted-src cursor-pointer" (click)="openDialog()" [src]="user.user_avatar_url" alt="Img">
+    <img class="avatar rounded-circle e2e-iframe-trusted-src cursor-pointer" (click)="openDialog()" [src]="user.user_avatar_url" alt="Avatar">
     <div class="form-group">
       <mat-form-field class="w-100">
         <mat-label>E-mail</mat-label>

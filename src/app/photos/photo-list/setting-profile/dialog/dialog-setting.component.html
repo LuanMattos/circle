@@ -21,7 +21,7 @@
     <div *ngIf="data?.type == 'cover'">
       <img class="avatar cursor-pointer m-auto"
            [src]="data.user.user_cover_url"
-           alt="Img"
+           alt="Avatar"
            *ngIf="!viewCrop; else crop"
       >
       <ng-template #crop>

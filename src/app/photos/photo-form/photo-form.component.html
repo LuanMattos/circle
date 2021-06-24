@@ -9,7 +9,9 @@
     <div class="row w-100 row-menu">
       <div class="col-auto">
         <img [src]="avatar" class="avatar rounded-circle"
-             onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'">
+             onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
+             alt='Avatar user'
+             >
       </div>
       <div class="col-sm">
         <div class="menu-options-public" (click)="public = !public">
@@ -76,7 +78,9 @@
                 <div *ngFor="let item of items(); let i = index;">
                   <ng-template swiperSlide>
                     <img src="{{croppedImage}}" class="w-100 cursor-pointer item  {{item}}"
-                         (click)="selectItemCarousel(item)">
+                         (click)="selectItemCarousel(item)"
+                         alt='Filters carousel'
+                         >
                   </ng-template>
                 </div>
               </swiper>

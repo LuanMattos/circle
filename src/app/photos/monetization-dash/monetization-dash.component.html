@@ -4,7 +4,9 @@
       <div class="col mt-2 ml-2">
         <img [src]="(user$ | async).user_avatar_url.length?(user$ | async).user_avatar_url:avatarDefault"
              onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
-             class=" rounded-circle-profile">
+             class=" rounded-circle-profile"
+             alt='Avatar user'
+             >
       </div>
       <div class="col float-left ml-2">
         <span class="text-your font-weight-bold">Your earnings</span>

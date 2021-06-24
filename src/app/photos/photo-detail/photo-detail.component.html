@@ -1,5 +1,5 @@
 <div class="div-general-photo-detail" *ngIf="(photo$ | async) as photo">
-  <img src="{{photo.photo_url}}" alt="{{photo.photo_description}}">
+  <img src="{{photo.photo_url}}" alt="{{photo.photo_description}}" alt='Photo detail'>
   <div class="body-comment-text p-1">
     <span class="break-word mb-2">{{photo.photo_description.substring(0, 100)}}</span>
     <details *ngIf="photo.photo_description.length >= 100">

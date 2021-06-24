@@ -11,10 +11,12 @@
                  class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src cursor-pointer mb-2"
                  [src]="photo.user_avatar_url"
                  onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
+                 alt='Avatar user'
             >
             <ng-template #notImage>
               <img class="avatar break-word ml-2 rounded-circle e2e-iframe-trusted-src mb-2" [src]="avatarDefault"
                    onerror="this.src='https://be.mycircle.click/storage/profile_default/default.png'"
+                   alt='Avatar not found'
               >
             </ng-template>
             <span class="cursor-pointer ml-2 font-weight-bold font-user-full-name mb-2"
