@@ -33,18 +33,10 @@ export class VideosComponent implements OnChanges, AfterViewInit {
 
         if (window.innerWidth < 754) {
           this.buttonClass = 'play';
-          // Show loading animation.
           var playPromise = this.video.nativeElement.play();
 
           if (playPromise !== undefined) {
-            playPromise.then(_ => {
-              // Automatic playback started!
-              // Show playing UI.
-            })
-              .catch(error => {
-                // Auto-play was prevented
-                // Show paused UI.
-              });
+            playPromise.then(_ => {}).catch(error => {});
           }
         }
       } else {
@@ -53,7 +45,10 @@ export class VideosComponent implements OnChanges, AfterViewInit {
         }
         if (window.innerWidth < 754) {
           this.buttonClass = '';
-          this.video.nativeElement.pause();
+          var stopPromise = this.video.nativeElement.pause();
+          if (stopPromise !== undefined) {
+            stopPromise.then(_ => {}).catch(error => {});
+          }          
         }
         this.pauseTimer();
       }

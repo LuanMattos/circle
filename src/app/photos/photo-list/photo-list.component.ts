@@ -27,6 +27,7 @@ export class PhotoListComponent implements OnInit, AfterViewInit {
   isTimeline: boolean;
   avatarDefault = environment.ApiUrl + 'storage/profile_default/default.png';
   html: string;
+  repeat = [];
   private prevScrollpos;
 
   constructor(
@@ -50,19 +51,19 @@ export class PhotoListComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void{
     // Trocar toda funcao de scroll por carregamento lento
-    const observerPhotoList = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const {isIntersecting, intersectionRatio} = entry;
-        if (isIntersecting || intersectionRatio > 0 ) {
-        }else{
-          // observador.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: [0, 1],
-      rootMargin: '0px'
-    });
-    observerPhotoList.observe(  document.querySelector('.photos'));
+    // const observerPhotoList = new IntersectionObserver((entries) => {
+    //   entries.forEach(entry => {
+    //     const {isIntersecting, intersectionRatio} = entry;
+    //     if (isIntersecting || intersectionRatio > 0 ) {
+    //     }else{
+    //       // observador.unobserve(entry.target);
+    //     }
+    //   });
+    // }, {
+    //   threshold: [0, 1],
+    //   rootMargin: '0px'
+    // });
+    // observerPhotoList.observe(  document.querySelector('.photos'));
   }
   isModuleExplorer(): void{
     this.isExplorer = false;
@@ -97,8 +98,9 @@ export class PhotoListComponent implements OnInit, AfterViewInit {
           this.pushPhotos( res );
         });
     }else{
+      this.repeat = [...new Set(this.repeat)]
       this.photoService
-        .listFromToExplorerPaginated(this.photos[this.photos.length - 1].photo_id)
+        .listFromToExplorerPaginated(this.photos[this.photos.length - 1].photo_id, this.repeat)
         .subscribe(res => {
           this.stoppedRequest = false;
           // if (res && !res.length) {
@@ -109,11 +111,13 @@ export class PhotoListComponent implements OnInit, AfterViewInit {
     }
   }
   pushPhotos( res ): any{
+    var self = this;
     function arrayUnique(array): any {
       var a = array;
       for (var i = 0; i < a.length; i++) {
         for (var j = i + 1; j < a.length; j++) {
           if (a[i].photo_id === a[j].photo_id) {
+              self.repeat.push(a[i].photo_id.toString());
             a.splice(j--, 1);
           }
         }

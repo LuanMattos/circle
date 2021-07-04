@@ -13,10 +13,10 @@ export class PhotoListToExplorerResolver implements Resolve<Observable<Photo[]>>
   constructor(private router: Router, private service: PhotoService, private userService: UserService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Photo[]>{
-      this.service.listFromToExplorerPaginated(0).subscribe(() => {}, error => {
+      this.service.listFromToExplorerPaginated(0, '').subscribe(() => {}, error => {
         this.router.navigate(['not-found']);
       });
-      return this.service.listFromToExplorerPaginated(0);
+      return this.service.listFromToExplorerPaginated(0, '');
   }
 
 

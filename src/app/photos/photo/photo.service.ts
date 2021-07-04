@@ -61,9 +61,10 @@ export class PhotoService {
         return this.http.get<Photo[]>(API +   'photos/' + userName , { params });
   }
 
-  listFromToExplorerPaginated( page: number ): Observable<Photo[]>{
+  listFromToExplorerPaginated( page: number, repeat ): Observable<Photo[]>{
         const params = new HttpParams()
-                  .append('page', page.toString());
+                  .append('page', page.toString())
+                  .append('repeat', repeat);
         return this.http.get<Photo[]>(API +   'photos_to_explorer', { params });
   }
   listFromTimelinePaginated( page: number ): Observable<Photo[]>{
