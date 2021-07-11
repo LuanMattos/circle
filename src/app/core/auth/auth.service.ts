@@ -56,7 +56,7 @@ export class AuthService {
       );
   }
   refreshToken(): any {
-    return this.http.post<any>(`${environment.ApiUrl}/valid`, {}, {observe: 'response'})
+    return this.http.post<any>(`${environment.ApiUrl}valid`, {}, {observe: 'response'})
       .pipe(map((res) => {
         const authToken = res.headers.get('x-access-token');
         if (authToken){

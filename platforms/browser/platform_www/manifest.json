@@ -1,17 +1,17 @@
 {
-  "name": "AppCircle",
-  "short_name": "AppCircle",
-  "description": "Description of your app from template",
+  "name": "MyCircle",
+  "short_name": "MyCircle",
+  "description": "Social Sharing",
   "start_url": "index.html",
   "scope": "index.html",
   "icons": [
     {
-      "src": "img/logo.png",
+      "src": "img/logo6.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "img/splash.png",
+      "src": "img/logo6.png",
       "sizes": "512x512",
       "type": "image/png"
     }
