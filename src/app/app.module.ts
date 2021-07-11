@@ -18,6 +18,7 @@ import {ChangePasswordModule} from './change-password/change-password.module';
 import {NgtUniversalModule} from '@ng-toolkit/universal';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 // import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 
 
@@ -41,6 +42,7 @@ import {environment} from '../environments/environment';
         NgtUniversalModule,
         // AmplifyUIAngularModule,
         AngularFireModule.initializeApp (environment.firabase),
+        ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthService] },

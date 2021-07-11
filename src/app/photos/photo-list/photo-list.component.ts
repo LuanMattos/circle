@@ -103,9 +103,6 @@ export class PhotoListComponent implements OnInit, AfterViewInit {
         .listFromToExplorerPaginated(this.photos[this.photos.length - 1].photo_id, this.repeat)
         .subscribe(res => {
           this.stoppedRequest = false;
-          // if (res && !res.length) {
-          //   this.stoppedRequest = true;
-          // }
           this.pushPhotos( res );
         });
     }
