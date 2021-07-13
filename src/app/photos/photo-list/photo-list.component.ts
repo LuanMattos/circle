@@ -1,12 +1,9 @@
-import {AfterViewInit, Component, ElementRef, OnChanges, OnInit, Renderer2, SimpleChanges, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {DomSanitizer} from '@angular/platform-browser';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 import {PhotoService} from '../photo/photo.service';
-import {UserService} from '../../core/user/user.service';
 import {environment} from '../../../environments/environment';
 import {User} from '../../core/user/user';
-import {SecurityCommonsService} from '../../shared/services/security-commons.service';
 
 @Component({
   selector: 'app-photo-list',
@@ -21,33 +18,23 @@ export class PhotoListComponent implements OnInit, AfterViewInit {
   pendingLoad = false;
   user: User;
   following;
-  user_cover_url;
   stoppedRequest: boolean;
   isExplorer: boolean;
   isTimeline: boolean;
   avatarDefault = environment.ApiUrl + 'storage/profile_default/default.png';
   html: string;
   repeat = [];
-  private prevScrollpos;
 
   constructor(
-    private securityCommons: SecurityCommonsService,
-    private sanitizer: DomSanitizer,
-    private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private photoService: PhotoService,
-    private router: Router
+    private photoService: PhotoService
   ) {}
 
   ngOnInit(): void{
-    this.photos = this.activatedRoute.snapshot.data.photos;
     this.isModuleExplorer();
-    if (!this.isExplorer && !this.isTimeline){
-      this.user = this.activatedRoute.snapshot.data.user;
-      this.following = this.activatedRoute.snapshot.data.user?.following;
-      this.user_cover_url = this.securityCommons.passSecurityUrl(this.user.user_cover_url);
-      this.user.user_avatar_url = this.securityCommons.passSecurityUrl(this.user.user_avatar_url, environment.ApiUrl + 'storage/profile_default/default.png');
-    }
+    this.photos = this.activatedRoute.snapshot.data.photos;
+    this.user = this.activatedRoute.snapshot.data.user;
+    this.following = this.activatedRoute.snapshot.data.user?.following;
   }
   ngAfterViewInit(): void{
     // Trocar toda funcao de scroll por carregamento lento
@@ -123,17 +110,6 @@ export class PhotoListComponent implements OnInit, AfterViewInit {
       return a;
     }
     this.photos = arrayUnique(this.photos.concat(res));
-  }
-  follow(): void{
-    this.photoService.follow( this.user.user_id ).subscribe(follow => {
-      this.following = follow;
-    });
-  }
-  openFollowers(): void{
-    this.router.navigate(['followers/' + this.user.user_name]);
-  }
-  openFollowings(): void{
-    this.router.navigate(['followings/' + this.user.user_name]);
   }
 }
 

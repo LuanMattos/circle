@@ -24,6 +24,7 @@ import {ImgOnerrorModule} from '../../shared/directives/img-onerror/img-onerror.
 import { ImageCropperModule } from 'ngx-image-cropper';
 import {DialogSettingComponent} from './setting-profile/dialog/dialog-setting.component';
 import {VideosComponent} from './videos/videos.component';
+import { BannerProfileComponent } from './banner-profile/banner-profile.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {VideosComponent} from './videos/videos.component';
     SettingProfileComponent,
     FollowersComponent,
     FollowingComponent,
-    DialogSettingComponent
+    DialogSettingComponent,
+    BannerProfileComponent
   ],
   exports: [
     PhotosComponent,
