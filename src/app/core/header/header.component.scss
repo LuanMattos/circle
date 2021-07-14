@@ -52,10 +52,30 @@ header#header {
     color: transparent;
   }
 
-  nav {
-    padding: 10px 8px;
-    display: grid;
-    grid-template-columns: 120px auto auto;
+  .menu-desktop {
+    table{
+      min-height: 56px;
+      width: 100% !important;
+      tr{
+        td:first-child{
+          text-align: left;
+          width: calc(100vw/3);
+        }
+        td{
+          text-align: center;
+          a:not(.a-sign){
+            padding-right: 20px;
+            padding-left: 20px;
+          }
+          a.a-sign{
+            padding-right: 10px;
+            padding-left: 10px;
+            float: right;
+            right: 0;
+          }
+        }
+      }
+    }
   }
 
   .lp__nav__logo {
@@ -64,20 +84,21 @@ header#header {
     font-size: 18px;
   }
 
-  .lp__nav__logo h1 {
-    @extend .text-outline;
-    -webkit-text-stroke-width: 0.5px;
+  h1 {
     font-size: 24px;
+    font-family: Geometr415 Blk BT;
+    color:white;
+    padding-left:10px;
+    cursor: pointer;
+    height: 56px;
   }
 
-  .lp__nav__linkSet {
-    text-align: right;
+  .ancor-terms{
+    text-align: center;
   }
-
-  .lp__nav__link {
-    padding: 0 16px;
-    text-decoration: none;
-    font-size: 12px;
+  .ancor-signup-login{
+    width:150px !important;
+    text-align: center;
   }
 
   a {
@@ -92,12 +113,12 @@ header#header {
     display: none;
   }
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 799px) {
     .menu-responsive-logged {
       display: none;
     }
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 799px) {
 
     .fade-in-f {
       -webkit-animation: fadeIn .2s ease-in;
@@ -107,7 +128,7 @@ header#header {
     }
 
     .menu-desktop {
-      display: none;
+      display: none !important;
     }
 
     .menu-desktop-logged {
@@ -115,6 +136,7 @@ header#header {
     }
     .menu-mobile {
       display: block;
+      height: 56px;
     }
     .menu-mobile-logged {
       display: table-cell;
@@ -130,7 +152,7 @@ header#header {
       opacity: .8;
       color: white;
       padding-top: 100px;
-      font-size: 4vw;
+      font-size: 2rem;
 
       .row {
         text-align: center;

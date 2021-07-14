@@ -1,7 +1,7 @@
 <header id="header">
   <main>
     <div class="lp fixed-top menu-logged">
-      <!--    Menu logado desktop-->
+      <!--    Header logado desktop-mobile-->
       <div class="row d-table menu-desktop-logged pt-2" *ngIf="(user$ | async)">
         <div class="col-auto mt-2" *ngIf="(currentSession$ | async) == 'dialog-photo'">
           <span class="close-char " (click)="closeDialog()">&#10005;</span>
@@ -45,7 +45,6 @@
           </div>
         </div>
       </div>
-
       <nav class="menu-mobile-logged z-100  align-middle" *ngIf="(user$ | async)">
         <div class="row">
           <div class="col-auto" *ngIf="(currentSession$ | async) == 'dialog-photo'">
@@ -57,9 +56,9 @@
           <div *ngIf="(currentSession$ | async) == 'photo-form'" class="col-auto mt-2">
             <span class="close-char" (click)="closeDialogForm()">&#10005;</span>
           </div>
-          <div class="col z-100 mt-1">
-            <div class="lp__nav__linkSet mr-2 z-100">
-              <i *ngIf="!showFillerLogged" class="fa fa-bars text-white fa-2x cursor-pointer" aria-hidden="true"
+          <div class="col z-100 mt-3">
+            <div class="lp__nav__linkSet float-right mr-2 z-100">
+              <i *ngIf="!showFillerLogged" class="fa fa-bars text-white fa-2x  cursor-pointer" aria-hidden="true"
                  (click)="eventMenuDesktopLogged()"></i>
               <span *ngIf="showFillerLogged" class="text-white fa-2x  cursor-pointer z-100" aria-hidden="true"
                     (click)="showFillerLogged = !showFillerLogged">&#10005;</span>
@@ -67,55 +66,59 @@
           </div>
         </div>
       </nav>
-
-      <!--    Menu logado mobile-->
       <div class="menu-responsive-logged m-auto" *ngIf="showFillerLogged && (user$ | async)">
-        <div class="row">
+        <div class="row pb-4">
           <div class="col" [routerLink]="['search']" (click)="showFillerLogged = !showFillerLogged">
             Search&nbsp;<i class="fa fa-search" aria-hidden="true"></i>
           </div>
         </div>
-        <div class="row">
+        <div class="row pb-4">
           <div class="col" (click)="closeDialog()" [routerLink]="['to-explore']">
             Explore<img src="assets/icons/explorer.svg" class="text-white cursor-pointer ml-1">
           </div>
         </div>
-        <div class="row">
+        <div class="row pb-4">
           <div class="col">
             <a [href]="['i/' + user.user_name]">Profile</a>
           </div>
         </div>
-        <div class="row">
+        <div class="row pb-4">
           <div class="col" (click)="logout()">
             Logout
           </div>
         </div>
       </div>
 
-      <!--    Menu Não logado desktop-->
-      <nav class="menu-desktop" *ngIf="!(user$ | async)">
-        <div class="lp__nav__logo"><h1>Circle</h1></div>
-        <div class="lp__nav__linkSet">
-          <a [routerLink]="['about']" class="lp__nav__link">About</a>
-          <a [routerLink]="['privacy']" class="lp__nav__link">Privacy</a>
-          <a [routerLink]="['terms']" class="lp__nav__link">Terms and conditions</a>
-        </div>
-        <div class="lp__nav__linkSet">
-          <a [routerLink]="['home/signup']" (click)="eventMenuDesktop()" class="lp__nav__link">Sign Up</a>
-          <a [routerLink]="['']" (click)="eventMenuDesktop()" class="lp__nav__link">Login</a>
-        </div>
-      </nav>
+      <!--    Header Não logado desktop-mobile-->
+      <div class="menu-desktop d-table" *ngIf="!(user$ | async)">
+        <table class="d-table">
+          <tr>
+            <td>
+              <h1 class="d-table-cell align-middle" [routerLink]="['']">MyCircle</h1>
+            </td>
+            <td>
+                <a [routerLink]="['about']" class="d-table-cell align-middle">About</a>
+                <a [routerLink]="['privacy']" class="d-table-cell align-middle">Privacy</a>
+                <a [routerLink]="['terms']" class="d-table-cell align-middle">Terms and conditions</a>
+            </td>
+            <td>
+              <a [routerLink]="['']" (click)="eventMenuDesktop()" class="a-sign d-table-cell align-middle">Login</a>
+              <a [routerLink]="['home/signup']" (click)="eventMenuDesktop()" class="a-sign d-table-cell align-middle">Sign Up</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+
       <nav class="menu-mobile" *ngIf="!(user$ | async)">
         <div class="row">
-          <div class="col">
-            <div class="lp__nav__logo"><h1>Circle</h1></div>
+          <div class="col d-table">
+            <div class="lp__nav__logo"><h1 class='d-table-cell align-middle'>MyCircle</h1></div>
           </div>
-          <div class="col">
-            <div class="lp__nav__linkSet mr-2">
-              <i *ngIf="!showFiller" class="fa fa-bars text-white fa-2x cursor-pointer" aria-hidden="true"
-                 (click)="eventMenuMobile()"></i>
-              <span *ngIf="showFiller" class="text-white fa-2x  cursor-pointer" aria-hidden="true"
-                    (click)="showFiller = !showFiller">&#10005;</span>
+          <div class="col d-table">
+            <div class="lp__nav__linkSet mr-2 d-table-cell align-middle">
+              <i *ngIf="!showFiller" class="fa fa-bars text-white fa-2x cursor-pointer float-right mr-2" aria-hidden="true" (click)="eventMenuMobile()"></i>
+              <span *ngIf="showFiller" class="text-white fa-2x  cursor-pointer float-right mr-2" aria-hidden="true" (click)="showFiller = !showFiller">&#10005;</span>
             </div>
           </div>
         </div>
