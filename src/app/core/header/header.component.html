@@ -127,29 +127,29 @@
     <app-alert></app-alert>
   </main>
   <div class="menu-responsive m-auto" *ngIf="showFiller && !(user$ | async)">
-    <div class="row">
-      <div class="col">
+    <div class="row pb-4">
+      <div class="col ">
         <a [routerLink]="['home/signup']" (click)="eventMenuMobileItemMenu()">Sign Up</a>
       </div>
     </div>
-    <div class="row">
+    <div class="row pb-4">
       <div class="col">
         <a [routerLink]="['']" (click)="eventMenuMobileItemMenu()">Login</a>
       </div>
     </div>
-    <div class="row">
+    <div class="row pb-4">
       <div class="col">
         <a [routerLink]="['about']" (click)="showFiller = !showFiller">About</a>
       </div>
     </div>
-    <div class="row">
+    <div class="row pb-4">
       <div class="col">
         <a [routerLink]="['privacy']" (click)="showFiller = !showFiller">Privacy</a>
       </div>
     </div>
-    <div class="row">
+    <div class="row pb-4">
       <div class="col">
-        <a [routerLink]="['terms']" (click)="showFiller = !showFiller">Terms and conditions</a>
+        <a [routerLink]="['terms']" (click)="showFiller = !showFiller">Terms</a>
       </div>
     </div>
   </div>
