@@ -2,8 +2,7 @@ import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core'
 import {environment} from '../../../environments/environment';
 import {PhotoService} from './photo.service';
 import { DatePipe } from '@angular/common';
-
-
+import { ActivatedRoute } from '@angular/router';
 
 const CLOUD = environment.ApiUrl + '/storage/img/';
 
@@ -13,14 +12,14 @@ const CLOUD = environment.ApiUrl + '/storage/img/';
   styleUrls: ['./photo.scss'],
   providers: [DatePipe]
 })
-export class PhotoComponent implements AfterViewInit{
+export class PhotoComponent implements AfterViewInit, OnInit{
   constructor(
     private photoService: PhotoService,
+    private activatedRoute: ActivatedRoute
   ) {}
   @Input() description = '';
   @Input() _url = '';
   @Input() photo_id;
-
   @Input() set url( url: string ){
     if (!url.startsWith('data')){
       this._url = url;
@@ -33,8 +32,14 @@ export class PhotoComponent implements AfterViewInit{
   }
   timeLeft = 0;
   interval;
-
   items = [];
+  isDetailOrTimeline;
+  ngOnInit(): void{
+    this.isModuleDetailOrTimeline();
+  }
+  isModuleDetailOrTimeline(): void{
+    this.isDetailOrTimeline = this.activatedRoute.snapshot.data.isDetail || this.activatedRoute.snapshot.data.isTimeline;
+  }
   startTimer(): void {
     this.interval = setInterval(() => {
         this.timeLeft++;

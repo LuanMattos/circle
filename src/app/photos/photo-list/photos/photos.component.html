@@ -1,9 +1,11 @@
 <p class="text-center text-muted mt-2 mb-2" *ngIf="!photos.length">
   No photos found
 </p>
-<div class="container-responsive-photos my-4 pb-5">
-  <div class="row ml-0 mr-0">
-    <div *ngFor="let photo of rows; let i = index" class="col-lg-4 {{i === 0?'col-md-12':'col-md-6'}} mb-4  fadeIn row-responsive">
+<div class="container-responsive-photos {{isDetailOrTimeline?'timeline':''}} my-4 pb-5">
+  <div class="row p-0 m-0">
+    <div *ngFor="let photo of rows; let i = index" class="col-lg-4  fadeIn row-responsive">
+      
+      
       <app-card>
         <app-photo-card-header [photo]='photo' [i]='i'></app-photo-card-header>
         <div *ngIf="isPhoto( photo.photo_url ) else video">
@@ -22,6 +24,8 @@
           <app-videos [url]="photo.photo_url" [video_id]="photo.photo_id"></app-videos>
         </ng-template>
       </app-card>
+
+
       <div class="ml-0" *ngIf="isDetailOrTimeline" showIsLogged >
         <app-like [photo]="photo" (viewFormComment)="viewFormComment = $event" (photoId)="photoId = $event" [_viewFormComment]="viewFormComment"></app-like>
       </div>

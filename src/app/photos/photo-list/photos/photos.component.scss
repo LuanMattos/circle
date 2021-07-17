@@ -1,13 +1,26 @@
 .container-responsive-photos {
+  width: 100vw;
+  margin-right: auto;
+  margin-left: auto;
+
+  .row-responsive:first-child {
+    padding-left: 6px;
+  }
+  .row-responsive {
+    width: calc(100vw / 3);
+    padding: 2px;
+  }
+
+  .col-auto {
+    padding-right: 0 !important;
+  }
+}
+.container-responsive-photos.timeline {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-}
-  .row-responsive:first-child{
-    padding-left: 6px;
-  }
   .row-responsive{
-   padding: 2px;
+    width: 100vw;
   }
 
   .col-auto{
@@ -19,4 +32,4 @@
       max-width: 100%;
     }
   }
-
+}
