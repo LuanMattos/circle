@@ -101,12 +101,10 @@ a {
 
 
 .body-comment-text {
-  max-width: 95%;
-  min-height: 6vh;
+  max-width: 100%;
   display: block;
   font-family: "Calibri Light";
   font-size: 12px;
-  margin-left: 5px;
 
   span {
     word-wrap: break-word;
@@ -143,7 +141,6 @@ a {
   }
 
   details .open {
-    padding-left: 5px;
     text-align: middle;
     color: #425ab4;
   }
@@ -163,7 +160,8 @@ a {
 
   details .close:after {
     content: "\00bb";
-    transform: rotate(120deg);
+    transform: rotate(-90deg);
+    display: inline-block;
   }
 
   details .close {

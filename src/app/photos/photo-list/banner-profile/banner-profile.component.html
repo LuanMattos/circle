@@ -16,7 +16,7 @@
         <span>{{user.user_following}}</span> Following
       </div>
     </div>
-    <div class="row" showIsLogged itemOwnerOnly [ownedItem]="user" [noOwnedItem]="true">
+    <div class="row mt-4 mb-4" showIsLogged itemOwnerOnly [ownedItem]="user" [noOwnedItem]="true">
       <div class="col">
         <button class="btn {{this.following?'btn-info':'btn-light'}}" (click)="follow()">{{this.following ? 'Following' : 'Follow'}}</button>
       </div>

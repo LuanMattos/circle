@@ -10,6 +10,7 @@ import {SecurityCommonsService} from '../../../shared/services/security-commons.
 import {UserService} from '../../../core/user/user.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogComponent} from '../../photo-detail/dialog/dialog.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class PhotosComponent implements OnChanges {
     private photoService: PhotoService,
     private alertService: AlertService,
     private userService: UserService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
   isPhoto(value): boolean{
     if (value != null){
@@ -46,12 +48,13 @@ export class PhotosComponent implements OnChanges {
     }
   }
   openPhoto(photo): void{
-   this.dialog.open(DialogComponent, {
-      width: '100%',
-      height: '100%',
-      data: photo,
-     panelClass: 'full-width-dialog'
-    });
+  this.router.navigate(['p', photo.photo_id]);
+  //  this.dialog.open(DialogComponent, {
+  //     width: '100%',
+  //     height: '100%',
+  //     data: photo,
+  //    panelClass: 'full-width-dialog'
+  //   });
   }
   delete( photo, i ): void{
     this.photos.splice(i, 1);
@@ -69,33 +72,33 @@ export class PhotosComponent implements OnChanges {
       );
   }
 
-  edit(photo, i): void{
-    this.photoId = photo.photo_id;
-    this.description = photo.photo_description;
+  // edit(photo, i): void{
+  //   this.photoId = photo.photo_id;
+  //   this.description = photo.photo_description;
 
-    Swal.fire({
-      input: 'textarea',
-      inputValue: this.description,
-      padding: '5px',
-      confirmButtonText: 'Publish',
-      showCancelButton: true,
-      cancelButtonText: 'Cancel',
-      customClass: {
-        input: 'textarea-alert',
-        confirmButton: 'button-alert',
-        cancelButton: 'button-alert'
-      },
-      html: `<div class='m-auto'><div class='form-group m-auto  pt-4'><img class='m-auto thumb-edit-description' src='` + photo.photo_url + `'></div>` + `</div>`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.length >= 900){
-          this.alertService.warning('900 character limit exceeded!');
-        }else{
-          this.save( result.value, this.photoId, i );
-        }
-      }
-    });
-  }
+  //   Swal.fire({
+  //     input: 'textarea',
+  //     inputValue: this.description,
+  //     padding: '5px',
+  //     confirmButtonText: 'Publish',
+  //     showCancelButton: true,
+  //     cancelButtonText: 'Cancel',
+  //     customClass: {
+  //       input: 'textarea-alert',
+  //       confirmButton: 'button-alert',
+  //       cancelButton: 'button-alert'
+  //     },
+  //     html: `<div class='m-auto'><div class='form-group m-auto  pt-4'><img class='m-auto thumb-edit-description' src='` + photo.photo_url + `'></div>` + `</div>`,
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       if (result.value.length >= 900){
+  //         this.alertService.warning('900 character limit exceeded!');
+  //       }else{
+  //         this.save( result.value, this.photoId, i );
+  //       }
+  //     }
+  //   });
+  // }
   dbClickLike( photoId: number, index: number ): void{
 
     const userName = this.userService.getUserName();

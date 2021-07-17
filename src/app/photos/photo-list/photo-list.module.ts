@@ -25,6 +25,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import {DialogSettingComponent} from './setting-profile/dialog/dialog-setting.component';
 import {VideosComponent} from './videos/videos.component';
 import { BannerProfileComponent } from './banner-profile/banner-profile.component';
+import { PhotoCardHeaderComponent } from '../photo-card-header/photo-card-header.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { BannerProfileComponent } from './banner-profile/banner-profile.componen
     FollowersComponent,
     FollowingComponent,
     DialogSettingComponent,
-    BannerProfileComponent
+    BannerProfileComponent,
+    PhotoCardHeaderComponent
   ],
   exports: [
     PhotosComponent,
