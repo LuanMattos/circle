@@ -10,7 +10,7 @@ import {SecurityCommonsService} from '../../../shared/services/security-commons.
 import {UserService} from '../../../core/user/user.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogComponent} from '../../photo-detail/dialog/dialog.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
   templateUrl: './photos.component.html',
   styleUrls: ['./photos.component.scss']
 })
-export class PhotosComponent implements OnChanges {
+export class PhotosComponent implements OnChanges, OnInit {
 
   @Input() photos: Photo[] = [];
   comments: Comments[] = [];
@@ -27,6 +27,7 @@ export class PhotosComponent implements OnChanges {
   description: string;
   viewFormComment: boolean;
   avatarDefault: string = environment.ApiUrl + 'storage/profile_default/default.png';
+  isDetailOrTimeline;
   @ViewChild('descriptionEl') descriptionEl: ElementRef;
   constructor(
     private securityCommons: SecurityCommonsService,
@@ -34,13 +35,20 @@ export class PhotosComponent implements OnChanges {
     private alertService: AlertService,
     private userService: UserService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) { }
+  ngOnInit(): void{
+    this.isModuleDetailOrTimeline();
+  }
   isPhoto(value): boolean{
     if (value != null){
       return(value.match(/\.(jpeg|jpg|gif|png)$/) != null);
     }
     return false;
+  }
+  isModuleDetailOrTimeline(): void{
+    this.isDetailOrTimeline = this.activatedRoute.snapshot.data.isDetail || this.activatedRoute.snapshot.data.isTimeline;
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.photos){

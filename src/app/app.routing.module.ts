@@ -92,7 +92,8 @@ const routes: Routes = [
     component: PhotoDetailComponent,
     data: {
       animation: 'HomePage',
-      title: 'Detail Photo'
+      title: 'Detail Photo',
+      isDetail: true
     },
   }, {
     path: 'search',
