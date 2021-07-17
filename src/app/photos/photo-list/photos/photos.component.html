@@ -66,11 +66,7 @@
         </ng-template>
       </app-card>
       <div class="ml-0" showIsLogged>
-        <app-like
-          [photo]="photo" (viewFormComment)="viewFormComment = $event"
-          (photoId)="photoId = $event"
-          [_viewFormComment]="viewFormComment"
-        ></app-like>
+        <app-like [photo]="photo" (viewFormComment)="viewFormComment = $event" (photoId)="photoId = $event" [_viewFormComment]="viewFormComment"></app-like>
       </div>
     </div>
   </div>

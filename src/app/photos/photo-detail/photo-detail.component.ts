@@ -31,12 +31,12 @@ export class PhotoDetailComponent implements OnInit{
     this.photo$    = this.photoService.findById(this.photoId);
 
     this.photo$.subscribe(() => {}, (err) => {
-      this.router.navigate(['not-found']);
+      this.alertService.danger("Error, try later");
     });
   }
   removePhoto(): any{
     this.alertService.success('Image deleted!');
-    this.router.navigate(['']);
+    history.back();
     return;
     return this.photoService.removePhoto(this.photoId)
       .subscribe(() => {
