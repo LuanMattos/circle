@@ -1,16 +1,20 @@
-<div class='player-container pb-4'>
+<div class="player-container {{isDetailOrTimeline?'timeline':''}} pb-4" >
   <div class='player'>
     <video #video
-           (click)="playPause()"
+           (click)="eventClickMovie()"
            class="video video-{{video_id}}"
            [src]='url'
            muted="muted"
            webkit-playsinline="true"
            playsinline="true"
            preload="none"
-           playsinline>
+           playsinline
+           >
+           <source [src]="url" type="video/mp4">
+           <source [src]="url" type="video/ogg">
     </video>
-    <div class="play-button-wrapper" (click)="playPause()">
+    <div id="output"></div>
+    <div class="play-button-wrapper" (click)="eventClickMovie()">
       <div title="Play video" class="play-gif" id="circle-play-b">
         <!-- SVG Play Button -->
         <svg xmlns="http://www.w3.org/2000/svg" class="{{buttonClass}}" viewBox="0 0 80 80">

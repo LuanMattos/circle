@@ -1,7 +1,7 @@
 <p class="text-center text-muted mt-2 mb-2" *ngIf="!photos.length">
   No photos found
 </p>
-<div class="container-responsive-photos {{isDetailOrTimeline?'timeline':''}} my-4 pb-5">
+<div class="container-responsive-photos {{isDetailOrTimeline?'timeline':'pb-5'}} my-4 ">
   <div class="row p-0 m-0">
     <div *ngFor="let photo of rows; let i = index" class="col-lg-4  fadeIn row-responsive">
       <app-card>

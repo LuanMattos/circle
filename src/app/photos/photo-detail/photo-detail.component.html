@@ -1,5 +1,10 @@
 <div id="photo-detail" *ngIf="(photo$ | async) as photo">
-  <img src="{{photo.photo_url}}" alt='Photo detail {{photo.photo_description}}'>
+  <div *ngIf="isPhoto( photo.photo_url ) else video">
+    <img src="{{photo.photo_url}}" alt='Photo detail {{photo.photo_description}}'>
+  </div>
+  <ng-template #video>
+    <app-videos [url]="photo.photo_url" [video_id]="photo.photo_id"></app-videos>
+  </ng-template>
   <div class='app-photo-description'>
     <app-photo-description [photo]="photo"></app-photo-description>
   </div>

@@ -34,6 +34,12 @@ export class PhotoDetailComponent implements OnInit{
       this.alertService.danger("Error, try later");
     });
   }
+  isPhoto(value): boolean{
+    if (value != null){
+      return(value.match(/\.(jpeg|jpg|gif|png)$/) != null);
+    }
+    return false;
+  }
   removePhoto(): any{
     this.alertService.success('Image deleted!');
     history.back();

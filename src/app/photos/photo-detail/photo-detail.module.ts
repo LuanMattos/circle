@@ -13,6 +13,7 @@ import {ShowIsLoggedModule} from '../../shared/directives/show-is-logged/show-is
 import {CommentsFormComponent} from '../comments/comments-form.component';
 import {LikeModule} from '../../shared/like/like.module';
 import { PhotoDescriptionModule } from '../photo-description/photo-description.module';
+import { VideosModule } from '../photo-list/videos/videos.module';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { PhotoDescriptionModule } from '../photo-description/photo-description.m
     PhotoOwnerOnlyModule,
     ShowIsLoggedModule,
     LikeModule,
-    PhotoDescriptionModule
+    PhotoDescriptionModule,
+    VideosModule
   ]
 })
 export class PhotoDetailModule{}

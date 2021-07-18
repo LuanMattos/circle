@@ -23,10 +23,10 @@ import {FollowingComponent} from './following/following.component';
 import {ImgOnerrorModule} from '../../shared/directives/img-onerror/img-onerror.module';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import {DialogSettingComponent} from './setting-profile/dialog/dialog-setting.component';
-import {VideosComponent} from './videos/videos.component';
 import { BannerProfileComponent } from './banner-profile/banner-profile.component';
 import { PhotoCardHeaderComponent } from '../photo-card-header/photo-card-header.component';
 import { PhotoDescriptionModule } from '../photo-description/photo-description.module';
+import { VideosModule } from './videos/videos.module';
 
 
 @NgModule({
@@ -34,7 +34,6 @@ import { PhotoDescriptionModule } from '../photo-description/photo-description.m
     PhotoListComponent,
     FilterByDescription,
     PhotosComponent,
-    VideosComponent,
     SearchComponent,
     SettingProfileComponent,
     FollowersComponent,
@@ -63,7 +62,8 @@ import { PhotoDescriptionModule } from '../photo-description/photo-description.m
         PhotoOwnerOnlyModule,
         ImgOnerrorModule,
         ImageCropperModule,
-        PhotoDescriptionModule
+        PhotoDescriptionModule,
+        VideosModule
     ]
 })
 export class PhotoListModule{}

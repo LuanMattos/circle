@@ -73,7 +73,8 @@ const routes: Routes = [
     },
     data: {
       animation: 'AboutPage',
-      title: 'Timeline'
+      title: 'Timeline',
+      isProfile:true
     }
   },
   {
