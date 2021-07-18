@@ -1,4 +1,4 @@
-<form [formGroup]="form" class="m-auto fixed-bottom" showIsLogged *ngIf="viewComponent">
+<form [formGroup]="form" class="m-auto fixed-bottom" showIsLogged>
   <div class="mb-5">
     <div class="row">
       <div class="col-auto w-100 m-auto">
@@ -6,19 +6,9 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-7">
-        <i class="m-3 fa fa-arrow-left text-white cursor-pointer" aria-hidden="true" (click)="emitEvent()"></i>
-        <i class="m-3 fa fa-camera text-white cursor-pointer" aria-hidden="true"></i>
-      </div>
-      <div class="col-4 m-auto p-2">
-        <input type="button"
-               (click)="save()"
-               [disabled]="form.invalid"
-               class="btn-send  {{form.valid?'text-white':'text-muted'}}"
-               value="Publish"
-        >
+      <div class="col m-auto p-2">
+        <input type="button" (click)="save()" [disabled]="form.invalid" class="btn-send  {{form.valid?'text-white':'text-muted'}} mr-2" value="Publish">
       </div>
     </div>
   </div>
-
 </form>

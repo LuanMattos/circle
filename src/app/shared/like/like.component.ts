@@ -4,6 +4,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UserService} from '../../core/user/user.service';
 import {PhotoService} from '../../photos/photo/photo.service';
 import {Photo} from '../../photos/photo/photo';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-like',
@@ -20,7 +21,8 @@ export class LikeComponent implements OnInit{
 
   constructor(
     private userService: UserService,
-    private photoService: PhotoService
+    private photoService: PhotoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +54,9 @@ export class LikeComponent implements OnInit{
   emitChanges(photo: Photo): void{
     this.viewFormComment.emit(!this._viewFormComment);
     this.photoId.emit(photo.photo_id);
+  }
+  redirectPhotoComments(photo): void{
+    this.router.navigate(['photo-comments', photo.photo_id]);
   }
 
 }

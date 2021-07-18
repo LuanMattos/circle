@@ -26,6 +26,7 @@ import {DialogSettingComponent} from './setting-profile/dialog/dialog-setting.co
 import {VideosComponent} from './videos/videos.component';
 import { BannerProfileComponent } from './banner-profile/banner-profile.component';
 import { PhotoCardHeaderComponent } from '../photo-card-header/photo-card-header.component';
+import { PhotoDescriptionModule } from '../photo-description/photo-description.module';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { PhotoCardHeaderComponent } from '../photo-card-header/photo-card-header
         VmessageModule,
         PhotoOwnerOnlyModule,
         ImgOnerrorModule,
-        ImageCropperModule
+        ImageCropperModule,
+        PhotoDescriptionModule
     ]
 })
 export class PhotoListModule{}

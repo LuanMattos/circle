@@ -29,6 +29,7 @@ import {SearchComponent} from './core/search/search.component';
 import {MonetizationComponent} from './home/footer/monetization/monetization.component';
 import {MonetizationDashComponent} from './photos/monetization-dash/monetization-dash.component';
 import {MonetizaionResolver} from './core/monetization/monetizaion.resolver';
+import { PhotoCommentsComponent } from './photos/photo-detail/photo-comments/photo-comments.component';
 
 
 const routes: Routes = [
@@ -95,7 +96,17 @@ const routes: Routes = [
       title: 'Detail Photo',
       isDetail: true
     },
-  }, {
+  },
+  {
+    path: 'photo-comments/:photoId',
+    component: PhotoCommentsComponent,
+    data: {
+      animation: 'HomePage',
+      title: 'Comments Photo',
+      isPhotoComments: true
+    },
+  },
+   {
     path: 'search',
     component: SearchComponent,
     data: {

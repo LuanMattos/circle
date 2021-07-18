@@ -43,9 +43,9 @@ export class CommentsFormComponent implements OnInit, OnChanges{
     const comment = this.form.get('comment_text').value as string;
     const commentId = this.photoCommentsService.comment?.comment_id;
 
-    this.photoService
+    this.photoCommentsService
       .saveComment(this.photoId, comment, commentId)
-      .pipe( switchMap(() => this.photoService.getComments(this.photoId)))
+      .pipe( switchMap(() => this.photoCommentsService.getComments(this.photoId)))
       .pipe( tap(() => {
         this.form.reset();
         this.viewFormComment.emit(!this.viewComponent);

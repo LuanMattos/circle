@@ -36,15 +36,15 @@ export class PhotoCommentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const photoId  = this.activatedRoute.snapshot.params.photoId;
+    this.photoId  = this.activatedRoute.snapshot.params.photoId;
     this.userName = this.userService.getUserName();
-    this.photoService.getComments(this.photoId)
-      .subscribe(response => this.comments = response);
+    this.photoCommentsService.getComments(this.photoId)
+      .subscribe(response => {this.comments = response});
   }
 
 
   load(): void{
-    this.photoService
+    this.photoCommentsService
       .listFromCommentsPaginated(this.photoId, this.comments.length)
       .subscribe(
         comments => {
@@ -57,7 +57,7 @@ export class PhotoCommentsComponent implements OnInit {
   delete( comment: Comments ): void{
     const index: number = this.comments.indexOf( comment )
 
-    this.photoService
+    this.photoCommentsService
       .deleteComment(comment.comment_id)
       .subscribe(result => {
         (( index !== -1 ) && result ) && this.comments.splice(index, 1);

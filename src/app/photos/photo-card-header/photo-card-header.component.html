@@ -1,4 +1,4 @@
-<div class='container-fluid' id="photo-card-header" *ngIf="isTimeline">
+<div class='container-fluid mt-2' id="photo-card-header" *ngIf="isTimeline">
     <div class="row">
         <div class="col-auto d-table ml-0 pl-0 mr-2 pr-0">
             <img *ngIf="photo.user_avatar_url?.length else notImage" [routerLink]="['/i',photo.user_name]"
@@ -37,17 +37,5 @@
             </div>
         </div>
     </div>
-    <div class='row pt-2'>
-        <div class='col pl-0 ml-0 body-comment-text'>
-            <span class="break-word">{{photo.photo_description ? photo.photo_description.substring(0, 50) : ''}}</span>
-        </div>
-    </div>
-    <div class='row pb-2'>
-        <div class='col pl-0 ml-0 body-comment-text'>
-            <details *ngIf="photo.photo_description?photo.photo_description.length >= 50:''">
-                <summary><span class="open">More</span><span class="close pb-2">Less</span></summary>
-                <span>{{photo.photo_description ? photo.photo_description.substring(50, 1000) : ''}}</span>
-            </details>
-        </div>
-    </div>
 </div>
+<app-photo-description *ngIf="isTimeline" [photo]="photo"></app-photo-description>

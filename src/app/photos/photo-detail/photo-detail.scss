@@ -1,8 +1,17 @@
-.div-general-photo-detail {
+#photo-detail {
   margin: auto;
-  min-height: 800px;
+  height: calc(100vh 80px);
+  padding-bottom:80px;
+  .app-photo-description{
+    margin: 10px;
+  }
+  img{
+    width: 100%;
+  }
+  @media (min-width: 799px) {
+    width: 60vw;
+    margin:auto;
+  }
 }
 
-@media (max-width: 600px) {
 
-}

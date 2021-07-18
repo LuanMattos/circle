@@ -12,6 +12,7 @@ import {PhotoOwnerOnlyModule} from '../../shared/directives/owner-only/photo-own
 import {ShowIsLoggedModule} from '../../shared/directives/show-is-logged/show-is-logged.module';
 import {CommentsFormComponent} from '../comments/comments-form.component';
 import {LikeModule} from '../../shared/like/like.module';
+import { PhotoDescriptionModule } from '../photo-description/photo-description.module';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {LikeModule} from '../../shared/like/like.module';
     UxModule,
     PhotoOwnerOnlyModule,
     ShowIsLoggedModule,
-    LikeModule
+    LikeModule,
+    PhotoDescriptionModule
   ]
 })
 export class PhotoDetailModule{}

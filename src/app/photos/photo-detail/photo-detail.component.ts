@@ -11,7 +11,7 @@ import {Comments} from '../comments/comments';
 @Component({
   selector:  'app-photo-detail',
   templateUrl:  'photo-detail.component.html',
-  styleUrls:  ['./photo-detail.css']
+  styleUrls:  ['./photo-detail.scss']
 })
 export class PhotoDetailComponent implements OnInit{
 

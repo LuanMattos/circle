@@ -6,6 +6,7 @@ import {PhotoModule} from './photo/photo.module';
 import {PhotoDetailModule} from './photo-detail/photo-detail.module';
 import {PhotoListTimelineModule} from './photo-list-timeline/photo-list-timeline.module';
 import {MonetizationDashModule} from './monetization-dash/monetization-dash.module';
+import { PhotoDescriptionModule } from './photo-description/photo-description.module';
 
 @NgModule({
   declarations: [],
@@ -15,7 +16,8 @@ import {MonetizationDashModule} from './monetization-dash/monetization-dash.modu
     PhotoModule,
     PhotoDetailModule,
     PhotoListTimelineModule,
-    MonetizationDashModule
+    MonetizationDashModule,
+    PhotoDescriptionModule
   ],
 })
 export class PhotosModule{
