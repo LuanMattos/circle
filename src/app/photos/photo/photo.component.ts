@@ -50,24 +50,24 @@ export class PhotoComponent implements AfterViewInit, OnInit{
     this.timeLeft = 0;
   }
   ngAfterViewInit(): void{
-      const id = this.photo_id;
-      const observador = new IntersectionObserver((entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          this.startTimer();
-        }else{
-          if (this.timeLeft > 2){
-            this.sendStatistic(id, this.timeLeft);
-          }
-          this.pauseTimer();
-          // observador.unobserve(entry.target);
-        }
+      // const id = this.photo_id;
+      // const observador = new IntersectionObserver((entries) => {
+      //   const entry = entries[0];
+      //   if (entry.isIntersecting) {
+      //     this.startTimer();
+      //   }else{
+      //     if (this.timeLeft > 2){
+      //       this.sendStatistic(id, this.timeLeft);
+      //     }
+      //     this.pauseTimer();
+      //     // observador.unobserve(entry.target);
+      //   }
 
-      }, {
-        threshold: [0, 1],
-        rootMargin: '0px'
-      });
-      observador.observe(  document.querySelector('.image-' + id));
+      // }, {
+      //   threshold: [0, 1],
+      //   rootMargin: '0px'
+      // });
+      // observador.observe(  document.querySelector('.image-' + id));
   }
   sendStatistic(photoId, time): any{
     this.photoService.registerViewPhoto(photoId, time).subscribe();
