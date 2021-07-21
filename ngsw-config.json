@@ -17,7 +17,8 @@
           "/polyfills.*.js",
           "/runtime.*.js",
           "!/*-sw.js",
-          "/assets/**"
+          "/assets/**",
+          "/!main*.js"
         ]
       }
     },
