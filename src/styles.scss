@@ -391,7 +391,12 @@ $size: 100vw;
 .container-photo-form {
   .swiper-container {
     width: 100% !important;
-
+    .swiper-slide { 
+      width: auto !important;
+      img{
+        max-width: 100px !important;
+      }
+     }
   }
 }
 
@@ -424,4 +429,16 @@ $size: 100vw;
 @font-face {
   font-family: 'Geometr415BlkBT';
   src: url('assets/fonts/Geometr415BlkBTBlack.ttf');
+}
+@media only screen and (max-width: 799px) {
+  .container-photo-form {
+    .swiper-container {
+      .swiper-slide { 
+        width: auto !important;
+        img{
+          max-width: 220px !important;
+        }
+       }
+    }
+  }
 }

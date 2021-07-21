@@ -46,7 +46,7 @@
                accept="image/*"
                (change)="fileChangeEvent( $event )"
         >
-        <div class="cursor-pointer ml-1" (click)="fileInput.click()">
+        <div class="cursor-pointer ml-1" (click)="fileInput.click()" *ngIf="!photoForm.get('file').value">
           <i class="mt-3 fa fa-camera-retro  icons-footer" aria-hidden="true"></i>
           <span class="ml-2  font-weight-bold">Image</span>
         </div>
@@ -60,7 +60,7 @@
                accept="video/*"
                (change)="fileChangeEventVideo( $event )"
         >
-        <div class="cursor-pointer ml-1" (click)="fileInputVideo.click()">
+        <div class="cursor-pointer ml-1" (click)="fileInputVideo.click()" *ngIf="!photoForm.get('file').value">
           <i class="fa fa-video-camera  icons-footer" aria-hidden="true"></i>
           <span class="ml-2  font-weight-bold">Movie</span>
         </div>
@@ -74,7 +74,7 @@
           </div>
           <div class="row w-100">
             <div class="col-auto w-100">
-              <swiper [spaceBetween]="2" [virtual]="true" effect="fade" [slidesPerView]="cols">
+              <swiper [spaceBetween]="5" [virtual]="true" effect="fade" [slidesPerView]="cols">
                 <div *ngFor="let item of items(); let i = index;">
                   <ng-template swiperSlide>
                     <img src="{{croppedImage}}" class="w-100 cursor-pointer item  {{item}}"
