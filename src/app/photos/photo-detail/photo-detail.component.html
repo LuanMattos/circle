@@ -1,4 +1,5 @@
 <div id="photo-detail" *ngIf="(photo$ | async) as photo">
+  <app-photo-card-header [photo]='photo'></app-photo-card-header>
   <div *ngIf="isPhoto( photo.photo_url ) else video">
     <img src="{{photo.photo_url}}" alt='Photo detail {{photo.photo_description}}'>
   </div>

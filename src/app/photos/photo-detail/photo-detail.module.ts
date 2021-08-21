@@ -14,13 +14,15 @@ import {CommentsFormComponent} from '../comments/comments-form.component';
 import {LikeModule} from '../../shared/like/like.module';
 import { PhotoDescriptionModule } from '../photo-description/photo-description.module';
 import { VideosModule } from '../photo-list/videos/videos.module';
+import { PhotoCardHeaderComponent } from '../photo-card-header/photo-card-header.component';
 
 
 @NgModule({
   declarations: [
     PhotoDetailComponent,
     PhotoCommentsComponent,
-    CommentsFormComponent
+    CommentsFormComponent,
+    PhotoCardHeaderComponent
   ],
   exports: [
     PhotoDetailComponent,
@@ -38,7 +40,7 @@ import { VideosModule } from '../photo-list/videos/videos.module';
     ShowIsLoggedModule,
     LikeModule,
     PhotoDescriptionModule,
-    VideosModule
+    VideosModule,
   ]
 })
 export class PhotoDetailModule{}

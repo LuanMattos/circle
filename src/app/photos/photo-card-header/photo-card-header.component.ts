@@ -11,12 +11,10 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls:  ['./photo-card-header.component.scss']
 })
 export class PhotoCardHeaderComponent implements OnInit{
-    photoId: number;
     description: string;
     photos: Photo[] = [];
     @Input() photo: Photo;
-    @Input() i: Number;
-    isTimeline: boolean;
+    isDetail: boolean;
     innerWidth;
     
     constructor(
@@ -26,18 +24,18 @@ export class PhotoCardHeaderComponent implements OnInit{
         private activatedRoute: ActivatedRoute,
     ) {}
     ngOnInit(): void {
-        this.isModuleTimeline();
+        this.isModuleDetail();
         this.widthScreen();
     }
     widthScreen(): void{
         this.innerWidth = window.innerWidth;
         window.addEventListener('resize',()=>{ this.innerWidth = window.innerWidth; });
     } 
-    edit(photo, i): void{
-        this.router.navigate(['p', photo.photo_id]);
+    edit(photo): void{
+       console.log('editar')
     }
-    isModuleTimeline(): void{
-      this.isTimeline = this.activatedRoute.snapshot.data.isTimeline
+    isModuleDetail(): void{
+      this.isDetail = this.activatedRoute.snapshot.data.isDetail
     }
     //   save( photoDescription: string, photoId: number, i: number ): void{
     //     this.photoService
@@ -48,8 +46,7 @@ export class PhotoCardHeaderComponent implements OnInit{
     //         }
     //       );
     // }
-    delete( photo, i ): void{
-      this.photos.splice(i, 1);
+    delete( photo ): void{
       this.photoService
         .removePhoto( photo.photo_id )
         .subscribe();

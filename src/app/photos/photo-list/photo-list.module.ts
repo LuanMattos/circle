@@ -24,7 +24,6 @@ import {ImgOnerrorModule} from '../../shared/directives/img-onerror/img-onerror.
 import { ImageCropperModule } from 'ngx-image-cropper';
 import {DialogSettingComponent} from './setting-profile/dialog/dialog-setting.component';
 import { BannerProfileComponent } from './banner-profile/banner-profile.component';
-import { PhotoCardHeaderComponent } from '../photo-card-header/photo-card-header.component';
 import { PhotoDescriptionModule } from '../photo-description/photo-description.module';
 import { VideosModule } from './videos/videos.module';
 
@@ -40,7 +39,6 @@ import { VideosModule } from './videos/videos.module';
     FollowingComponent,
     DialogSettingComponent,
     BannerProfileComponent,
-    PhotoCardHeaderComponent
   ],
   exports: [
     PhotosComponent,
