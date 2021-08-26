@@ -28,9 +28,22 @@ DEMO> circle-73cde.web.app
 
 <br>
 <br>
-
-![alt text](https://github.com/LuanMattos/circle/blob/master/scree/2.png "Screenshot 1")
+![alt text](https://github.com/LuanMattos/circle/blob/main/2.png "Screenshot 2")
 <br>
 <br>
 
-![alt text](https://github.com/LuanMattos/circle/blob/master/scree/3.png "Screenshot 1")
+![alt text](https://github.com/LuanMattos/circle/blob/main/3.jpg "Screenshot 3")
+<br>
+<br>
+
+![alt text](https://github.com/LuanMattos/circle/blob/main/4.jpg "Screenshot 4")
+
+<br>
+<br>
+
+![alt text](https://github.com/LuanMattos/circle/blob/main/5.jpg "Screenshot 5")
+
+<br>
+<br>
+
+![alt text](https://github.com/LuanMattos/circle/blob/main/6.jpg "Screenshot 6")
