@@ -28,11 +28,14 @@ DEMO> circle-73cde.web.app
 
 <br>
 <br>
-![alt text](https://github.com/LuanMattos/circle/blob/main/2.png "Screenshot 2")
+
+![alt text](https://github.com/LuanMattos/circle/blob/main/2.jpg "Screenshot 2")
+
 <br>
 <br>
 
 ![alt text](https://github.com/LuanMattos/circle/blob/main/3.jpg "Screenshot 3")
+
 <br>
 <br>
 
