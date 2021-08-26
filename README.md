@@ -24,7 +24,7 @@ DEMO> circle-73cde.web.app
 
 # :art: Layout
 
-![alt text](https://github.com/LuanMattos/circle/blob/master/scree/1.png "Screenshot 1")
+![alt text](https://github.com/LuanMattos/circle/blob/main/1.png "Screenshot 1")
 
 <br>
 <br>
